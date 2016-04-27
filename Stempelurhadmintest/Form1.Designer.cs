@@ -31,6 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,15 +39,14 @@
             this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 551);
+            this.button1.Location = new System.Drawing.Point(225, 254);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(82, 29);
             this.button1.TabIndex = 0;
             this.button1.Text = "init kalender";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,7 +54,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(18, 91);
+            this.monthCalendar1.Location = new System.Drawing.Point(19, 80);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.ShowWeekNumbers = true;
             this.monthCalendar1.TabIndex = 1;
@@ -83,59 +83,75 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(703, 242);
+            this.dataGridView1.Size = new System.Drawing.Size(564, 242);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "MMMM yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(19, 254);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.ShowUpDown = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 3;
             // 
             // Montag
             // 
             this.Montag.Frozen = true;
             this.Montag.HeaderText = "Montag";
             this.Montag.Name = "Montag";
+            this.Montag.ReadOnly = true;
+            this.Montag.Width = 80;
             // 
             // Dienstag
             // 
             this.Dienstag.Frozen = true;
             this.Dienstag.HeaderText = "Dienstag";
             this.Dienstag.Name = "Dienstag";
+            this.Dienstag.ReadOnly = true;
+            this.Dienstag.Width = 80;
             // 
             // Mittwoch
             // 
             this.Mittwoch.Frozen = true;
             this.Mittwoch.HeaderText = "Mittwoch";
             this.Mittwoch.Name = "Mittwoch";
+            this.Mittwoch.ReadOnly = true;
+            this.Mittwoch.Width = 80;
             // 
             // Donnerstag
             // 
             this.Donnerstag.Frozen = true;
             this.Donnerstag.HeaderText = "Donnerstag";
             this.Donnerstag.Name = "Donnerstag";
+            this.Donnerstag.ReadOnly = true;
+            this.Donnerstag.Width = 80;
             // 
             // Freitag
             // 
             this.Freitag.Frozen = true;
             this.Freitag.HeaderText = "Freitag";
             this.Freitag.Name = "Freitag";
+            this.Freitag.ReadOnly = true;
+            this.Freitag.Width = 80;
             // 
             // Samstag
             // 
             this.Samstag.Frozen = true;
             this.Samstag.HeaderText = "Samstag";
             this.Samstag.Name = "Samstag";
+            this.Samstag.ReadOnly = true;
+            this.Samstag.Width = 80;
             // 
             // Sonntag
             // 
             this.Sonntag.Frozen = true;
             this.Sonntag.HeaderText = "Sonntag";
             this.Sonntag.Name = "Sonntag";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "MM.yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(280, 252);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(80, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.Sonntag.ReadOnly = true;
+            this.Sonntag.Width = 80;
             // 
             // Form1
             // 
@@ -158,6 +174,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dienstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mittwoch;
@@ -165,7 +182,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Freitag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Samstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sonntag;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

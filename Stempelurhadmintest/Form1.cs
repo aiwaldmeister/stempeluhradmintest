@@ -19,7 +19,9 @@ namespace Stempelurhadmintest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            initCalendar(DateTime.Now.Month,DateTime.Now.Year);
+            //initCalendar(DateTime.Now.Month,DateTime.Now.Year);
+            initCalendar(dateTimePicker1.Value.Month, dateTimePicker1.Value.Year);
+            
 
             //dataGridView1.RowCount = 5;
             //dataGridView1.Rows[0].Cells[0].Value = "";
@@ -33,6 +35,7 @@ namespace Stempelurhadmintest
             int Wochentagdesersten = ((int)Betrachtungsdatum.DayOfWeek == 0) ? 7 : (int)Betrachtungsdatum.DayOfWeek; //Nummer des Wochentags des ersten des Monats (Montag = 1, etc...)
 
             dataGridView1.RowCount = 6;
+            dataGridView1.GridColor = Color.LightGray;
 
             int i = 1;
             for (int actrow = 0; actrow < 6; actrow++)
@@ -47,6 +50,8 @@ namespace Stempelurhadmintest
                     else
                     {
                         dataGridView1.Rows[actrow].Cells[actcol].Value = i.ToString();
+                        dataGridView1.Rows[actrow].Cells[actcol].Style.BackColor = Color.White;
+                        dataGridView1.Rows[actrow].Cells[actcol].ToolTipText = "test\r\ntest";
                         i++;
                     }
 
