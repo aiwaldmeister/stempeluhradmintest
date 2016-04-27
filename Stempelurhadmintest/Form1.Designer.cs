@@ -50,9 +50,9 @@
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(358, 91);
+            this.listView1.Location = new System.Drawing.Point(239, 91);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(350, 162);
+            this.listView1.Size = new System.Drawing.Size(437, 374);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -60,7 +60,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 308);
+            this.ClientSize = new System.Drawing.Size(772, 494);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.button1);
