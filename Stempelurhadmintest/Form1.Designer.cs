@@ -46,6 +46,7 @@
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(18, 91);
             this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowWeekNumbers = true;
             this.monthCalendar1.TabIndex = 1;
             // 
             // listView1
