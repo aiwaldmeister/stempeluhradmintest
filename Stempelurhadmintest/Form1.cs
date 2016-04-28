@@ -133,10 +133,22 @@ namespace Stempelurhadmintest
 
         private void openEventEditor()
         {
-        //TODO Datum und Person festschreiben
-        //TODO Panel anzeigen
-        //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
+            //TODO Datum und Person festschreiben
+            //TODO Panel anzeigen
+            //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
         }
 
+        private void PersonPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(PersonPicker.SelectedValue != null && PersonPicker.SelectedValue.ToString()=="Allgemein")
+            {
+                //TODO Ausgewählte Person auf "" setzen
+                //Personenanzeige auf Allgemein setzen
+            }else
+            {
+                //TODO Namen und Nachnamen aus der Datenbank holen und Personenanzeige setzen
+            }
+
+        }
     }
 }
