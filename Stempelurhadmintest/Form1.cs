@@ -19,39 +19,44 @@ namespace Stempelurhadmintest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int selectedCellCount = dataGridView1.SelectedCells.Count;
+            // Messagebox für jede selectierte zelle
+            int selectedCellCount = KalenderGrid.SelectedCells.Count;
             for (int i = 0;
                 i < selectedCellCount; i++)
             {
-                string cellvaluestring = dataGridView1.SelectedCells[i].Value.ToString();
+                string cellvaluestring = KalenderGrid.SelectedCells[i].Value.ToString();
                 cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
-
                 if (cellvaluestring != "")
                 {
-                    MessageBox.Show( cellvaluestring + "." + dateTimePicker1.Value.Month.ToString("D2")+ "." + dateTimePicker1.Value.Year.ToString("D4"));
+                    MessageBox.Show( cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2")+ "." + MonatsPicker.Value.Year.ToString("D4"));
                 }
             }
         }
 
-        private void markiereBesondereTage()
+        private void markiereTagemitEreignissen(String PersonFilter)
         {
             string cellvaluestring = "";
-            string betrachtungsjahr = dateTimePicker1.Value.Year.ToString("D4");
-            string betrachtungsmonat = dateTimePicker1.Value.Month.ToString("D2");
+            string betrachtungsjahr = MonatsPicker.Value.Year.ToString("D4");
+            string betrachtungsmonat = MonatsPicker.Value.Month.ToString("D2");
 
             for (int actrow = 0; actrow < 6; actrow++)
             {
                 for (int actcol = 0; actcol < 7; actcol++)
                 {
-                    cellvaluestring = dataGridView1.Rows[actrow].Cells[actcol].Value.ToString();
+                    cellvaluestring = KalenderGrid.Rows[actrow].Cells[actcol].Value.ToString();
                     cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
                     if (cellvaluestring != "")
-                    {   //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat, betrachtungstag(cellvaluestring)
+                    {   //Aktuelle Zelle enthält einen Tag
+
+                        //TODO
+                        //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat, betrachtungstag(cellvaluestring)
                         //wenn ereignis für diesen Tag gefunden, die cell einfärben und den tooltip setzen
-                        
+
+
+                        //dataGridView1.Rows[actrow].Cells[actcol].ToolTipText = "test\r\ntest";
                     }
                     else
-                    {
+                    {   //Aktuelle Zelle enthält keinen Tag
                         
                     }
                 }
@@ -63,8 +68,8 @@ namespace Stempelurhadmintest
             DateTime Betrachtungsdatum = new DateTime(Betrachtungsjahr,Betrachtungsmonat,1); //Startdate auf den ersten des Monats stellen
             int Wochentagdesersten = ((int)Betrachtungsdatum.DayOfWeek == 0) ? 7 : (int)Betrachtungsdatum.DayOfWeek; //Nummer des Wochentags des ersten des Monats (Montag = 1, etc...)
 
-            dataGridView1.RowCount = 6;
-            dataGridView1.GridColor = Color.LightGray;
+            KalenderGrid.RowCount = 6;
+            KalenderGrid.GridColor = Color.LightGray;
 
             int i = 1;
             for (int actrow = 0; actrow < 6; actrow++)
@@ -73,14 +78,17 @@ namespace Stempelurhadmintest
                 {
                     if((actrow == 0 && actcol + 1 < Wochentagdesersten) || i > DateTime.DaysInMonth(Betrachtungsjahr,Betrachtungsmonat))
                     {
-                        dataGridView1.Rows[actrow].Cells[actcol].Value = "";
-                        dataGridView1.Rows[actrow].Cells[actcol].Style.BackColor = Color.LightGray;
+                        KalenderGrid.Rows[actrow].Cells[actcol].Value = "";
+                        KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.LightGray;
                     }
                     else
                     {
-                        dataGridView1.Rows[actrow].Cells[actcol].Value = i.ToString();
-                        dataGridView1.Rows[actrow].Cells[actcol].Style.BackColor = Color.White;
-                        dataGridView1.Rows[actrow].Cells[actcol].ToolTipText = "test\r\ntest";
+                        KalenderGrid.Rows[actrow].Cells[actcol].Value = i.ToString();
+                        KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.White;
+                        if(actcol + 1 >= 6)
+                        {
+                            KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.Beige;
+                        }
                         i++;
                     }
                 }
@@ -105,14 +113,30 @@ namespace Stempelurhadmintest
             //MessageBox.Show(Wochentagdesersten.ToString());
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void initPersonPicker()
         {
-            initKalender(dateTimePicker1.Value.Month, dateTimePicker1.Value.Year);
+            //TODO Datenbankverbindung herstellen
+            //TODO Personen der Personentabelle dem PersonPicker hinzufügen
+        }
+
+        private void MonatsPicker_ValueChanged(object sender, EventArgs e)
+        {
+            initKalender(MonatsPicker.Value.Month, MonatsPicker.Value.Year);
+            markiereTagemitEreignissen("");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initKalender(dateTimePicker1.Value.Month, dateTimePicker1.Value.Year);
+            initKalender(MonatsPicker.Value.Month, MonatsPicker.Value.Year);
+            initPersonPicker();
         }
+
+        private void openEventEditor()
+        {
+        //TODO Datum und Person festschreiben
+        //TODO Panel anzeigen
+        //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
+        }
+
     }
 }

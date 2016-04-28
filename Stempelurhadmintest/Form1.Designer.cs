@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.KalenderGrid = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,8 +37,9 @@
             this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.MonatsPicker = new System.Windows.Forms.DateTimePicker();
+            this.PersonPicker = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -50,16 +51,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView1
+            // KalenderGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.KalenderGrid.AllowUserToAddRows = false;
+            this.KalenderGrid.AllowUserToDeleteRows = false;
+            this.KalenderGrid.AllowUserToResizeColumns = false;
+            this.KalenderGrid.AllowUserToResizeRows = false;
+            this.KalenderGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.KalenderGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.KalenderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.KalenderGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Montag,
             this.Dienstag,
             this.Mittwoch,
@@ -67,16 +68,16 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.WindowText;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 440);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(283, 154);
-            this.dataGridView1.TabIndex = 2;
+            this.KalenderGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.KalenderGrid.GridColor = System.Drawing.SystemColors.WindowText;
+            this.KalenderGrid.Location = new System.Drawing.Point(12, 440);
+            this.KalenderGrid.Name = "KalenderGrid";
+            this.KalenderGrid.ReadOnly = true;
+            this.KalenderGrid.RowHeadersVisible = false;
+            this.KalenderGrid.RowHeadersWidth = 30;
+            this.KalenderGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.KalenderGrid.Size = new System.Drawing.Size(214, 154);
+            this.KalenderGrid.TabIndex = 2;
             // 
             // Montag
             // 
@@ -84,7 +85,7 @@
             this.Montag.HeaderText = "Mo";
             this.Montag.Name = "Montag";
             this.Montag.ReadOnly = true;
-            this.Montag.Width = 40;
+            this.Montag.Width = 30;
             // 
             // Dienstag
             // 
@@ -92,7 +93,7 @@
             this.Dienstag.HeaderText = "Di";
             this.Dienstag.Name = "Dienstag";
             this.Dienstag.ReadOnly = true;
-            this.Dienstag.Width = 40;
+            this.Dienstag.Width = 30;
             // 
             // Mittwoch
             // 
@@ -100,7 +101,7 @@
             this.Mittwoch.HeaderText = "Mi";
             this.Mittwoch.Name = "Mittwoch";
             this.Mittwoch.ReadOnly = true;
-            this.Mittwoch.Width = 40;
+            this.Mittwoch.Width = 30;
             // 
             // Donnerstag
             // 
@@ -108,7 +109,7 @@
             this.Donnerstag.HeaderText = "Do";
             this.Donnerstag.Name = "Donnerstag";
             this.Donnerstag.ReadOnly = true;
-            this.Donnerstag.Width = 40;
+            this.Donnerstag.Width = 30;
             // 
             // Freitag
             // 
@@ -116,7 +117,7 @@
             this.Freitag.HeaderText = "Fr";
             this.Freitag.Name = "Freitag";
             this.Freitag.ReadOnly = true;
-            this.Freitag.Width = 40;
+            this.Freitag.Width = 30;
             // 
             // Samstag
             // 
@@ -124,7 +125,7 @@
             this.Samstag.HeaderText = "Sa";
             this.Samstag.Name = "Samstag";
             this.Samstag.ReadOnly = true;
-            this.Samstag.Width = 40;
+            this.Samstag.Width = 30;
             // 
             // Sonntag
             // 
@@ -132,34 +133,46 @@
             this.Sonntag.HeaderText = "So";
             this.Sonntag.Name = "Sonntag";
             this.Sonntag.ReadOnly = true;
-            this.Sonntag.Width = 40;
+            this.Sonntag.Width = 30;
             // 
-            // dateTimePicker1
+            // MonatsPicker
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.CustomFormat = "MMMM yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 411);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(283, 26);
-            this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.MonatsPicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonatsPicker.CustomFormat = "MMMM       yyyy";
+            this.MonatsPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonatsPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.MonatsPicker.Location = new System.Drawing.Point(12, 413);
+            this.MonatsPicker.Margin = new System.Windows.Forms.Padding(0);
+            this.MonatsPicker.Name = "MonatsPicker";
+            this.MonatsPicker.ShowUpDown = true;
+            this.MonatsPicker.Size = new System.Drawing.Size(214, 26);
+            this.MonatsPicker.TabIndex = 3;
+            this.MonatsPicker.ValueChanged += new System.EventHandler(this.MonatsPicker_ValueChanged);
+            // 
+            // PersonPicker
+            // 
+            this.PersonPicker.FormattingEnabled = true;
+            this.PersonPicker.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.PersonPicker.Location = new System.Drawing.Point(12, 360);
+            this.PersonPicker.Name = "PersonPicker";
+            this.PersonPicker.Size = new System.Drawing.Size(118, 21);
+            this.PersonPicker.TabIndex = 4;
+            this.PersonPicker.Text = "Allgemein";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(849, 606);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.PersonPicker);
+            this.Controls.Add(this.MonatsPicker);
+            this.Controls.Add(this.KalenderGrid);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -167,8 +180,8 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridView KalenderGrid;
+        private System.Windows.Forms.DateTimePicker MonatsPicker;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dienstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mittwoch;
@@ -176,6 +189,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Freitag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Samstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sonntag;
+        private System.Windows.Forms.ComboBox PersonPicker;
     }
 }
 
