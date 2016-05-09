@@ -40,11 +40,11 @@
             this.MonatsPicker = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Personen = new System.Windows.Forms.TabPage();
-            this.Stempelungen = new System.Windows.Forms.TabPage();
-            this.Abwesenheiten = new System.Windows.Forms.TabPage();
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
+            this.Stempelungen = new System.Windows.Forms.TabPage();
+            this.Abwesenheiten = new System.Windows.Forms.TabPage();
+            this.Personen = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -182,36 +182,6 @@
             this.tabControl1.Size = new System.Drawing.Size(527, 383);
             this.tabControl1.TabIndex = 5;
             // 
-            // Personen
-            // 
-            this.Personen.Location = new System.Drawing.Point(4, 22);
-            this.Personen.Name = "Personen";
-            this.Personen.Padding = new System.Windows.Forms.Padding(3);
-            this.Personen.Size = new System.Drawing.Size(519, 388);
-            this.Personen.TabIndex = 0;
-            this.Personen.Text = "Personen verwalten";
-            this.Personen.UseVisualStyleBackColor = true;
-            // 
-            // Stempelungen
-            // 
-            this.Stempelungen.Location = new System.Drawing.Point(4, 22);
-            this.Stempelungen.Name = "Stempelungen";
-            this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Stempelungen.Size = new System.Drawing.Size(519, 388);
-            this.Stempelungen.TabIndex = 1;
-            this.Stempelungen.Text = "Stempelungen";
-            this.Stempelungen.UseVisualStyleBackColor = true;
-            // 
-            // Abwesenheiten
-            // 
-            this.Abwesenheiten.Location = new System.Drawing.Point(4, 22);
-            this.Abwesenheiten.Name = "Abwesenheiten";
-            this.Abwesenheiten.Padding = new System.Windows.Forms.Padding(3);
-            this.Abwesenheiten.Size = new System.Drawing.Size(519, 388);
-            this.Abwesenheiten.TabIndex = 2;
-            this.Abwesenheiten.Text = "Abwesenheiten";
-            this.Abwesenheiten.UseVisualStyleBackColor = true;
-            // 
             // Auswertungen
             // 
             this.Auswertungen.Location = new System.Drawing.Point(4, 22);
@@ -226,10 +196,40 @@
             // 
             this.Verrechenbare_Zeiten.Location = new System.Drawing.Point(4, 22);
             this.Verrechenbare_Zeiten.Name = "Verrechenbare_Zeiten";
-            this.Verrechenbare_Zeiten.Size = new System.Drawing.Size(519, 388);
+            this.Verrechenbare_Zeiten.Size = new System.Drawing.Size(519, 357);
             this.Verrechenbare_Zeiten.TabIndex = 4;
-            this.Verrechenbare_Zeiten.Text = "Verrechenbare Zeiten";
+            this.Verrechenbare_Zeiten.Text = "Verrechnung";
             this.Verrechenbare_Zeiten.UseVisualStyleBackColor = true;
+            // 
+            // Stempelungen
+            // 
+            this.Stempelungen.Location = new System.Drawing.Point(4, 22);
+            this.Stempelungen.Name = "Stempelungen";
+            this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Stempelungen.Size = new System.Drawing.Size(519, 357);
+            this.Stempelungen.TabIndex = 1;
+            this.Stempelungen.Text = "Stempelungen";
+            this.Stempelungen.UseVisualStyleBackColor = true;
+            // 
+            // Abwesenheiten
+            // 
+            this.Abwesenheiten.Location = new System.Drawing.Point(4, 22);
+            this.Abwesenheiten.Name = "Abwesenheiten";
+            this.Abwesenheiten.Padding = new System.Windows.Forms.Padding(3);
+            this.Abwesenheiten.Size = new System.Drawing.Size(519, 357);
+            this.Abwesenheiten.TabIndex = 2;
+            this.Abwesenheiten.Text = "Kalender-Eintragungen";
+            this.Abwesenheiten.UseVisualStyleBackColor = true;
+            // 
+            // Personen
+            // 
+            this.Personen.Location = new System.Drawing.Point(4, 22);
+            this.Personen.Name = "Personen";
+            this.Personen.Padding = new System.Windows.Forms.Padding(3);
+            this.Personen.Size = new System.Drawing.Size(519, 357);
+            this.Personen.TabIndex = 0;
+            this.Personen.Text = "Personen verwalten";
+            this.Personen.UseVisualStyleBackColor = true;
             // 
             // label1
             // 

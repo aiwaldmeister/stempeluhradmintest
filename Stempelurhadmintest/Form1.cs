@@ -25,9 +25,10 @@ namespace Stempelurhadmintest
                 i < selectedCellCount; i++)
             {
                 string cellvaluestring = KalenderGrid.SelectedCells[i].Value.ToString();
-                cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
+                
                 if (cellvaluestring != "")
                 {
+                    cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
                     MessageBox.Show( cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2")+ "." + MonatsPicker.Value.Year.ToString("D4"));
                 }
             }
@@ -43,10 +44,12 @@ namespace Stempelurhadmintest
             {
                 for (int actcol = 0; actcol < 7; actcol++)
                 {
-                    cellvaluestring = KalenderGrid.Rows[actrow].Cells[actcol].Value.ToString();
-                    cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
+                    
                     if (cellvaluestring != "")
                     {   //Aktuelle Zelle enthält einen Tag
+
+                        cellvaluestring = KalenderGrid.Rows[actrow].Cells[actcol].Value.ToString();
+                        cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
 
                         //TODO
                         //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat, betrachtungstag(cellvaluestring)
