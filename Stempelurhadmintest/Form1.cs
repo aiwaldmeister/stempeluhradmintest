@@ -30,6 +30,26 @@ namespace Stempelurhadmintest
                 {
                     cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
                     MessageBox.Show( cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2")+ "." + MonatsPicker.Value.Year.ToString("D4"));
+
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell1 = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell2 = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell3 = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell4 = new DataGridViewTextBoxCell();
+
+                    cell1.Value = cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2");
+                    myrow.Cells.Add(cell1);
+
+                    cell2.Value = "7.2";
+                    myrow.Cells.Add(cell2);
+
+                    cell3.Value = "0";
+                    myrow.Cells.Add(cell3);
+
+                    cell4.Value = "Testeintrag Blablabla";
+                    myrow.Cells.Add(cell4);
+
+                    Ereignisgrid.Rows.Add(myrow);
                 }
             }
         }
@@ -151,6 +171,36 @@ namespace Stempelurhadmintest
             {
                 //TODO Namen und Nachnamen aus der Datenbank holen und Personenanzeige setzen
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Abwesenheiten_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KalenderGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Ereignisgrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
