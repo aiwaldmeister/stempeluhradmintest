@@ -29,32 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.KalenderGrid = new System.Windows.Forms.DataGridView();
-            this.MonatsPicker = new System.Windows.Forms.DateTimePicker();
-            this.PersonPicker = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Auswertungen = new System.Windows.Forms.TabPage();
-            this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
-            this.Stempelungen = new System.Windows.Forms.TabPage();
-            this.Abwesenheiten = new System.Windows.Forms.TabPage();
-            this.Personen = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,44 +37,94 @@
             this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.Ereignisgrid = new System.Windows.Forms.DataGridView();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.MonatsPicker_Kalender = new System.Windows.Forms.DateTimePicker();
+            this.PersonPicker_Kalender = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
+            this.Stempelungen = new System.Windows.Forms.TabPage();
+            this.Abwesenheiten = new System.Windows.Forms.TabPage();
+            this.Ereignisgrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid)).BeginInit();
+            this.Bemerkung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox_Kalender_erstelleEintrag = new System.Windows.Forms.GroupBox();
+            this.button_Kalender_erstelleEintrag = new System.Windows.Forms.Button();
+            this.textBox_Kalender_Sollzeit = new System.Windows.Forms.TextBox();
+            this.groupBox_Kalender_Voreinstellungen = new System.Windows.Forms.GroupBox();
+            this.button_Kalender_ganzerTagUrlaub = new System.Windows.Forms.Button();
+            this.button_Kalender_Feiertag = new System.Windows.Forms.Button();
+            this.button_Kalender_Krankheitstag = new System.Windows.Forms.Button();
+            this.button_Kalender_halberTagUrlaub = new System.Windows.Forms.Button();
+            this.textBox_Kalender_Urlaub = new System.Windows.Forms.TextBox();
+            this.textBox_Kalender_Bemerkung = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox_Kalender_AlleEreignisse = new System.Windows.Forms.GroupBox();
+            this.button_Kalender_storniereEintrag = new System.Windows.Forms.Button();
+            this.Personen = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.comboBox_Personen_Picker = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Abwesenheiten.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
+            this.groupBox_Kalender_erstelleEintrag.SuspendLayout();
+            this.groupBox_Kalender_Voreinstellungen.SuspendLayout();
+            this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
+            this.Personen.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(85, 164);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(801, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 36);
+            this.button1.Size = new System.Drawing.Size(21, 13);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // KalenderGrid
+            // KalenderGrid_Kalender
             // 
-            this.KalenderGrid.AllowUserToAddRows = false;
-            this.KalenderGrid.AllowUserToDeleteRows = false;
-            this.KalenderGrid.AllowUserToResizeColumns = false;
-            this.KalenderGrid.AllowUserToResizeRows = false;
-            this.KalenderGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.KalenderGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.KalenderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.KalenderGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.KalenderGrid_Kalender.AllowUserToAddRows = false;
+            this.KalenderGrid_Kalender.AllowUserToDeleteRows = false;
+            this.KalenderGrid_Kalender.AllowUserToResizeColumns = false;
+            this.KalenderGrid_Kalender.AllowUserToResizeRows = false;
+            this.KalenderGrid_Kalender.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.KalenderGrid_Kalender.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.KalenderGrid_Kalender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.KalenderGrid_Kalender.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Montag,
             this.Dienstag,
             this.Mittwoch,
@@ -107,292 +132,19 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            this.KalenderGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.KalenderGrid.GridColor = System.Drawing.SystemColors.WindowText;
-            this.KalenderGrid.Location = new System.Drawing.Point(272, 30);
-            this.KalenderGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.KalenderGrid.Name = "KalenderGrid";
-            this.KalenderGrid.ReadOnly = true;
-            this.KalenderGrid.RowHeadersVisible = false;
-            this.KalenderGrid.RowHeadersWidth = 30;
-            this.KalenderGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.KalenderGrid.Size = new System.Drawing.Size(353, 170);
-            this.KalenderGrid.TabIndex = 2;
-            this.KalenderGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KalenderGrid_CellContentClick);
-            // 
-            // MonatsPicker
-            // 
-            this.MonatsPicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MonatsPicker.CustomFormat = "MMMM       yyyy";
-            this.MonatsPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MonatsPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.MonatsPicker.Location = new System.Drawing.Point(19, 30);
-            this.MonatsPicker.Margin = new System.Windows.Forms.Padding(0);
-            this.MonatsPicker.Name = "MonatsPicker";
-            this.MonatsPicker.ShowUpDown = true;
-            this.MonatsPicker.Size = new System.Drawing.Size(236, 30);
-            this.MonatsPicker.TabIndex = 3;
-            this.MonatsPicker.ValueChanged += new System.EventHandler(this.MonatsPicker_ValueChanged);
-            // 
-            // PersonPicker
-            // 
-            this.PersonPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonPicker.FormattingEnabled = true;
-            this.PersonPicker.Items.AddRange(new object[] {
-            "Allgemein"});
-            this.PersonPicker.Location = new System.Drawing.Point(19, 82);
-            this.PersonPicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PersonPicker.Name = "PersonPicker";
-            this.PersonPicker.Size = new System.Drawing.Size(236, 33);
-            this.PersonPicker.TabIndex = 4;
-            this.PersonPicker.Text = "Allgemein";
-            this.PersonPicker.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_SelectedIndexChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.Auswertungen);
-            this.tabControl1.Controls.Add(this.Verrechenbare_Zeiten);
-            this.tabControl1.Controls.Add(this.Stempelungen);
-            this.tabControl1.Controls.Add(this.Abwesenheiten);
-            this.tabControl1.Controls.Add(this.Personen);
-            this.tabControl1.Location = new System.Drawing.Point(13, 13);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1106, 720);
-            this.tabControl1.TabIndex = 5;
-            // 
-            // Auswertungen
-            // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 25);
-            this.Auswertungen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Auswertungen.Name = "Auswertungen";
-            this.Auswertungen.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Auswertungen.Size = new System.Drawing.Size(1098, 691);
-            this.Auswertungen.TabIndex = 3;
-            this.Auswertungen.Text = "Auswertungen";
-            this.Auswertungen.UseVisualStyleBackColor = true;
-            // 
-            // Verrechenbare_Zeiten
-            // 
-            this.Verrechenbare_Zeiten.Location = new System.Drawing.Point(4, 25);
-            this.Verrechenbare_Zeiten.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Verrechenbare_Zeiten.Name = "Verrechenbare_Zeiten";
-            this.Verrechenbare_Zeiten.Size = new System.Drawing.Size(1098, 691);
-            this.Verrechenbare_Zeiten.TabIndex = 4;
-            this.Verrechenbare_Zeiten.Text = "Verrechnung";
-            this.Verrechenbare_Zeiten.UseVisualStyleBackColor = true;
-            // 
-            // Stempelungen
-            // 
-            this.Stempelungen.Location = new System.Drawing.Point(4, 25);
-            this.Stempelungen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Stempelungen.Name = "Stempelungen";
-            this.Stempelungen.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Stempelungen.Size = new System.Drawing.Size(1098, 691);
-            this.Stempelungen.TabIndex = 1;
-            this.Stempelungen.Text = "Stempelungen";
-            this.Stempelungen.UseVisualStyleBackColor = true;
-            // 
-            // Abwesenheiten
-            // 
-            this.Abwesenheiten.Controls.Add(this.groupBox4);
-            this.Abwesenheiten.Controls.Add(this.Ereignisgrid);
-            this.Abwesenheiten.Controls.Add(this.groupBox2);
-            this.Abwesenheiten.Controls.Add(this.groupBox1);
-            this.Abwesenheiten.Controls.Add(this.label7);
-            this.Abwesenheiten.Location = new System.Drawing.Point(4, 25);
-            this.Abwesenheiten.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Abwesenheiten.Name = "Abwesenheiten";
-            this.Abwesenheiten.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Abwesenheiten.Size = new System.Drawing.Size(1098, 691);
-            this.Abwesenheiten.TabIndex = 2;
-            this.Abwesenheiten.Text = "Kalender-Eintragungen";
-            this.Abwesenheiten.UseVisualStyleBackColor = true;
-            this.Abwesenheiten.Click += new System.EventHandler(this.Abwesenheiten_Click);
-            // 
-            // Personen
-            // 
-            this.Personen.Location = new System.Drawing.Point(4, 25);
-            this.Personen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Personen.Name = "Personen";
-            this.Personen.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Personen.Size = new System.Drawing.Size(695, 442);
-            this.Personen.TabIndex = 0;
-            this.Personen.Text = "Personen verwalten";
-            this.Personen.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(37, 130);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 28);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Für Person X am 01.01.2099...";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(27, 146);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(39, 22);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "7.2";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(17, 21);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 28);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "ganzer Tag Urlaub";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(197, 22);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(154, 27);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "halber Tag Urlaub";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(27, 186);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(598, 42);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "sonstigen Kalendereintrag erstellen";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(27, 42);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(598, 42);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "alle Einträge stornieren";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(162, 146);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(53, 22);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "0";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(315, 146);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(310, 22);
-            this.textBox3.TabIndex = 7;
-            this.textBox3.Text = "Halber Tag Urlaub";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(159, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Urlaub abziehen";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(312, 126);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Bemerkung";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 126);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 17);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "neue Sollzeit";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(221, 151);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 17);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Tag(e)";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(67, 149);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Stunden";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Location = new System.Drawing.Point(15, 555);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(640, 112);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Eintragungen stornieren";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(15, 273);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(640, 260);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Eintrag erstellen";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.button7);
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(27, 35);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(598, 59);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Voreinstellungen";
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(670, 20);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(310, 30);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Eintragungen zu PersonX in 2099";
-            this.label7.Click += new System.EventHandler(this.label1_Click);
+            this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
+            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
+            this.KalenderGrid_Kalender.MultiSelect = false;
+            this.KalenderGrid_Kalender.Name = "KalenderGrid_Kalender";
+            this.KalenderGrid_Kalender.ReadOnly = true;
+            this.KalenderGrid_Kalender.RowHeadersVisible = false;
+            this.KalenderGrid_Kalender.RowHeadersWidth = 30;
+            this.KalenderGrid_Kalender.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.KalenderGrid_Kalender.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.KalenderGrid_Kalender.Size = new System.Drawing.Size(248, 154);
+            this.KalenderGrid_Kalender.TabIndex = 2;
+            this.KalenderGrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KalenderGrid_CellContentClick);
             // 
             // Montag
             // 
@@ -400,7 +152,7 @@
             this.Montag.HeaderText = "Mo";
             this.Montag.Name = "Montag";
             this.Montag.ReadOnly = true;
-            this.Montag.Width = 50;
+            this.Montag.Width = 35;
             // 
             // Dienstag
             // 
@@ -408,7 +160,7 @@
             this.Dienstag.HeaderText = "Di";
             this.Dienstag.Name = "Dienstag";
             this.Dienstag.ReadOnly = true;
-            this.Dienstag.Width = 50;
+            this.Dienstag.Width = 35;
             // 
             // Mittwoch
             // 
@@ -416,7 +168,7 @@
             this.Mittwoch.HeaderText = "Mi";
             this.Mittwoch.Name = "Mittwoch";
             this.Mittwoch.ReadOnly = true;
-            this.Mittwoch.Width = 50;
+            this.Mittwoch.Width = 35;
             // 
             // Donnerstag
             // 
@@ -424,7 +176,7 @@
             this.Donnerstag.HeaderText = "Do";
             this.Donnerstag.Name = "Donnerstag";
             this.Donnerstag.ReadOnly = true;
-            this.Donnerstag.Width = 50;
+            this.Donnerstag.Width = 35;
             // 
             // Freitag
             // 
@@ -432,7 +184,7 @@
             this.Freitag.HeaderText = "Fr";
             this.Freitag.Name = "Freitag";
             this.Freitag.ReadOnly = true;
-            this.Freitag.Width = 50;
+            this.Freitag.Width = 35;
             // 
             // Samstag
             // 
@@ -440,7 +192,7 @@
             this.Samstag.HeaderText = "Sa";
             this.Samstag.Name = "Samstag";
             this.Samstag.ReadOnly = true;
-            this.Samstag.Width = 50;
+            this.Samstag.Width = 35;
             // 
             // Sonntag
             // 
@@ -448,107 +200,619 @@
             this.Sonntag.HeaderText = "So";
             this.Sonntag.Name = "Sonntag";
             this.Sonntag.ReadOnly = true;
-            this.Sonntag.Width = 50;
+            this.Sonntag.Width = 35;
             // 
-            // button6
+            // MonatsPicker_Kalender
             // 
-            this.button6.Location = new System.Drawing.Point(367, 22);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(114, 27);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Krankheitstag";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button2_Click);
+            this.MonatsPicker_Kalender.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonatsPicker_Kalender.CustomFormat = "MMMM       yyyy";
+            this.MonatsPicker_Kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonatsPicker_Kalender.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(104, 67);
+            this.MonatsPicker_Kalender.Margin = new System.Windows.Forms.Padding(0);
+            this.MonatsPicker_Kalender.Name = "MonatsPicker_Kalender";
+            this.MonatsPicker_Kalender.ShowUpDown = true;
+            this.MonatsPicker_Kalender.Size = new System.Drawing.Size(248, 26);
+            this.MonatsPicker_Kalender.TabIndex = 3;
+            this.MonatsPicker_Kalender.ValueChanged += new System.EventHandler(this.MonatsPicker_ValueChanged);
             // 
-            // button7
+            // PersonPicker_Kalender
             // 
-            this.button7.Location = new System.Drawing.Point(495, 21);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(87, 27);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "Feiertag";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button2_Click);
+            this.PersonPicker_Kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PersonPicker_Kalender.FormattingEnabled = true;
+            this.PersonPicker_Kalender.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.PersonPicker_Kalender.Location = new System.Drawing.Point(31, 16);
+            this.PersonPicker_Kalender.Name = "PersonPicker_Kalender";
+            this.PersonPicker_Kalender.Size = new System.Drawing.Size(379, 28);
+            this.PersonPicker_Kalender.TabIndex = 4;
+            this.PersonPicker_Kalender.Text = "Allgemein";
+            this.PersonPicker_Kalender.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_SelectedIndexChanged);
             // 
-            // Ereignisgrid
+            // tabControl1
             // 
-            this.Ereignisgrid.AllowUserToAddRows = false;
-            this.Ereignisgrid.AllowUserToDeleteRows = false;
-            this.Ereignisgrid.AllowUserToResizeColumns = false;
-            this.Ereignisgrid.AllowUserToResizeRows = false;
-            this.Ereignisgrid.BackgroundColor = System.Drawing.Color.White;
-            this.Ereignisgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Ereignisgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tabControl1.Controls.Add(this.Abwesenheiten);
+            this.tabControl1.Controls.Add(this.Auswertungen);
+            this.tabControl1.Controls.Add(this.Verrechenbare_Zeiten);
+            this.tabControl1.Controls.Add(this.Stempelungen);
+            this.tabControl1.Controls.Add(this.Personen);
+            this.tabControl1.Location = new System.Drawing.Point(10, 11);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(830, 585);
+            this.tabControl1.TabIndex = 5;
+            // 
+            // Auswertungen
+            // 
+            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
+            this.Auswertungen.Name = "Auswertungen";
+            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
+            this.Auswertungen.TabIndex = 3;
+            this.Auswertungen.Text = "Auswertungen";
+            this.Auswertungen.UseVisualStyleBackColor = true;
+            // 
+            // Verrechenbare_Zeiten
+            // 
+            this.Verrechenbare_Zeiten.Location = new System.Drawing.Point(4, 22);
+            this.Verrechenbare_Zeiten.Name = "Verrechenbare_Zeiten";
+            this.Verrechenbare_Zeiten.Size = new System.Drawing.Size(822, 559);
+            this.Verrechenbare_Zeiten.TabIndex = 4;
+            this.Verrechenbare_Zeiten.Text = "Verrechnung";
+            this.Verrechenbare_Zeiten.UseVisualStyleBackColor = true;
+            // 
+            // Stempelungen
+            // 
+            this.Stempelungen.Location = new System.Drawing.Point(4, 22);
+            this.Stempelungen.Name = "Stempelungen";
+            this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Stempelungen.Size = new System.Drawing.Size(822, 559);
+            this.Stempelungen.TabIndex = 1;
+            this.Stempelungen.Text = "Stempelungen";
+            this.Stempelungen.UseVisualStyleBackColor = true;
+            // 
+            // Abwesenheiten
+            // 
+            this.Abwesenheiten.Controls.Add(this.KalenderGrid_Kalender);
+            this.Abwesenheiten.Controls.Add(this.MonatsPicker_Kalender);
+            this.Abwesenheiten.Controls.Add(this.PersonPicker_Kalender);
+            this.Abwesenheiten.Controls.Add(this.groupBox_Kalender_erstelleEintrag);
+            this.Abwesenheiten.Controls.Add(this.button1);
+            this.Abwesenheiten.Controls.Add(this.groupBox_Kalender_AlleEreignisse);
+            this.Abwesenheiten.Location = new System.Drawing.Point(4, 22);
+            this.Abwesenheiten.Name = "Abwesenheiten";
+            this.Abwesenheiten.Padding = new System.Windows.Forms.Padding(3);
+            this.Abwesenheiten.Size = new System.Drawing.Size(822, 559);
+            this.Abwesenheiten.TabIndex = 2;
+            this.Abwesenheiten.Text = "Kalender-Eintragungen";
+            this.Abwesenheiten.UseVisualStyleBackColor = true;
+            this.Abwesenheiten.Click += new System.EventHandler(this.Abwesenheiten_Click);
+            // 
+            // Ereignisgrid_Kalender
+            // 
+            this.Ereignisgrid_Kalender.AllowUserToAddRows = false;
+            this.Ereignisgrid_Kalender.AllowUserToDeleteRows = false;
+            this.Ereignisgrid_Kalender.AllowUserToResizeColumns = false;
+            this.Ereignisgrid_Kalender.AllowUserToResizeRows = false;
+            this.Ereignisgrid_Kalender.BackgroundColor = System.Drawing.Color.White;
+            this.Ereignisgrid_Kalender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Ereignisgrid_Kalender.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Datum,
             this.Sollzeit,
             this.Urlaub,
-            this.Vermerk});
-            this.Ereignisgrid.Location = new System.Drawing.Point(673, 50);
-            this.Ereignisgrid.Name = "Ereignisgrid";
-            this.Ereignisgrid.RowHeadersVisible = false;
-            this.Ereignisgrid.RowTemplate.Height = 24;
-            this.Ereignisgrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Ereignisgrid.Size = new System.Drawing.Size(403, 617);
-            this.Ereignisgrid.TabIndex = 11;
-            this.Ereignisgrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_CellContentClick);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.KalenderGrid);
-            this.groupBox4.Controls.Add(this.MonatsPicker);
-            this.groupBox4.Controls.Add(this.PersonPicker);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Location = new System.Drawing.Point(15, 20);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(640, 225);
-            this.groupBox4.TabIndex = 12;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Auswahl";
+            this.Bemerkung});
+            this.Ereignisgrid_Kalender.Location = new System.Drawing.Point(21, 27);
+            this.Ereignisgrid_Kalender.Margin = new System.Windows.Forms.Padding(2);
+            this.Ereignisgrid_Kalender.Name = "Ereignisgrid_Kalender";
+            this.Ereignisgrid_Kalender.ReadOnly = true;
+            this.Ereignisgrid_Kalender.RowHeadersVisible = false;
+            this.Ereignisgrid_Kalender.RowTemplate.Height = 24;
+            this.Ereignisgrid_Kalender.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Ereignisgrid_Kalender.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 416);
+            this.Ereignisgrid_Kalender.TabIndex = 11;
+            this.Ereignisgrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_CellContentClick);
             // 
             // Datum
             // 
             this.Datum.HeaderText = "Dat.";
             this.Datum.Name = "Datum";
+            this.Datum.ReadOnly = true;
             this.Datum.Width = 50;
             // 
             // Sollzeit
             // 
             this.Sollzeit.HeaderText = "Soll";
             this.Sollzeit.Name = "Sollzeit";
+            this.Sollzeit.ReadOnly = true;
             this.Sollzeit.Width = 40;
             // 
             // Urlaub
             // 
             this.Urlaub.HeaderText = "Urlb";
             this.Urlaub.Name = "Urlaub";
+            this.Urlaub.ReadOnly = true;
             this.Urlaub.Width = 40;
             // 
-            // Vermerk
+            // Bemerkung
             // 
-            this.Vermerk.HeaderText = "Vermerk";
-            this.Vermerk.Name = "Vermerk";
-            this.Vermerk.Width = 250;
+            this.Bemerkung.HeaderText = "Bemerkung";
+            this.Bemerkung.Name = "Bemerkung";
+            this.Bemerkung.ReadOnly = true;
+            this.Bemerkung.Width = 250;
+            // 
+            // groupBox_Kalender_erstelleEintrag
+            // 
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_erstelleEintrag);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Sollzeit);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.groupBox_Kalender_Voreinstellungen);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Urlaub);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Bemerkung);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label6);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label2);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label4);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label5);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label3);
+            this.groupBox_Kalender_erstelleEintrag.Location = new System.Drawing.Point(11, 273);
+            this.groupBox_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_erstelleEintrag.Name = "groupBox_Kalender_erstelleEintrag";
+            this.groupBox_Kalender_erstelleEintrag.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_erstelleEintrag.Size = new System.Drawing.Size(399, 272);
+            this.groupBox_Kalender_erstelleEintrag.TabIndex = 10;
+            this.groupBox_Kalender_erstelleEintrag.TabStop = false;
+            this.groupBox_Kalender_erstelleEintrag.Text = "Eintrag erstellen";
+            // 
+            // button_Kalender_erstelleEintrag
+            // 
+            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 217);
+            this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
+            this.button_Kalender_erstelleEintrag.Size = new System.Drawing.Size(353, 34);
+            this.button_Kalender_erstelleEintrag.TabIndex = 8;
+            this.button_Kalender_erstelleEintrag.Text = "Kalendereintrag erstellen";
+            this.button_Kalender_erstelleEintrag.UseVisualStyleBackColor = true;
+            this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
+            // 
+            // textBox_Kalender_Sollzeit
+            // 
+            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(21, 166);
+            this.textBox_Kalender_Sollzeit.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
+            this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(30, 20);
+            this.textBox_Kalender_Sollzeit.TabIndex = 7;
+            this.textBox_Kalender_Sollzeit.Text = "7.2";
+            this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // groupBox_Kalender_Voreinstellungen
+            // 
+            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_ganzerTagUrlaub);
+            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_Feiertag);
+            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_Krankheitstag);
+            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_halberTagUrlaub);
+            this.groupBox_Kalender_Voreinstellungen.Location = new System.Drawing.Point(20, 26);
+            this.groupBox_Kalender_Voreinstellungen.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_Voreinstellungen.Name = "groupBox_Kalender_Voreinstellungen";
+            this.groupBox_Kalender_Voreinstellungen.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_Voreinstellungen.Size = new System.Drawing.Size(353, 87);
+            this.groupBox_Kalender_Voreinstellungen.TabIndex = 10;
+            this.groupBox_Kalender_Voreinstellungen.TabStop = false;
+            this.groupBox_Kalender_Voreinstellungen.Text = "Voreinstellungen";
+            // 
+            // button_Kalender_ganzerTagUrlaub
+            // 
+            this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(35, 17);
+            this.button_Kalender_ganzerTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_ganzerTagUrlaub.Name = "button_Kalender_ganzerTagUrlaub";
+            this.button_Kalender_ganzerTagUrlaub.Size = new System.Drawing.Size(134, 23);
+            this.button_Kalender_ganzerTagUrlaub.TabIndex = 8;
+            this.button_Kalender_ganzerTagUrlaub.Text = "ganzer Tag Urlaub";
+            this.button_Kalender_ganzerTagUrlaub.UseVisualStyleBackColor = true;
+            this.button_Kalender_ganzerTagUrlaub.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
+            // 
+            // button_Kalender_Feiertag
+            // 
+            this.button_Kalender_Feiertag.Location = new System.Drawing.Point(184, 56);
+            this.button_Kalender_Feiertag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_Feiertag.Name = "button_Kalender_Feiertag";
+            this.button_Kalender_Feiertag.Size = new System.Drawing.Size(137, 22);
+            this.button_Kalender_Feiertag.TabIndex = 8;
+            this.button_Kalender_Feiertag.Text = "Feiertag";
+            this.button_Kalender_Feiertag.UseVisualStyleBackColor = true;
+            this.button_Kalender_Feiertag.Click += new System.EventHandler(this.button_Kalender_Feiertag_Click);
+            // 
+            // button_Kalender_Krankheitstag
+            // 
+            this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(184, 18);
+            this.button_Kalender_Krankheitstag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_Krankheitstag.Name = "button_Kalender_Krankheitstag";
+            this.button_Kalender_Krankheitstag.Size = new System.Drawing.Size(137, 22);
+            this.button_Kalender_Krankheitstag.TabIndex = 8;
+            this.button_Kalender_Krankheitstag.Text = "Krankheitstag";
+            this.button_Kalender_Krankheitstag.UseVisualStyleBackColor = true;
+            this.button_Kalender_Krankheitstag.Click += new System.EventHandler(this.button_Kalender_Krankheitstag_Click);
+            // 
+            // button_Kalender_halberTagUrlaub
+            // 
+            this.button_Kalender_halberTagUrlaub.Location = new System.Drawing.Point(35, 56);
+            this.button_Kalender_halberTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_halberTagUrlaub.Name = "button_Kalender_halberTagUrlaub";
+            this.button_Kalender_halberTagUrlaub.Size = new System.Drawing.Size(134, 22);
+            this.button_Kalender_halberTagUrlaub.TabIndex = 8;
+            this.button_Kalender_halberTagUrlaub.Text = "halber Tag Urlaub";
+            this.button_Kalender_halberTagUrlaub.UseVisualStyleBackColor = true;
+            this.button_Kalender_halberTagUrlaub.Click += new System.EventHandler(this.button_Kalender_halberTagUrlaub_Click);
+            // 
+            // textBox_Kalender_Urlaub
+            // 
+            this.textBox_Kalender_Urlaub.Location = new System.Drawing.Point(125, 166);
+            this.textBox_Kalender_Urlaub.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Kalender_Urlaub.Name = "textBox_Kalender_Urlaub";
+            this.textBox_Kalender_Urlaub.Size = new System.Drawing.Size(21, 20);
+            this.textBox_Kalender_Urlaub.TabIndex = 7;
+            this.textBox_Kalender_Urlaub.Text = "0";
+            // 
+            // textBox_Kalender_Bemerkung
+            // 
+            this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(222, 166);
+            this.textBox_Kalender_Bemerkung.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Kalender_Bemerkung.Name = "textBox_Kalender_Bemerkung";
+            this.textBox_Kalender_Bemerkung.Size = new System.Drawing.Size(152, 20);
+            this.textBox_Kalender_Bemerkung.TabIndex = 7;
+            this.textBox_Kalender_Bemerkung.Text = "Halber Tag Urlaub";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(51, 168);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Stunden";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(122, 149);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Urlaub abziehen";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 149);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "neue Sollzeit";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(150, 169);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Tag(e)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(219, 149);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Bemerkung";
+            // 
+            // groupBox_Kalender_AlleEreignisse
+            // 
+            this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.button_Kalender_storniereEintrag);
+            this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.Ereignisgrid_Kalender);
+            this.groupBox_Kalender_AlleEreignisse.Location = new System.Drawing.Point(435, 16);
+            this.groupBox_Kalender_AlleEreignisse.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_AlleEreignisse.Name = "groupBox_Kalender_AlleEreignisse";
+            this.groupBox_Kalender_AlleEreignisse.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox_Kalender_AlleEreignisse.Size = new System.Drawing.Size(370, 529);
+            this.groupBox_Kalender_AlleEreignisse.TabIndex = 10;
+            this.groupBox_Kalender_AlleEreignisse.TabStop = false;
+            this.groupBox_Kalender_AlleEreignisse.Text = "Alle Einträge für diese Auswahl (Mitarbeiter + Jahr)";
+            // 
+            // button_Kalender_storniereEintrag
+            // 
+            this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 474);
+            this.button_Kalender_storniereEintrag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_storniereEintrag.Name = "button_Kalender_storniereEintrag";
+            this.button_Kalender_storniereEintrag.Size = new System.Drawing.Size(330, 34);
+            this.button_Kalender_storniereEintrag.TabIndex = 8;
+            this.button_Kalender_storniereEintrag.Text = "Markierten Kalendereintrag stornieren";
+            this.button_Kalender_storniereEintrag.UseVisualStyleBackColor = true;
+            this.button_Kalender_storniereEintrag.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
+            // 
+            // Personen
+            // 
+            this.Personen.Controls.Add(this.comboBox_Personen_Picker);
+            this.Personen.Controls.Add(this.groupBox6);
+            this.Personen.Controls.Add(this.groupBox5);
+            this.Personen.Controls.Add(this.button3);
+            this.Personen.Controls.Add(this.button2);
+            this.Personen.Location = new System.Drawing.Point(4, 22);
+            this.Personen.Name = "Personen";
+            this.Personen.Padding = new System.Windows.Forms.Padding(3);
+            this.Personen.Size = new System.Drawing.Size(822, 559);
+            this.Personen.TabIndex = 0;
+            this.Personen.Text = "Personen verwalten";
+            this.Personen.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(112, 142);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(134, 29);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(106, 216);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(154, 32);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.textBox4);
+            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Location = new System.Drawing.Point(311, 59);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(335, 167);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.textBox11);
+            this.groupBox6.Controls.Add(this.label18);
+            this.groupBox6.Controls.Add(this.textBox10);
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.textBox9);
+            this.groupBox6.Controls.Add(this.label16);
+            this.groupBox6.Controls.Add(this.textBox8);
+            this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.textBox7);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Controls.Add(this.textBox6);
+            this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.textBox5);
+            this.groupBox6.Controls.Add(this.label12);
+            this.groupBox6.Location = new System.Drawing.Point(311, 257);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(335, 281);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "groupBox5";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "label8";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(101, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(25, 65);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "label8";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(101, 66);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 100);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "label8";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(101, 101);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 126);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "label8";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(101, 127);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(35, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "label8";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(101, 38);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 76);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "label8";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(101, 77);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(25, 120);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "label8";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(101, 121);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.TabIndex = 1;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(25, 146);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "label8";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(101, 147);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 20);
+            this.textBox8.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(25, 192);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "label8";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(101, 193);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 20);
+            this.textBox9.TabIndex = 1;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(25, 227);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(35, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "label8";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(101, 228);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 20);
+            this.textBox10.TabIndex = 1;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(25, 253);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "label8";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(101, 254);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(100, 20);
+            this.textBox11.TabIndex = 1;
+            // 
+            // comboBox_Personen_Picker
+            // 
+            this.comboBox_Personen_Picker.FormattingEnabled = true;
+            this.comboBox_Personen_Picker.Location = new System.Drawing.Point(70, 59);
+            this.comboBox_Personen_Picker.Name = "comboBox_Personen_Picker";
+            this.comboBox_Personen_Picker.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_Personen_Picker.TabIndex = 3;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1132, 746);
+            this.ClientSize = new System.Drawing.Size(849, 606);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Abwesenheiten.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid)).EndInit();
-            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
+            this.groupBox_Kalender_erstelleEintrag.ResumeLayout(false);
+            this.groupBox_Kalender_erstelleEintrag.PerformLayout();
+            this.groupBox_Kalender_Voreinstellungen.ResumeLayout(false);
+            this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
+            this.Personen.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -556,32 +820,37 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView KalenderGrid;
-        private System.Windows.Forms.DateTimePicker MonatsPicker;
-        private System.Windows.Forms.ComboBox PersonPicker;
+        private System.Windows.Forms.DataGridView KalenderGrid_Kalender;
+        private System.Windows.Forms.DateTimePicker MonatsPicker_Kalender;
+        private System.Windows.Forms.ComboBox PersonPicker_Kalender;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Auswertungen;
         private System.Windows.Forms.TabPage Verrechenbare_Zeiten;
         private System.Windows.Forms.TabPage Stempelungen;
         private System.Windows.Forms.TabPage Abwesenheiten;
         private System.Windows.Forms.TabPage Personen;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button_Kalender_ganzerTagUrlaub;
+        private System.Windows.Forms.TextBox textBox_Kalender_Sollzeit;
+        private System.Windows.Forms.Button button_Kalender_halberTagUrlaub;
+        private System.Windows.Forms.Button button_Kalender_erstelleEintrag;
+        private System.Windows.Forms.Button button_Kalender_storniereEintrag;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox_Kalender_Bemerkung;
+        private System.Windows.Forms.TextBox textBox_Kalender_Urlaub;
+        private System.Windows.Forms.GroupBox groupBox_Kalender_erstelleEintrag;
+        private System.Windows.Forms.GroupBox groupBox_Kalender_AlleEreignisse;
+        private System.Windows.Forms.GroupBox groupBox_Kalender_Voreinstellungen;
+        private System.Windows.Forms.Button button_Kalender_Krankheitstag;
+        private System.Windows.Forms.Button button_Kalender_Feiertag;
+        private System.Windows.Forms.DataGridView Ereignisgrid_Kalender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bemerkung;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dienstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mittwoch;
@@ -589,14 +858,33 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Freitag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Samstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sonntag;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataGridView Ereignisgrid;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Vermerk;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Picker;
     }
 }
 

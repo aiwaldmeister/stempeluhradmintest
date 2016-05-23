@@ -20,16 +20,16 @@ namespace Stempelurhadmintest
         private void button1_Click(object sender, EventArgs e)
         {
             // Messagebox für jede selectierte zelle
-            int selectedCellCount = KalenderGrid.SelectedCells.Count;
+            int selectedCellCount = KalenderGrid_Kalender.SelectedCells.Count;
             for (int i = 0;
                 i < selectedCellCount; i++)
             {
-                string cellvaluestring = KalenderGrid.SelectedCells[i].Value.ToString();
+                string cellvaluestring = KalenderGrid_Kalender.SelectedCells[i].Value.ToString();
                 
                 if (cellvaluestring != "")
                 {
                     cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
-                    MessageBox.Show( cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2")+ "." + MonatsPicker.Value.Year.ToString("D4"));
+                    MessageBox.Show( cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2")+ "." + MonatsPicker_Kalender.Value.Year.ToString("D4"));
 
                     DataGridViewRow myrow = new DataGridViewRow();
                     DataGridViewCell cell1 = new DataGridViewTextBoxCell();
@@ -37,7 +37,7 @@ namespace Stempelurhadmintest
                     DataGridViewCell cell3 = new DataGridViewTextBoxCell();
                     DataGridViewCell cell4 = new DataGridViewTextBoxCell();
 
-                    cell1.Value = cellvaluestring + "." + MonatsPicker.Value.Month.ToString("D2");
+                    cell1.Value = cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2");
                     myrow.Cells.Add(cell1);
 
                     cell2.Value = "7.2";
@@ -49,7 +49,7 @@ namespace Stempelurhadmintest
                     cell4.Value = "Testeintrag Blablabla";
                     myrow.Cells.Add(cell4);
 
-                    Ereignisgrid.Rows.Add(myrow);
+                    Ereignisgrid_Kalender.Rows.Add(myrow);
                 }
             }
         }
@@ -57,8 +57,8 @@ namespace Stempelurhadmintest
         private void markiereTagemitEreignissen(String PersonFilter)
         {
             string cellvaluestring = "";
-            string betrachtungsjahr = MonatsPicker.Value.Year.ToString("D4");
-            string betrachtungsmonat = MonatsPicker.Value.Month.ToString("D2");
+            string betrachtungsjahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
+            string betrachtungsmonat = MonatsPicker_Kalender.Value.Month.ToString("D2");
 
             for (int actrow = 0; actrow < 6; actrow++)
             {
@@ -68,7 +68,7 @@ namespace Stempelurhadmintest
                     if (cellvaluestring != "")
                     {   //Aktuelle Zelle enthält einen Tag
 
-                        cellvaluestring = KalenderGrid.Rows[actrow].Cells[actcol].Value.ToString();
+                        cellvaluestring = KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value.ToString();
                         cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
 
                         //TODO
@@ -91,8 +91,8 @@ namespace Stempelurhadmintest
             DateTime Betrachtungsdatum = new DateTime(Betrachtungsjahr,Betrachtungsmonat,1); //Startdate auf den ersten des Monats stellen
             int Wochentagdesersten = ((int)Betrachtungsdatum.DayOfWeek == 0) ? 7 : (int)Betrachtungsdatum.DayOfWeek; //Nummer des Wochentags des ersten des Monats (Montag = 1, etc...)
 
-            KalenderGrid.RowCount = 6;
-            KalenderGrid.GridColor = Color.LightGray;
+            KalenderGrid_Kalender.RowCount = 6;
+            KalenderGrid_Kalender.GridColor = Color.LightGray;
 
             int i = 1;
             for (int actrow = 0; actrow < 6; actrow++)
@@ -101,16 +101,16 @@ namespace Stempelurhadmintest
                 {
                     if((actrow == 0 && actcol + 1 < Wochentagdesersten) || i > DateTime.DaysInMonth(Betrachtungsjahr,Betrachtungsmonat))
                     {
-                        KalenderGrid.Rows[actrow].Cells[actcol].Value = "";
-                        KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.LightGray;
+                        KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value = "";
+                        KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.LightGray;
                     }
                     else
                     {
-                        KalenderGrid.Rows[actrow].Cells[actcol].Value = i.ToString();
-                        KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.White;
+                        KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value = i.ToString();
+                        KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.White;
                         if(actcol + 1 >= 6)
                         {
-                            KalenderGrid.Rows[actrow].Cells[actcol].Style.BackColor = Color.Beige;
+                            KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.Beige;
                         }
                         i++;
                     }
@@ -144,13 +144,13 @@ namespace Stempelurhadmintest
 
         private void MonatsPicker_ValueChanged(object sender, EventArgs e)
         {
-            initKalender(MonatsPicker.Value.Month, MonatsPicker.Value.Year);
+            initKalender(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
             markiereTagemitEreignissen("");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initKalender(MonatsPicker.Value.Month, MonatsPicker.Value.Year);
+            initKalender(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
             initPersonPicker();
         }
 
@@ -163,7 +163,7 @@ namespace Stempelurhadmintest
 
         private void PersonPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(PersonPicker.SelectedValue != null && PersonPicker.SelectedValue.ToString()=="Allgemein")
+            if(PersonPicker_Kalender.SelectedValue != null && PersonPicker_Kalender.SelectedValue.ToString()=="Allgemein")
             {
                 //TODO Ausgewählte Person auf "" setzen
                 //Personenanzeige auf Allgemein setzen
@@ -174,13 +174,39 @@ namespace Stempelurhadmintest
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        private void button_Kalender_ganzerTagUrlaub_Click(object sender, EventArgs e)
+        {   
+            //Voreinstellungen für ganzen Urlaubstag setzen...
+            textBox_Kalender_Sollzeit.Text = "0";
+            textBox_Kalender_Urlaub.Text = "1";
+            textBox_Kalender_Bemerkung.Text = "Urlaub";
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_Kalender_halberTagUrlaub_Click(object sender, EventArgs e)
         {
+            //Voreinstellungen für halben Urlaubstag setzen...
+            textBox_Kalender_Sollzeit.Text = "3.6";
+            textBox_Kalender_Urlaub.Text = "0.5";
+            textBox_Kalender_Bemerkung.Text = "Halber Tag Urlaub";
+
+        }
+
+        private void button_Kalender_Krankheitstag_Click(object sender, EventArgs e)
+        {
+            //Voreinstellungen für halben Urlaubstag setzen...
+            textBox_Kalender_Sollzeit.Text = "0";
+            textBox_Kalender_Urlaub.Text = "0";
+            textBox_Kalender_Bemerkung.Text = "Krankheitstag";
+
+        }
+
+        private void button_Kalender_Feiertag_Click(object sender, EventArgs e)
+        {
+            //Voreinstellungen für halben Urlaubstag setzen...
+            textBox_Kalender_Sollzeit.Text = "0";
+            textBox_Kalender_Urlaub.Text = "0";
+            textBox_Kalender_Bemerkung.Text = "Feiertag";
 
         }
 
