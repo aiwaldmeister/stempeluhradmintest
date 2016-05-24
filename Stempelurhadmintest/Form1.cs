@@ -29,26 +29,26 @@ namespace Stempelurhadmintest
                 if (cellvaluestring != "")
                 {
                     cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
-                    MessageBox.Show( cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2")+ "." + MonatsPicker_Kalender.Value.Year.ToString("D4"));
+                    //MessageBox.Show( cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2")+ "." + MonatsPicker_Kalender.Value.Year.ToString("D4"));
 
                     DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell0 = new DataGridViewTextBoxCell();
                     DataGridViewCell cell1 = new DataGridViewTextBoxCell();
                     DataGridViewCell cell2 = new DataGridViewTextBoxCell();
                     DataGridViewCell cell3 = new DataGridViewTextBoxCell();
                     DataGridViewCell cell4 = new DataGridViewTextBoxCell();
 
+                    cell0.Value = "0001";
                     cell1.Value = cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2");
-                    myrow.Cells.Add(cell1);
-
                     cell2.Value = "7.2";
-                    myrow.Cells.Add(cell2);
-
                     cell3.Value = "0";
-                    myrow.Cells.Add(cell3);
-
                     cell4.Value = "Testeintrag Blablabla";
-                    myrow.Cells.Add(cell4);
 
+                    myrow.Cells.Add(cell0);
+                    myrow.Cells.Add(cell1);
+                    myrow.Cells.Add(cell2);
+                    myrow.Cells.Add(cell3);
+                    myrow.Cells.Add(cell4);
                     Ereignisgrid_Kalender.Rows.Add(myrow);
                 }
             }
@@ -117,6 +117,7 @@ namespace Stempelurhadmintest
                 }
             }
 
+            KalenderGrid_Kalender.ClearSelection();
 
 
 
@@ -136,7 +137,7 @@ namespace Stempelurhadmintest
             //MessageBox.Show(Wochentagdesersten.ToString());
         }
 
-        private void initPersonPicker()
+        private void initPersonPicker_Kalender()
         {
             //TODO Datenbankverbindung herstellen
             //TODO Personen der Personentabelle dem PersonPicker hinzufügen
@@ -151,12 +152,11 @@ namespace Stempelurhadmintest
         private void Form1_Load(object sender, EventArgs e)
         {
             initKalender(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
-            initPersonPicker();
+            initPersonPicker_Kalender();
         }
 
         private void openEventEditor()
         {
-            //TODO Datum und Person festschreiben
             //TODO Panel anzeigen
             //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
         }
@@ -180,6 +180,14 @@ namespace Stempelurhadmintest
             textBox_Kalender_Sollzeit.Text = "0";
             textBox_Kalender_Urlaub.Text = "1";
             textBox_Kalender_Bemerkung.Text = "Urlaub";
+
+        }
+
+        private void button_Kalender_erstelleEintrag_Click(object sender, EventArgs e)
+        {
+            //TODO Plausiprüfung der Werte
+            //TODO Kalendereintrag erstellen
+            //TODO Ansicht aktualisieren
 
         }
 
