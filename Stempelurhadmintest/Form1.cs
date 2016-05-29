@@ -8,13 +8,93 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Configuration;     //Zum lesen der Config-File
+using MySql.Data;               //der MySql-Connector
+using System.IO;                //zum schreiben der Logfiles
+
 namespace Stempelurhadmintest
 {
     public partial class Form1 : Form
     {
+        string dbserverconf_global;
+        string dbnameconf_global;
+        string dbuserconf_global;
+        string dbpwconf_global;
+
+        MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection();
+        MySql.Data.MySqlClient.MySqlCommand comm = new MySql.Data.MySqlClient.MySqlCommand();
+
+        string logfilename_global;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void init_logfile()
+        {
+            logfilename_global = DateTime.Now.Year.ToString("D4") + DateTime.Now.Month.ToString("D2") + DateTime.Now.Day.ToString("D2") + ".log";
+            log("Programm gestartet..........................................................................");
+            log("Logfile geladen.");
+
+        }
+
+        private void init_config()
+        {
+            dbserverconf_global = System.Configuration.ConfigurationManager.AppSettings["dbserver"];
+            dbnameconf_global = System.Configuration.ConfigurationManager.AppSettings["dbname"];
+            dbuserconf_global = System.Configuration.ConfigurationManager.AppSettings["dbuser"];
+            dbpwconf_global = System.Configuration.ConfigurationManager.AppSettings["dbpw"];
+
+            log("Config-File gelesen, Datenbankinfos gesetzt.('" + dbserverconf_global + "','" + dbnameconf_global + "','" + dbuserconf_global + "','" + dbpwconf_global + "')");
+        }
+
+        private void init_db(string server, string database, string uid, string password)
+        {
+            conn.ConnectionString = "SERVER = " + server + "; " + "DATABASE = " + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            log("Datenbank ConnectionString initialisiert");
+        }
+
+        private bool open_db()
+        {
+            try
+            {
+                conn.Open();
+                comm.Connection = conn;
+                //log("Datenbankverbindung geoeffnet. (" + conn.ToString() + ")"); //nur zu debugzwecken
+                return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                log("Fehler beim oeffnen der Datenbank...");
+                log(ex.Message);
+                return false;
+            }
+        }
+
+        private bool close_db()
+        {
+            try
+            {
+                conn.Close();
+                //log("Datenbankverbindung geschlossen.");  //nur zu debugzwecken
+                return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                log("Fehler beim schliessen der Datenbank...");
+                log(ex.Message);
+                return false;
+            }
+        }
+
+        private void log(String text)
+        {
+            using (StreamWriter file = new StreamWriter(logfilename_global, true))
+            {
+                file.WriteLine(DateTime.Now.ToLongTimeString() + ": " + text);
+            }
+            Console.WriteLine("Log: " + DateTime.Now.ToLongTimeString() + ": " + text);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,33 +140,72 @@ namespace Stempelurhadmintest
             string betrachtungsjahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
             string betrachtungsmonat = MonatsPicker_Kalender.Value.Month.ToString("D2");
 
-            for (int actrow = 0; actrow < 6; actrow++)
+            string thisevent_vermerk = "";
+            string thisevent_tag = "";
+            string thisevent_zuordnung = "";
+            string thisevent_name = "";
+            string thisevent_tooltipprefix = "";
+
+            //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat
+            //wenn event gefunden, die entsprechende cell einfärben und den tooltip setzen
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT eventid, zuordnung, name, jahr, monat, tag, vermerk, urlaubstage_abziehen, sollzeit, storniert" +
+                                " FROM kalender left join user on kalender.zuordnung = user.userid" +
+                                " where jahr=@jahr AND monat=@monat AND storniert = 0";
+
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = betrachtungsjahr;
+            comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = betrachtungsmonat;
+
+            try
             {
-                for (int actcol = 0; actcol < 7; actcol++)
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
+                while (Reader.Read())
                 {
+                    thisevent_tag = Reader["tag"] + "";
+                    thisevent_vermerk = Reader["vermerk"] + "";
+                    thisevent_zuordnung = Reader["zuordnung"] + "";
+                    thisevent_name = Reader["name"] + "";
+
+                    if (thisevent_name != "") thisevent_tooltipprefix = thisevent_name + ": ";
+                   
+                    //loop durch alle cellen des Kalendergrids
+                    for (int actrow = 0; actrow < 6; actrow++)
+                    {
+                        for (int actcol = 0; actcol < 7; actcol++)
+                        {
+                            cellvaluestring = KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value.ToString();
+                            if(cellvaluestring != "")
+                            {
+                                cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
+                            }
+                            
+                            if(thisevent_tag == cellvaluestring)
+                            {
+                                KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText = KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText  + thisevent_tooltipprefix + thisevent_vermerk + "\r\n";
+                                KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.Lime;
+                            }
+                        }
+                    }
                     
-                    if (cellvaluestring != "")
-                    {   //Aktuelle Zelle enthält einen Tag
-
-                        cellvaluestring = KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value.ToString();
-                        cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
-
-                        //TODO
-                        //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat, betrachtungstag(cellvaluestring)
-                        //wenn ereignis für diesen Tag gefunden, die cell einfärben und den tooltip setzen
-
-
-                        //dataGridView1.Rows[actrow].Cells[actcol].ToolTipText = "test\r\ntest";
-                    }
-                    else
-                    {   //Aktuelle Zelle enthält keinen Tag
-                        
-                    }
                 }
+                Reader.Close();
             }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+
+
+
         }
 
-        private void initKalender(int Betrachtungsmonat, int Betrachtungsjahr)
+        private void initKalendergrid(int Betrachtungsmonat, int Betrachtungsjahr)
         {
             DateTime Betrachtungsdatum = new DateTime(Betrachtungsjahr,Betrachtungsmonat,1); //Startdate auf den ersten des Monats stellen
             int Wochentagdesersten = ((int)Betrachtungsdatum.DayOfWeek == 0) ? 7 : (int)Betrachtungsdatum.DayOfWeek; //Nummer des Wochentags des ersten des Monats (Montag = 1, etc...)
@@ -114,10 +233,13 @@ namespace Stempelurhadmintest
                         }
                         i++;
                     }
+                    KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText = "";
                 }
             }
 
             KalenderGrid_Kalender.ClearSelection();
+            markiereTagemitEreignissen("");
+
 
 
 
@@ -141,17 +263,56 @@ namespace Stempelurhadmintest
         {
             //TODO Datenbankverbindung herstellen
             //TODO Personen der Personentabelle dem PersonPicker hinzufügen
+
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname FROM user where aktiv = 1";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname= Reader["vorname"] + "";
+
+                    PersonPicker_Kalender.Items.Add();
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
         }
 
-        private void MonatsPicker_ValueChanged(object sender, EventArgs e)
+        private void MonatsPicker_Kalender_ValueChanged(object sender, EventArgs e)
         {
-            initKalender(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
-            markiereTagemitEreignissen("");
+            initKalendergrid(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initKalender(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
+            //Logfile initialisieren
+            init_logfile();
+
+            //Config-laden
+            init_config();
+
+            //Datenbank initialisieren
+            init_db(dbserverconf_global, dbnameconf_global, dbuserconf_global, dbpwconf_global);
+
+
+            initKalendergrid(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
             initPersonPicker_Kalender();
         }
 
@@ -236,6 +397,11 @@ namespace Stempelurhadmintest
         private void Ereignisgrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            log("Programm wird beendet.......................................................................");
         }
     }
 }

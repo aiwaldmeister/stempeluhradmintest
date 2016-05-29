@@ -67,64 +67,64 @@
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
-            this.Personen = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.Personen = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBox_Personen_Stempelfehler = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox_Personen_BetragletzterBonus = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Boniausgezahltbis = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_Personen_ZeitkontoBerechnungsstand = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Zeitkonto = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox_Personen_Neu_ErsterArbeitstag = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Neu_Urlaubstage = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Neu_Nachname = new System.Windows.Forms.TextBox();
+            this.button_Personen_newPerson = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Neu_Vorname = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Vorname = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_Personen_ID = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button_Personen_writeChanges = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Abwesenheiten.SuspendLayout();
@@ -133,12 +133,12 @@
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
             this.Stempelungen.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Personen.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -249,7 +249,7 @@
             this.MonatsPicker_Kalender.ShowUpDown = true;
             this.MonatsPicker_Kalender.Size = new System.Drawing.Size(248, 26);
             this.MonatsPicker_Kalender.TabIndex = 3;
-            this.MonatsPicker_Kalender.ValueChanged += new System.EventHandler(this.MonatsPicker_ValueChanged);
+            this.MonatsPicker_Kalender.ValueChanged += new System.EventHandler(this.MonatsPicker_Kalender_ValueChanged);
             // 
             // PersonPicker_Kalender
             // 
@@ -583,370 +583,130 @@
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
             // 
-            // Personen
-            // 
-            this.Personen.Controls.Add(this.comboBox1);
-            this.Personen.Controls.Add(this.groupBox6);
-            this.Personen.Controls.Add(this.groupBox1);
-            this.Personen.Controls.Add(this.groupBox5);
-            this.Personen.Controls.Add(this.button2);
-            this.Personen.Location = new System.Drawing.Point(4, 22);
-            this.Personen.Name = "Personen";
-            this.Personen.Padding = new System.Windows.Forms.Padding(3);
-            this.Personen.Size = new System.Drawing.Size(822, 559);
-            this.Personen.TabIndex = 0;
-            this.Personen.Text = "Personen verwalten";
-            this.Personen.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Allgemein"});
-            this.comboBox1.Location = new System.Drawing.Point(24, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(306, 28);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.Text = "Allgemein";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.textBox10);
-            this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Controls.Add(this.textBox9);
-            this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Controls.Add(this.textBox8);
-            this.groupBox6.Controls.Add(this.label15);
-            this.groupBox6.Controls.Add(this.textBox7);
-            this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Controls.Add(this.textBox6);
-            this.groupBox6.Controls.Add(this.label13);
-            this.groupBox6.Controls.Add(this.textBox5);
-            this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Enabled = false;
-            this.groupBox6.Location = new System.Drawing.Point(24, 235);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(306, 261);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Systemdaten";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(156, 216);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 20);
-            this.textBox10.TabIndex = 1;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(25, 216);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(71, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Stempelfehler";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(156, 171);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 1;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(25, 171);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 13);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Betrag letzter Bonus";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(156, 146);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 146);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(98, 13);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Boni ausgezahlt bis";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(156, 102);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 1;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 102);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Berechnungsstand";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(156, 76);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 76);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Zeitkonto";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(156, 32);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 1;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 32);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(85, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Aktueller Auftrag";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox14);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.textBox15);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(432, 111);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 248);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Neuer Mitarbeiter";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(187, 130);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 20);
-            this.textBox11.TabIndex = 1;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(187, 90);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(100, 20);
-            this.textBox13.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(56, 130);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Erster Arbeitstag";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(187, 64);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(100, 20);
-            this.textBox14.TabIndex = 1;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(59, 185);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(228, 32);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Neuen Mitarbeiter anlegen";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(56, 90);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(105, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Urlaubstage pro Jahr";
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(187, 38);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(100, 20);
-            this.textBox15.TabIndex = 1;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(56, 64);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(59, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Nachname";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(56, 38);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Vorname";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.textBox12);
-            this.groupBox5.Controls.Add(this.textBox4);
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.textBox1);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Location = new System.Drawing.Point(24, 54);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(306, 175);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Stammdaten";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(156, 135);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 20);
-            this.textBox12.TabIndex = 1;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(156, 109);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 135);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aktiver Mitarbeiter";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(156, 83);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 109);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(105, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Urlaubstage pro Jahr";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(156, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 83);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Nachname";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(156, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 57);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Vorname";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Enabled = false;
-            this.label8.Location = new System.Drawing.Point(25, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "ID";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(24, 513);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(306, 32);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Änderungen festschreiben";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Allgemein"});
-            this.comboBox2.Location = new System.Drawing.Point(26, 24);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(283, 28);
-            this.comboBox2.TabIndex = 5;
-            this.comboBox2.Text = "Allgemein";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(26, 60);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(283, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.textBox19);
+            this.groupBox2.Controls.Add(this.textBox18);
+            this.groupBox2.Controls.Add(this.textBox16);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Location = new System.Drawing.Point(361, 86);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(417, 455);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Editieren / Erstellen";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "an",
+            "ab"});
+            this.comboBox3.Location = new System.Drawing.Point(198, 107);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(147, 21);
+            this.comboBox3.TabIndex = 12;
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(198, 165);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(147, 20);
+            this.textBox19.TabIndex = 11;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(198, 136);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(147, 20);
+            this.textBox18.TabIndex = 11;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Enabled = false;
+            this.textBox16.Location = new System.Drawing.Point(198, 53);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(147, 20);
+            this.textBox16.TabIndex = 11;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(74, 168);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 13);
+            this.label24.TabIndex = 10;
+            this.label24.Text = "Zeitstempel";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(74, 139);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(60, 13);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "AuftragsNr.";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(74, 110);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(20, 13);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Art";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(74, 56);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 13);
+            this.label21.TabIndex = 10;
+            this.label21.Text = "ID";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(114, 379);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(184, 42);
+            this.button6.TabIndex = 9;
+            this.button6.Text = "Neue Stempelung erstellen";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(114, 314);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(184, 47);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "Diese Stempelung stornieren";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(114, 246);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(184, 47);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "Diese Stempelung überschreiben";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(401, 24);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(283, 30);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Plausibilitätsprüfung";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -967,24 +727,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(283, 455);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(401, 24);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(283, 30);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Plausibilitätsprüfung";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(114, 246);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(184, 47);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Diese Stempelung überschreiben";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // stampid
             // 
@@ -1017,112 +759,370 @@
             this.StampSource.Name = "StampSource";
             this.StampSource.Width = 60;
             // 
-            // groupBox2
+            // dateTimePicker1
             // 
-            this.groupBox2.Controls.Add(this.comboBox3);
-            this.groupBox2.Controls.Add(this.textBox19);
-            this.groupBox2.Controls.Add(this.textBox18);
-            this.groupBox2.Controls.Add(this.textBox16);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Location = new System.Drawing.Point(361, 86);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(417, 455);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Editieren / Erstellen";
+            this.dateTimePicker1.Location = new System.Drawing.Point(26, 60);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(283, 20);
+            this.dateTimePicker1.TabIndex = 6;
             // 
-            // label21
+            // comboBox2
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(74, 56);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(18, 13);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "ID";
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.comboBox2.Location = new System.Drawing.Point(26, 24);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(283, 28);
+            this.comboBox2.TabIndex = 5;
+            this.comboBox2.Text = "Allgemein";
             // 
-            // textBox16
+            // Personen
             // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Location = new System.Drawing.Point(198, 53);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(147, 20);
-            this.textBox16.TabIndex = 11;
+            this.Personen.Controls.Add(this.comboBox1);
+            this.Personen.Controls.Add(this.groupBox6);
+            this.Personen.Controls.Add(this.groupBox1);
+            this.Personen.Controls.Add(this.groupBox5);
+            this.Personen.Controls.Add(this.button_Personen_writeChanges);
+            this.Personen.Location = new System.Drawing.Point(4, 22);
+            this.Personen.Name = "Personen";
+            this.Personen.Padding = new System.Windows.Forms.Padding(3);
+            this.Personen.Size = new System.Drawing.Size(822, 559);
+            this.Personen.TabIndex = 0;
+            this.Personen.Text = "Personen verwalten";
+            this.Personen.UseVisualStyleBackColor = true;
             // 
-            // label22
+            // comboBox1
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(74, 110);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(20, 13);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "Art";
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.comboBox1.Location = new System.Drawing.Point(24, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(306, 28);
+            this.comboBox1.TabIndex = 5;
+            this.comboBox1.Text = "Allgemein";
             // 
-            // label23
+            // groupBox6
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(74, 139);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(60, 13);
-            this.label23.TabIndex = 10;
-            this.label23.Text = "AuftragsNr.";
+            this.groupBox6.Controls.Add(this.textBox_Personen_Stempelfehler);
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.textBox_Personen_BetragletzterBonus);
+            this.groupBox6.Controls.Add(this.label16);
+            this.groupBox6.Controls.Add(this.textBox_Personen_Boniausgezahltbis);
+            this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.textBox_Personen_ZeitkontoBerechnungsstand);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Controls.Add(this.textBox_Personen_Zeitkonto);
+            this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.textBox5);
+            this.groupBox6.Controls.Add(this.label12);
+            this.groupBox6.Enabled = false;
+            this.groupBox6.Location = new System.Drawing.Point(24, 235);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(306, 261);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Systemdaten";
             // 
-            // textBox18
+            // textBox_Personen_Stempelfehler
             // 
-            this.textBox18.Location = new System.Drawing.Point(198, 136);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(147, 20);
-            this.textBox18.TabIndex = 11;
+            this.textBox_Personen_Stempelfehler.Location = new System.Drawing.Point(156, 216);
+            this.textBox_Personen_Stempelfehler.Name = "textBox_Personen_Stempelfehler";
+            this.textBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Stempelfehler.TabIndex = 1;
             // 
-            // label24
+            // label17
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(74, 168);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 13);
-            this.label24.TabIndex = 10;
-            this.label24.Text = "Zeitstempel";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(25, 216);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(71, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Stempelfehler";
             // 
-            // textBox19
+            // textBox_Personen_BetragletzterBonus
             // 
-            this.textBox19.Location = new System.Drawing.Point(198, 165);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(147, 20);
-            this.textBox19.TabIndex = 11;
+            this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(156, 171);
+            this.textBox_Personen_BetragletzterBonus.Name = "textBox_Personen_BetragletzterBonus";
+            this.textBox_Personen_BetragletzterBonus.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_BetragletzterBonus.TabIndex = 1;
             // 
-            // comboBox3
+            // label16
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "an",
-            "ab"});
-            this.comboBox3.Location = new System.Drawing.Point(198, 107);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(147, 21);
-            this.comboBox3.TabIndex = 12;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(25, 171);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(102, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Betrag letzter Bonus";
             // 
-            // button6
+            // textBox_Personen_Boniausgezahltbis
             // 
-            this.button6.Location = new System.Drawing.Point(114, 379);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(184, 42);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Neue Stempelung erstellen";
-            this.button6.UseVisualStyleBackColor = true;
+            this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(156, 146);
+            this.textBox_Personen_Boniausgezahltbis.Name = "textBox_Personen_Boniausgezahltbis";
+            this.textBox_Personen_Boniausgezahltbis.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Boniausgezahltbis.TabIndex = 1;
             // 
-            // button7
+            // label15
             // 
-            this.button7.Location = new System.Drawing.Point(114, 314);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(184, 47);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Diese Stempelung stornieren";
-            this.button7.UseVisualStyleBackColor = true;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(25, 146);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(98, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Boni ausgezahlt bis";
+            // 
+            // textBox_Personen_ZeitkontoBerechnungsstand
+            // 
+            this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(156, 102);
+            this.textBox_Personen_ZeitkontoBerechnungsstand.Name = "textBox_Personen_ZeitkontoBerechnungsstand";
+            this.textBox_Personen_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_ZeitkontoBerechnungsstand.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(25, 102);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Berechnungsstand";
+            // 
+            // textBox_Personen_Zeitkonto
+            // 
+            this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(156, 76);
+            this.textBox_Personen_Zeitkonto.Name = "textBox_Personen_Zeitkonto";
+            this.textBox_Personen_Zeitkonto.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Zeitkonto.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 76);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(52, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Zeitkonto";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(156, 32);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(85, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Aktueller Auftrag";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox_Personen_Neu_ErsterArbeitstag);
+            this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Urlaubstage);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Nachname);
+            this.groupBox1.Controls.Add(this.button_Personen_newPerson);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Vorname);
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Location = new System.Drawing.Point(432, 111);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(335, 248);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Neuer Mitarbeiter";
+            // 
+            // textBox_Personen_Neu_ErsterArbeitstag
+            // 
+            this.textBox_Personen_Neu_ErsterArbeitstag.Location = new System.Drawing.Point(187, 130);
+            this.textBox_Personen_Neu_ErsterArbeitstag.Name = "textBox_Personen_Neu_ErsterArbeitstag";
+            this.textBox_Personen_Neu_ErsterArbeitstag.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Neu_ErsterArbeitstag.TabIndex = 1;
+            // 
+            // textBox_Personen_Neu_Urlaubstage
+            // 
+            this.textBox_Personen_Neu_Urlaubstage.Location = new System.Drawing.Point(187, 90);
+            this.textBox_Personen_Neu_Urlaubstage.Name = "textBox_Personen_Neu_Urlaubstage";
+            this.textBox_Personen_Neu_Urlaubstage.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Neu_Urlaubstage.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(56, 130);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Erster Arbeitstag";
+            // 
+            // textBox_Personen_Neu_Nachname
+            // 
+            this.textBox_Personen_Neu_Nachname.Location = new System.Drawing.Point(187, 64);
+            this.textBox_Personen_Neu_Nachname.Name = "textBox_Personen_Neu_Nachname";
+            this.textBox_Personen_Neu_Nachname.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Neu_Nachname.TabIndex = 1;
+            // 
+            // button_Personen_newPerson
+            // 
+            this.button_Personen_newPerson.Location = new System.Drawing.Point(59, 185);
+            this.button_Personen_newPerson.Name = "button_Personen_newPerson";
+            this.button_Personen_newPerson.Size = new System.Drawing.Size(228, 32);
+            this.button_Personen_newPerson.TabIndex = 1;
+            this.button_Personen_newPerson.Text = "Neuen Mitarbeiter anlegen";
+            this.button_Personen_newPerson.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(56, 90);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(105, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Urlaubstage pro Jahr";
+            // 
+            // textBox_Personen_Neu_Vorname
+            // 
+            this.textBox_Personen_Neu_Vorname.Location = new System.Drawing.Point(187, 38);
+            this.textBox_Personen_Neu_Vorname.Name = "textBox_Personen_Neu_Vorname";
+            this.textBox_Personen_Neu_Vorname.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Neu_Vorname.TabIndex = 1;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(56, 64);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(59, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Nachname";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(56, 38);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(49, 13);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Vorname";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.textBox_Personen_AktAuftrag);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Nachname);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Vorname);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.textBox_Personen_ID);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Location = new System.Drawing.Point(24, 54);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(306, 175);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Stammdaten";
+            // 
+            // textBox_Personen_AktAuftrag
+            // 
+            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(156, 135);
+            this.textBox_Personen_AktAuftrag.Name = "textBox_Personen_AktAuftrag";
+            this.textBox_Personen_AktAuftrag.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_AktAuftrag.TabIndex = 1;
+            // 
+            // textBox_Personen_Urlaubstage
+            // 
+            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(156, 109);
+            this.textBox_Personen_Urlaubstage.Name = "textBox_Personen_Urlaubstage";
+            this.textBox_Personen_Urlaubstage.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Urlaubstage.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 135);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Aktiver Mitarbeiter";
+            // 
+            // textBox_Personen_Nachname
+            // 
+            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(156, 83);
+            this.textBox_Personen_Nachname.Name = "textBox_Personen_Nachname";
+            this.textBox_Personen_Nachname.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Nachname.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 109);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(105, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Urlaubstage pro Jahr";
+            // 
+            // textBox_Personen_Vorname
+            // 
+            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(156, 57);
+            this.textBox_Personen_Vorname.Name = "textBox_Personen_Vorname";
+            this.textBox_Personen_Vorname.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Vorname.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 83);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Nachname";
+            // 
+            // textBox_Personen_ID
+            // 
+            this.textBox_Personen_ID.Enabled = false;
+            this.textBox_Personen_ID.Location = new System.Drawing.Point(156, 31);
+            this.textBox_Personen_ID.Name = "textBox_Personen_ID";
+            this.textBox_Personen_ID.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_ID.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(25, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Vorname";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(25, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "ID";
+            // 
+            // button_Personen_writeChanges
+            // 
+            this.button_Personen_writeChanges.Location = new System.Drawing.Point(24, 513);
+            this.button_Personen_writeChanges.Name = "button_Personen_writeChanges";
+            this.button_Personen_writeChanges.Size = new System.Drawing.Size(306, 32);
+            this.button_Personen_writeChanges.TabIndex = 0;
+            this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
+            this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1132,6 +1132,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1142,6 +1143,9 @@
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
             this.Stempelungen.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Personen.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -1149,9 +1153,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1194,44 +1195,44 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Samstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sonntag;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox_Personen_Stempelfehler;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox_Personen_BetragletzterBonus;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox_Personen_Boniausgezahltbis;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox_Personen_ZeitkontoBerechnungsstand;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_Personen_Zeitkonto;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_Personen_Urlaubstage;
+        private System.Windows.Forms.TextBox textBox_Personen_Nachname;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_Personen_Vorname;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_Personen_ID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_Personen_newPerson;
+        private System.Windows.Forms.Button button_Personen_writeChanges;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bemerkung;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox_Personen_AktAuftrag;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox_Personen_Neu_ErsterArbeitstag;
+        private System.Windows.Forms.TextBox textBox_Personen_Neu_Urlaubstage;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox_Personen_Neu_Nachname;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox_Personen_Neu_Vorname;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DataGridView dataGridView1;
