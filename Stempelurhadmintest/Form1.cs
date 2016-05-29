@@ -99,7 +99,7 @@ namespace Stempelurhadmintest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Messagebox für jede selectierte zelle
+            // testevent in liste eintragen für merkierten tag
             int selectedCellCount = KalenderGrid_Kalender.SelectedCells.Count;
             for (int i = 0;
                 i < selectedCellCount; i++)
@@ -205,8 +205,11 @@ namespace Stempelurhadmintest
 
         }
 
-        private void initKalendergrid(int Betrachtungsmonat, int Betrachtungsjahr)
+        private void refreshKalendergrid()
         {
+            int Betrachtungsmonat = MonatsPicker_Kalender.Value.Month;
+            int Betrachtungsjahr = MonatsPicker_Kalender.Value.Year;
+
             DateTime Betrachtungsdatum = new DateTime(Betrachtungsjahr,Betrachtungsmonat,1); //Startdate auf den ersten des Monats stellen
             int Wochentagdesersten = ((int)Betrachtungsdatum.DayOfWeek == 0) ? 7 : (int)Betrachtungsdatum.DayOfWeek; //Nummer des Wochentags des ersten des Monats (Montag = 1, etc...)
 
@@ -284,7 +287,8 @@ namespace Stempelurhadmintest
                     thisperson_name = Reader["name"] + "";
                     thisperson_vorname= Reader["vorname"] + "";
 
-                    PersonPicker_Kalender.Items.Add();
+                    PersonPicker_Kalender.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
+                    comboBox1.SelectedIndex = 0;
 
                 }
                 Reader.Close();
@@ -297,7 +301,7 @@ namespace Stempelurhadmintest
 
         private void MonatsPicker_Kalender_ValueChanged(object sender, EventArgs e)
         {
-            initKalendergrid(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
+            refreshKalendergrid();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -312,8 +316,9 @@ namespace Stempelurhadmintest
             init_db(dbserverconf_global, dbnameconf_global, dbuserconf_global, dbpwconf_global);
 
 
-            initKalendergrid(MonatsPicker_Kalender.Value.Month, MonatsPicker_Kalender.Value.Year);
+            refreshKalendergrid();
             initPersonPicker_Kalender();
+            refreshEreignisgrid_Kalender();
         }
 
         private void openEventEditor()
@@ -322,16 +327,90 @@ namespace Stempelurhadmintest
             //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
         }
 
-        private void PersonPicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void PersonPicker_Kalender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(PersonPicker_Kalender.SelectedValue != null && PersonPicker_Kalender.SelectedValue.ToString()=="Allgemein")
+            refreshEreignisgrid_Kalender();
+        }
+
+        private void refreshEreignisgrid_Kalender()
+        {   //Alle Ereignisse zu ausgewählter Person und Jahr auflisten
+
+            Ereignisgrid_Kalender.Rows.Clear();
+
+            string actzuordnung = "";
+            string actjahr = "";
+
+            string thisevent_id = "";
+            string thisevent_datum = "";
+            string thisevent_sollzeit = "";
+            string thisevent_urlaubstage = "";
+            string thisevent_vermerk = "";
+            bool thisevent_storniert = false;
+
+            actjahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
+            if(PersonPicker_Kalender.Text != null)
             {
-                //TODO Ausgewählte Person auf "" setzen
-                //Personenanzeige auf Allgemein setzen
-            }else
-            {
-                //TODO Namen und Nachnamen aus der Datenbank holen und Personenanzeige setzen
+                actzuordnung = PersonPicker_Kalender.Text;
             }
+
+            if(actzuordnung != "Allgemein")
+            {
+                actzuordnung = actzuordnung.Substring(0, 6);
+            }
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT eventid, tag, monat, vermerk, sollzeit, urlaubstage_abziehen, storniert FROM kalender WHERE jahr=@jahr AND zuordnung=@zuordnung AND storniert=0 ORDER BY eventid";
+
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = actjahr;
+            comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = actzuordnung;
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
+                while (Reader.Read())
+                {
+                    thisevent_id = Reader["eventid"] + "";
+                    thisevent_datum = Reader["tag"] + "." + Reader["monat"] + ".";
+                    thisevent_sollzeit = Reader["sollzeit"] + "";
+                    thisevent_urlaubstage = Reader["urlaubstage_abziehen"] + "";
+                    thisevent_vermerk = Reader["vermerk"] + "";
+                    thisevent_storniert = (bool)Reader["storniert"];
+
+                    //TODO Eventgrid befüllen
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell_id = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_datum = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_sollzeit = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_urlaubstage = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_vermerk = new DataGridViewTextBoxCell();
+
+                    cell_id.Value = thisevent_id;
+                    cell_datum.Value = thisevent_datum;
+                    cell_sollzeit.Value = thisevent_sollzeit;
+                    cell_urlaubstage.Value = thisevent_urlaubstage;
+                    cell_vermerk.Value = thisevent_vermerk;
+
+                    myrow.Cells.Add(cell_id);
+                    myrow.Cells.Add(cell_datum);
+                    myrow.Cells.Add(cell_sollzeit);
+                    myrow.Cells.Add(cell_urlaubstage);
+                    myrow.Cells.Add(cell_vermerk);
+
+                    Ereignisgrid_Kalender.Rows.Add(myrow);
+
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+            Ereignisgrid_Kalender.ClearSelection();
 
         }
 
@@ -347,6 +426,8 @@ namespace Stempelurhadmintest
         private void button_Kalender_erstelleEintrag_Click(object sender, EventArgs e)
         {
             //TODO Plausiprüfung der Werte
+
+            //TODO Prüfen ob schon ein anderer Eintrag mit den Werten da ist
             //TODO Kalendereintrag erstellen
             //TODO Ansicht aktualisieren
 
@@ -379,6 +460,39 @@ namespace Stempelurhadmintest
 
         }
 
+        private void button_Kalender_storniereEintrag_Click(object sender, EventArgs e)
+        {
+            //TODO eintrag mit markierter ID stornieren
+
+            //ID ermitteln
+            string markierteID = "";
+            markierteID = Ereignisgrid_Kalender.SelectedCells[0].Value.ToString();
+
+            //Bestaetigungsdialog vorbereiten
+            string dialogtext = "Das Ereignis mit ID:" + markierteID + " wirklich stornieren?";
+            DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //ereignis stornieren
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "UPDATE kalender SET storniert=1 where eventid = @eventid";
+
+                comm.Parameters.Add("@eventid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
+
+                log("storniere Ereignis mit ID:" + markierteID);
+                try
+                {
+                    comm.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                close_db();
+            }
+            refreshKalendergrid();
+            refreshEreignisgrid_Kalender();
+            
+        }
+
         private void Abwesenheiten_Click(object sender, EventArgs e)
         {
 
@@ -402,6 +516,14 @@ namespace Stempelurhadmintest
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             log("Programm wird beendet.......................................................................");
+        }
+
+        private void Ereignisgrid_Kalender_SelectionChanged(object sender, EventArgs e)
+        {
+            if(Ereignisgrid_Kalender.SelectedRows.Count > 0)
+            {
+                button_Kalender_storniereEintrag.Enabled = true;
+            }
         }
     }
 }

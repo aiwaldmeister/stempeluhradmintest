@@ -59,11 +59,6 @@
             this.groupBox_Kalender_AlleEreignisse = new System.Windows.Forms.GroupBox();
             this.button_Kalender_storniereEintrag = new System.Windows.Forms.Button();
             this.Ereignisgrid_Kalender = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Bemerkung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
@@ -125,6 +120,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Abwesenheiten.SuspendLayout();
@@ -262,7 +262,7 @@
             this.PersonPicker_Kalender.Size = new System.Drawing.Size(379, 28);
             this.PersonPicker_Kalender.TabIndex = 4;
             this.PersonPicker_Kalender.Text = "Allgemein";
-            this.PersonPicker_Kalender.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_SelectedIndexChanged);
+            this.PersonPicker_Kalender.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Kalender_SelectedIndexChanged);
             // 
             // tabControl1
             // 
@@ -324,7 +324,7 @@
             this.button_Kalender_erstelleEintrag.TabIndex = 8;
             this.button_Kalender_erstelleEintrag.Text = "Kalendereintrag erstellen";
             this.button_Kalender_erstelleEintrag.UseVisualStyleBackColor = true;
-            this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
+            this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_erstelleEintrag_Click);
             // 
             // textBox_Kalender_Sollzeit
             // 
@@ -408,6 +408,7 @@
             // 
             this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(222, 166);
             this.textBox_Kalender_Bemerkung.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Kalender_Bemerkung.MaxLength = 30;
             this.textBox_Kalender_Bemerkung.Name = "textBox_Kalender_Bemerkung";
             this.textBox_Kalender_Bemerkung.Size = new System.Drawing.Size(152, 20);
             this.textBox_Kalender_Bemerkung.TabIndex = 7;
@@ -486,7 +487,7 @@
             this.button_Kalender_storniereEintrag.TabIndex = 8;
             this.button_Kalender_storniereEintrag.Text = "Markierten Kalendereintrag stornieren";
             this.button_Kalender_storniereEintrag.UseVisualStyleBackColor = true;
-            this.button_Kalender_storniereEintrag.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
+            this.button_Kalender_storniereEintrag.Click += new System.EventHandler(this.button_Kalender_storniereEintrag_Click);
             // 
             // Ereignisgrid_Kalender
             // 
@@ -501,7 +502,7 @@
             this.Datum,
             this.Sollzeit,
             this.Urlaub,
-            this.Bemerkung});
+            this.Vermerk});
             this.Ereignisgrid_Kalender.Location = new System.Drawing.Point(21, 27);
             this.Ereignisgrid_Kalender.Margin = new System.Windows.Forms.Padding(2);
             this.Ereignisgrid_Kalender.Name = "Ereignisgrid_Kalender";
@@ -513,41 +514,7 @@
             this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 416);
             this.Ereignisgrid_Kalender.TabIndex = 11;
             this.Ereignisgrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_CellContentClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // Datum
-            // 
-            this.Datum.HeaderText = "Dat.";
-            this.Datum.Name = "Datum";
-            this.Datum.ReadOnly = true;
-            this.Datum.Width = 40;
-            // 
-            // Sollzeit
-            // 
-            this.Sollzeit.HeaderText = "Soll";
-            this.Sollzeit.Name = "Sollzeit";
-            this.Sollzeit.ReadOnly = true;
-            this.Sollzeit.Width = 40;
-            // 
-            // Urlaub
-            // 
-            this.Urlaub.HeaderText = "Urlb";
-            this.Urlaub.Name = "Urlaub";
-            this.Urlaub.ReadOnly = true;
-            this.Urlaub.Width = 30;
-            // 
-            // Bemerkung
-            // 
-            this.Bemerkung.HeaderText = "Bemerkung";
-            this.Bemerkung.Name = "Bemerkung";
-            this.Bemerkung.ReadOnly = true;
-            this.Bemerkung.Width = 250;
+            this.Ereignisgrid_Kalender.SelectionChanged += new System.EventHandler(this.Ereignisgrid_Kalender_SelectionChanged);
             // 
             // Auswertungen
             // 
@@ -1124,6 +1091,41 @@
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // Datum
+            // 
+            this.Datum.HeaderText = "Dat.";
+            this.Datum.Name = "Datum";
+            this.Datum.ReadOnly = true;
+            this.Datum.Width = 40;
+            // 
+            // Sollzeit
+            // 
+            this.Sollzeit.HeaderText = "Soll";
+            this.Sollzeit.Name = "Sollzeit";
+            this.Sollzeit.ReadOnly = true;
+            this.Sollzeit.Width = 40;
+            // 
+            // Urlaub
+            // 
+            this.Urlaub.HeaderText = "Urlb";
+            this.Urlaub.Name = "Urlaub";
+            this.Urlaub.ReadOnly = true;
+            this.Urlaub.Width = 30;
+            // 
+            // Vermerk
+            // 
+            this.Vermerk.HeaderText = "Vermerk";
+            this.Vermerk.Name = "Vermerk";
+            this.Vermerk.ReadOnly = true;
+            this.Vermerk.Width = 250;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1218,11 +1220,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button_Personen_newPerson;
         private System.Windows.Forms.Button button_Personen_writeChanges;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bemerkung;
         private System.Windows.Forms.TextBox textBox_Personen_AktAuftrag;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -1256,6 +1253,11 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Vermerk;
     }
 }
 
