@@ -321,7 +321,7 @@ namespace Stempelurhadmintest
                     thisperson_vorname = Reader["vorname"] + "";
 
                     PersonPicker_Personen.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
-                    PersonPicker_Personen.SelectedIndex = 0;
+                    
 
                 }
                 Reader.Close();
@@ -330,6 +330,8 @@ namespace Stempelurhadmintest
 
 
             close_db();
+
+            PersonPicker_Personen.SelectedIndex = 0;
         }
 
         private void MonatsPicker_Kalender_ValueChanged(object sender, EventArgs e)
@@ -713,8 +715,67 @@ namespace Stempelurhadmintest
 
         private void refreshUpdateFormular_Personen()
         {
-            //TODO Werte zur gewählten Person aus der Datenbank holen
+            string thisperson_userid = "";
+            string thisperson_currenttask = "";
+            string thisperson_nachname = "";
+            string thisperson_vorname = "";
+            string thisperson_zeitkonto = "";
+            string thisperson_zeitkonto_berechnungsstand = "";
+            string thisperson_bonuskonto_ausgezahlt_bis = "";
+            string thisperson_bonuszeit_bei_letzter_auszahlung = "";
+            string thisperson_jahresurlaub = "";
+            string thisperson_stempelfehler = "";
+            string thisperson_aktiv = "";
+
+
+
+
+            thisperson_userid = PersonPicker_Personen.Text;
+            if(thisperson_userid.Length >= 6)
+            {
+                thisperson_userid = thisperson_userid.Substring(0,6);
+            }
+            
+            //Werte zur gewählten Person aus der Datenbank holen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT * FROM user WHERE userid = @userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = thisperson_userid;
+            
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                thisperson_currenttask = Reader["currenttask"] + "";
+                thisperson_nachname = Reader["name"] + "";
+                thisperson_vorname = Reader["vorname"] + "";
+                thisperson_zeitkonto = Reader["zeitkonto"] + "";
+                thisperson_zeitkonto_berechnungsstand = Reader["zeitkonto_berechnungsstand"] + "";
+                thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
+                thisperson_bonuszeit_bei_letzter_auszahlung = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
+                thisperson_jahresurlaub = Reader["jahresurlaub"] + "";
+                thisperson_stempelfehler = Reader["stempelfehler"] + "";
+                thisperson_aktiv = Reader["aktiv"] + "";
+                
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
             //TODO Formularfelder befüllen
+            textBox_Personen_ID.Text = thisperson_userid;
+            textBox_Personen_Nachname.Text= thisperson_nachname;
+            textBox_Personen_Vorname.Text = thisperson_vorname;
+            textBox_Personen_AktAuftrag.Text = thisperson_currenttask;
+            textBox_Personen_Zeitkonto.Text = thisperson_zeitkonto;
+            textBox_Personen_ZeitkontoBerechnungsstand.Text = thisperson_zeitkonto_berechnungsstand;
+            textBox_Personen_Boniausgezahltbis.Text = thisperson_bonuskonto_ausgezahlt_bis;
+            textBox_Personen_BetragletzterBonus.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
+            textBox_Personen_Urlaubstage.Text = thisperson_jahresurlaub;
+            textBox_Personen_Stempelfehler.Text = thisperson_stempelfehler;
+            
         }
 
         private void initInsertFormular_Personen()
@@ -824,7 +885,7 @@ namespace Stempelurhadmintest
                     comm.Parameters["@jahresurlaub"].Scale = 2;
                     comm.Parameters["@jahresurlaub"].Value = jahresurlaub;
 
-                    log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname); //TODO Logeintrag mit infos füllen
+                    log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname + ")"); //TODO Logeintrag mit infos füllen
                     try
                     {
                         comm.ExecuteNonQuery();
