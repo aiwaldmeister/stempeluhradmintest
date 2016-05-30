@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
+            this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Donnerstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MonatsPicker_Kalender = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Kalender = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -84,7 +91,8 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox_Personen_Systemdaten = new System.Windows.Forms.GroupBox();
+            this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Stempelfehler = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox_Personen_BetragletzterBonus = new System.Windows.Forms.TextBox();
@@ -95,9 +103,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_Personen_Zeitkonto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
             this.textBox_Personen_Neu_WunschID = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Neu_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -106,28 +114,21 @@
             this.label18 = new System.Windows.Forms.Label();
             this.textBox_Personen_Neu_Vorname = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_Personen_Vorname = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox_Personen_ID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Aktiv = new System.Windows.Forms.TextBox();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.dateTimePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
-            this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Donnerstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
+            this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
+            this.comboBox_Personen_Stempelfehler = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -139,7 +140,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Personen.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -170,14 +171,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -191,6 +192,69 @@
             this.KalenderGrid_Kalender.Size = new System.Drawing.Size(248, 154);
             this.KalenderGrid_Kalender.TabIndex = 2;
             this.KalenderGrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KalenderGrid_CellContentClick);
+            // 
+            // Montag
+            // 
+            this.Montag.Frozen = true;
+            this.Montag.HeaderText = "Mo";
+            this.Montag.Name = "Montag";
+            this.Montag.ReadOnly = true;
+            this.Montag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Montag.Width = 35;
+            // 
+            // Dienstag
+            // 
+            this.Dienstag.Frozen = true;
+            this.Dienstag.HeaderText = "Di";
+            this.Dienstag.Name = "Dienstag";
+            this.Dienstag.ReadOnly = true;
+            this.Dienstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dienstag.Width = 35;
+            // 
+            // Mittwoch
+            // 
+            this.Mittwoch.Frozen = true;
+            this.Mittwoch.HeaderText = "Mi";
+            this.Mittwoch.Name = "Mittwoch";
+            this.Mittwoch.ReadOnly = true;
+            this.Mittwoch.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Mittwoch.Width = 35;
+            // 
+            // Donnerstag
+            // 
+            this.Donnerstag.Frozen = true;
+            this.Donnerstag.HeaderText = "Do";
+            this.Donnerstag.Name = "Donnerstag";
+            this.Donnerstag.ReadOnly = true;
+            this.Donnerstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Donnerstag.Width = 35;
+            // 
+            // Freitag
+            // 
+            this.Freitag.Frozen = true;
+            this.Freitag.HeaderText = "Fr";
+            this.Freitag.Name = "Freitag";
+            this.Freitag.ReadOnly = true;
+            this.Freitag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Freitag.Width = 35;
+            // 
+            // Samstag
+            // 
+            this.Samstag.Frozen = true;
+            this.Samstag.HeaderText = "Sa";
+            this.Samstag.Name = "Samstag";
+            this.Samstag.ReadOnly = true;
+            this.Samstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Samstag.Width = 35;
+            // 
+            // Sonntag
+            // 
+            this.Sonntag.Frozen = true;
+            this.Sonntag.HeaderText = "So";
+            this.Sonntag.Name = "Sonntag";
+            this.Sonntag.ReadOnly = true;
+            this.Sonntag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Sonntag.Width = 35;
             // 
             // MonatsPicker_Kalender
             // 
@@ -737,11 +801,14 @@
             // 
             // Personen
             // 
+            this.Personen.Controls.Add(this.button_Personen_Edit_Systemdaten);
+            this.Personen.Controls.Add(this.textBox_Personen_Stempelfehler);
             this.Personen.Controls.Add(this.PersonPicker_Personen);
-            this.Personen.Controls.Add(this.groupBox6);
+            this.Personen.Controls.Add(this.groupBox_Personen_Systemdaten);
             this.Personen.Controls.Add(this.groupBox1);
             this.Personen.Controls.Add(this.groupBox5);
             this.Personen.Controls.Add(this.button_Personen_writeChanges);
+            this.Personen.Controls.Add(this.textBox_Personen_Aktiv);
             this.Personen.Location = new System.Drawing.Point(4, 22);
             this.Personen.Name = "Personen";
             this.Personen.Padding = new System.Windows.Forms.Padding(3);
@@ -763,31 +830,40 @@
             this.PersonPicker_Personen.Text = "Allgemein";
             this.PersonPicker_Personen.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Personen_SelectedIndexChanged);
             // 
-            // groupBox6
+            // groupBox_Personen_Systemdaten
             // 
-            this.groupBox6.Controls.Add(this.textBox_Personen_Stempelfehler);
-            this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Controls.Add(this.textBox_Personen_BetragletzterBonus);
-            this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Controls.Add(this.textBox_Personen_Boniausgezahltbis);
-            this.groupBox6.Controls.Add(this.label15);
-            this.groupBox6.Controls.Add(this.textBox_Personen_ZeitkontoBerechnungsstand);
-            this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Controls.Add(this.textBox_Personen_Zeitkonto);
-            this.groupBox6.Controls.Add(this.label13);
-            this.groupBox6.Controls.Add(this.textBox5);
-            this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Enabled = false;
-            this.groupBox6.Location = new System.Drawing.Point(24, 235);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(306, 261);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Systemdaten";
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.comboBox_Personen_Stempelfehler);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_AktAuftrag);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label17);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_BetragletzterBonus);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label16);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Boniausgezahltbis);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label15);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_ZeitkontoBerechnungsstand);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label14);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Zeitkonto);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label13);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label12);
+            this.groupBox_Personen_Systemdaten.Enabled = false;
+            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(24, 246);
+            this.groupBox_Personen_Systemdaten.Name = "groupBox_Personen_Systemdaten";
+            this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(306, 252);
+            this.groupBox_Personen_Systemdaten.TabIndex = 2;
+            this.groupBox_Personen_Systemdaten.TabStop = false;
+            this.groupBox_Personen_Systemdaten.Text = "Systemdaten";
+            // 
+            // textBox_Personen_AktAuftrag
+            // 
+            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(156, 29);
+            this.textBox_Personen_AktAuftrag.MaxLength = 6;
+            this.textBox_Personen_AktAuftrag.Name = "textBox_Personen_AktAuftrag";
+            this.textBox_Personen_AktAuftrag.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_AktAuftrag.TabIndex = 1;
             // 
             // textBox_Personen_Stempelfehler
             // 
-            this.textBox_Personen_Stempelfehler.Location = new System.Drawing.Point(156, 216);
+            this.textBox_Personen_Stempelfehler.Location = new System.Drawing.Point(419, 54);
+            this.textBox_Personen_Stempelfehler.MaxLength = 1;
             this.textBox_Personen_Stempelfehler.Name = "textBox_Personen_Stempelfehler";
             this.textBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Stempelfehler.TabIndex = 1;
@@ -804,6 +880,7 @@
             // textBox_Personen_BetragletzterBonus
             // 
             this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(156, 171);
+            this.textBox_Personen_BetragletzterBonus.MaxLength = 10;
             this.textBox_Personen_BetragletzterBonus.Name = "textBox_Personen_BetragletzterBonus";
             this.textBox_Personen_BetragletzterBonus.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_BetragletzterBonus.TabIndex = 1;
@@ -820,6 +897,7 @@
             // textBox_Personen_Boniausgezahltbis
             // 
             this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(156, 146);
+            this.textBox_Personen_Boniausgezahltbis.MaxLength = 8;
             this.textBox_Personen_Boniausgezahltbis.Name = "textBox_Personen_Boniausgezahltbis";
             this.textBox_Personen_Boniausgezahltbis.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Boniausgezahltbis.TabIndex = 1;
@@ -836,6 +914,7 @@
             // textBox_Personen_ZeitkontoBerechnungsstand
             // 
             this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(156, 102);
+            this.textBox_Personen_ZeitkontoBerechnungsstand.MaxLength = 8;
             this.textBox_Personen_ZeitkontoBerechnungsstand.Name = "textBox_Personen_ZeitkontoBerechnungsstand";
             this.textBox_Personen_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_ZeitkontoBerechnungsstand.TabIndex = 1;
@@ -852,6 +931,7 @@
             // textBox_Personen_Zeitkonto
             // 
             this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(156, 76);
+            this.textBox_Personen_Zeitkonto.MaxLength = 10;
             this.textBox_Personen_Zeitkonto.Name = "textBox_Personen_Zeitkonto";
             this.textBox_Personen_Zeitkonto.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Zeitkonto.TabIndex = 1;
@@ -864,13 +944,6 @@
             this.label13.Size = new System.Drawing.Size(52, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "Zeitkonto";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(156, 32);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 1;
             // 
             // label12
             // 
@@ -900,6 +973,15 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
+            // 
+            // dateTimePicker_Personen_neu
+            // 
+            this.dateTimePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_Personen_neu.Location = new System.Drawing.Point(187, 175);
+            this.dateTimePicker_Personen_neu.Name = "dateTimePicker_Personen_neu";
+            this.dateTimePicker_Personen_neu.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePicker_Personen_neu.TabIndex = 2;
             // 
             // textBox_Personen_Neu_WunschID
             // 
@@ -966,6 +1048,15 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Nachname";
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(56, 33);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(79, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "gewünschte ID";
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -977,33 +1068,25 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.textBox_Personen_AktAuftrag);
+            this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.textBox_Personen_Vorname);
             this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.textBox_Personen_ID);
             this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.label8);
             this.groupBox5.Location = new System.Drawing.Point(24, 54);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(306, 175);
+            this.groupBox5.Size = new System.Drawing.Size(306, 142);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
             // 
-            // textBox_Personen_AktAuftrag
-            // 
-            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(156, 135);
-            this.textBox_Personen_AktAuftrag.Name = "textBox_Personen_AktAuftrag";
-            this.textBox_Personen_AktAuftrag.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_AktAuftrag.TabIndex = 1;
-            // 
             // textBox_Personen_Urlaubstage
             // 
-            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(156, 109);
+            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(156, 77);
+            this.textBox_Personen_Urlaubstage.MaxLength = 10;
             this.textBox_Personen_Urlaubstage.Name = "textBox_Personen_Urlaubstage";
             this.textBox_Personen_Urlaubstage.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Urlaubstage.TabIndex = 1;
@@ -1011,7 +1094,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 135);
+            this.label1.Location = new System.Drawing.Point(25, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -1019,7 +1102,8 @@
             // 
             // textBox_Personen_Nachname
             // 
-            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(156, 83);
+            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(156, 51);
+            this.textBox_Personen_Nachname.MaxLength = 30;
             this.textBox_Personen_Nachname.Name = "textBox_Personen_Nachname";
             this.textBox_Personen_Nachname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Nachname.TabIndex = 1;
@@ -1027,7 +1111,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 109);
+            this.label11.Location = new System.Drawing.Point(25, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(105, 13);
             this.label11.TabIndex = 0;
@@ -1035,7 +1119,8 @@
             // 
             // textBox_Personen_Vorname
             // 
-            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(156, 57);
+            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(156, 25);
+            this.textBox_Personen_Vorname.MaxLength = 30;
             this.textBox_Personen_Vorname.Name = "textBox_Personen_Vorname";
             this.textBox_Personen_Vorname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Vorname.TabIndex = 1;
@@ -1043,38 +1128,28 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 83);
+            this.label10.Location = new System.Drawing.Point(25, 51);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "Nachname";
             // 
-            // textBox_Personen_ID
-            // 
-            this.textBox_Personen_ID.Enabled = false;
-            this.textBox_Personen_ID.Location = new System.Drawing.Point(156, 31);
-            this.textBox_Personen_ID.Name = "textBox_Personen_ID";
-            this.textBox_Personen_ID.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_ID.TabIndex = 1;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 57);
+            this.label9.Location = new System.Drawing.Point(25, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "Vorname";
             // 
-            // label8
+            // textBox_Personen_Aktiv
             // 
-            this.label8.AutoSize = true;
-            this.label8.Enabled = false;
-            this.label8.Location = new System.Drawing.Point(25, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "ID";
+            this.textBox_Personen_Aktiv.Location = new System.Drawing.Point(419, 28);
+            this.textBox_Personen_Aktiv.MaxLength = 1;
+            this.textBox_Personen_Aktiv.Name = "textBox_Personen_Aktiv";
+            this.textBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Aktiv.TabIndex = 1;
             // 
             // button_Personen_writeChanges
             // 
@@ -1084,87 +1159,39 @@
             this.button_Personen_writeChanges.TabIndex = 0;
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
+            this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // label25
+            // button_Personen_Edit_Systemdaten
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(56, 33);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(79, 13);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "gewünschte ID";
+            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(24, 219);
+            this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
+            this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(307, 21);
+            this.button_Personen_Edit_Systemdaten.TabIndex = 6;
+            this.button_Personen_Edit_Systemdaten.Text = "Systemdaten bearbeitbar machen";
+            this.button_Personen_Edit_Systemdaten.UseVisualStyleBackColor = true;
+            this.button_Personen_Edit_Systemdaten.Click += new System.EventHandler(this.button_Personen_Edit_Systemdaten_Click);
             // 
-            // dateTimePicker_Personen_neu
+            // comboBox_Personen_Aktiv
             // 
-            this.dateTimePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
-            this.dateTimePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_Personen_neu.Location = new System.Drawing.Point(187, 175);
-            this.dateTimePicker_Personen_neu.Name = "dateTimePicker_Personen_neu";
-            this.dateTimePicker_Personen_neu.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker_Personen_neu.TabIndex = 2;
+            this.comboBox_Personen_Aktiv.FormattingEnabled = true;
+            this.comboBox_Personen_Aktiv.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(156, 103);
+            this.comboBox_Personen_Aktiv.Name = "comboBox_Personen_Aktiv";
+            this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Aktiv.TabIndex = 7;
             // 
-            // Montag
+            // comboBox_Personen_Stempelfehler
             // 
-            this.Montag.Frozen = true;
-            this.Montag.HeaderText = "Mo";
-            this.Montag.Name = "Montag";
-            this.Montag.ReadOnly = true;
-            this.Montag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Montag.Width = 35;
-            // 
-            // Dienstag
-            // 
-            this.Dienstag.Frozen = true;
-            this.Dienstag.HeaderText = "Di";
-            this.Dienstag.Name = "Dienstag";
-            this.Dienstag.ReadOnly = true;
-            this.Dienstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dienstag.Width = 35;
-            // 
-            // Mittwoch
-            // 
-            this.Mittwoch.Frozen = true;
-            this.Mittwoch.HeaderText = "Mi";
-            this.Mittwoch.Name = "Mittwoch";
-            this.Mittwoch.ReadOnly = true;
-            this.Mittwoch.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Mittwoch.Width = 35;
-            // 
-            // Donnerstag
-            // 
-            this.Donnerstag.Frozen = true;
-            this.Donnerstag.HeaderText = "Do";
-            this.Donnerstag.Name = "Donnerstag";
-            this.Donnerstag.ReadOnly = true;
-            this.Donnerstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Donnerstag.Width = 35;
-            // 
-            // Freitag
-            // 
-            this.Freitag.Frozen = true;
-            this.Freitag.HeaderText = "Fr";
-            this.Freitag.Name = "Freitag";
-            this.Freitag.ReadOnly = true;
-            this.Freitag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Freitag.Width = 35;
-            // 
-            // Samstag
-            // 
-            this.Samstag.Frozen = true;
-            this.Samstag.HeaderText = "Sa";
-            this.Samstag.Name = "Samstag";
-            this.Samstag.ReadOnly = true;
-            this.Samstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Samstag.Width = 35;
-            // 
-            // Sonntag
-            // 
-            this.Sonntag.Frozen = true;
-            this.Sonntag.HeaderText = "So";
-            this.Sonntag.Name = "Sonntag";
-            this.Sonntag.ReadOnly = true;
-            this.Sonntag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Sonntag.Width = 35;
+            this.comboBox_Personen_Stempelfehler.FormattingEnabled = true;
+            this.comboBox_Personen_Stempelfehler.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Stempelfehler.Location = new System.Drawing.Point(156, 213);
+            this.comboBox_Personen_Stempelfehler.Name = "comboBox_Personen_Stempelfehler";
+            this.comboBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Stempelfehler.TabIndex = 7;
             // 
             // Form1
             // 
@@ -1189,8 +1216,9 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Personen.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.Personen.PerformLayout();
+            this.groupBox_Personen_Systemdaten.ResumeLayout(false);
+            this.groupBox_Personen_Systemdaten.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1229,7 +1257,7 @@
         private System.Windows.Forms.Button button_Kalender_Krankheitstag;
         private System.Windows.Forms.Button button_Kalender_Feiertag;
         private System.Windows.Forms.DataGridView Ereignisgrid_Kalender;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox_Personen_Systemdaten;
         private System.Windows.Forms.TextBox textBox_Personen_Stempelfehler;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox_Personen_BetragletzterBonus;
@@ -1240,7 +1268,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_Personen_Zeitkonto;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_Personen_Aktiv;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox_Personen_Urlaubstage;
@@ -1248,9 +1276,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_Personen_Vorname;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox_Personen_ID;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button_Personen_newPerson;
         private System.Windows.Forms.Button button_Personen_writeChanges;
         private System.Windows.Forms.TextBox textBox_Personen_AktAuftrag;
@@ -1300,6 +1326,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Freitag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Samstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sonntag;
+        private System.Windows.Forms.Button button_Personen_Edit_Systemdaten;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Aktiv;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Stempelfehler;
     }
 }
 

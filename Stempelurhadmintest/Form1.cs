@@ -724,8 +724,8 @@ namespace Stempelurhadmintest
             string thisperson_bonuskonto_ausgezahlt_bis = "";
             string thisperson_bonuszeit_bei_letzter_auszahlung = "";
             string thisperson_jahresurlaub = "";
-            string thisperson_stempelfehler = "";
-            string thisperson_aktiv = "";
+            bool thisperson_stempelfehler = false;
+            bool thisperson_aktiv = false;
 
 
 
@@ -756,16 +756,15 @@ namespace Stempelurhadmintest
                 thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
                 thisperson_bonuszeit_bei_letzter_auszahlung = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
                 thisperson_jahresurlaub = Reader["jahresurlaub"] + "";
-                thisperson_stempelfehler = Reader["stempelfehler"] + "";
-                thisperson_aktiv = Reader["aktiv"] + "";
+                thisperson_stempelfehler = (bool)Reader["stempelfehler"];
+                thisperson_aktiv = (bool)Reader["aktiv"];
                 
                 Reader.Close();
             }
             catch (Exception ex) { log(ex.Message); }
             close_db();
 
-            //TODO Formularfelder befüllen
-            textBox_Personen_ID.Text = thisperson_userid;
+            //Formularfelder befüllen
             textBox_Personen_Nachname.Text= thisperson_nachname;
             textBox_Personen_Vorname.Text = thisperson_vorname;
             textBox_Personen_AktAuftrag.Text = thisperson_currenttask;
@@ -774,7 +773,11 @@ namespace Stempelurhadmintest
             textBox_Personen_Boniausgezahltbis.Text = thisperson_bonuskonto_ausgezahlt_bis;
             textBox_Personen_BetragletzterBonus.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
             textBox_Personen_Urlaubstage.Text = thisperson_jahresurlaub;
-            textBox_Personen_Stempelfehler.Text = thisperson_stempelfehler;
+
+            comboBox_Personen_Aktiv.SelectedIndex = 0;
+            comboBox_Personen_Stempelfehler.SelectedIndex = 0;
+            if(thisperson_aktiv) { comboBox_Personen_Aktiv.SelectedIndex = 1; }
+            if(thisperson_stempelfehler) { comboBox_Personen_Stempelfehler.SelectedIndex = 1; }
             
         }
 
@@ -902,6 +905,25 @@ namespace Stempelurhadmintest
                     verrechnungstab_initialisiert_global = false;
                 }
             }
+        }
+
+        private void button_Personen_Edit_Systemdaten_Click(object sender, EventArgs e)
+        {
+            //Sicherheitsabfrage vorbereiten und anzeigen
+            string dialogtext = "Fehlerhafte Änderungen an Systemdaten können zu Inkonsistenzen führen.\r\n\r\nBearbeitung wirklich aktivieren?";
+            DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                groupBox_Personen_Systemdaten.Enabled = true;
+                button_Personen_Edit_Systemdaten.Enabled = false;
+            }
+
+        }
+
+        private void button_Personen_writeChanges_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
