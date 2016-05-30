@@ -16,6 +16,7 @@ namespace Stempelurhadmintest
 {
     public partial class Form1 : Form
     {
+
         string dbserverconf_global;
         string dbnameconf_global;
         string dbuserconf_global;
@@ -25,6 +26,12 @@ namespace Stempelurhadmintest
         MySql.Data.MySqlClient.MySqlCommand comm = new MySql.Data.MySqlClient.MySqlCommand();
 
         string logfilename_global;
+
+        bool personentab_initialisiert_global = false;
+        bool auswertungstab_initialisiert_global = false;
+        bool verrechnungstab_initialisiert_global = false;
+        bool stempelungstab_initialisiert_global = false;
+        bool kalendertab_initialisiert_global = false;
 
         public Form1()
         {
@@ -249,11 +256,12 @@ namespace Stempelurhadmintest
             
         }
 
-        private void initPersonPicker_Kalender()
+        private void refreshPersonPicker_Kalender()
         {
-            //TODO Datenbankverbindung herstellen
-            //TODO Personen der Personentabelle dem PersonPicker hinzufügen
-
+            PersonPicker_Kalender.Items.Clear();
+            PersonPicker_Kalender.Items.Add("Allgemein");
+            
+            //Personen der Personentabelle dem PersonPicker hinzufügen
             string thisperson_userid = "";
             string thisperson_name = "";
             string thisperson_vorname = "";
@@ -267,7 +275,7 @@ namespace Stempelurhadmintest
                 //log("SQL:" + comm.CommandText);
                 MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
 
-                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
                 while (Reader.Read())
                 {
                     thisperson_userid = Reader["userid"] + "";
@@ -275,7 +283,44 @@ namespace Stempelurhadmintest
                     thisperson_vorname= Reader["vorname"] + "";
 
                     PersonPicker_Kalender.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
-                    comboBox1.SelectedIndex = 0;
+                    PersonPicker_Kalender.SelectedIndex = 0;
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+        }
+
+        private void refreshPersonPicker_Personen()
+        {
+            PersonPicker_Personen.Items.Clear();
+
+            //Personen der Personentabelle dem PersonPicker hinzufügen
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname FROM user ORDER BY userid";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname = Reader["vorname"] + "";
+
+                    PersonPicker_Personen.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
+                    PersonPicker_Personen.SelectedIndex = 0;
 
                 }
                 Reader.Close();
@@ -289,6 +334,7 @@ namespace Stempelurhadmintest
         private void MonatsPicker_Kalender_ValueChanged(object sender, EventArgs e)
         {
             refreshKalendergrid();
+            refreshEreignisgrid_Kalender();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -302,16 +348,14 @@ namespace Stempelurhadmintest
             //Datenbank initialisieren
             init_db(dbserverconf_global, dbnameconf_global, dbuserconf_global, dbpwconf_global);
 
-
+            //Kalendertab initialisieren
             refreshKalendergrid();
-            initPersonPicker_Kalender();
+            refreshPersonPicker_Kalender();
             refreshEreignisgrid_Kalender();
-        }
+            kalendertab_initialisiert_global = true;
 
-        private void openEventEditor()
-        {
-            //TODO Panel anzeigen
-            //TODO Felder vorbefüllen und auf update-modus stellen falls schon event vorhanden
+
+
         }
 
         private void PersonPicker_Kalender_SelectedIndexChanged(object sender, EventArgs e)
@@ -367,7 +411,7 @@ namespace Stempelurhadmintest
                     thisevent_vermerk = Reader["vermerk"] + "";
                     thisevent_storniert = (bool)Reader["storniert"];
 
-                    //TODO Eventgrid befüllen
+                    //Eventgrid befüllen
                     DataGridViewRow myrow = new DataGridViewRow();
                     DataGridViewCell cell_id = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_datum = new DataGridViewTextBoxCell();
@@ -611,11 +655,6 @@ namespace Stempelurhadmintest
             refreshEreignisgrid_Kalender();
         }
 
-        private void Abwesenheiten_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void KalenderGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -642,6 +681,169 @@ namespace Stempelurhadmintest
             {
                 button_Kalender_storniereEintrag.Enabled = true;
             }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Personen"])
+            {
+                if(personentab_initialisiert_global == false)
+                {                    
+                    refreshPersonPicker_Personen();
+                    initInsertFormular_Personen();
+                    personentab_initialisiert_global = true;
+                }
+            }
+        }
+
+        private void PersonPicker_Personen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshUpdateFormular_Personen();
+        }
+
+        private void refreshUpdateFormular_Personen()
+        {
+            //TODO Werte zur gewählten Person aus der Datenbank holen
+            //TODO Formularfelder befüllen
+        }
+
+        private void initInsertFormular_Personen()
+        {
+
+            textBox_Personen_Neu_Vorname.Text = "";
+            textBox_Personen_Neu_Nachname.Text = "";
+            textBox_Personen_Neu_Urlaubstage.Text = "";
+            textBox_Personen_Neu_WunschID.Text = "";
+
+            //TODO nächste freie ID aus der Datenbank ermitteln und Formularfeld vorbelegen
+
+
+
+
+        }
+
+        private void button_Personen_newPerson_Click(object sender, EventArgs e)
+        {
+            bool fehler = false;
+            bool TryParse_Result = false;
+            
+            
+            //nötige Daten ermitteln & ggf. Plausiprüfung
+            string input_userid = textBox_Personen_Neu_WunschID.Text;
+            string input_vorname = textBox_Personen_Neu_Vorname.Text;
+            string input_nachname = textBox_Personen_Neu_Nachname.Text;
+            string input_Jahresurlaub = textBox_Personen_Neu_Urlaubstage.Text;
+
+            string currenttask = "";
+            double zeitkonto = 0;
+            double bonuszeit_bei_letzter_auszahlung = 0;
+            bool aktiv = true;
+            bool stempelfehler = false;
+
+            string zeitkonto_berechnungsstand = "";
+            string bonuskonto_ausgezahlt_bis = "";
+            double jahresurlaub = 0;
+
+            DateTime ersterarbeitstag = dateTimePicker_Personen_neu.Value.Date;
+            DateTime tag_vor_arbeitsantritt = ersterarbeitstag.AddDays(-1);
+            zeitkonto_berechnungsstand = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") +  tag_vor_arbeitsantritt.Day.ToString("D2");
+            bonuskonto_ausgezahlt_bis = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") + tag_vor_arbeitsantritt.Day.ToString("D2");
+
+            if(input_userid.Length != 6 || !input_userid.StartsWith("999"))
+            {
+                MessageBox.Show("Die gewünschte ID ist nicht gültig. \r\n\r\n Es muss eine 6-Stellige Zahl über 999000 sein", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fehler = true;
+            }
+
+            if(input_vorname == "")
+            {
+                fehler = true;
+                MessageBox.Show("Bitte einen Vornamen eingeben.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (input_nachname == "")
+            {
+                fehler = true;
+                MessageBox.Show("Bitte einen Nachnamen eingeben.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = double.TryParse(input_Jahresurlaub, out jahresurlaub);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Der angegebene wert für den Jahresurlaub ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //prüfen ob Person noch nicht existiert
+            if (fehler == false)
+            {
+                int count = -1;
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT count(*) FROM user WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = input_userid;
+
+                try
+                {
+                    count = Convert.ToInt32(comm.ExecuteScalar());
+                }
+                catch (Exception ex) { log(ex.Message); }
+
+                if (count != 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Es existiert bereits eine Person mit dieser ID.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                close_db();
+            }
+
+
+
+            if (fehler == false)
+            {
+                //Bestätigungsmeldung vorbereiten und anzeigen
+                string dialogtext = "Folgende Person erstellen?\r\n\r\n" +
+                                        "ID: " + input_userid  + "\r\n" +
+                                        "Vorname: " + input_vorname + "\r\n" +
+                                        "Nachname: " + input_nachname + "\r\n" +
+                                        "Jahresurlaub: " + jahresurlaub + " Tage\r\n" +
+                                        "Erster Arbeitstag: " + ersterarbeitstag.ToLongDateString();
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Person anlegen
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "INSERT INTO user () " + //TODO insert statement bilden
+                                        "VALUES()";
+
+                    //TODO richtige parameter setzen
+                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = input_jahr;
+                    comm.Parameters.Add("@sollzeit", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@sollzeit"].Precision = 10;
+                    comm.Parameters["@sollzeit"].Scale = 2;
+                    comm.Parameters["@sollzeit"].Value = input_sollzeit;
+                    comm.Parameters.Add("@urlaub", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@urlaub"].Precision = 10;
+                    comm.Parameters["@urlaub"].Scale = 2;
+                    comm.Parameters["@urlaub"].Value = input_urlaub;
+
+                    log("Lege Person an...:"); //TODO Logeintrag mit infos füllen
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                }
+
+
+
+
         }
     }
 }
