@@ -198,7 +198,7 @@ namespace Stempelurhadmintest
                             if(thisevent_tag == cellvaluestring)
                             {
                                 KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText = KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText  + thisevent_tooltipprefix + thisevent_vermerk + "\r\n";
-                                KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.Lime;
+                                KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.Gold;
                             }
                         }
                     }
@@ -283,8 +283,7 @@ namespace Stempelurhadmintest
                     thisperson_vorname= Reader["vorname"] + "";
 
                     PersonPicker_Kalender.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
-                    PersonPicker_Kalender.SelectedIndex = 0;
-
+                    
                 }
                 Reader.Close();
             }
@@ -292,6 +291,8 @@ namespace Stempelurhadmintest
 
 
             close_db();
+
+            PersonPicker_Kalender.SelectedIndex = 0;
         }
 
         private void refreshPersonPicker_Personen()
@@ -694,6 +695,15 @@ namespace Stempelurhadmintest
                     personentab_initialisiert_global = true;
                 }
             }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Kalender"])
+            {
+                if (kalendertab_initialisiert_global == false)
+                {
+                    refreshPersonPicker_Kalender();
+                    kalendertab_initialisiert_global = true;
+                }
+            }
         }
 
         private void PersonPicker_Personen_SelectedIndexChanged(object sender, EventArgs e)
@@ -714,12 +724,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Neu_Nachname.Text = "";
             textBox_Personen_Neu_Urlaubstage.Text = "";
             textBox_Personen_Neu_WunschID.Text = "";
-
-            //TODO nächste freie ID aus der Datenbank ermitteln und Formularfeld vorbelegen
-
-
-
-
+            
         }
 
         private void button_Personen_newPerson_Click(object sender, EventArgs e)
@@ -733,21 +738,11 @@ namespace Stempelurhadmintest
             string input_vorname = textBox_Personen_Neu_Vorname.Text;
             string input_nachname = textBox_Personen_Neu_Nachname.Text;
             string input_Jahresurlaub = textBox_Personen_Neu_Urlaubstage.Text;
-
-            string currenttask = "";
-            double zeitkonto = 0;
-            double bonuszeit_bei_letzter_auszahlung = 0;
-            bool aktiv = true;
-            bool stempelfehler = false;
-
-            string zeitkonto_berechnungsstand = "";
-            string bonuskonto_ausgezahlt_bis = "";
-            double jahresurlaub = 0;
+            double jahresurlaub = 0; //wird weiter unten erst versucht aus dem Formularfeld zu parsen
 
             DateTime ersterarbeitstag = dateTimePicker_Personen_neu.Value.Date;
             DateTime tag_vor_arbeitsantritt = ersterarbeitstag.AddDays(-1);
-            zeitkonto_berechnungsstand = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") +  tag_vor_arbeitsantritt.Day.ToString("D2");
-            bonuskonto_ausgezahlt_bis = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") + tag_vor_arbeitsantritt.Day.ToString("D2");
+            string tag_vor_arbeitsantritt_string = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") + tag_vor_arbeitsantritt.Day.ToString("D2");
 
             if(input_userid.Length != 6 || !input_userid.StartsWith("999"))
             {
@@ -806,9 +801,7 @@ namespace Stempelurhadmintest
             {
                 //Bestätigungsmeldung vorbereiten und anzeigen
                 string dialogtext = "Folgende Person erstellen?\r\n\r\n" +
-                                        "ID: " + input_userid  + "\r\n" +
-                                        "Vorname: " + input_vorname + "\r\n" +
-                                        "Nachname: " + input_nachname + "\r\n" +
+                                        input_userid + ": " + input_vorname + " " + input_nachname + "\r\n\r\n" +
                                         "Jahresurlaub: " + jahresurlaub + " Tage\r\n" +
                                         "Erster Arbeitstag: " + ersterarbeitstag.ToLongDateString();
                 DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
@@ -818,32 +811,36 @@ namespace Stempelurhadmintest
                     //Person anlegen
                     open_db();
                     comm.Parameters.Clear();
-                    comm.CommandText = "INSERT INTO user () " + //TODO insert statement bilden
-                                        "VALUES()";
+                    comm.CommandText = "INSERT INTO user (userid, currenttask, name, vorname, zeitkonto, zeitkonto_berechnungsstand, " +
+                                            "bonuskonto_ausgezahlt_bis, bonuszeit_bei_letzter_auszahlung, jahresurlaub, stempelfehler, aktiv) " +
+                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,0,1)";
 
-                    //TODO richtige parameter setzen
-                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = input_jahr;
-                    comm.Parameters.Add("@sollzeit", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
-                    comm.Parameters["@sollzeit"].Precision = 10;
-                    comm.Parameters["@sollzeit"].Scale = 2;
-                    comm.Parameters["@sollzeit"].Value = input_sollzeit;
-                    comm.Parameters.Add("@urlaub", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
-                    comm.Parameters["@urlaub"].Precision = 10;
-                    comm.Parameters["@urlaub"].Scale = 2;
-                    comm.Parameters["@urlaub"].Value = input_urlaub;
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = input_userid;
+                    comm.Parameters.Add("@nachname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_nachname;
+                    comm.Parameters.Add("@vorname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_vorname;
+                    comm.Parameters.Add("@tagvorantritt", MySql.Data.MySqlClient.MySqlDbType.VarChar, 8).Value = tag_vor_arbeitsantritt_string;
+                    comm.Parameters.Add("@jahresurlaub", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@jahresurlaub"].Precision = 10;
+                    comm.Parameters["@jahresurlaub"].Scale = 2;
+                    comm.Parameters["@jahresurlaub"].Value = jahresurlaub;
 
-                    log("Lege Person an...:"); //TODO Logeintrag mit infos füllen
+                    log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname); //TODO Logeintrag mit infos füllen
                     try
                     {
                         comm.ExecuteNonQuery();
                     }
                     catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
                     close_db();
+
+                    refreshPersonPicker_Personen();
+                    initInsertFormular_Personen();
+
+                    kalendertab_initialisiert_global = false;
+                    auswertungstab_initialisiert_global = false;
+                    stempelungstab_initialisiert_global = false;
+                    verrechnungstab_initialisiert_global = false;
                 }
-
-
-
-
+            }
         }
     }
 }
