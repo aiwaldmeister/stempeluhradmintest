@@ -153,7 +153,7 @@ namespace Stempelurhadmintest
             comm.Parameters.Clear();
             comm.CommandText = "SELECT eventid, zuordnung, name, jahr, monat, tag, vermerk, urlaubstage_abziehen, sollzeit, storniert" +
                                 " FROM kalender left join user on kalender.zuordnung = user.userid" +
-                                " where jahr=@jahr AND monat=@monat AND storniert = 0";
+                                " where jahr=@jahr AND monat=@monat AND storniert = 0 ORDER BY name";
 
             comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = betrachtungsjahr;
             comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = betrachtungsmonat;
@@ -166,11 +166,15 @@ namespace Stempelurhadmintest
                 //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
                 while (Reader.Read())
                 {
+
                     thisevent_tag = Reader["tag"] + "";
                     thisevent_vermerk = Reader["vermerk"] + "";
                     thisevent_zuordnung = Reader["zuordnung"] + "";
+
+                    thisevent_name = "";
                     thisevent_name = Reader["name"] + "";
 
+                    thisevent_tooltipprefix =  "";
                     if (thisevent_name != "") thisevent_tooltipprefix = thisevent_name + ": ";
                    
                     //loop durch alle cellen des Kalendergrids
@@ -242,24 +246,7 @@ namespace Stempelurhadmintest
 
             KalenderGrid_Kalender.ClearSelection();
             markiereTagemitEreignissen("");
-
-
-
-
-            //DataGridViewRow myrow = new DataGridViewRow(); 
-
-            //for (int i = 0; i < Wochentagdesersten -1 ; i++)
-            //{
-            //    DataGridViewCell mycell = new DataGridViewTextBoxCell();
-            //    mycell.Value = "fill";
-            //    myrow.Cells.Add(mycell);
-
-            //}
-            //dataGridView1.Rows.Add(myrow);
-
-            //dataGridView1.Rows[0].Cells[2].Style.BackColor = Color.Aqua;
-
-            //MessageBox.Show(Wochentagdesersten.ToString());
+            
         }
 
         private void initPersonPicker_Kalender()
@@ -360,7 +347,7 @@ namespace Stempelurhadmintest
 
             open_db();
             comm.Parameters.Clear();
-            comm.CommandText = "SELECT eventid, tag, monat, vermerk, sollzeit, urlaubstage_abziehen, storniert FROM kalender WHERE jahr=@jahr AND zuordnung=@zuordnung AND storniert=0 ORDER BY eventid";
+            comm.CommandText = "SELECT eventid, tag, monat, vermerk, sollzeit, urlaubstage_abziehen, storniert FROM kalender WHERE jahr=@jahr AND zuordnung=@zuordnung AND storniert=0 ORDER BY monat, tag";
 
             comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = actjahr;
             comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = actzuordnung;
@@ -370,7 +357,7 @@ namespace Stempelurhadmintest
                 //log("SQL:" + comm.CommandText);
                 MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
 
-                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsmonat
+                //jeder Schleifendurchlauf betrachtet ein gefundenes Ereignis im Betrachtungsjahr
                 while (Reader.Read())
                 {
                     thisevent_id = Reader["eventid"] + "";
@@ -411,6 +398,7 @@ namespace Stempelurhadmintest
 
             close_db();
             Ereignisgrid_Kalender.ClearSelection();
+            button_Kalender_storniereEintrag.Enabled = false;
 
         }
 
@@ -425,19 +413,151 @@ namespace Stempelurhadmintest
 
         private void button_Kalender_erstelleEintrag_Click(object sender, EventArgs e)
         {
-            //TODO Plausiprüfung der Werte
+            string input_jahr = "";
+            string input_monat = "";
+            string input_tag = "";
+            string input_zuordnung = "";
 
-            //TODO Prüfen ob schon ein anderer Eintrag mit den Werten da ist
-            //TODO Kalendereintrag erstellen
-            //TODO Ansicht aktualisieren
+            double input_sollzeit = -1;
+            double input_urlaub = 0;
+            string input_vermerk = "";
+            
+            bool fehler = false;
+            bool TryParse_Result = false;
+            
 
+            //Sammeln der Eingabewerte und ggf. Plausibilitätsprüfung.
+
+            TryParse_Result = double.TryParse(textBox_Kalender_Sollzeit.Text, out input_sollzeit);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Der angegebene wert für die Sollzeit ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = double.TryParse(textBox_Kalender_Urlaub.Text, out input_urlaub);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Der angegebene Wert für abzuziehende Urlaubstage ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            input_vermerk = textBox_Kalender_Bemerkung.Text;
+            if(input_vermerk == "")
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Bitte eine Bemerkung eingeben.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            input_jahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
+            input_monat = MonatsPicker_Kalender.Value.Month.ToString("D2");
+
+            if (KalenderGrid_Kalender.SelectedCells.Count == 1)
+            {
+                input_tag = KalenderGrid_Kalender.SelectedCells[0].Value.ToString();
+                if (input_tag != "")
+                {
+                    input_tag = Int32.Parse(input_tag).ToString("D2");
+                }
+            }
+            
+            if(input_tag == "")
+            {
+                fehler = true;
+                MessageBox.Show("Kein gültiger Tag im Kalender ausgewählt.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            input_zuordnung = PersonPicker_Kalender.Text;
+            if(input_zuordnung != "Allgemein")
+            {
+                input_zuordnung = input_zuordnung.Substring(0, 6);
+            }
+
+            
+            //Prüfen ob schon ein anderer Eintrag mit den Werten da ist
+
+            if(fehler == false)
+            {
+                int count = -1;
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT count(*) FROM kalender WHERE jahr=@jahr AND monat=@monat AND tag=@tag AND zuordnung=@zuordnung AND storniert = 0";
+
+                comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = input_jahr;
+                comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_monat;
+                comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_tag;
+                comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = input_zuordnung;
+
+                try
+                {
+                    //log("SQL:" + comm.CommandText);
+                    count = Convert.ToInt32(comm.ExecuteScalar());
+                }
+                catch (Exception ex) { log(ex.Message); }
+
+                if (count != 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Für dieses Datum existiert bereits ein Ereignis mit der selben Personenzuordnung.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                close_db();
+            }
+            
+
+            //Kalendereintrag erstellen
+            if (fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Folgendes Ereignis mit der Zuordnung '" + input_zuordnung +  "' erstellen?\r\n\r\n" +
+                                        "Bemerkung: " + input_vermerk + "\r\n" +
+                                        "Datum: " + input_tag + "." + input_monat + "." + input_jahr + "\r\n" +
+                                        "Sollzeit: " + input_sollzeit + "\r\n" +
+                                        "Urlaubstage abziehen: " + input_urlaub;
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "INSERT INTO kalender (zuordnung,jahr,monat,tag,vermerk,urlaubstage_abziehen,sollzeit,storniert) " + 
+                                        "VALUES(@zuordnung, @jahr, @monat, @tag, @vermerk, @urlaub, @sollzeit, 0)";
+
+                    comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = input_zuordnung;
+                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = input_jahr;
+                    comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_monat;
+                    comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_tag;
+                    comm.Parameters.Add("@vermerk", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_vermerk;
+                    comm.Parameters.Add("@sollzeit", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@sollzeit"].Precision = 10;
+                    comm.Parameters["@sollzeit"].Scale = 2;
+                    comm.Parameters["@sollzeit"].Value = input_sollzeit;
+                    comm.Parameters.Add("@urlaub", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@urlaub"].Precision = 10;
+                    comm.Parameters["@urlaub"].Scale = 2;
+                    comm.Parameters["@urlaub"].Value = input_urlaub;
+                    
+                    log("Erstelle Ereignis-Eintrag: " + input_zuordnung + " " + input_tag + "." +input_monat+ "." + input_jahr + " " +
+                           "Sollzeit: " + input_sollzeit + " Urlaubstage: " + input_urlaub + " Vermerk: " + input_vermerk);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                    
+                    //Ansicht aktualisieren (um neues event direkt sehen zu können)
+                    refreshKalendergrid();
+                    refreshEreignisgrid_Kalender();
+                }
+            }
         }
 
         private void button_Kalender_halberTagUrlaub_Click(object sender, EventArgs e)
         {
             //Voreinstellungen für halben Urlaubstag setzen...
-            textBox_Kalender_Sollzeit.Text = "3.6";
-            textBox_Kalender_Urlaub.Text = "0.5";
+            textBox_Kalender_Sollzeit.Text = "3,6";
+            textBox_Kalender_Urlaub.Text = "0,5";
             textBox_Kalender_Bemerkung.Text = "Halber Tag Urlaub";
 
         }
@@ -461,8 +581,7 @@ namespace Stempelurhadmintest
         }
 
         private void button_Kalender_storniereEintrag_Click(object sender, EventArgs e)
-        {
-            //TODO eintrag mit markierter ID stornieren
+        {//eintrag mit markierter ID stornieren
 
             //ID ermitteln
             string markierteID = "";
@@ -490,7 +609,6 @@ namespace Stempelurhadmintest
             }
             refreshKalendergrid();
             refreshEreignisgrid_Kalender();
-            
         }
 
         private void Abwesenheiten_Click(object sender, EventArgs e)

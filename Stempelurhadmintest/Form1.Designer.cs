@@ -59,6 +59,11 @@
             this.groupBox_Kalender_AlleEreignisse = new System.Windows.Forms.GroupBox();
             this.button_Kalender_storniereEintrag = new System.Windows.Forms.Button();
             this.Ereignisgrid_Kalender = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechenbare_Zeiten = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
@@ -120,11 +125,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Abwesenheiten.SuspendLayout();
@@ -333,7 +333,7 @@
             this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
             this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(30, 20);
             this.textBox_Kalender_Sollzeit.TabIndex = 7;
-            this.textBox_Kalender_Sollzeit.Text = "7.2";
+            this.textBox_Kalender_Sollzeit.Text = "7,2";
             this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // groupBox_Kalender_Voreinstellungen
@@ -515,6 +515,41 @@
             this.Ereignisgrid_Kalender.TabIndex = 11;
             this.Ereignisgrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_CellContentClick);
             this.Ereignisgrid_Kalender.SelectionChanged += new System.EventHandler(this.Ereignisgrid_Kalender_SelectionChanged);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // Datum
+            // 
+            this.Datum.HeaderText = "Dat.";
+            this.Datum.Name = "Datum";
+            this.Datum.ReadOnly = true;
+            this.Datum.Width = 40;
+            // 
+            // Sollzeit
+            // 
+            this.Sollzeit.HeaderText = "Soll";
+            this.Sollzeit.Name = "Sollzeit";
+            this.Sollzeit.ReadOnly = true;
+            this.Sollzeit.Width = 40;
+            // 
+            // Urlaub
+            // 
+            this.Urlaub.HeaderText = "Urlb";
+            this.Urlaub.Name = "Urlaub";
+            this.Urlaub.ReadOnly = true;
+            this.Urlaub.Width = 30;
+            // 
+            // Vermerk
+            // 
+            this.Vermerk.HeaderText = "Vermerk";
+            this.Vermerk.Name = "Vermerk";
+            this.Vermerk.ReadOnly = true;
+            this.Vermerk.Width = 250;
             // 
             // Auswertungen
             // 
@@ -1090,41 +1125,6 @@
             this.button_Personen_writeChanges.TabIndex = 0;
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // Datum
-            // 
-            this.Datum.HeaderText = "Dat.";
-            this.Datum.Name = "Datum";
-            this.Datum.ReadOnly = true;
-            this.Datum.Width = 40;
-            // 
-            // Sollzeit
-            // 
-            this.Sollzeit.HeaderText = "Soll";
-            this.Sollzeit.Name = "Sollzeit";
-            this.Sollzeit.ReadOnly = true;
-            this.Sollzeit.Width = 40;
-            // 
-            // Urlaub
-            // 
-            this.Urlaub.HeaderText = "Urlb";
-            this.Urlaub.Name = "Urlaub";
-            this.Urlaub.ReadOnly = true;
-            this.Urlaub.Width = 30;
-            // 
-            // Vermerk
-            // 
-            this.Vermerk.HeaderText = "Vermerk";
-            this.Vermerk.Name = "Vermerk";
-            this.Vermerk.ReadOnly = true;
-            this.Vermerk.Width = 250;
             // 
             // Form1
             // 
