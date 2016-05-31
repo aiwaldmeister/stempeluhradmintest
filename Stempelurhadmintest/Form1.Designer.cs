@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,13 @@
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechnung = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_Stempelungen_Fehlerpruefung = new System.Windows.Forms.Button();
+            this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.button_Stempelungen_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_EditierenErstellen = new System.Windows.Forms.GroupBox();
+            this.TimePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
             this.comboBox_Stempelungen_Art = new System.Windows.Forms.ComboBox();
             this.textBox_Stempelungen_Auftragsnummer = new System.Windows.Forms.TextBox();
             this.textBox_Stempelungen_ID = new System.Windows.Forms.TextBox();
@@ -76,26 +82,42 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button_Stempelungen_Fehlerpruefung = new System.Windows.Forms.Button();
+            this.button_Stempelungen_neueStempelung = new System.Windows.Forms.Button();
+            this.button_Stempelungen_stornieren = new System.Windows.Forms.Button();
+            this.button_Stempelungen_ueberschreiben = new System.Windows.Forms.Button();
             this.Stempelungsgrid_Stempelungen = new System.Windows.Forms.DataGridView();
+            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Stempelungen = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
             this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
             this.groupBox_Personen_Systemdaten = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.comboBox_Personen_Stempelfehler_old = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Stempelfehler = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_AktAuftrag_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.textBox_Personen_BetragletzterBonus_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_BetragletzterBonus = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Boniausgezahltbis_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Boniausgezahltbis = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_ZeitkontoBerechnungsstand = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Zeitkonto_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Zeitkonto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -112,46 +134,24 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_Personen_Aktiv_old = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_Urlaubstage_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Nachname_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Vorname_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Vorname = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.textBox_Personen_Vorname_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_Nachname_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_Urlaubstage_old = new System.Windows.Forms.TextBox();
-            this.comboBox_Personen_Aktiv_old = new System.Windows.Forms.ComboBox();
-            this.textBox_Personen_Zeitkonto_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_Boniausgezahltbis_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_BetragletzterBonus_old = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_AktAuftrag_old = new System.Windows.Forms.TextBox();
-            this.comboBox_Personen_Stempelfehler_old = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.TimePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
-            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button_Stempelungen_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
-            this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -160,14 +160,14 @@
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
             this.Stempelungen.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox_Stempelungen_Zeitkonto.SuspendLayout();
             this.groupBox_Stempelungen_EditierenErstellen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).BeginInit();
             this.Personen.SuspendLayout();
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox_Stempelungen_Zeitkonto.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -196,14 +196,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -632,6 +632,58 @@
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button_Stempelungen_Fehlerpruefung);
+            this.groupBox2.Location = new System.Drawing.Point(372, 25);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(424, 89);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Fehlerprüfung";
+            // 
+            // button_Stempelungen_Fehlerpruefung
+            // 
+            this.button_Stempelungen_Fehlerpruefung.Location = new System.Drawing.Point(27, 35);
+            this.button_Stempelungen_Fehlerpruefung.Name = "button_Stempelungen_Fehlerpruefung";
+            this.button_Stempelungen_Fehlerpruefung.Size = new System.Drawing.Size(375, 26);
+            this.button_Stempelungen_Fehlerpruefung.TabIndex = 8;
+            this.button_Stempelungen_Fehlerpruefung.Text = "Probleme suchen und markieren";
+            this.button_Stempelungen_Fehlerpruefung.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_Fehlerpruefung.Click += new System.EventHandler(this.button_Stempelungen_Fehlerpruefung_Click);
+            // 
+            // groupBox_Stempelungen_Zeitkonto
+            // 
+            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label_Stempelungen_Zeitkonto_Berechnungsstand);
+            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label32);
+            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.button_Stempelungen_ZeitkontoRueckrechnen);
+            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(372, 132);
+            this.groupBox_Stempelungen_Zeitkonto.Name = "groupBox_Stempelungen_Zeitkonto";
+            this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 113);
+            this.groupBox_Stempelungen_Zeitkonto.TabIndex = 11;
+            this.groupBox_Stempelungen_Zeitkonto.TabStop = false;
+            this.groupBox_Stempelungen_Zeitkonto.Text = "Zeitkonto";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(24, 27);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(278, 13);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "Stand der Zeitkontoberechnung: für die gewählte Person:";
+            // 
+            // button_Stempelungen_ZeitkontoRueckrechnen
+            // 
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(27, 61);
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Name = "button_Stempelungen_ZeitkontoRueckrechnen";
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(375, 29);
+            this.button_Stempelungen_ZeitkontoRueckrechnen.TabIndex = 8;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Text = "Bis zum Vorabend des gewählten Tages zurückrechnen";
+            this.button_Stempelungen_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Click += new System.EventHandler(this.button_Stempelungen_ZeitkontoRueckrechnen_Click);
+            // 
             // groupBox_Stempelungen_EditierenErstellen
             // 
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.TimePicker_Stempelungen);
@@ -642,9 +694,9 @@
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label23);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label22);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label21);
-            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button6);
-            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button7);
-            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button5);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_neueStempelung);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_stornieren);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_ueberschreiben);
             this.groupBox_Stempelungen_EditierenErstellen.Enabled = false;
             this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(372, 251);
             this.groupBox_Stempelungen_EditierenErstellen.Name = "groupBox_Stempelungen_EditierenErstellen";
@@ -652,6 +704,15 @@
             this.groupBox_Stempelungen_EditierenErstellen.TabIndex = 10;
             this.groupBox_Stempelungen_EditierenErstellen.TabStop = false;
             this.groupBox_Stempelungen_EditierenErstellen.Text = "Editieren / Erstellen";
+            // 
+            // TimePicker_Stempelungen
+            // 
+            this.TimePicker_Stempelungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.TimePicker_Stempelungen.Location = new System.Drawing.Point(213, 179);
+            this.TimePicker_Stempelungen.Name = "TimePicker_Stempelungen";
+            this.TimePicker_Stempelungen.ShowUpDown = true;
+            this.TimePicker_Stempelungen.Size = new System.Drawing.Size(107, 20);
+            this.TimePicker_Stempelungen.TabIndex = 13;
             // 
             // comboBox_Stempelungen_Art
             // 
@@ -718,42 +779,35 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Stempelungs-ID";
             // 
-            // button6
+            // button_Stempelungen_neueStempelung
             // 
-            this.button6.Location = new System.Drawing.Point(209, 237);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(193, 29);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Neue Stempelung erstellen";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(209, 237);
+            this.button_Stempelungen_neueStempelung.Name = "button_Stempelungen_neueStempelung";
+            this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(193, 29);
+            this.button_Stempelungen_neueStempelung.TabIndex = 9;
+            this.button_Stempelungen_neueStempelung.Text = "Neue Stempelung erstellen";
+            this.button_Stempelungen_neueStempelung.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_neueStempelung.Click += new System.EventHandler(this.button_Stempelungen_neueStempelung_Click);
             // 
-            // button7
+            // button_Stempelungen_stornieren
             // 
-            this.button7.Location = new System.Drawing.Point(27, 37);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(375, 29);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Diese Stempelung stornieren";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 37);
+            this.button_Stempelungen_stornieren.Name = "button_Stempelungen_stornieren";
+            this.button_Stempelungen_stornieren.Size = new System.Drawing.Size(375, 29);
+            this.button_Stempelungen_stornieren.TabIndex = 9;
+            this.button_Stempelungen_stornieren.Text = "Diese Stempelung stornieren";
+            this.button_Stempelungen_stornieren.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_stornieren.Click += new System.EventHandler(this.button_Stempelungen_stornieren_Click);
             // 
-            // button5
+            // button_Stempelungen_ueberschreiben
             // 
-            this.button5.Location = new System.Drawing.Point(27, 237);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(177, 29);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Diese Stempelung überschreiben";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button_Stempelungen_Fehlerpruefung
-            // 
-            this.button_Stempelungen_Fehlerpruefung.Location = new System.Drawing.Point(19, 34);
-            this.button_Stempelungen_Fehlerpruefung.Name = "button_Stempelungen_Fehlerpruefung";
-            this.button_Stempelungen_Fehlerpruefung.Size = new System.Drawing.Size(375, 35);
-            this.button_Stempelungen_Fehlerpruefung.TabIndex = 8;
-            this.button_Stempelungen_Fehlerpruefung.Text = "Probleme suchen und markieren";
-            this.button_Stempelungen_Fehlerpruefung.UseVisualStyleBackColor = true;
-            this.button_Stempelungen_Fehlerpruefung.Click += new System.EventHandler(this.button_Stempelungen_Fehlerpruefung_Click);
+            this.button_Stempelungen_ueberschreiben.Location = new System.Drawing.Point(27, 237);
+            this.button_Stempelungen_ueberschreiben.Name = "button_Stempelungen_ueberschreiben";
+            this.button_Stempelungen_ueberschreiben.Size = new System.Drawing.Size(177, 29);
+            this.button_Stempelungen_ueberschreiben.TabIndex = 9;
+            this.button_Stempelungen_ueberschreiben.Text = "Diese Stempelung überschreiben";
+            this.button_Stempelungen_ueberschreiben.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_ueberschreiben.Click += new System.EventHandler(this.button_Stempelungen_ueberschreiben_Click);
             // 
             // Stempelungsgrid_Stempelungen
             // 
@@ -778,6 +832,46 @@
             this.Stempelungsgrid_Stempelungen.Size = new System.Drawing.Size(324, 449);
             this.Stempelungsgrid_Stempelungen.TabIndex = 7;
             this.Stempelungsgrid_Stempelungen.SelectionChanged += new System.EventHandler(this.Stempelungsgrid_Stempelungen_SelectionChanged);
+            // 
+            // stampid
+            // 
+            this.stampid.Frozen = true;
+            this.stampid.HeaderText = "ID";
+            this.stampid.Name = "stampid";
+            this.stampid.ReadOnly = true;
+            this.stampid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.stampid.Width = 40;
+            // 
+            // StampArt
+            // 
+            this.StampArt.HeaderText = "Art";
+            this.StampArt.Name = "StampArt";
+            this.StampArt.ReadOnly = true;
+            this.StampArt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StampArt.Width = 35;
+            // 
+            // StampTask
+            // 
+            this.StampTask.HeaderText = "AuftragsNr.";
+            this.StampTask.Name = "StampTask";
+            this.StampTask.ReadOnly = true;
+            this.StampTask.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StampTask.Width = 65;
+            // 
+            // StampZeitstempel
+            // 
+            this.StampZeitstempel.HeaderText = "Zeitstempel";
+            this.StampZeitstempel.Name = "StampZeitstempel";
+            this.StampZeitstempel.ReadOnly = true;
+            this.StampZeitstempel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StampZeitstempel.Width = 80;
+            // 
+            // StampSource
+            // 
+            this.StampSource.HeaderText = "Quelle";
+            this.StampSource.Name = "StampSource";
+            this.StampSource.ReadOnly = true;
+            this.StampSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DatePicker_Stempelungen
             // 
@@ -875,6 +969,73 @@
             this.groupBox_Personen_Systemdaten.TabStop = false;
             this.groupBox_Personen_Systemdaten.Text = "Systemdaten";
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(255, 216);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(19, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "-->";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(255, 174);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(19, 13);
+            this.label34.TabIndex = 8;
+            this.label34.Text = "-->";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(255, 148);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(19, 13);
+            this.label33.TabIndex = 8;
+            this.label33.Text = "-->";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(255, 105);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(19, 13);
+            this.label31.TabIndex = 8;
+            this.label31.Text = "-->";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(255, 78);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(19, 13);
+            this.label30.TabIndex = 8;
+            this.label30.Text = "-->";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(255, 31);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(19, 13);
+            this.label29.TabIndex = 8;
+            this.label29.Text = "-->";
+            // 
+            // comboBox_Personen_Stempelfehler_old
+            // 
+            this.comboBox_Personen_Stempelfehler_old.Enabled = false;
+            this.comboBox_Personen_Stempelfehler_old.FormattingEnabled = true;
+            this.comboBox_Personen_Stempelfehler_old.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Stempelfehler_old.Location = new System.Drawing.Point(145, 213);
+            this.comboBox_Personen_Stempelfehler_old.Name = "comboBox_Personen_Stempelfehler_old";
+            this.comboBox_Personen_Stempelfehler_old.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Stempelfehler_old.TabIndex = 7;
+            this.comboBox_Personen_Stempelfehler_old.TabStop = false;
+            // 
             // comboBox_Personen_Stempelfehler
             // 
             this.comboBox_Personen_Stempelfehler.FormattingEnabled = true;
@@ -886,6 +1047,16 @@
             this.comboBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 21);
             this.comboBox_Personen_Stempelfehler.TabIndex = 6;
             this.comboBox_Personen_Stempelfehler.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Stempelfehler_SelectedIndexChanged);
+            // 
+            // textBox_Personen_AktAuftrag_old
+            // 
+            this.textBox_Personen_AktAuftrag_old.Enabled = false;
+            this.textBox_Personen_AktAuftrag_old.Location = new System.Drawing.Point(145, 29);
+            this.textBox_Personen_AktAuftrag_old.MaxLength = 6;
+            this.textBox_Personen_AktAuftrag_old.Name = "textBox_Personen_AktAuftrag_old";
+            this.textBox_Personen_AktAuftrag_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_AktAuftrag_old.TabIndex = 1;
+            this.textBox_Personen_AktAuftrag_old.TabStop = false;
             // 
             // textBox_Personen_AktAuftrag
             // 
@@ -905,6 +1076,16 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Stempelfehler";
             // 
+            // textBox_Personen_BetragletzterBonus_old
+            // 
+            this.textBox_Personen_BetragletzterBonus_old.Enabled = false;
+            this.textBox_Personen_BetragletzterBonus_old.Location = new System.Drawing.Point(145, 171);
+            this.textBox_Personen_BetragletzterBonus_old.MaxLength = 10;
+            this.textBox_Personen_BetragletzterBonus_old.Name = "textBox_Personen_BetragletzterBonus_old";
+            this.textBox_Personen_BetragletzterBonus_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_BetragletzterBonus_old.TabIndex = 1;
+            this.textBox_Personen_BetragletzterBonus_old.TabStop = false;
+            // 
             // textBox_Personen_BetragletzterBonus
             // 
             this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(285, 171);
@@ -922,6 +1103,16 @@
             this.label16.Size = new System.Drawing.Size(102, 13);
             this.label16.TabIndex = 0;
             this.label16.Text = "Betrag letzter Bonus";
+            // 
+            // textBox_Personen_Boniausgezahltbis_old
+            // 
+            this.textBox_Personen_Boniausgezahltbis_old.Enabled = false;
+            this.textBox_Personen_Boniausgezahltbis_old.Location = new System.Drawing.Point(145, 146);
+            this.textBox_Personen_Boniausgezahltbis_old.MaxLength = 8;
+            this.textBox_Personen_Boniausgezahltbis_old.Name = "textBox_Personen_Boniausgezahltbis_old";
+            this.textBox_Personen_Boniausgezahltbis_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Boniausgezahltbis_old.TabIndex = 1;
+            this.textBox_Personen_Boniausgezahltbis_old.TabStop = false;
             // 
             // textBox_Personen_Boniausgezahltbis
             // 
@@ -941,6 +1132,16 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Boni ausgezahlt bis";
             // 
+            // textBox_Personen_ZeitkontoBerechnungsstand_old
+            // 
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Enabled = false;
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Location = new System.Drawing.Point(145, 102);
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.MaxLength = 8;
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Name = "textBox_Personen_ZeitkontoBerechnungsstand_old";
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.TabIndex = 1;
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.TabStop = false;
+            // 
             // textBox_Personen_ZeitkontoBerechnungsstand
             // 
             this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(285, 102);
@@ -958,6 +1159,16 @@
             this.label14.Size = new System.Drawing.Size(96, 13);
             this.label14.TabIndex = 0;
             this.label14.Text = "Berechnungsstand";
+            // 
+            // textBox_Personen_Zeitkonto_old
+            // 
+            this.textBox_Personen_Zeitkonto_old.Enabled = false;
+            this.textBox_Personen_Zeitkonto_old.Location = new System.Drawing.Point(145, 76);
+            this.textBox_Personen_Zeitkonto_old.MaxLength = 10;
+            this.textBox_Personen_Zeitkonto_old.Name = "textBox_Personen_Zeitkonto_old";
+            this.textBox_Personen_Zeitkonto_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Zeitkonto_old.TabIndex = 1;
+            this.textBox_Personen_Zeitkonto_old.TabStop = false;
             // 
             // textBox_Personen_Zeitkonto
             // 
@@ -1123,6 +1334,55 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(255, 106);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(19, 13);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "-->";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(255, 81);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(19, 13);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "-->";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(255, 54);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(19, 13);
+            this.label26.TabIndex = 8;
+            this.label26.Text = "-->";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(255, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(19, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "-->";
+            // 
+            // comboBox_Personen_Aktiv_old
+            // 
+            this.comboBox_Personen_Aktiv_old.Enabled = false;
+            this.comboBox_Personen_Aktiv_old.FormattingEnabled = true;
+            this.comboBox_Personen_Aktiv_old.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(145, 103);
+            this.comboBox_Personen_Aktiv_old.Name = "comboBox_Personen_Aktiv_old";
+            this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Aktiv_old.TabIndex = 7;
+            this.comboBox_Personen_Aktiv_old.TabStop = false;
+            // 
             // comboBox_Personen_Aktiv
             // 
             this.comboBox_Personen_Aktiv.FormattingEnabled = true;
@@ -1134,6 +1394,16 @@
             this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 21);
             this.comboBox_Personen_Aktiv.TabIndex = 4;
             this.comboBox_Personen_Aktiv.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Aktiv_SelectedIndexChanged);
+            // 
+            // textBox_Personen_Urlaubstage_old
+            // 
+            this.textBox_Personen_Urlaubstage_old.Enabled = false;
+            this.textBox_Personen_Urlaubstage_old.Location = new System.Drawing.Point(145, 77);
+            this.textBox_Personen_Urlaubstage_old.MaxLength = 10;
+            this.textBox_Personen_Urlaubstage_old.Name = "textBox_Personen_Urlaubstage_old";
+            this.textBox_Personen_Urlaubstage_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Urlaubstage_old.TabIndex = 1;
+            this.textBox_Personen_Urlaubstage_old.TabStop = false;
             // 
             // textBox_Personen_Urlaubstage
             // 
@@ -1153,6 +1423,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Aktiver Mitarbeiter";
             // 
+            // textBox_Personen_Nachname_old
+            // 
+            this.textBox_Personen_Nachname_old.Enabled = false;
+            this.textBox_Personen_Nachname_old.Location = new System.Drawing.Point(145, 51);
+            this.textBox_Personen_Nachname_old.MaxLength = 30;
+            this.textBox_Personen_Nachname_old.Name = "textBox_Personen_Nachname_old";
+            this.textBox_Personen_Nachname_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Nachname_old.TabIndex = 1;
+            this.textBox_Personen_Nachname_old.TabStop = false;
+            // 
             // textBox_Personen_Nachname
             // 
             this.textBox_Personen_Nachname.Location = new System.Drawing.Point(285, 51);
@@ -1170,6 +1450,16 @@
             this.label11.Size = new System.Drawing.Size(105, 13);
             this.label11.TabIndex = 0;
             this.label11.Text = "Urlaubstage pro Jahr";
+            // 
+            // textBox_Personen_Vorname_old
+            // 
+            this.textBox_Personen_Vorname_old.Enabled = false;
+            this.textBox_Personen_Vorname_old.Location = new System.Drawing.Point(145, 25);
+            this.textBox_Personen_Vorname_old.MaxLength = 30;
+            this.textBox_Personen_Vorname_old.Name = "textBox_Personen_Vorname_old";
+            this.textBox_Personen_Vorname_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Vorname_old.TabIndex = 1;
+            this.textBox_Personen_Vorname_old.TabStop = false;
             // 
             // textBox_Personen_Vorname
             // 
@@ -1208,299 +1498,15 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // textBox_Personen_Vorname_old
+            // label_Stempelungen_Zeitkonto_Berechnungsstand
             // 
-            this.textBox_Personen_Vorname_old.Enabled = false;
-            this.textBox_Personen_Vorname_old.Location = new System.Drawing.Point(145, 25);
-            this.textBox_Personen_Vorname_old.MaxLength = 30;
-            this.textBox_Personen_Vorname_old.Name = "textBox_Personen_Vorname_old";
-            this.textBox_Personen_Vorname_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Vorname_old.TabIndex = 1;
-            this.textBox_Personen_Vorname_old.TabStop = false;
-            // 
-            // textBox_Personen_Nachname_old
-            // 
-            this.textBox_Personen_Nachname_old.Enabled = false;
-            this.textBox_Personen_Nachname_old.Location = new System.Drawing.Point(145, 51);
-            this.textBox_Personen_Nachname_old.MaxLength = 30;
-            this.textBox_Personen_Nachname_old.Name = "textBox_Personen_Nachname_old";
-            this.textBox_Personen_Nachname_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Nachname_old.TabIndex = 1;
-            this.textBox_Personen_Nachname_old.TabStop = false;
-            // 
-            // textBox_Personen_Urlaubstage_old
-            // 
-            this.textBox_Personen_Urlaubstage_old.Enabled = false;
-            this.textBox_Personen_Urlaubstage_old.Location = new System.Drawing.Point(145, 77);
-            this.textBox_Personen_Urlaubstage_old.MaxLength = 10;
-            this.textBox_Personen_Urlaubstage_old.Name = "textBox_Personen_Urlaubstage_old";
-            this.textBox_Personen_Urlaubstage_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Urlaubstage_old.TabIndex = 1;
-            this.textBox_Personen_Urlaubstage_old.TabStop = false;
-            // 
-            // comboBox_Personen_Aktiv_old
-            // 
-            this.comboBox_Personen_Aktiv_old.Enabled = false;
-            this.comboBox_Personen_Aktiv_old.FormattingEnabled = true;
-            this.comboBox_Personen_Aktiv_old.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(145, 103);
-            this.comboBox_Personen_Aktiv_old.Name = "comboBox_Personen_Aktiv_old";
-            this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_Personen_Aktiv_old.TabIndex = 7;
-            this.comboBox_Personen_Aktiv_old.TabStop = false;
-            // 
-            // textBox_Personen_Zeitkonto_old
-            // 
-            this.textBox_Personen_Zeitkonto_old.Enabled = false;
-            this.textBox_Personen_Zeitkonto_old.Location = new System.Drawing.Point(145, 76);
-            this.textBox_Personen_Zeitkonto_old.MaxLength = 10;
-            this.textBox_Personen_Zeitkonto_old.Name = "textBox_Personen_Zeitkonto_old";
-            this.textBox_Personen_Zeitkonto_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Zeitkonto_old.TabIndex = 1;
-            this.textBox_Personen_Zeitkonto_old.TabStop = false;
-            // 
-            // textBox_Personen_ZeitkontoBerechnungsstand_old
-            // 
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Enabled = false;
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Location = new System.Drawing.Point(145, 102);
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.MaxLength = 8;
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Name = "textBox_Personen_ZeitkontoBerechnungsstand_old";
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.TabIndex = 1;
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.TabStop = false;
-            // 
-            // textBox_Personen_Boniausgezahltbis_old
-            // 
-            this.textBox_Personen_Boniausgezahltbis_old.Enabled = false;
-            this.textBox_Personen_Boniausgezahltbis_old.Location = new System.Drawing.Point(145, 146);
-            this.textBox_Personen_Boniausgezahltbis_old.MaxLength = 8;
-            this.textBox_Personen_Boniausgezahltbis_old.Name = "textBox_Personen_Boniausgezahltbis_old";
-            this.textBox_Personen_Boniausgezahltbis_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Boniausgezahltbis_old.TabIndex = 1;
-            this.textBox_Personen_Boniausgezahltbis_old.TabStop = false;
-            // 
-            // textBox_Personen_BetragletzterBonus_old
-            // 
-            this.textBox_Personen_BetragletzterBonus_old.Enabled = false;
-            this.textBox_Personen_BetragletzterBonus_old.Location = new System.Drawing.Point(145, 171);
-            this.textBox_Personen_BetragletzterBonus_old.MaxLength = 10;
-            this.textBox_Personen_BetragletzterBonus_old.Name = "textBox_Personen_BetragletzterBonus_old";
-            this.textBox_Personen_BetragletzterBonus_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_BetragletzterBonus_old.TabIndex = 1;
-            this.textBox_Personen_BetragletzterBonus_old.TabStop = false;
-            // 
-            // textBox_Personen_AktAuftrag_old
-            // 
-            this.textBox_Personen_AktAuftrag_old.Enabled = false;
-            this.textBox_Personen_AktAuftrag_old.Location = new System.Drawing.Point(145, 29);
-            this.textBox_Personen_AktAuftrag_old.MaxLength = 6;
-            this.textBox_Personen_AktAuftrag_old.Name = "textBox_Personen_AktAuftrag_old";
-            this.textBox_Personen_AktAuftrag_old.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_AktAuftrag_old.TabIndex = 1;
-            this.textBox_Personen_AktAuftrag_old.TabStop = false;
-            // 
-            // comboBox_Personen_Stempelfehler_old
-            // 
-            this.comboBox_Personen_Stempelfehler_old.Enabled = false;
-            this.comboBox_Personen_Stempelfehler_old.FormattingEnabled = true;
-            this.comboBox_Personen_Stempelfehler_old.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.comboBox_Personen_Stempelfehler_old.Location = new System.Drawing.Point(145, 213);
-            this.comboBox_Personen_Stempelfehler_old.Name = "comboBox_Personen_Stempelfehler_old";
-            this.comboBox_Personen_Stempelfehler_old.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_Personen_Stempelfehler_old.TabIndex = 7;
-            this.comboBox_Personen_Stempelfehler_old.TabStop = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(255, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(19, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "-->";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(255, 54);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(19, 13);
-            this.label26.TabIndex = 8;
-            this.label26.Text = "-->";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(255, 81);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(19, 13);
-            this.label27.TabIndex = 8;
-            this.label27.Text = "-->";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(255, 106);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(19, 13);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "-->";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(255, 31);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(19, 13);
-            this.label29.TabIndex = 8;
-            this.label29.Text = "-->";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(255, 78);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(19, 13);
-            this.label30.TabIndex = 8;
-            this.label30.Text = "-->";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(255, 105);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(19, 13);
-            this.label31.TabIndex = 8;
-            this.label31.Text = "-->";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(255, 148);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(19, 13);
-            this.label33.TabIndex = 8;
-            this.label33.Text = "-->";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(255, 174);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(19, 13);
-            this.label34.TabIndex = 8;
-            this.label34.Text = "-->";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(255, 216);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(19, 13);
-            this.label35.TabIndex = 8;
-            this.label35.Text = "-->";
-            // 
-            // TimePicker_Stempelungen
-            // 
-            this.TimePicker_Stempelungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePicker_Stempelungen.Location = new System.Drawing.Point(213, 179);
-            this.TimePicker_Stempelungen.Name = "TimePicker_Stempelungen";
-            this.TimePicker_Stempelungen.ShowUpDown = true;
-            this.TimePicker_Stempelungen.Size = new System.Drawing.Size(107, 20);
-            this.TimePicker_Stempelungen.TabIndex = 13;
-            // 
-            // stampid
-            // 
-            this.stampid.Frozen = true;
-            this.stampid.HeaderText = "ID";
-            this.stampid.Name = "stampid";
-            this.stampid.ReadOnly = true;
-            this.stampid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.stampid.Width = 40;
-            // 
-            // StampArt
-            // 
-            this.StampArt.HeaderText = "Art";
-            this.StampArt.Name = "StampArt";
-            this.StampArt.ReadOnly = true;
-            this.StampArt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StampArt.Width = 35;
-            // 
-            // StampTask
-            // 
-            this.StampTask.HeaderText = "AuftragsNr.";
-            this.StampTask.Name = "StampTask";
-            this.StampTask.ReadOnly = true;
-            this.StampTask.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StampTask.Width = 65;
-            // 
-            // StampZeitstempel
-            // 
-            this.StampZeitstempel.HeaderText = "Zeitstempel";
-            this.StampZeitstempel.Name = "StampZeitstempel";
-            this.StampZeitstempel.ReadOnly = true;
-            this.StampZeitstempel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StampZeitstempel.Width = 80;
-            // 
-            // StampSource
-            // 
-            this.StampSource.HeaderText = "Quelle";
-            this.StampSource.Name = "StampSource";
-            this.StampSource.ReadOnly = true;
-            this.StampSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // button_Stempelungen_ZeitkontoRueckrechnen
-            // 
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(27, 61);
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Name = "button_Stempelungen_ZeitkontoRueckrechnen";
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(375, 33);
-            this.button_Stempelungen_ZeitkontoRueckrechnen.TabIndex = 8;
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Text = "Bis zum Vorabend des gewählten Tages zurückrechnen";
-            this.button_Stempelungen_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
-            // 
-            // groupBox_Stempelungen_Zeitkonto
-            // 
-            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.textBox1);
-            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label32);
-            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.button_Stempelungen_ZeitkontoRueckrechnen);
-            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(372, 132);
-            this.groupBox_Stempelungen_Zeitkonto.Name = "groupBox_Stempelungen_Zeitkonto";
-            this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 113);
-            this.groupBox_Stempelungen_Zeitkonto.TabIndex = 11;
-            this.groupBox_Stempelungen_Zeitkonto.TabStop = false;
-            this.groupBox_Stempelungen_Zeitkonto.Text = "Zeitkonto";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(24, 27);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(278, 13);
-            this.label32.TabIndex = 9;
-            this.label32.Text = "Stand der Zeitkontoberechnung: für die gewählte Person:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(308, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(94, 20);
-            this.textBox1.TabIndex = 10;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button_Stempelungen_Fehlerpruefung);
-            this.groupBox2.Location = new System.Drawing.Point(380, 25);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(416, 89);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fehlerprüfung";
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.AutoSize = true;
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Location = new System.Drawing.Point(308, 27);
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Name = "label_Stempelungen_Zeitkonto_Berechnungsstand";
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Size = new System.Drawing.Size(55, 13);
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.TabIndex = 9;
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Text = "00000000";
             // 
             // Form1
             // 
@@ -1521,6 +1527,9 @@
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
             this.Stempelungen.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox_Stempelungen_Zeitkonto.ResumeLayout(false);
+            this.groupBox_Stempelungen_Zeitkonto.PerformLayout();
             this.groupBox_Stempelungen_EditierenErstellen.ResumeLayout(false);
             this.groupBox_Stempelungen_EditierenErstellen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).EndInit();
@@ -1531,9 +1540,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox_Stempelungen_Zeitkonto.ResumeLayout(false);
-            this.groupBox_Stempelungen_Zeitkonto.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1610,11 +1616,11 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button_Stempelungen_ueberschreiben;
         private System.Windows.Forms.Button button_Stempelungen_Fehlerpruefung;
         private System.Windows.Forms.ComboBox comboBox_Stempelungen_Art;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button_Stempelungen_neueStempelung;
+        private System.Windows.Forms.Button button_Stempelungen_stornieren;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
@@ -1659,10 +1665,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StampZeitstempel;
         private System.Windows.Forms.DataGridViewTextBoxColumn StampSource;
         private System.Windows.Forms.GroupBox groupBox_Stempelungen_Zeitkonto;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button button_Stempelungen_ZeitkontoRueckrechnen;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label_Stempelungen_Zeitkonto_Berechnungsstand;
     }
 }
 

@@ -1297,15 +1297,64 @@ namespace Stempelurhadmintest
         }
 
         private void vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum()
-        {   
-            //TODO Zeitkonto-Berechnungsstand der gewählten Person ermitteln und in der Textbox anzeigen
-            //TODO Prüfen ob der Zeitkonto-Berechnungsstand früher ist, als das Datum das gerade ausgewählt ist
-                    //falls ja 
-                        //editier-groupbox enablen
-                        //zurückrechen-button disablen
-                    //falls nein
-                        //editier-groupbox disablen
-                        //zurückrechnen-button enablen
+        {
+            string userid = "";
+            string zeitkonto_berechnungsstand = "";
+
+            DateTime date_selected;
+            DateTime date_berechnungsstand;
+
+            int jahr_tmp = 0;
+            int monat_tmp = 0;
+            int tag_tmp = 0;
+
+            userid = PersonPicker_Stempelungen.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+            
+            //Zeitkonto-Berechnungsstand der gewählten Person ermitteln und in der Textbox anzeigen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT zeitkonto_berechnungsstand FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+            try
+            {
+                zeitkonto_berechnungsstand = comm.ExecuteScalar() + "";              
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+            label_Stempelungen_Zeitkonto_Berechnungsstand.Text = zeitkonto_berechnungsstand;
+
+            //Prüfen ob der Zeitkonto-Berechnungsstand früher ist, als das Datum das gerade ausgewählt ist
+            jahr_tmp = int.Parse(zeitkonto_berechnungsstand.Substring(0, 4));
+            monat_tmp = int.Parse(zeitkonto_berechnungsstand.Substring(4, 2));
+            tag_tmp = int.Parse(zeitkonto_berechnungsstand.Substring(6, 2));
+                
+            date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp , 0, 0, 0);
+
+            jahr_tmp = DatePicker_Stempelungen.Value.Year;
+            monat_tmp = DatePicker_Stempelungen.Value.Month;
+            tag_tmp = DatePicker_Stempelungen.Value.Day;
+
+            date_selected = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+
+            int result_datumsvergleich = DateTime.Compare(date_selected, date_berechnungsstand);
+
+            if(result_datumsvergleich > 0)
+            {//gewähltes Datum ist später als der Zeitkonto-Berechnungsstand -> Stempelungen können editiert werden
+                groupBox_Stempelungen_EditierenErstellen.Enabled = true;
+                button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
+            }
+            else
+            {//gewähltes Datum ist gleich oder früher als der Zeitkonto-Berechnungsstand -> Stempelungen dürfen nicht editiert werden
+                groupBox_Stempelungen_EditierenErstellen.Enabled = false;
+                button_Stempelungen_ZeitkontoRueckrechnen.Enabled = true;
+            }
+  
         }
 
         private void refreshStempelungsgrid_Stempelungen()
@@ -1398,6 +1447,7 @@ namespace Stempelurhadmintest
         private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
         {
             refreshStempelungsgrid_Stempelungen();
+            vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum();
         }
 
         private void Stempelungsgrid_Stempelungen_SelectionChanged(object sender, EventArgs e)
@@ -1456,6 +1506,46 @@ namespace Stempelurhadmintest
         {
             //TODO Nach Problemen suchen und diese markieren (eventuell noch mit message erklären)
             //TODO wurden keine Probleme mehr gefunden, das Stempelfehlerflag der Person auf 0 setzen (eventuell mit message darauf hinweisen)
+        }
+
+        private void button_Stempelungen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
+        {
+            //TODO Datum Berechnungsstand ermitteln
+            //TODO selectiertes Datum
+            //TODO Zeitkontostand ermitteln
+            //TODO while schleife so lange bis Berechnungsstand früher ist als gewähltes datum
+                   //TODO IST-Zeit des Tages des Berechnungsstands berechnen
+                   //TODO berechnete IST-Zeit vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
+            //TODO neuen Berechnungsstand und neuen Zeitkontostand festschreiben
+            //TODO vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum
+            
+        }
+
+        private void button_Stempelungen_stornieren_Click(object sender, EventArgs e)
+        {
+            //TODO id ermitteln
+            //TODO Bestätigungsdialog
+                //TODO Stempelung in Datenbank auf storniert setzen
+                //TODO Stempelungsgrid refreshen
+            
+        }
+
+        private void button_Stempelungen_ueberschreiben_Click(object sender, EventArgs e)
+        {
+            //TODO nötige Werte ermitteln
+            //TODO ggf. Plausibilitätsprüfungen
+            //TODO Bestätigungsdialog
+                //TODO Update auf Datensatz
+                //TODO Stempelungsgrid refreshen
+        }
+
+        private void button_Stempelungen_neueStempelung_Click(object sender, EventArgs e)
+        {
+            //TODO nötige Werte ermitteln
+            //TODO ggf. Plausibilitätsprüfungen
+            //TODO Bestätigungsdialog
+                //TODO Insert auf Datenbank
+                //TODO Stempelungsgrid refreshen
         }
     }
 }
