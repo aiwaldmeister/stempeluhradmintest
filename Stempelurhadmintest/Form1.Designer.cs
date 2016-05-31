@@ -68,11 +68,10 @@
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechnung = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.groupBox_Stempelungen_EditierenErstellen = new System.Windows.Forms.GroupBox();
+            this.comboBox_Stempelungen_Art = new System.Windows.Forms.ComboBox();
+            this.textBox_Stempelungen_Auftragsnummer = new System.Windows.Forms.TextBox();
+            this.textBox_Stempelungen_ID = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -80,15 +79,10 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button_Stempelungen_Plausi = new System.Windows.Forms.Button();
+            this.Stempelungsgrid_Stempelungen = new System.Windows.Forms.DataGridView();
+            this.DatePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
+            this.PersonPicker_Stempelungen = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
             this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
@@ -106,7 +100,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
             this.textBox_Personen_Neu_WunschID = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Neu_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -147,6 +141,12 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.TimePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
+            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -155,8 +155,8 @@
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
             this.Stempelungen.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox_Stempelungen_EditierenErstellen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).BeginInit();
             this.Personen.SuspendLayout();
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -611,11 +611,11 @@
             // 
             // Stempelungen
             // 
-            this.Stempelungen.Controls.Add(this.groupBox2);
-            this.Stempelungen.Controls.Add(this.button4);
-            this.Stempelungen.Controls.Add(this.dataGridView1);
-            this.Stempelungen.Controls.Add(this.dateTimePicker1);
-            this.Stempelungen.Controls.Add(this.comboBox2);
+            this.Stempelungen.Controls.Add(this.groupBox_Stempelungen_EditierenErstellen);
+            this.Stempelungen.Controls.Add(this.button_Stempelungen_Plausi);
+            this.Stempelungen.Controls.Add(this.Stempelungsgrid_Stempelungen);
+            this.Stempelungen.Controls.Add(this.DatePicker_Stempelungen);
+            this.Stempelungen.Controls.Add(this.PersonPicker_Stempelungen);
             this.Stempelungen.Location = new System.Drawing.Point(4, 22);
             this.Stempelungen.Name = "Stempelungen";
             this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
@@ -624,58 +624,54 @@
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // groupBox_Stempelungen_EditierenErstellen
             // 
-            this.groupBox2.Controls.Add(this.comboBox3);
-            this.groupBox2.Controls.Add(this.textBox19);
-            this.groupBox2.Controls.Add(this.textBox18);
-            this.groupBox2.Controls.Add(this.textBox16);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Location = new System.Drawing.Point(361, 86);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(417, 455);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Editieren / Erstellen";
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.TimePicker_Stempelungen);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.comboBox_Stempelungen_Art);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.textBox_Stempelungen_Auftragsnummer);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.textBox_Stempelungen_ID);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label24);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label23);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label22);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label21);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button6);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button7);
+            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button5);
+            this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(384, 86);
+            this.groupBox_Stempelungen_EditierenErstellen.Name = "groupBox_Stempelungen_EditierenErstellen";
+            this.groupBox_Stempelungen_EditierenErstellen.Size = new System.Drawing.Size(394, 455);
+            this.groupBox_Stempelungen_EditierenErstellen.TabIndex = 10;
+            this.groupBox_Stempelungen_EditierenErstellen.TabStop = false;
+            this.groupBox_Stempelungen_EditierenErstellen.Text = "Editieren / Erstellen";
             // 
-            // comboBox3
+            // comboBox_Stempelungen_Art
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.comboBox_Stempelungen_Art.FormattingEnabled = true;
+            this.comboBox_Stempelungen_Art.Items.AddRange(new object[] {
             "an",
             "ab"});
-            this.comboBox3.Location = new System.Drawing.Point(198, 107);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(147, 21);
-            this.comboBox3.TabIndex = 12;
+            this.comboBox_Stempelungen_Art.Location = new System.Drawing.Point(198, 107);
+            this.comboBox_Stempelungen_Art.MaxLength = 2;
+            this.comboBox_Stempelungen_Art.Name = "comboBox_Stempelungen_Art";
+            this.comboBox_Stempelungen_Art.Size = new System.Drawing.Size(147, 21);
+            this.comboBox_Stempelungen_Art.TabIndex = 12;
             // 
-            // textBox19
+            // textBox_Stempelungen_Auftragsnummer
             // 
-            this.textBox19.Location = new System.Drawing.Point(198, 165);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(147, 20);
-            this.textBox19.TabIndex = 11;
+            this.textBox_Stempelungen_Auftragsnummer.Location = new System.Drawing.Point(198, 136);
+            this.textBox_Stempelungen_Auftragsnummer.MaxLength = 6;
+            this.textBox_Stempelungen_Auftragsnummer.Name = "textBox_Stempelungen_Auftragsnummer";
+            this.textBox_Stempelungen_Auftragsnummer.Size = new System.Drawing.Size(147, 20);
+            this.textBox_Stempelungen_Auftragsnummer.TabIndex = 11;
             // 
-            // textBox18
+            // textBox_Stempelungen_ID
             // 
-            this.textBox18.Location = new System.Drawing.Point(198, 136);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(147, 20);
-            this.textBox18.TabIndex = 11;
-            // 
-            // textBox16
-            // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Location = new System.Drawing.Point(198, 53);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(147, 20);
-            this.textBox16.TabIndex = 11;
+            this.textBox_Stempelungen_ID.Enabled = false;
+            this.textBox_Stempelungen_ID.Location = new System.Drawing.Point(198, 53);
+            this.textBox_Stempelungen_ID.MaxLength = 10;
+            this.textBox_Stempelungen_ID.Name = "textBox_Stempelungen_ID";
+            this.textBox_Stempelungen_ID.Size = new System.Drawing.Size(147, 20);
+            this.textBox_Stempelungen_ID.TabIndex = 11;
             // 
             // label24
             // 
@@ -740,84 +736,54 @@
             this.button5.Text = "Diese Stempelung überschreiben";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // button_Stempelungen_Plausi
             // 
-            this.button4.Location = new System.Drawing.Point(401, 24);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(283, 30);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Plausibilitätsprüfung";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_Plausi.Location = new System.Drawing.Point(446, 22);
+            this.button_Stempelungen_Plausi.Name = "button_Stempelungen_Plausi";
+            this.button_Stempelungen_Plausi.Size = new System.Drawing.Size(283, 30);
+            this.button_Stempelungen_Plausi.TabIndex = 8;
+            this.button_Stempelungen_Plausi.Text = "Plausibilitätsprüfung";
+            this.button_Stempelungen_Plausi.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // Stempelungsgrid_Stempelungen
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Stempelungsgrid_Stempelungen.AllowUserToAddRows = false;
+            this.Stempelungsgrid_Stempelungen.AllowUserToDeleteRows = false;
+            this.Stempelungsgrid_Stempelungen.AllowUserToResizeColumns = false;
+            this.Stempelungsgrid_Stempelungen.AllowUserToResizeRows = false;
+            this.Stempelungsgrid_Stempelungen.BackgroundColor = System.Drawing.Color.White;
+            this.Stempelungsgrid_Stempelungen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Stempelungsgrid_Stempelungen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.stampid,
             this.StampArt,
             this.StampTask,
             this.StampZeitstempel,
             this.StampSource});
-            this.dataGridView1.Location = new System.Drawing.Point(26, 86);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(283, 455);
-            this.dataGridView1.TabIndex = 7;
+            this.Stempelungsgrid_Stempelungen.Location = new System.Drawing.Point(26, 86);
+            this.Stempelungsgrid_Stempelungen.Name = "Stempelungsgrid_Stempelungen";
+            this.Stempelungsgrid_Stempelungen.RowHeadersVisible = false;
+            this.Stempelungsgrid_Stempelungen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Stempelungsgrid_Stempelungen.Size = new System.Drawing.Size(324, 455);
+            this.Stempelungsgrid_Stempelungen.TabIndex = 7;
             // 
-            // stampid
+            // DatePicker_Stempelungen
             // 
-            this.stampid.Frozen = true;
-            this.stampid.HeaderText = "ID";
-            this.stampid.Name = "stampid";
-            this.stampid.Width = 40;
+            this.DatePicker_Stempelungen.Location = new System.Drawing.Point(26, 60);
+            this.DatePicker_Stempelungen.Name = "DatePicker_Stempelungen";
+            this.DatePicker_Stempelungen.Size = new System.Drawing.Size(324, 20);
+            this.DatePicker_Stempelungen.TabIndex = 6;
             // 
-            // StampArt
+            // PersonPicker_Stempelungen
             // 
-            this.StampArt.HeaderText = "Art";
-            this.StampArt.Name = "StampArt";
-            this.StampArt.Width = 35;
-            // 
-            // StampTask
-            // 
-            this.StampTask.HeaderText = "AuftragsNr.";
-            this.StampTask.Name = "StampTask";
-            this.StampTask.Width = 65;
-            // 
-            // StampZeitstempel
-            // 
-            this.StampZeitstempel.HeaderText = "Zeitstempel";
-            this.StampZeitstempel.Name = "StampZeitstempel";
-            this.StampZeitstempel.Width = 80;
-            // 
-            // StampSource
-            // 
-            this.StampSource.HeaderText = "Quelle";
-            this.StampSource.Name = "StampSource";
-            this.StampSource.Width = 60;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(26, 60);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(283, 20);
-            this.dateTimePicker1.TabIndex = 6;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.PersonPicker_Stempelungen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PersonPicker_Stempelungen.FormattingEnabled = true;
+            this.PersonPicker_Stempelungen.Items.AddRange(new object[] {
             "Allgemein"});
-            this.comboBox2.Location = new System.Drawing.Point(26, 24);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(283, 28);
-            this.comboBox2.TabIndex = 5;
-            this.comboBox2.Text = "Allgemein";
+            this.PersonPicker_Stempelungen.Location = new System.Drawing.Point(26, 24);
+            this.PersonPicker_Stempelungen.Name = "PersonPicker_Stempelungen";
+            this.PersonPicker_Stempelungen.Size = new System.Drawing.Size(324, 28);
+            this.PersonPicker_Stempelungen.TabIndex = 5;
+            this.PersonPicker_Stempelungen.Text = "Allgemein";
             // 
             // Personen
             // 
@@ -839,10 +805,10 @@
             // 
             this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(21, 209);
             this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
-            this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(248, 21);
+            this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(277, 21);
             this.button_Personen_Edit_Systemdaten.TabIndex = 6;
             this.button_Personen_Edit_Systemdaten.TabStop = false;
-            this.button_Personen_Edit_Systemdaten.Text = "geschützte Systemdaten bearbeitbar machen";
+            this.button_Personen_Edit_Systemdaten.Text = "Bearbeitung der geschützten Systemdaten aktivieren";
             this.button_Personen_Edit_Systemdaten.UseVisualStyleBackColor = true;
             this.button_Personen_Edit_Systemdaten.Click += new System.EventHandler(this.button_Personen_Edit_Systemdaten_Click);
             // 
@@ -1006,7 +972,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker_Personen_neu);
+            this.groupBox1.Controls.Add(this.DatePicker_Personen_neu);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_WunschID);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Urlaubstage);
             this.groupBox1.Controls.Add(this.label7);
@@ -1024,14 +990,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
             // 
-            // dateTimePicker_Personen_neu
+            // DatePicker_Personen_neu
             // 
-            this.dateTimePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
-            this.dateTimePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_Personen_neu.Location = new System.Drawing.Point(152, 169);
-            this.dateTimePicker_Personen_neu.Name = "dateTimePicker_Personen_neu";
-            this.dateTimePicker_Personen_neu.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker_Personen_neu.TabIndex = 5;
+            this.DatePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
+            this.DatePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DatePicker_Personen_neu.Location = new System.Drawing.Point(152, 169);
+            this.DatePicker_Personen_neu.Name = "DatePicker_Personen_neu";
+            this.DatePicker_Personen_neu.Size = new System.Drawing.Size(100, 20);
+            this.DatePicker_Personen_neu.TabIndex = 5;
             // 
             // textBox_Personen_Neu_WunschID
             // 
@@ -1422,6 +1388,45 @@
             this.label35.TabIndex = 8;
             this.label35.Text = "-->";
             // 
+            // TimePicker_Stempelungen
+            // 
+            this.TimePicker_Stempelungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.TimePicker_Stempelungen.Location = new System.Drawing.Point(198, 168);
+            this.TimePicker_Stempelungen.Name = "TimePicker_Stempelungen";
+            this.TimePicker_Stempelungen.ShowUpDown = true;
+            this.TimePicker_Stempelungen.Size = new System.Drawing.Size(147, 20);
+            this.TimePicker_Stempelungen.TabIndex = 13;
+            // 
+            // stampid
+            // 
+            this.stampid.Frozen = true;
+            this.stampid.HeaderText = "ID";
+            this.stampid.Name = "stampid";
+            this.stampid.Width = 40;
+            // 
+            // StampArt
+            // 
+            this.StampArt.HeaderText = "Art";
+            this.StampArt.Name = "StampArt";
+            this.StampArt.Width = 35;
+            // 
+            // StampTask
+            // 
+            this.StampTask.HeaderText = "AuftragsNr.";
+            this.StampTask.Name = "StampTask";
+            this.StampTask.Width = 65;
+            // 
+            // StampZeitstempel
+            // 
+            this.StampZeitstempel.HeaderText = "Zeitstempel";
+            this.StampZeitstempel.Name = "StampZeitstempel";
+            this.StampZeitstempel.Width = 80;
+            // 
+            // StampSource
+            // 
+            this.StampSource.HeaderText = "Quelle";
+            this.StampSource.Name = "StampSource";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1441,9 +1446,9 @@
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
             this.Stempelungen.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox_Stempelungen_EditierenErstellen.ResumeLayout(false);
+            this.groupBox_Stempelungen_EditierenErstellen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).EndInit();
             this.Personen.ResumeLayout(false);
             this.groupBox_Personen_Systemdaten.ResumeLayout(false);
             this.groupBox_Personen_Systemdaten.PerformLayout();
@@ -1517,25 +1522,19 @@
         private System.Windows.Forms.TextBox textBox_Personen_Neu_Vorname;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.DataGridView Stempelungsgrid_Stempelungen;
+        private System.Windows.Forms.DateTimePicker DatePicker_Stempelungen;
+        private System.Windows.Forms.ComboBox PersonPicker_Stempelungen;
+        private System.Windows.Forms.GroupBox groupBox_Stempelungen_EditierenErstellen;
+        private System.Windows.Forms.TextBox textBox_Stempelungen_Auftragsnummer;
+        private System.Windows.Forms.TextBox textBox_Stempelungen_ID;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stampid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StampArt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StampTask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StampZeitstempel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StampSource;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button button_Stempelungen_Plausi;
+        private System.Windows.Forms.ComboBox comboBox_Stempelungen_Art;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
@@ -1544,7 +1543,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vermerk;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_Personen_neu;
+        private System.Windows.Forms.DateTimePicker DatePicker_Personen_neu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dienstag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mittwoch;
@@ -1575,6 +1574,12 @@
         private System.Windows.Forms.TextBox textBox_Personen_Urlaubstage_old;
         private System.Windows.Forms.TextBox textBox_Personen_Nachname_old;
         private System.Windows.Forms.TextBox textBox_Personen_Vorname_old;
+        private System.Windows.Forms.DateTimePicker TimePicker_Stempelungen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stampid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StampArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StampTask;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StampZeitstempel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StampSource;
     }
 }
 

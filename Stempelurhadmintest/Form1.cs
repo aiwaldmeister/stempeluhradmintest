@@ -295,6 +295,11 @@ namespace Stempelurhadmintest
             PersonPicker_Kalender.SelectedIndex = 0;
         }
 
+        private void refreshPersonPicker_Stempelungen()
+        {
+            //TODO
+        }
+
         private void refreshPersonPicker_Personen()
         {
             PersonPicker_Personen.Items.Clear();
@@ -352,6 +357,8 @@ namespace Stempelurhadmintest
             init_db(dbserverconf_global, dbnameconf_global, dbuserconf_global, dbpwconf_global);
 
             //Kalendertab initialisieren
+            //Monatspicker auf ersten des Monats setzen, weil sonst eine Exception auftritt wenn z.B. vom 31. eines monats aus nur der monat auf einen kürzeren verändert wird
+            MonatsPicker_Kalender.Value = new DateTime(MonatsPicker_Kalender.Value.Year, MonatsPicker_Kalender.Value.Month, 1);
             refreshKalendergrid();
             refreshPersonPicker_Kalender();
             refreshEreignisgrid_Kalender();
@@ -706,6 +713,17 @@ namespace Stempelurhadmintest
                     kalendertab_initialisiert_global = true;
                 }
             }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Stempelungen"])
+            {
+                if (stempelungstab_initialisiert_global == false)
+                {
+                    comboBox_Stempelungen_Art.SelectedIndex = 0;
+                    refreshPersonPicker_Stempelungen();
+                    
+                    stempelungstab_initialisiert_global = true;
+                }
+            }
         }
 
         private void PersonPicker_Personen_SelectedIndexChanged(object sender, EventArgs e)
@@ -829,7 +847,7 @@ namespace Stempelurhadmintest
             string input_Jahresurlaub = textBox_Personen_Neu_Urlaubstage.Text;
             double jahresurlaub = 0; //wird weiter unten erst versucht aus dem Formularfeld zu parsen
 
-            DateTime ersterarbeitstag = dateTimePicker_Personen_neu.Value.Date;
+            DateTime ersterarbeitstag = DatePicker_Personen_neu.Value.Date;
             DateTime tag_vor_arbeitsantritt = ersterarbeitstag.AddDays(-1);
             string tag_vor_arbeitsantritt_string = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") + tag_vor_arbeitsantritt.Day.ToString("D2");
 
@@ -913,7 +931,7 @@ namespace Stempelurhadmintest
                     comm.Parameters["@jahresurlaub"].Scale = 2;
                     comm.Parameters["@jahresurlaub"].Value = jahresurlaub;
 
-                    log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname + ")"); //TODO Logeintrag mit infos füllen
+                    log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname + ")");
                     try
                     {
                         comm.ExecuteNonQuery();
@@ -984,7 +1002,11 @@ namespace Stempelurhadmintest
             if(new_currenttask != "" && new_currenttask.Length != 6)
             {
                 fehler = true;
-                MessageBox.Show("Fehler! Wert für aktuelle Auftragsnummer ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler! Wert für aktuelle Auftragsnummer ungültig. (Auftragsnummern sind 6-Stellig und kleiner als 999000)", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if(new_currenttask != "" && int.Parse(new_currenttask) >= 999000)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! Wert für aktuelle Auftragsnummer ungültig. (Auftragsnummern müssen kleiner als 999000 sein)", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             new_name = textBox_Personen_Nachname.Text;
@@ -1079,8 +1101,19 @@ namespace Stempelurhadmintest
                     comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
 
-                    //TODO veränderte Daten loggen für nachvollziehbarkeit.
-                    log("Update auf Person " + userid);
+                    //veränderte Daten loggen für nachvollziehbarkeit.
+                    log("Update auf Person:" + userid + "..." +
+                        "\r\n Name:'" + textBox_Personen_Nachname_old.Text + "'->'" + textBox_Personen_Nachname.Text + "' " +
+                        "\r\n Vorname:'" + textBox_Personen_Vorname_old.Text + "'->'" + textBox_Personen_Vorname.Text + "' " +
+                        "\r\n Jahresurlaub:'" + textBox_Personen_Urlaubstage_old.Text + "'->'" + textBox_Personen_Urlaubstage.Text + "' " +
+                        "\r\n Aktiv:'" + comboBox_Personen_Aktiv_old.Text + "'->'" + comboBox_Personen_Aktiv.Text + "' " +
+                        "\r\n Currenttask:'" + textBox_Personen_AktAuftrag_old.Text + "'->'" + textBox_Personen_AktAuftrag.Text + "' " +
+                        "\r\n Zeitkonto:'" + textBox_Personen_Zeitkonto_old.Text +"'->'" + textBox_Personen_Zeitkonto.Text +"' " +
+                        "\r\n Zeitkonto_Berechnungsstand:'" + textBox_Personen_ZeitkontoBerechnungsstand_old.Text+"'->'" +  textBox_Personen_ZeitkontoBerechnungsstand.Text +"' " +
+                        "\r\n Boni_ausgezahlt_bis:'" + textBox_Personen_Boniausgezahltbis_old.Text +"'->'" + textBox_Personen_Boniausgezahltbis.Text +"' " +
+                        "\r\n Betrag_letzter_Bonus:'" + textBox_Personen_BetragletzterBonus_old.Text +"'->'" +textBox_Personen_BetragletzterBonus.Text +"' " +
+                        "\r\n Stempelfehler:'" + comboBox_Personen_Stempelfehler_old.Text +"'->'" + comboBox_Personen_Stempelfehler.Text 
+                        +"' \r\n");
                     try
                     {
                         comm.ExecuteNonQuery();
@@ -1088,7 +1121,16 @@ namespace Stempelurhadmintest
                     catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
                     close_db();
 
-                    refreshUpdateFormular_Personen();
+                    //selectierte Person merken, Personpicker refreshen und wieder selbe Person selectieren
+                    int selecteduser = PersonPicker_Personen.SelectedIndex; 
+                    refreshPersonPicker_Personen();
+                    PersonPicker_Personen.SelectedIndex = selecteduser;
+
+                    //weil aktive personen hinzugekommen oder verschwunden sein könnten, müssen tabs ggf. neu initialisiert werden.
+                    kalendertab_initialisiert_global = false;
+                    stempelungstab_initialisiert_global = false;
+                    auswertungstab_initialisiert_global = false;
+                    verrechnungstab_initialisiert_global = false;
 
                 }
             }   
