@@ -297,7 +297,40 @@ namespace Stempelurhadmintest
 
         private void refreshPersonPicker_Stempelungen()
         {
-            //TODO
+            PersonPicker_Stempelungen.Items.Clear();
+
+            //Personen der Personentabelle dem PersonPicker hinzufügen
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname FROM user where aktiv = 1";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname = Reader["vorname"] + "";
+
+                    PersonPicker_Stempelungen.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+            PersonPicker_Stempelungen.SelectedIndex = 0;
         }
 
         private void refreshPersonPicker_Personen()
@@ -1255,6 +1288,103 @@ namespace Stempelurhadmintest
             {
                 comboBox_Personen_Stempelfehler.BackColor = Color.Gold;
             }
+        }
+
+        private void PersonPicker_Stempelungen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshStempelungsgrid_Stempelungen();
+        }
+
+        private void refreshStempelungsgrid_Stempelungen()
+        {
+            Stempelungsgrid_Stempelungen.Rows.Clear();
+
+            string userid = "";
+            string tag = "";
+            string monat = "";
+            string jahr = "";
+
+            string thisstamp_id = "";
+            string thisstamp_art = "";
+            string thisstamp_auftrag = "";
+            string thisstamp_zeitstempel = "";
+            string thisstamp_quelle = "";
+
+            //userid ermitteln
+            userid = PersonPicker_Stempelungen.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+
+            //Datum ermitteln
+            tag = DatePicker_Stempelungen.Value.Day.ToString("D2");
+            monat = DatePicker_Stempelungen.Value.Month.ToString("D2");
+            jahr = DatePicker_Stempelungen.Value.Year.ToString("D4");
+
+
+            //select ausführen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT * FROM stamps WHERE userid=@userid AND jahr=@jahr AND monat=@monat AND tag=@tag AND storniert=0 ORDER BY stunde ASC, minute ASC, sekunde ASC, art DESC";
+
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = jahr;
+            comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = monat;
+            comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = tag;
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf betrachtet eine gefundene Stempelung der ausgewählten Person am ausgewählten Datum
+                while (Reader.Read())
+                {
+                    thisstamp_id = Reader["stampid"] + "";
+                    thisstamp_art = Reader["art"] + "";
+                    thisstamp_auftrag = Reader["task"] + "";
+                    thisstamp_zeitstempel = Reader["stunde"] + ":" + Reader["minute"] + ":" + Reader["sekunde"] + "";
+                    thisstamp_quelle = Reader["quelle"] + "";
+                    
+                    //Stempelungsgrid befüllen
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell_id = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_art = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_auftrag = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_zeitstempel = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_quelle = new DataGridViewTextBoxCell();
+
+                    cell_id.Value = thisstamp_id;
+                    cell_art.Value = thisstamp_art;
+                    cell_auftrag.Value = thisstamp_auftrag;
+                    cell_zeitstempel.Value = thisstamp_zeitstempel;
+                    cell_quelle.Value = thisstamp_quelle;
+
+                    myrow.Cells.Add(cell_id);
+                    myrow.Cells.Add(cell_art);
+                    myrow.Cells.Add(cell_auftrag);
+                    myrow.Cells.Add(cell_zeitstempel);
+                    myrow.Cells.Add(cell_quelle);
+
+                    Stempelungsgrid_Stempelungen.Rows.Add(myrow);
+
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+            Stempelungsgrid_Stempelungen.ClearSelection();
+            
+        }
+
+        private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
+        {
+            refreshStempelungsgrid_Stempelungen();
         }
     }
 }

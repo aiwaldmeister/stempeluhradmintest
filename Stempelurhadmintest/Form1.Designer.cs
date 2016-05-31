@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,14 +189,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle7;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -772,6 +772,7 @@
             this.DatePicker_Stempelungen.Name = "DatePicker_Stempelungen";
             this.DatePicker_Stempelungen.Size = new System.Drawing.Size(324, 20);
             this.DatePicker_Stempelungen.TabIndex = 6;
+            this.DatePicker_Stempelungen.ValueChanged += new System.EventHandler(this.DatePicker_Stempelungen_ValueChanged);
             // 
             // PersonPicker_Stempelungen
             // 
@@ -783,7 +784,8 @@
             this.PersonPicker_Stempelungen.Name = "PersonPicker_Stempelungen";
             this.PersonPicker_Stempelungen.Size = new System.Drawing.Size(324, 28);
             this.PersonPicker_Stempelungen.TabIndex = 5;
-            this.PersonPicker_Stempelungen.Text = "Allgemein";
+            this.PersonPicker_Stempelungen.Text = "999000 (Mustermann Max)";
+            this.PersonPicker_Stempelungen.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Stempelungen_SelectedIndexChanged);
             // 
             // Personen
             // 
@@ -822,7 +824,7 @@
             this.PersonPicker_Personen.Name = "PersonPicker_Personen";
             this.PersonPicker_Personen.Size = new System.Drawing.Size(406, 28);
             this.PersonPicker_Personen.TabIndex = 1;
-            this.PersonPicker_Personen.Text = "Allgemein";
+            this.PersonPicker_Personen.Text = "999000 (Mustermann Max)";
             this.PersonPicker_Personen.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Personen_SelectedIndexChanged);
             // 
             // groupBox_Personen_Systemdaten
