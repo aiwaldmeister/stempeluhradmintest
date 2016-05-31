@@ -764,7 +764,22 @@ namespace Stempelurhadmintest
             catch (Exception ex) { log(ex.Message); }
             close_db();
 
-            //Formularfelder befüllen
+            //Formularfelder_old (linke spalte) füllen -> (zum Vergleich alte Werte -> neue Werte)
+            textBox_Personen_Nachname_old.Text = thisperson_nachname;
+            textBox_Personen_Vorname_old.Text = thisperson_vorname;
+            textBox_Personen_AktAuftrag_old.Text = thisperson_currenttask;
+            textBox_Personen_Zeitkonto_old.Text = thisperson_zeitkonto;
+            textBox_Personen_ZeitkontoBerechnungsstand_old.Text = thisperson_zeitkonto_berechnungsstand;
+            textBox_Personen_Boniausgezahltbis_old.Text = thisperson_bonuskonto_ausgezahlt_bis;
+            textBox_Personen_BetragletzterBonus_old.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
+            textBox_Personen_Urlaubstage_old.Text = thisperson_jahresurlaub;
+
+            comboBox_Personen_Aktiv_old.SelectedIndex = 0;
+            comboBox_Personen_Stempelfehler_old.SelectedIndex = 0;
+            if (thisperson_aktiv) { comboBox_Personen_Aktiv_old.SelectedIndex = 1; }
+            if (thisperson_stempelfehler) { comboBox_Personen_Stempelfehler_old.SelectedIndex = 1; }
+
+            //eigentliche Formularfelder (rechte spalte) befüllen
             textBox_Personen_Nachname.Text= thisperson_nachname;
             textBox_Personen_Vorname.Text = thisperson_vorname;
             textBox_Personen_AktAuftrag.Text = thisperson_currenttask;
@@ -910,7 +925,8 @@ namespace Stempelurhadmintest
         private void button_Personen_Edit_Systemdaten_Click(object sender, EventArgs e)
         {
             //Sicherheitsabfrage vorbereiten und anzeigen
-            string dialogtext = "Fehlerhafte Änderungen an Systemdaten können zu Inkonsistenzen führen.\r\n\r\nBearbeitung wirklich aktivieren?";
+            string dialogtext = "Fehlerhafte Änderungen an Systemdaten können zu Inkonsistenzen führen." +
+                                    "\r\n\r\nBearbeitung wirklich aktivieren?";
             DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
@@ -923,7 +939,271 @@ namespace Stempelurhadmintest
 
         private void button_Personen_writeChanges_Click(object sender, EventArgs e)
         {
+            bool fehler = false;
+            bool TryParse_Result = false;
 
+            string userid = "";
+            
+            string new_currenttask = "";
+            string new_name = "";
+            string new_vorname = "";
+            double new_zeitkonto = 0;
+            string new_zeitkonto_berechnungsstand = "";
+            string new_bonuskonto_ausgezahlt_bis = "";
+            double new_bonuszeit_bei_letzter_auszahlung = 0;
+            double new_jahresurlaub = 0;
+            bool new_stempelfehler = false;
+            bool new_aktiv = false;
+
+
+            //Werte sammeln + ggf. Konvertierungen und Plausiprüfungen
+
+            userid = PersonPicker_Personen.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+            else
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! Die Mitarbeiter-ID ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            new_currenttask = textBox_Personen_AktAuftrag.Text;
+            if(new_currenttask != "" && new_currenttask.Length != 6)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! Wert für aktuelle Auftragsnummer ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            new_name = textBox_Personen_Nachname.Text;
+            new_vorname = textBox_Personen_Vorname.Text;
+
+            TryParse_Result = double.TryParse(textBox_Personen_Zeitkonto.Text, out new_zeitkonto);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für das Zeitkonto ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = double.TryParse(textBox_Personen_BetragletzterBonus.Text, out new_bonuszeit_bei_letzter_auszahlung);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für den Betrag des letzten Bonus ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = double.TryParse(textBox_Personen_Urlaubstage.Text, out new_jahresurlaub);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für den Jahresurlaub ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            new_zeitkonto_berechnungsstand = textBox_Personen_ZeitkontoBerechnungsstand.Text;
+            if(new_zeitkonto_berechnungsstand.Length != 8)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für den Zeitkonto-Berechnungsstand ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            new_bonuskonto_ausgezahlt_bis = textBox_Personen_Boniausgezahltbis.Text;
+            if(new_bonuskonto_ausgezahlt_bis.Length != 8)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für den Bonus-Auszahlungsstand ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            new_aktiv = false;
+            if(comboBox_Personen_Aktiv.Text == "1"){ new_aktiv = true; }
+
+            new_stempelfehler = false;
+            if (comboBox_Personen_Stempelfehler.Text == "1") { new_stempelfehler = true; }
+
+
+
+            if (fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Sind Sie sicher, dass Sie die Personenstammdaten in der Datenbank mit den von Ihnen veränderten Daten überschreiben wollen?" +
+                                        "\r\nFestgeschriebene Änderungen können nicht Rückgängig gemacht werden.";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //TODO Update auf Datenbank
+                    //Statement vorbereiten
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE user SET " +
+                                            "currenttask=@currenttask, " +
+                                            "name=@name, " +
+                                            "vorname=@vorname, " +
+                                            "zeitkonto=@zeitkonto, " +
+                                            "zeitkonto_berechnungsstand=@zeitkonto_berechnungsstand, " +
+                                            "bonuskonto_ausgezahlt_bis=@bonuskonto_ausgezahlt_bis, " +
+                                            "bonuszeit_bei_letzter_auszahlung=@bonuszeit_bei_letzter_auszahlung, " +
+                                            "jahresurlaub=@jahresurlaub, " +
+                                            "stempelfehler=@stempelfehler, " +
+                                            "aktiv=@aktiv " +
+                                        "WHERE userid = @userid";
+
+                    comm.Parameters.Add("@currenttask", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = new_currenttask;
+                    comm.Parameters.Add("@name", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = new_name;
+                    comm.Parameters.Add("@vorname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = new_vorname;
+                    comm.Parameters.Add("@zeitkonto", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                        comm.Parameters["@zeitkonto"].Precision = 10;
+                        comm.Parameters["@zeitkonto"].Scale = 2;
+                        comm.Parameters["@zeitkonto"].Value = new_zeitkonto;
+                    comm.Parameters.Add("@zeitkonto_berechnungsstand", MySql.Data.MySqlClient.MySqlDbType.VarChar, 8).Value = new_zeitkonto_berechnungsstand;
+                    comm.Parameters.Add("@bonuskonto_ausgezahlt_bis", MySql.Data.MySqlClient.MySqlDbType.VarChar, 8).Value = new_bonuskonto_ausgezahlt_bis;
+                    comm.Parameters.Add("@bonuszeit_bei_letzter_auszahlung", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                        comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Precision = 10;
+                        comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Scale = 2;
+                        comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Value = new_bonuszeit_bei_letzter_auszahlung;
+                    comm.Parameters.Add("@jahresurlaub", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                        comm.Parameters["@jahresurlaub"].Precision = 10;
+                        comm.Parameters["@jahresurlaub"].Scale = 2;
+                        comm.Parameters["@jahresurlaub"].Value = new_jahresurlaub;
+                    
+                    //TODO die beiden Bool-Parameter noch adden
+
+
+
+                    //TODO veränderte Daten loggen für nachvollziehbarkeit.
+                    log("Erstelle Ereignis-Eintrag: " + input_zuordnung + " " + input_tag + "." + input_monat + "." + input_jahr + " " +
+                           "Sollzeit: " + input_sollzeit + " Urlaubstage: " + input_urlaub + " Vermerk: " + input_vermerk);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                    //Parameter setzen
+                    //query ausführen
+                }
+            }   
+        }
+
+        private void textBox_Personen_Vorname_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox_Personen_Vorname.Text == textBox_Personen_Vorname_old.Text)
+            {
+                textBox_Personen_Vorname.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Vorname.BackColor = Color.Gold;
+            }
+
+        }
+
+        private void textBox_Personen_Nachname_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_Nachname.Text == textBox_Personen_Nachname_old.Text)
+            {
+                textBox_Personen_Nachname.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Nachname.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_Urlaubstage_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_Urlaubstage.Text == textBox_Personen_Urlaubstage_old.Text)
+            {
+                textBox_Personen_Urlaubstage.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Urlaubstage.BackColor = Color.Gold;
+            }
+        }
+
+        private void comboBox_Personen_Aktiv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Personen_Aktiv.Text == comboBox_Personen_Aktiv_old.Text)
+            {
+                comboBox_Personen_Aktiv.BackColor = Color.White;
+            }
+            else
+            {
+                comboBox_Personen_Aktiv.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_AktAuftrag_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_AktAuftrag.Text == textBox_Personen_AktAuftrag_old.Text)
+            {
+                textBox_Personen_AktAuftrag.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_AktAuftrag.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_Zeitkonto_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_Zeitkonto.Text == textBox_Personen_Zeitkonto_old.Text)
+            {
+                textBox_Personen_Zeitkonto.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Zeitkonto.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_ZeitkontoBerechnungsstand_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_ZeitkontoBerechnungsstand.Text == textBox_Personen_ZeitkontoBerechnungsstand_old.Text)
+            {
+                textBox_Personen_ZeitkontoBerechnungsstand.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_ZeitkontoBerechnungsstand.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_Boniausgezahltbis_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_Boniausgezahltbis.Text == textBox_Personen_Boniausgezahltbis_old.Text)
+            {
+                textBox_Personen_Boniausgezahltbis.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Boniausgezahltbis.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_BetragletzterBonus_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Personen_BetragletzterBonus.Text == textBox_Personen_BetragletzterBonus_old.Text)
+            {
+                textBox_Personen_BetragletzterBonus.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_BetragletzterBonus.BackColor = Color.Gold;
+            }
+        }
+
+        private void comboBox_Personen_Stempelfehler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Personen_Stempelfehler.Text == comboBox_Personen_Stempelfehler_old.Text)
+            {
+                comboBox_Personen_Stempelfehler.BackColor = Color.White;
+            }
+            else
+            {
+                comboBox_Personen_Stempelfehler.BackColor = Color.Gold;
+            }
         }
     }
 }

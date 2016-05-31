@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,10 +90,11 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
+            this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
             this.groupBox_Personen_Systemdaten = new System.Windows.Forms.GroupBox();
+            this.comboBox_Personen_Stempelfehler = new System.Windows.Forms.ComboBox();
             this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_Stempelfehler = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox_Personen_BetragletzterBonus = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -117,6 +118,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
             this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
@@ -124,11 +126,27 @@
             this.textBox_Personen_Vorname = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_Personen_Aktiv = new System.Windows.Forms.TextBox();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
-            this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
-            this.comboBox_Personen_Stempelfehler = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_Vorname_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Nachname_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Urlaubstage_old = new System.Windows.Forms.TextBox();
+            this.comboBox_Personen_Aktiv_old = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_Zeitkonto_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Boniausgezahltbis_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_BetragletzterBonus_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_AktAuftrag_old = new System.Windows.Forms.TextBox();
+            this.comboBox_Personen_Stempelfehler_old = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -171,14 +189,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle12;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -802,13 +820,11 @@
             // Personen
             // 
             this.Personen.Controls.Add(this.button_Personen_Edit_Systemdaten);
-            this.Personen.Controls.Add(this.textBox_Personen_Stempelfehler);
             this.Personen.Controls.Add(this.PersonPicker_Personen);
             this.Personen.Controls.Add(this.groupBox_Personen_Systemdaten);
             this.Personen.Controls.Add(this.groupBox1);
             this.Personen.Controls.Add(this.groupBox5);
             this.Personen.Controls.Add(this.button_Personen_writeChanges);
-            this.Personen.Controls.Add(this.textBox_Personen_Aktiv);
             this.Personen.Location = new System.Drawing.Point(4, 22);
             this.Personen.Name = "Personen";
             this.Personen.Padding = new System.Windows.Forms.Padding(3);
@@ -816,6 +832,16 @@
             this.Personen.TabIndex = 0;
             this.Personen.Text = "Personen";
             this.Personen.UseVisualStyleBackColor = true;
+            // 
+            // button_Personen_Edit_Systemdaten
+            // 
+            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(24, 212);
+            this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
+            this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(406, 21);
+            this.button_Personen_Edit_Systemdaten.TabIndex = 6;
+            this.button_Personen_Edit_Systemdaten.Text = "Systemdaten bearbeitbar machen";
+            this.button_Personen_Edit_Systemdaten.UseVisualStyleBackColor = true;
+            this.button_Personen_Edit_Systemdaten.Click += new System.EventHandler(this.button_Personen_Edit_Systemdaten_Click);
             // 
             // PersonPicker_Personen
             // 
@@ -825,48 +851,65 @@
             "Allgemein"});
             this.PersonPicker_Personen.Location = new System.Drawing.Point(24, 20);
             this.PersonPicker_Personen.Name = "PersonPicker_Personen";
-            this.PersonPicker_Personen.Size = new System.Drawing.Size(306, 28);
+            this.PersonPicker_Personen.Size = new System.Drawing.Size(406, 28);
             this.PersonPicker_Personen.TabIndex = 5;
             this.PersonPicker_Personen.Text = "Allgemein";
             this.PersonPicker_Personen.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Personen_SelectedIndexChanged);
             // 
             // groupBox_Personen_Systemdaten
             // 
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label35);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label34);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label33);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label31);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label30);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.label29);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.comboBox_Personen_Stempelfehler_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.comboBox_Personen_Stempelfehler);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_AktAuftrag_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_AktAuftrag);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label17);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_BetragletzterBonus_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_BetragletzterBonus);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label16);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Boniausgezahltbis_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Boniausgezahltbis);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label15);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_ZeitkontoBerechnungsstand_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_ZeitkontoBerechnungsstand);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label14);
+            this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Zeitkonto_old);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.textBox_Personen_Zeitkonto);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label13);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label12);
             this.groupBox_Personen_Systemdaten.Enabled = false;
-            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(24, 246);
+            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(24, 239);
             this.groupBox_Personen_Systemdaten.Name = "groupBox_Personen_Systemdaten";
-            this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(306, 252);
+            this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(406, 252);
             this.groupBox_Personen_Systemdaten.TabIndex = 2;
             this.groupBox_Personen_Systemdaten.TabStop = false;
             this.groupBox_Personen_Systemdaten.Text = "Systemdaten";
             // 
+            // comboBox_Personen_Stempelfehler
+            // 
+            this.comboBox_Personen_Stempelfehler.FormattingEnabled = true;
+            this.comboBox_Personen_Stempelfehler.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Stempelfehler.Location = new System.Drawing.Point(285, 213);
+            this.comboBox_Personen_Stempelfehler.Name = "comboBox_Personen_Stempelfehler";
+            this.comboBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Stempelfehler.TabIndex = 7;
+            this.comboBox_Personen_Stempelfehler.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Stempelfehler_SelectedIndexChanged);
+            // 
             // textBox_Personen_AktAuftrag
             // 
-            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(156, 29);
+            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(285, 29);
             this.textBox_Personen_AktAuftrag.MaxLength = 6;
             this.textBox_Personen_AktAuftrag.Name = "textBox_Personen_AktAuftrag";
             this.textBox_Personen_AktAuftrag.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_AktAuftrag.TabIndex = 1;
-            // 
-            // textBox_Personen_Stempelfehler
-            // 
-            this.textBox_Personen_Stempelfehler.Location = new System.Drawing.Point(419, 54);
-            this.textBox_Personen_Stempelfehler.MaxLength = 1;
-            this.textBox_Personen_Stempelfehler.Name = "textBox_Personen_Stempelfehler";
-            this.textBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Stempelfehler.TabIndex = 1;
+            this.textBox_Personen_AktAuftrag.TextChanged += new System.EventHandler(this.textBox_Personen_AktAuftrag_TextChanged);
             // 
             // label17
             // 
@@ -879,11 +922,12 @@
             // 
             // textBox_Personen_BetragletzterBonus
             // 
-            this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(156, 171);
+            this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(285, 171);
             this.textBox_Personen_BetragletzterBonus.MaxLength = 10;
             this.textBox_Personen_BetragletzterBonus.Name = "textBox_Personen_BetragletzterBonus";
             this.textBox_Personen_BetragletzterBonus.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_BetragletzterBonus.TabIndex = 1;
+            this.textBox_Personen_BetragletzterBonus.TextChanged += new System.EventHandler(this.textBox_Personen_BetragletzterBonus_TextChanged);
             // 
             // label16
             // 
@@ -896,11 +940,12 @@
             // 
             // textBox_Personen_Boniausgezahltbis
             // 
-            this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(156, 146);
+            this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(285, 146);
             this.textBox_Personen_Boniausgezahltbis.MaxLength = 8;
             this.textBox_Personen_Boniausgezahltbis.Name = "textBox_Personen_Boniausgezahltbis";
             this.textBox_Personen_Boniausgezahltbis.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Boniausgezahltbis.TabIndex = 1;
+            this.textBox_Personen_Boniausgezahltbis.TextChanged += new System.EventHandler(this.textBox_Personen_Boniausgezahltbis_TextChanged);
             // 
             // label15
             // 
@@ -913,11 +958,12 @@
             // 
             // textBox_Personen_ZeitkontoBerechnungsstand
             // 
-            this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(156, 102);
+            this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(285, 102);
             this.textBox_Personen_ZeitkontoBerechnungsstand.MaxLength = 8;
             this.textBox_Personen_ZeitkontoBerechnungsstand.Name = "textBox_Personen_ZeitkontoBerechnungsstand";
             this.textBox_Personen_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_ZeitkontoBerechnungsstand.TabIndex = 1;
+            this.textBox_Personen_ZeitkontoBerechnungsstand.TextChanged += new System.EventHandler(this.textBox_Personen_ZeitkontoBerechnungsstand_TextChanged);
             // 
             // label14
             // 
@@ -930,11 +976,12 @@
             // 
             // textBox_Personen_Zeitkonto
             // 
-            this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(156, 76);
+            this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(285, 76);
             this.textBox_Personen_Zeitkonto.MaxLength = 10;
             this.textBox_Personen_Zeitkonto.Name = "textBox_Personen_Zeitkonto";
             this.textBox_Personen_Zeitkonto.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Zeitkonto.TabIndex = 1;
+            this.textBox_Personen_Zeitkonto.TextChanged += new System.EventHandler(this.textBox_Personen_Zeitkonto_TextChanged);
             // 
             // label13
             // 
@@ -967,9 +1014,9 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(419, 111);
+            this.groupBox1.Location = new System.Drawing.Point(511, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 290);
+            this.groupBox1.Size = new System.Drawing.Size(273, 294);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
@@ -978,21 +1025,21 @@
             // 
             this.dateTimePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_Personen_neu.Location = new System.Drawing.Point(187, 175);
+            this.dateTimePicker_Personen_neu.Location = new System.Drawing.Point(152, 169);
             this.dateTimePicker_Personen_neu.Name = "dateTimePicker_Personen_neu";
             this.dateTimePicker_Personen_neu.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker_Personen_neu.TabIndex = 2;
             // 
             // textBox_Personen_Neu_WunschID
             // 
-            this.textBox_Personen_Neu_WunschID.Location = new System.Drawing.Point(187, 33);
+            this.textBox_Personen_Neu_WunschID.Location = new System.Drawing.Point(152, 27);
             this.textBox_Personen_Neu_WunschID.Name = "textBox_Personen_Neu_WunschID";
             this.textBox_Personen_Neu_WunschID.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Neu_WunschID.TabIndex = 1;
             // 
             // textBox_Personen_Neu_Urlaubstage
             // 
-            this.textBox_Personen_Neu_Urlaubstage.Location = new System.Drawing.Point(187, 124);
+            this.textBox_Personen_Neu_Urlaubstage.Location = new System.Drawing.Point(152, 118);
             this.textBox_Personen_Neu_Urlaubstage.Name = "textBox_Personen_Neu_Urlaubstage";
             this.textBox_Personen_Neu_Urlaubstage.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Neu_Urlaubstage.TabIndex = 1;
@@ -1000,7 +1047,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(56, 175);
+            this.label7.Location = new System.Drawing.Point(21, 169);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 13);
             this.label7.TabIndex = 0;
@@ -1008,14 +1055,14 @@
             // 
             // textBox_Personen_Neu_Nachname
             // 
-            this.textBox_Personen_Neu_Nachname.Location = new System.Drawing.Point(187, 98);
+            this.textBox_Personen_Neu_Nachname.Location = new System.Drawing.Point(152, 92);
             this.textBox_Personen_Neu_Nachname.Name = "textBox_Personen_Neu_Nachname";
             this.textBox_Personen_Neu_Nachname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Neu_Nachname.TabIndex = 1;
             // 
             // button_Personen_newPerson
             // 
-            this.button_Personen_newPerson.Location = new System.Drawing.Point(59, 226);
+            this.button_Personen_newPerson.Location = new System.Drawing.Point(24, 220);
             this.button_Personen_newPerson.Name = "button_Personen_newPerson";
             this.button_Personen_newPerson.Size = new System.Drawing.Size(228, 32);
             this.button_Personen_newPerson.TabIndex = 1;
@@ -1026,7 +1073,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(56, 124);
+            this.label18.Location = new System.Drawing.Point(21, 118);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(105, 13);
             this.label18.TabIndex = 0;
@@ -1034,7 +1081,7 @@
             // 
             // textBox_Personen_Neu_Vorname
             // 
-            this.textBox_Personen_Neu_Vorname.Location = new System.Drawing.Point(187, 72);
+            this.textBox_Personen_Neu_Vorname.Location = new System.Drawing.Point(152, 66);
             this.textBox_Personen_Neu_Vorname.Name = "textBox_Personen_Neu_Vorname";
             this.textBox_Personen_Neu_Vorname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Neu_Vorname.TabIndex = 1;
@@ -1042,7 +1089,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(56, 98);
+            this.label19.Location = new System.Drawing.Point(21, 92);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 13);
             this.label19.TabIndex = 0;
@@ -1051,7 +1098,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(56, 33);
+            this.label25.Location = new System.Drawing.Point(21, 27);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(79, 13);
             this.label25.TabIndex = 0;
@@ -1060,7 +1107,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(56, 72);
+            this.label20.Location = new System.Drawing.Point(21, 66);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 13);
             this.label20.TabIndex = 0;
@@ -1068,28 +1115,49 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.label27);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv_old);
             this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage);
             this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Nachname_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname);
             this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Vorname_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Vorname);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Location = new System.Drawing.Point(24, 54);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(306, 142);
+            this.groupBox5.Size = new System.Drawing.Size(406, 142);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
             // 
+            // comboBox_Personen_Aktiv
+            // 
+            this.comboBox_Personen_Aktiv.FormattingEnabled = true;
+            this.comboBox_Personen_Aktiv.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(285, 103);
+            this.comboBox_Personen_Aktiv.Name = "comboBox_Personen_Aktiv";
+            this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Aktiv.TabIndex = 7;
+            this.comboBox_Personen_Aktiv.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Aktiv_SelectedIndexChanged);
+            // 
             // textBox_Personen_Urlaubstage
             // 
-            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(156, 77);
+            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(285, 77);
             this.textBox_Personen_Urlaubstage.MaxLength = 10;
             this.textBox_Personen_Urlaubstage.Name = "textBox_Personen_Urlaubstage";
             this.textBox_Personen_Urlaubstage.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Urlaubstage.TabIndex = 1;
+            this.textBox_Personen_Urlaubstage.TextChanged += new System.EventHandler(this.textBox_Personen_Urlaubstage_TextChanged);
             // 
             // label1
             // 
@@ -1102,11 +1170,12 @@
             // 
             // textBox_Personen_Nachname
             // 
-            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(156, 51);
+            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(285, 51);
             this.textBox_Personen_Nachname.MaxLength = 30;
             this.textBox_Personen_Nachname.Name = "textBox_Personen_Nachname";
             this.textBox_Personen_Nachname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Nachname.TabIndex = 1;
+            this.textBox_Personen_Nachname.TextChanged += new System.EventHandler(this.textBox_Personen_Nachname_TextChanged);
             // 
             // label11
             // 
@@ -1119,11 +1188,12 @@
             // 
             // textBox_Personen_Vorname
             // 
-            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(156, 25);
+            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(285, 25);
             this.textBox_Personen_Vorname.MaxLength = 30;
             this.textBox_Personen_Vorname.Name = "textBox_Personen_Vorname";
             this.textBox_Personen_Vorname.Size = new System.Drawing.Size(100, 20);
             this.textBox_Personen_Vorname.TabIndex = 1;
+            this.textBox_Personen_Vorname.TextChanged += new System.EventHandler(this.textBox_Personen_Vorname_TextChanged);
             // 
             // label10
             // 
@@ -1143,55 +1213,201 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Vorname";
             // 
-            // textBox_Personen_Aktiv
-            // 
-            this.textBox_Personen_Aktiv.Location = new System.Drawing.Point(419, 28);
-            this.textBox_Personen_Aktiv.MaxLength = 1;
-            this.textBox_Personen_Aktiv.Name = "textBox_Personen_Aktiv";
-            this.textBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Personen_Aktiv.TabIndex = 1;
-            // 
             // button_Personen_writeChanges
             // 
-            this.button_Personen_writeChanges.Location = new System.Drawing.Point(24, 513);
+            this.button_Personen_writeChanges.Location = new System.Drawing.Point(24, 504);
             this.button_Personen_writeChanges.Name = "button_Personen_writeChanges";
-            this.button_Personen_writeChanges.Size = new System.Drawing.Size(306, 32);
+            this.button_Personen_writeChanges.Size = new System.Drawing.Size(406, 41);
             this.button_Personen_writeChanges.TabIndex = 0;
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // button_Personen_Edit_Systemdaten
+            // textBox_Personen_Vorname_old
             // 
-            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(24, 219);
-            this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
-            this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(307, 21);
-            this.button_Personen_Edit_Systemdaten.TabIndex = 6;
-            this.button_Personen_Edit_Systemdaten.Text = "Systemdaten bearbeitbar machen";
-            this.button_Personen_Edit_Systemdaten.UseVisualStyleBackColor = true;
-            this.button_Personen_Edit_Systemdaten.Click += new System.EventHandler(this.button_Personen_Edit_Systemdaten_Click);
+            this.textBox_Personen_Vorname_old.Enabled = false;
+            this.textBox_Personen_Vorname_old.Location = new System.Drawing.Point(145, 25);
+            this.textBox_Personen_Vorname_old.MaxLength = 30;
+            this.textBox_Personen_Vorname_old.Name = "textBox_Personen_Vorname_old";
+            this.textBox_Personen_Vorname_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Vorname_old.TabIndex = 1;
             // 
-            // comboBox_Personen_Aktiv
+            // textBox_Personen_Nachname_old
             // 
-            this.comboBox_Personen_Aktiv.FormattingEnabled = true;
-            this.comboBox_Personen_Aktiv.Items.AddRange(new object[] {
+            this.textBox_Personen_Nachname_old.Enabled = false;
+            this.textBox_Personen_Nachname_old.Location = new System.Drawing.Point(145, 51);
+            this.textBox_Personen_Nachname_old.MaxLength = 30;
+            this.textBox_Personen_Nachname_old.Name = "textBox_Personen_Nachname_old";
+            this.textBox_Personen_Nachname_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Nachname_old.TabIndex = 1;
+            // 
+            // textBox_Personen_Urlaubstage_old
+            // 
+            this.textBox_Personen_Urlaubstage_old.Enabled = false;
+            this.textBox_Personen_Urlaubstage_old.Location = new System.Drawing.Point(145, 77);
+            this.textBox_Personen_Urlaubstage_old.MaxLength = 10;
+            this.textBox_Personen_Urlaubstage_old.Name = "textBox_Personen_Urlaubstage_old";
+            this.textBox_Personen_Urlaubstage_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Urlaubstage_old.TabIndex = 1;
+            // 
+            // comboBox_Personen_Aktiv_old
+            // 
+            this.comboBox_Personen_Aktiv_old.Enabled = false;
+            this.comboBox_Personen_Aktiv_old.FormattingEnabled = true;
+            this.comboBox_Personen_Aktiv_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(156, 103);
-            this.comboBox_Personen_Aktiv.Name = "comboBox_Personen_Aktiv";
-            this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_Personen_Aktiv.TabIndex = 7;
+            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(145, 103);
+            this.comboBox_Personen_Aktiv_old.Name = "comboBox_Personen_Aktiv_old";
+            this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Aktiv_old.TabIndex = 7;
             // 
-            // comboBox_Personen_Stempelfehler
+            // textBox_Personen_Zeitkonto_old
             // 
-            this.comboBox_Personen_Stempelfehler.FormattingEnabled = true;
-            this.comboBox_Personen_Stempelfehler.Items.AddRange(new object[] {
+            this.textBox_Personen_Zeitkonto_old.Enabled = false;
+            this.textBox_Personen_Zeitkonto_old.Location = new System.Drawing.Point(145, 76);
+            this.textBox_Personen_Zeitkonto_old.MaxLength = 10;
+            this.textBox_Personen_Zeitkonto_old.Name = "textBox_Personen_Zeitkonto_old";
+            this.textBox_Personen_Zeitkonto_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Zeitkonto_old.TabIndex = 1;
+            // 
+            // textBox_Personen_ZeitkontoBerechnungsstand_old
+            // 
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Enabled = false;
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Location = new System.Drawing.Point(145, 102);
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.MaxLength = 8;
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Name = "textBox_Personen_ZeitkontoBerechnungsstand_old";
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.TabIndex = 1;
+            // 
+            // textBox_Personen_Boniausgezahltbis_old
+            // 
+            this.textBox_Personen_Boniausgezahltbis_old.Enabled = false;
+            this.textBox_Personen_Boniausgezahltbis_old.Location = new System.Drawing.Point(145, 146);
+            this.textBox_Personen_Boniausgezahltbis_old.MaxLength = 8;
+            this.textBox_Personen_Boniausgezahltbis_old.Name = "textBox_Personen_Boniausgezahltbis_old";
+            this.textBox_Personen_Boniausgezahltbis_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_Boniausgezahltbis_old.TabIndex = 1;
+            // 
+            // textBox_Personen_BetragletzterBonus_old
+            // 
+            this.textBox_Personen_BetragletzterBonus_old.Enabled = false;
+            this.textBox_Personen_BetragletzterBonus_old.Location = new System.Drawing.Point(145, 171);
+            this.textBox_Personen_BetragletzterBonus_old.MaxLength = 10;
+            this.textBox_Personen_BetragletzterBonus_old.Name = "textBox_Personen_BetragletzterBonus_old";
+            this.textBox_Personen_BetragletzterBonus_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_BetragletzterBonus_old.TabIndex = 1;
+            // 
+            // textBox_Personen_AktAuftrag_old
+            // 
+            this.textBox_Personen_AktAuftrag_old.Enabled = false;
+            this.textBox_Personen_AktAuftrag_old.Location = new System.Drawing.Point(145, 29);
+            this.textBox_Personen_AktAuftrag_old.MaxLength = 6;
+            this.textBox_Personen_AktAuftrag_old.Name = "textBox_Personen_AktAuftrag_old";
+            this.textBox_Personen_AktAuftrag_old.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Personen_AktAuftrag_old.TabIndex = 1;
+            // 
+            // comboBox_Personen_Stempelfehler_old
+            // 
+            this.comboBox_Personen_Stempelfehler_old.Enabled = false;
+            this.comboBox_Personen_Stempelfehler_old.FormattingEnabled = true;
+            this.comboBox_Personen_Stempelfehler_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Stempelfehler.Location = new System.Drawing.Point(156, 213);
-            this.comboBox_Personen_Stempelfehler.Name = "comboBox_Personen_Stempelfehler";
-            this.comboBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_Personen_Stempelfehler.TabIndex = 7;
+            this.comboBox_Personen_Stempelfehler_old.Location = new System.Drawing.Point(145, 213);
+            this.comboBox_Personen_Stempelfehler_old.Name = "comboBox_Personen_Stempelfehler_old";
+            this.comboBox_Personen_Stempelfehler_old.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Personen_Stempelfehler_old.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(255, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(19, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "-->";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(255, 54);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(19, 13);
+            this.label26.TabIndex = 8;
+            this.label26.Text = "-->";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(255, 81);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(19, 13);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "-->";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(255, 106);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(19, 13);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "-->";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(255, 31);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(19, 13);
+            this.label29.TabIndex = 8;
+            this.label29.Text = "-->";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(255, 78);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(19, 13);
+            this.label30.TabIndex = 8;
+            this.label30.Text = "-->";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(255, 105);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(19, 13);
+            this.label31.TabIndex = 8;
+            this.label31.Text = "-->";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(255, 148);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(19, 13);
+            this.label33.TabIndex = 8;
+            this.label33.Text = "-->";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(255, 174);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(19, 13);
+            this.label34.TabIndex = 8;
+            this.label34.Text = "-->";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(255, 216);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(19, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "-->";
             // 
             // Form1
             // 
@@ -1216,7 +1432,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Personen.ResumeLayout(false);
-            this.Personen.PerformLayout();
             this.groupBox_Personen_Systemdaten.ResumeLayout(false);
             this.groupBox_Personen_Systemdaten.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1258,7 +1473,6 @@
         private System.Windows.Forms.Button button_Kalender_Feiertag;
         private System.Windows.Forms.DataGridView Ereignisgrid_Kalender;
         private System.Windows.Forms.GroupBox groupBox_Personen_Systemdaten;
-        private System.Windows.Forms.TextBox textBox_Personen_Stempelfehler;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox_Personen_BetragletzterBonus;
         private System.Windows.Forms.Label label16;
@@ -1268,7 +1482,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_Personen_Zeitkonto;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox_Personen_Aktiv;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox_Personen_Urlaubstage;
@@ -1329,6 +1542,26 @@
         private System.Windows.Forms.Button button_Personen_Edit_Systemdaten;
         private System.Windows.Forms.ComboBox comboBox_Personen_Aktiv;
         private System.Windows.Forms.ComboBox comboBox_Personen_Stempelfehler;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Stempelfehler_old;
+        private System.Windows.Forms.TextBox textBox_Personen_AktAuftrag_old;
+        private System.Windows.Forms.TextBox textBox_Personen_BetragletzterBonus_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Boniausgezahltbis_old;
+        private System.Windows.Forms.TextBox textBox_Personen_ZeitkontoBerechnungsstand_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Zeitkonto_old;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Aktiv_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Urlaubstage_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Nachname_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Vorname_old;
     }
 }
 
