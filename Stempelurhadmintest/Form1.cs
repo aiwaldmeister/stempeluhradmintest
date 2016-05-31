@@ -727,9 +727,7 @@ namespace Stempelurhadmintest
             bool thisperson_stempelfehler = false;
             bool thisperson_aktiv = false;
 
-
-
-
+            
             thisperson_userid = PersonPicker_Personen.Text;
             if(thisperson_userid.Length >= 6)
             {
@@ -779,7 +777,7 @@ namespace Stempelurhadmintest
             if (thisperson_aktiv) { comboBox_Personen_Aktiv_old.SelectedIndex = 1; }
             if (thisperson_stempelfehler) { comboBox_Personen_Stempelfehler_old.SelectedIndex = 1; }
 
-            //eigentliche Formularfelder (rechte spalte) befüllen
+            //eigentliche Formularfelder (rechte spalte) befüllen (mit den selben Werten)
             textBox_Personen_Nachname.Text= thisperson_nachname;
             textBox_Personen_Vorname.Text = thisperson_vorname;
             textBox_Personen_AktAuftrag.Text = thisperson_currenttask;
@@ -793,7 +791,19 @@ namespace Stempelurhadmintest
             comboBox_Personen_Stempelfehler.SelectedIndex = 0;
             if(thisperson_aktiv) { comboBox_Personen_Aktiv.SelectedIndex = 1; }
             if(thisperson_stempelfehler) { comboBox_Personen_Stempelfehler.SelectedIndex = 1; }
-            
+
+            //eventuell vorhandene farbliche Hinterlegungen in der rechten Formularhälfte entfernen
+            textBox_Personen_Nachname.BackColor = Color.White;
+            textBox_Personen_Vorname.BackColor = Color.White;
+            textBox_Personen_AktAuftrag.BackColor = Color.White;
+            textBox_Personen_Zeitkonto.BackColor = Color.White;
+            textBox_Personen_ZeitkontoBerechnungsstand.BackColor = Color.White;
+            textBox_Personen_Boniausgezahltbis.BackColor = Color.White;
+            textBox_Personen_BetragletzterBonus.BackColor = Color.White;
+            textBox_Personen_Urlaubstage.BackColor = Color.White;
+            comboBox_Personen_Aktiv.BackColor = Color.White;
+            comboBox_Personen_Stempelfehler.BackColor = Color.White;
+
         }
 
         private void initInsertFormular_Personen()
@@ -933,6 +943,7 @@ namespace Stempelurhadmintest
             {
                 groupBox_Personen_Systemdaten.Enabled = true;
                 button_Personen_Edit_Systemdaten.Enabled = false;
+                button_Personen_Edit_Systemdaten.Visible = false;
             }
 
         }
@@ -1031,7 +1042,6 @@ namespace Stempelurhadmintest
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    //TODO Update auf Datenbank
                     //Statement vorbereiten
                     open_db();
                     comm.Parameters.Clear();
@@ -1065,22 +1075,21 @@ namespace Stempelurhadmintest
                         comm.Parameters["@jahresurlaub"].Precision = 10;
                         comm.Parameters["@jahresurlaub"].Scale = 2;
                         comm.Parameters["@jahresurlaub"].Value = new_jahresurlaub;
-                    
-                    //TODO die beiden Bool-Parameter noch adden
-
-
+                    comm.Parameters.Add("@stempelfehler", MySql.Data.MySqlClient.MySqlDbType.Byte,1).Value = new_stempelfehler;
+                    comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
 
                     //TODO veränderte Daten loggen für nachvollziehbarkeit.
-                    log("Erstelle Ereignis-Eintrag: " + input_zuordnung + " " + input_tag + "." + input_monat + "." + input_jahr + " " +
-                           "Sollzeit: " + input_sollzeit + " Urlaubstage: " + input_urlaub + " Vermerk: " + input_vermerk);
+                    log("Update auf Person " + userid);
                     try
                     {
                         comm.ExecuteNonQuery();
                     }
                     catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
                     close_db();
-                    //Parameter setzen
-                    //query ausführen
+
+                    refreshUpdateFormular_Personen();
+
                 }
             }   
         }
