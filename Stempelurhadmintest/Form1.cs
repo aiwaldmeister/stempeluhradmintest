@@ -1293,6 +1293,19 @@ namespace Stempelurhadmintest
         private void PersonPicker_Stempelungen_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshStempelungsgrid_Stempelungen();
+            vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum();
+        }
+
+        private void vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum()
+        {   
+            //TODO Zeitkonto-Berechnungsstand der gewählten Person ermitteln und in der Textbox anzeigen
+            //TODO Prüfen ob der Zeitkonto-Berechnungsstand früher ist, als das Datum das gerade ausgewählt ist
+                    //falls ja 
+                        //editier-groupbox enablen
+                        //zurückrechen-button disablen
+                    //falls nein
+                        //editier-groupbox disablen
+                        //zurückrechnen-button enablen
         }
 
         private void refreshStempelungsgrid_Stempelungen()
@@ -1385,6 +1398,64 @@ namespace Stempelurhadmintest
         private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
         {
             refreshStempelungsgrid_Stempelungen();
+        }
+
+        private void Stempelungsgrid_Stempelungen_SelectionChanged(object sender, EventArgs e)
+        {
+            if(Stempelungsgrid_Stempelungen.SelectedRows.Count == 1)
+            {
+                prefillEditFormular_Stempelungen();
+            }else
+            {
+                initEditFormular_Stempelungen();
+            }
+
+        }
+
+        private void initEditFormular_Stempelungen()
+        {
+            //Editformular im Stempelungstab leeren
+            textBox_Stempelungen_ID.Text = "";
+            comboBox_Stempelungen_Art.SelectedIndex = 0;
+            textBox_Stempelungen_Auftragsnummer.Text = "";
+            TimePicker_Stempelungen.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+
+        }
+
+        private void prefillEditFormular_Stempelungen()
+        {
+            //Editformular im Stempelungstab mit den Werten der markierten Stempelung vorbelegen
+            
+            textBox_Stempelungen_ID.Text = Stempelungsgrid_Stempelungen.SelectedCells[0].Value.ToString();
+
+            comboBox_Stempelungen_Art.SelectedIndex = 0;
+            if(Stempelungsgrid_Stempelungen.SelectedCells[1].Value.ToString() == "ab")
+            {
+                comboBox_Stempelungen_Art.SelectedIndex = 1;
+            }
+            textBox_Stempelungen_Auftragsnummer.Text = Stempelungsgrid_Stempelungen.SelectedCells[2].Value.ToString();
+            
+            string timefromgrid = Stempelungsgrid_Stempelungen.SelectedCells[3].Value.ToString();
+            string hourfromgrid = timefromgrid.Substring(0, 2);
+            string minutefromgrid = timefromgrid.Substring(3, 2);
+            string secondfromgrid = timefromgrid.Substring(6,2);
+            int hour = int.Parse(hourfromgrid);
+            int minute = int.Parse(minutefromgrid);
+            int second = int.Parse(secondfromgrid);
+            if(second == 60) { second = 59; }   //autostempelungen stempeln eine sekunde nach der letzten anstempelung ab. Deshalb die korrektur um ggf. fehler zu vermeiden
+
+            TimePicker_Stempelungen.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, second);
+        }
+
+        private void button_Stempelungen_Fehlerpruefung_Click(object sender, EventArgs e)
+        {
+            sucheStempelfehler();
+        }
+
+        private void sucheStempelfehler()
+        {
+            //TODO Nach Problemen suchen und diese markieren (eventuell noch mit message erklären)
+            //TODO wurden keine Probleme mehr gefunden, das Stempelfehlerflag der Person auf 0 setzen (eventuell mit message darauf hinweisen)
         }
     }
 }
