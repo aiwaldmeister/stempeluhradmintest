@@ -1514,24 +1514,148 @@ namespace Stempelurhadmintest
 
         private void button_Stempelungen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
         {
-            //TODO Datum Berechnungsstand ermitteln
-            //TODO selectiertes Datum
-            //TODO Zeitkontostand ermitteln
-            //TODO while schleife so lange bis Berechnungsstand früher ist als gewähltes datum
-                   //TODO IST-Zeit des Tages des Berechnungsstands berechnen
-                   //TODO berechnete IST-Zeit vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
-            //TODO neuen Berechnungsstand und neuen Zeitkontostand festschreiben
-            //TODO vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum
+            bool fehler = false;
+            string userid = "";
+            string zeitkonto_berechnungsstand_db = "";
+
+            double zeitkonto_betrag_db = 0;
+            double zeitkonto_betrag_tmp = 0;
+
+            DateTime date_selected;
+            DateTime date_berechnungsstand;
+            DateTime ZielDatum;
+            DateTime BerechnungsDatum_tmp;
+            
+            int jahr_tmp = 0;
+            int monat_tmp = 0;
+            int tag_tmp = 0;
+
+            userid = PersonPicker_Stempelungen.Text;
+            if (userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+
+            //Zeitkonto-Berechnungsstand der gewählten Person aus Datenbank ermitteln.
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT zeitkonto_berechnungsstand, zeitkonto FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                zeitkonto_betrag_db = Convert.ToDouble(Reader["zeitkonto"]);
+                zeitkonto_berechnungsstand_db = Reader["zeitkonto_berechnungsstand"] + "";
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            //date_berechnungsstand setzen
+            jahr_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(0, 4));
+            monat_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(4, 2));
+            tag_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(6, 2));
+            date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+
+            //date_selected setzen
+            jahr_tmp = DatePicker_Stempelungen.Value.Year;
+            monat_tmp = DatePicker_Stempelungen.Value.Month;
+            tag_tmp = DatePicker_Stempelungen.Value.Day;
+            date_selected = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+
+            //while schleife so lange bis Berechnungsstand früher ist als gewähltes datum oder ein Fehler auftritt
+            ZielDatum = date_selected.AddDays(-1);
+            BerechnungsDatum_tmp = date_berechnungsstand;
+            zeitkonto_betrag_tmp = zeitkonto_betrag_db;
+            while(DateTime.Compare(BerechnungsDatum_tmp,ZielDatum) > 0 && fehler == false)
+            {
+                //IST-Zeit und SOLL-Zeit des Tages des Berechnungsstands berechnen
+                double istzeit_tmp = -1;
+                double sollzeit_tmp = -1;
+                double zeitueberschuss_tmp = 0;
+                istzeit_tmp = ermittleIstZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+                sollzeit_tmp = ermittleSollZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+
+                if(istzeit_tmp == -1 || sollzeit_tmp == -1)
+                {
+                    //bei einer der Zeitberechnungen trat ein Fehler auf...
+                    fehler = true;
+                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
+                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
+                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp - zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
+                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(-1);            //entspricht der neue Zeitkontostand dem des Vorabends.
+        
+                }
+
+            }
+
+            if(DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) == 0)
+            {   //Das Zieldatum für die Rückrechnung wurde erreicht -> Die While-Schleife wurde offensichtlich nicht wegen eines Fehlers vorzeitig beendet
+
+                String zeitkonto_berechnungsstand_neu = BerechnungsDatum_tmp.Year.ToString("D4") + BerechnungsDatum_tmp.Month.ToString("D2") + BerechnungsDatum_tmp.Day.ToString("D2");
+                
+                //Den neue Datum für den Berechnungsstand und den neuen Betrag des Zeitkotnos in die Datenbank schreiben
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "UPDATE user SET zeitkonto=@zeitkonto, zeitkonto_berechnungsstand=@zeitkonto_berechnungsstand WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                comm.Parameters.Add("@zeitkonto_berechnungsstand", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zeitkonto_berechnungsstand_neu;
+                comm.Parameters.Add("@zeitkonto", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                comm.Parameters["@zeitkonto"].Precision = 10;
+                comm.Parameters["@zeitkonto"].Scale = 2;
+                comm.Parameters["@zeitkonto"].Value = zeitkonto_betrag_tmp;
+                
+                log("setze Zeitkonto zurück. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'" );
+
+                try
+                {
+                    comm.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                close_db();
+            }
+
+            //alles erledigt -> Status des Formulars sollte entsprechend aktualisiert werden
+            vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum();
             
         }
 
         private void button_Stempelungen_stornieren_Click(object sender, EventArgs e)
-        {
-            //TODO id ermitteln
-            //TODO Bestätigungsdialog
-                //TODO Stempelung in Datenbank auf storniert setzen
-                //TODO Stempelungsgrid refreshen
-            
+        {//Stempelung mit markierter ID stornieren
+
+            //ID ermitteln
+            string markierteID = "";
+            markierteID = Stempelungsgrid_Stempelungen.SelectedCells[0].Value.ToString();
+
+            //Bestaetigungsdialog vorbereiten
+            string dialogtext = "Die Stempelung mit der ID:" + markierteID + " wirklich stornieren?";
+            DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Stempelung stornieren
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "UPDATE stamps SET storniert=1 where stampid = @stampid";
+
+                comm.Parameters.Add("@stampid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
+
+                log("storniere Stempelung mit ID:" + markierteID);
+                try
+                {
+                    comm.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                close_db();
+            }
+            refreshStempelungsgrid_Stempelungen();
+
         }
 
         private void button_Stempelungen_ueberschreiben_Click(object sender, EventArgs e)
@@ -1550,6 +1674,273 @@ namespace Stempelurhadmintest
             //TODO Bestätigungsdialog
                 //TODO Insert auf Datenbank
                 //TODO Stempelungsgrid refreshen
+        }
+
+        private double ermittleIstZeit(string usercode, string berechnungsjahr, string berechnungsmonat, string berechnungstag)
+        {
+            double Istzeit_tmp = 0;
+            double Pausenzeit_tmp = 0;
+            string Fehler = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            //die sortierung soll sicherstellen dass immer die zusammenpassenden an+abstempelungen nacheinander kommen
+            comm.CommandText = "SELECT * FROM stamps WHERE userid = @userid AND jahr = @jahr AND monat = @monat AND tag = @tag  AND storniert = 0 " +
+                                "ORDER BY jahr ASC, monat ASC, tag ASC, stunde ASC, minute ASC, sekunde ASC, art ASC";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = usercode;
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = berechnungsjahr;
+            comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungsmonat;
+            comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungstag;
+
+            log("\tSQL:" + comm.CommandText);
+            MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+            //jeder schleifendurchlauf betrachtet ein paar aus an- und abstempelung
+            while (Reader.Read())
+            {
+                //alle nötigen werte der anstempelung aus dem reader holen
+                string an_stunde = Reader["stunde"] + "";
+                string an_dezimal = Reader["dezimal"] + "";
+                string an_task = Reader["task"] + "";
+                double an_uhrzeit_dezimal = double.Parse(an_stunde + "," + an_dezimal);
+
+
+                Reader.Read();
+                //alle nötigen werte der abstempelung aus dem reader holen
+                string ab_stunde = Reader["stunde"] + "";
+                string ab_dezimal = Reader["dezimal"] + "";
+                string ab_task = Reader["task"] + "";
+                double ab_uhrzeit_dezimal = double.Parse(ab_stunde + "," + ab_dezimal);
+
+                if (an_task != ab_task)
+                {
+                    Fehler = "Zeitpaar passt nicht zusammen (verschiedene tasks)";
+                    log(Fehler);
+                    return -1;
+                }
+
+                if (an_task == "888001")
+                {   //Pausenstempelung
+
+                    Pausenzeit_tmp = Pausenzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal;
+                }
+
+
+
+                if (an_task != "888000")
+                {   //keine Leerlaufstempelung -> Zeit komplett auf Istzeit anrechnen
+                    Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal;
+                }
+                else
+                {
+                    //////Leerlaufstempelung -> ///////////start der Fallunterscheidung ////////////////
+                    //Leerlaufzeiten zwischen 12:30-13:30 die nicht zur IstZeit angerechnet werden, werden dafür auf die Pausenzeit angerechnet
+
+                    //Fall 1: Anstempelung vor 8, Abstempelung vor 8 -> nix anrechnen
+                    if (an_uhrzeit_dezimal <= 8 && ab_uhrzeit_dezimal <= 8)
+                    {
+                    }
+                    else
+
+                    //Fall 2: Anstempelung vor 8, Abstempelung Vormittags -> 8 bis Abstempelung anrechnen
+                    if (an_uhrzeit_dezimal <= 8 && ab_uhrzeit_dezimal >= 8 && ab_uhrzeit_dezimal <= 12.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - 8;
+                    }
+                    else
+
+                    //Fall 3: Anstempelung vor 8, Abstempelung Mittags -> 8 bis 12:30 anrechnen
+                    if (an_uhrzeit_dezimal <= 8 && ab_uhrzeit_dezimal >= 12.5 && ab_uhrzeit_dezimal <= 13.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 12.5 - 8;
+                        Pausenzeit_tmp = Pausenzeit_tmp + ab_uhrzeit_dezimal - 12.5;
+                    }
+                    else
+
+                    //Fall 4: Anstempelung vor 8, Abstempelung Nachmittags -> 8 bis Abstempelung anrechnen und 1 Std abziehen
+                    if (an_uhrzeit_dezimal <= 8 && ab_uhrzeit_dezimal >= 13.5 && ab_uhrzeit_dezimal <= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - 8 - 1;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 1;
+                    }
+                    else
+
+                    //Fall 5: Anstempelung vor 8, Abstempelung nach 17:30 -> 8 bis 17:30 anrechnen und 1 Std abziehen
+                    if (an_uhrzeit_dezimal <= 8 && ab_uhrzeit_dezimal >= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 17.5 - 8 - 1;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 1;
+                    }
+                    else
+
+                    //Fall 6: Anstempelung Vormittags, Abstempelung Vormittags -> Anstempelung bis Abstempelung voll anrechnen
+                    if (an_uhrzeit_dezimal >= 8 && an_uhrzeit_dezimal <= 12.5 && ab_uhrzeit_dezimal >= 8 && ab_uhrzeit_dezimal <= 12.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 7: Anstempelung Vormittags, Abstempelung Mittags -> Anstempelung bis 12:30 anrechnen
+                    if (an_uhrzeit_dezimal >= 8 && an_uhrzeit_dezimal <= 12.5 && ab_uhrzeit_dezimal >= 12.5 && ab_uhrzeit_dezimal <= 13.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 12.5 - an_uhrzeit_dezimal;
+                        Pausenzeit_tmp = Pausenzeit_tmp + ab_uhrzeit_dezimal - 12.5;
+                    }
+                    else
+
+                    //Fall 8: Anstempelung Vormittags, Abstempelung Nachmittags -> Anstempelung bis Abstempelung anrechnen und 1 Std abziehen
+                    if (an_uhrzeit_dezimal >= 8 && an_uhrzeit_dezimal <= 12.5 && ab_uhrzeit_dezimal >= 13.5 && ab_uhrzeit_dezimal <= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal - 1;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 1;
+                    }
+                    else
+
+                    //Fall 9: Anstempelung Vormittags, Abstempelung nach 17:30 -> Anstempelung bis 17:30 anrechnen und 1 Std abziehen
+                    if (an_uhrzeit_dezimal >= 8 && an_uhrzeit_dezimal <= 12.5 && ab_uhrzeit_dezimal >= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 17.5 - an_uhrzeit_dezimal - 1;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 1;
+                    }
+                    else
+
+                    //Fall 10: Anstempelung Mittags, Abstempelung Mittags -> nix anrechnen
+                    if (an_uhrzeit_dezimal >= 12.5 && an_uhrzeit_dezimal <= 13.5 && ab_uhrzeit_dezimal >= 12.5 && ab_uhrzeit_dezimal <= 13.5)
+                    {
+                        Pausenzeit_tmp = Pausenzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 11: Anstempelung Mittags, Abstempelung Nachmittags -> 13:30 bis Abstempelung anrechnen
+                    if (an_uhrzeit_dezimal >= 12.5 && an_uhrzeit_dezimal <= 13.5 && ab_uhrzeit_dezimal >= 13.5 && ab_uhrzeit_dezimal <= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - 13.5;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 13.5 - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 12: Anstempelung Mittags, Abstempelung nach 17:30 -> 13:30 bis 17:30 anrechnen
+                    if (an_uhrzeit_dezimal >= 12.5 && an_uhrzeit_dezimal <= 13.5 && ab_uhrzeit_dezimal >= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 17.5 - 13.5;
+                        Pausenzeit_tmp = Pausenzeit_tmp + 13.5 - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 13: Anstempelung Nachmittags, Abstempelung Nachmittags -> Anstempelung bis Abstempelung voll anrechnen
+                    if (an_uhrzeit_dezimal >= 13.5 && an_uhrzeit_dezimal <= 17.5 && ab_uhrzeit_dezimal >= 13.5 && ab_uhrzeit_dezimal <= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + ab_uhrzeit_dezimal - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 14: Anstempelung Nachmittags, Abstempelung nach 17:30 -> Anstempelung bis 17:30 anrechnen
+                    if (an_uhrzeit_dezimal >= 13.5 && an_uhrzeit_dezimal <= 17.5 && ab_uhrzeit_dezimal >= 17.5)
+                    {
+                        Istzeit_tmp = Istzeit_tmp + 17.5 - an_uhrzeit_dezimal;
+                    }
+                    else
+
+                    //Fall 15: Anstempelung nach 17:30, Abstempelung nach 17:30 -> nix anrechnen
+                    if (an_uhrzeit_dezimal >= 17.5 && ab_uhrzeit_dezimal >= 17.5)
+                    { }
+
+                    ///////// Ende der Fallunterscheidungen bei Leerlaufstempelungen
+
+                }
+            }
+            Reader.Close();
+            close_db();
+            Istzeit_tmp = Istzeit_tmp - Pausenzeit_tmp;
+
+            //Pausenzeit auf mindestlänge bringen (laut Gesetz mindestens 30min bei mehr als 6Std Arbeit)
+            if (Istzeit_tmp >= 6 && Pausenzeit_tmp < 0.5)
+            {
+                Istzeit_tmp = Istzeit_tmp - (0.5 - Pausenzeit_tmp);
+            }
+
+            if (Fehler == "")
+            {
+                log("Ermittelte Istzeit für " + berechnungstag + "." + berechnungsmonat + "." + berechnungsjahr + ": " + Istzeit_tmp + " Std.");
+                return Istzeit_tmp;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private double ermittleSollZeit(string usercode, string berechnungsjahr, string berechnungsmonat, string berechnungstag)
+        {   //sollzeit ermitteln (persoenlicher kalendereintrag > allgemeiner kalendereintrag > fallback(wochenende 0, sonst 7,2)
+            double sollzeit = 0;
+            object tmp = null;
+            string sollzeitquelle = "";
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT sollzeit FROM kalender where zuordnung=@zuordnung " +
+                                "AND jahr = @jahr AND monat = @monat AND tag = @tag AND storniert = 0";
+
+            comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = usercode;
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = berechnungsjahr;
+            comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungsmonat;
+            comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungstag;
+
+            log("\tSQL:" + comm.CommandText);
+            try
+            {
+                tmp = comm.ExecuteScalar();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            if (tmp != null)
+            {   //es gab einen persönlichen Kalendereintrag -> dessen Sollzeit verwenden
+                sollzeit = Convert.ToDouble(tmp);
+                sollzeitquelle = "persönlicher Kalendereintrag";
+            }
+            else
+            {   //es gab keinen persönlichen Kalendereintrag -> suche allgemeinen
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT sollzeit FROM kalender where zuordnung='allgemein' " +
+                                    "AND jahr = @jahr AND monat = @monat AND tag = @tag AND storniert = 0";
+
+                comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = berechnungsjahr;
+                comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungsmonat;
+                comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = berechnungstag;
+
+                log("\tSQL:" + comm.CommandText);
+                try
+                {
+                    tmp = comm.ExecuteScalar();
+                }
+                catch (Exception ex) { log(ex.Message); }
+                close_db();
+                if (tmp != null)
+                {   //es gab einen allgemeinen Kalendereintrag -> dessen Sollzeit verwenden
+                    sollzeit = Convert.ToDouble(tmp);
+                    sollzeitquelle = "allgemeiner Kalendereintrag";
+                }
+                else
+                {   //es gab weder einen persönlichen noch einen allgemeinen Kalendereintrag -> Sollzeit hängt vom Wochentag ab
+                    DateTime berechnungsdatum = DateTime.ParseExact(berechnungsjahr + berechnungsmonat + berechnungstag, "yyyyMMdd", null);
+                    int Wochentagscode = (int)berechnungsdatum.DayOfWeek;
+                    if (Wochentagscode == 0 || Wochentagscode == 6)
+                    {
+                        sollzeit = 0;
+                        sollzeitquelle = "normaler Wochenendstag";
+                    }
+                    else
+                    {
+                        sollzeit = 7.2;
+                        sollzeitquelle = "normaler Werktag";
+                    }
+                }
+            }
+            log("Ermittelte Sollzeit für " + berechnungstag + "." + berechnungsmonat + "." + berechnungsjahr + ": " + sollzeit + " Std. (" + sollzeitquelle + ")");
+            return sollzeit;
+
         }
     }
 }
