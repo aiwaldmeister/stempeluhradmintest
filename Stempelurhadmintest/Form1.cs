@@ -1446,6 +1446,7 @@ namespace Stempelurhadmintest
             close_db();
             Stempelungsgrid_Stempelungen.ClearSelection();
             initEditFormular_Stempelungen();
+            sucheStempelfehler();
         }
 
         private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
@@ -1519,9 +1520,81 @@ namespace Stempelurhadmintest
 
         private void sucheStempelfehler()
         {
-            //TODO Nach Problemen suchen und diese markieren (eventuell noch mit message erklären)
-            //TODO wurden keine Probleme mehr gefunden, das Stempelfehlerflag der Person auf 0 setzen 
-                //TODO mit message darauf hinweisen
+            bool Stempelfehler = false;
+            string thisrow_art = "";
+            string lastrow_art = "";
+            string thisrow_task = "";
+            string lastrow_task = "";
+            string thisrow_quelle = "";
+            int rowcount = Stempelungsgrid_Stempelungen.Rows.Count;
+            DateTime heute = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime betrachtungsdatum = new DateTime(DatePicker_Stempelungen.Value.Year, DatePicker_Stempelungen.Value.Month, DatePicker_Stempelungen.Value.Day, 0, 0, 0);
+            //Nach Problemen suchen und diese markieren (eventuell noch mit message erklären)
+
+            Stempelungsgrid_Stempelungen.ClearSelection();
+
+            if (rowcount > 0)
+            {   //Es gibt Stempelungen die es sich zu prüfen lohnt (würde sonst keinen Sinn machen und Fehler verursachen)
+
+
+                //Test 1: Ist die erste Stempelung keine anstempelung?
+                if(Stempelungsgrid_Stempelungen.Rows[0].Cells[1].Value.ToString() != "an")
+                {
+                    Stempelfehler = true;
+                    Stempelungsgrid_Stempelungen.Rows[0].Cells[1].Style.BackColor = Color.Orange;
+                    Stempelungsgrid_Stempelungen.Rows[0].Cells[1].ToolTipText = Stempelungsgrid_Stempelungen.Rows[0].Cells[1].ToolTipText + "Erste Stempelung des Tages sollte eine Anstempelung sein!\r\n";
+                }
+
+                
+                lastrow_art = "";
+                lastrow_task = "";
+                for(int actrow=0; actrow<Stempelungsgrid_Stempelungen.Rows.Count; actrow++)
+                {
+                    thisrow_art = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[1].Value.ToString();
+                    thisrow_task = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[2].Value.ToString();
+                    thisrow_quelle = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[4].Value.ToString();
+
+
+                    //Test 2: kommt nicht immer abwechselnd eine an + eine abstempelung?
+                    if(thisrow_art == lastrow_art)
+                    {
+                        Stempelfehler = true;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[1].Style.BackColor = Color.Orange;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[1].ToolTipText = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[1].ToolTipText + "An- und Ab-Stempelungen sollten sich immer abwechseln!\r\n";
+                    }
+
+                    //Test 3: Hat ein Paar aus AN+AB-Stempelung verschiedene Auftragsnummern?
+                    if(actrow > 0 && thisrow_art == "ab" && (thisrow_task != lastrow_task))
+                    {
+                        Stempelfehler = true;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[2].Style.BackColor = Color.Orange;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[2].ToolTipText = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[2].ToolTipText + "Die Abstempelung sollte die selbe Auftragsnummer haben wie die vorherige Anstempelung!\r\n";
+                    }
+                    
+                    //Test 4: unkorrigierte automatische Abstempelung von einem Wartungslauf? (quelle = 'wartung')
+                    if(thisrow_quelle == "wartung")
+                    {
+                        Stempelfehler = true;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[4].Style.BackColor = Color.Orange;
+                        Stempelungsgrid_Stempelungen.Rows[actrow].Cells[4].ToolTipText = Stempelungsgrid_Stempelungen.Rows[actrow].Cells[4].ToolTipText + "Automatische Wartungs-Abstempelungen sollten geprüft und manuell korrigiert werden!\r\n";
+                    }
+
+
+                    lastrow_task = thisrow_task;
+                    lastrow_art = thisrow_art;
+                }
+
+                //Test 5: Datum ist früher als das heutige und letzte Stempelung ist keine Abstempelung?
+                thisrow_art = Stempelungsgrid_Stempelungen.Rows[rowcount - 1].Cells[1].Value.ToString();
+                if (DateTime.Compare(betrachtungsdatum, heute) < 0 && thisrow_art != "ab")
+                {
+                    Stempelfehler = true;
+                    Stempelungsgrid_Stempelungen.Rows[rowcount -1].Cells[1].Style.BackColor = Color.Orange;
+                    Stempelungsgrid_Stempelungen.Rows[rowcount -1].Cells[1].ToolTipText = Stempelungsgrid_Stempelungen.Rows[rowcount -1].Cells[1].ToolTipText + "Die letzte Stempelung eines (vergangenen-) Tages sollte immer eine Abstempelung sein!\r\n";
+                }
+
+            }
+
         }
 
         private void button_Stempelungen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
