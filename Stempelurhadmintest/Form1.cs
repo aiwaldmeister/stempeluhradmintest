@@ -1327,7 +1327,6 @@ namespace Stempelurhadmintest
             }
             catch (Exception ex) { log(ex.Message); }
             close_db();
-            label_Stempelungen_Zeitkonto_Berechnungsstand.Text = zeitkonto_berechnungsstand;
 
             //Prüfen ob der Zeitkonto-Berechnungsstand früher ist, als das Datum das gerade ausgewählt ist
             jahr_tmp = int.Parse(zeitkonto_berechnungsstand.Substring(0, 4));
@@ -1335,6 +1334,9 @@ namespace Stempelurhadmintest
             tag_tmp = int.Parse(zeitkonto_berechnungsstand.Substring(6, 2));
                 
             date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp , 0, 0, 0);
+
+            label_Stempelungen_Zeitkonto_Berechnungsstand.Text = date_berechnungsstand.ToShortDateString();
+
 
             jahr_tmp = DatePicker_Stempelungen.Value.Year;
             monat_tmp = DatePicker_Stempelungen.Value.Month;
@@ -1348,11 +1350,13 @@ namespace Stempelurhadmintest
             {//gewähltes Datum ist später als der Zeitkonto-Berechnungsstand -> Stempelungen können editiert werden
                 groupBox_Stempelungen_EditierenErstellen.Enabled = true;
                 button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
+                label_Stempelungen_Hinweis.Visible = false;
             }
             else
             {//gewähltes Datum ist gleich oder früher als der Zeitkonto-Berechnungsstand -> Stempelungen dürfen nicht editiert werden
                 groupBox_Stempelungen_EditierenErstellen.Enabled = false;
                 button_Stempelungen_ZeitkontoRueckrechnen.Enabled = true;
+                label_Stempelungen_Hinweis.Visible = true;
             }
   
         }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +71,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_Stempelungen_Fehlerpruefung = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.button_Stempelungen_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_EditierenErstellen = new System.Windows.Forms.GroupBox();
@@ -151,7 +152,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
+            this.label_Stempelungen_Hinweis = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -196,14 +197,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle2;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -637,14 +638,14 @@
             this.groupBox2.Controls.Add(this.button_Stempelungen_Fehlerpruefung);
             this.groupBox2.Location = new System.Drawing.Point(372, 25);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(424, 89);
+            this.groupBox2.Size = new System.Drawing.Size(424, 71);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fehlerprüfung";
             // 
             // button_Stempelungen_Fehlerpruefung
             // 
-            this.button_Stempelungen_Fehlerpruefung.Location = new System.Drawing.Point(27, 35);
+            this.button_Stempelungen_Fehlerpruefung.Location = new System.Drawing.Point(27, 28);
             this.button_Stempelungen_Fehlerpruefung.Name = "button_Stempelungen_Fehlerpruefung";
             this.button_Stempelungen_Fehlerpruefung.Size = new System.Drawing.Size(375, 26);
             this.button_Stempelungen_Fehlerpruefung.TabIndex = 8;
@@ -655,32 +656,43 @@
             // groupBox_Stempelungen_Zeitkonto
             // 
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label_Stempelungen_Zeitkonto_Berechnungsstand);
+            this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label_Stempelungen_Hinweis);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label32);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.button_Stempelungen_ZeitkontoRueckrechnen);
-            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(372, 132);
+            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(372, 113);
             this.groupBox_Stempelungen_Zeitkonto.Name = "groupBox_Stempelungen_Zeitkonto";
-            this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 113);
+            this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 122);
             this.groupBox_Stempelungen_Zeitkonto.TabIndex = 11;
             this.groupBox_Stempelungen_Zeitkonto.TabStop = false;
             this.groupBox_Stempelungen_Zeitkonto.Text = "Zeitkonto";
+            // 
+            // label_Stempelungen_Zeitkonto_Berechnungsstand
+            // 
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.AutoSize = true;
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Location = new System.Drawing.Point(300, 27);
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Name = "label_Stempelungen_Zeitkonto_Berechnungsstand";
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Size = new System.Drawing.Size(55, 13);
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.TabIndex = 9;
+            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Text = "00000000";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(24, 27);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(278, 13);
+            this.label32.Size = new System.Drawing.Size(275, 13);
             this.label32.TabIndex = 9;
-            this.label32.Text = "Stand der Zeitkontoberechnung: für die gewählte Person:";
+            this.label32.Text = "Stand der Zeitkontoberechnung für die gewählte Person:";
             // 
             // button_Stempelungen_ZeitkontoRueckrechnen
             // 
             this.button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(27, 61);
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(27, 75);
             this.button_Stempelungen_ZeitkontoRueckrechnen.Name = "button_Stempelungen_ZeitkontoRueckrechnen";
             this.button_Stempelungen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_ZeitkontoRueckrechnen.TabIndex = 8;
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Text = "Bis zum Vorabend des gewählten Tages zurückrechnen";
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Text = "Zeitkonto bis zum Vorabend des gewählten Tages zurückrechnen";
             this.button_Stempelungen_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
             this.button_Stempelungen_ZeitkontoRueckrechnen.Click += new System.EventHandler(this.button_Stempelungen_ZeitkontoRueckrechnen_Click);
             // 
@@ -1498,15 +1510,15 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // label_Stempelungen_Zeitkonto_Berechnungsstand
+            // label_Stempelungen_Hinweis
             // 
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.AutoSize = true;
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Location = new System.Drawing.Point(308, 27);
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Name = "label_Stempelungen_Zeitkonto_Berechnungsstand";
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Size = new System.Drawing.Size(55, 13);
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.TabIndex = 9;
-            this.label_Stempelungen_Zeitkonto_Berechnungsstand.Text = "00000000";
+            this.label_Stempelungen_Hinweis.AutoSize = true;
+            this.label_Stempelungen_Hinweis.BackColor = System.Drawing.Color.Gold;
+            this.label_Stempelungen_Hinweis.Location = new System.Drawing.Point(29, 50);
+            this.label_Stempelungen_Hinweis.Name = "label_Stempelungen_Hinweis";
+            this.label_Stempelungen_Hinweis.Size = new System.Drawing.Size(358, 13);
+            this.label_Stempelungen_Hinweis.TabIndex = 9;
+            this.label_Stempelungen_Hinweis.Text = "Änderungen zum gewählten Datum sind erst nach Rückrechnung möglich.";
             // 
             // Form1
             // 
@@ -1669,6 +1681,7 @@
         private System.Windows.Forms.Button button_Stempelungen_ZeitkontoRueckrechnen;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label_Stempelungen_Zeitkonto_Berechnungsstand;
+        private System.Windows.Forms.Label label_Stempelungen_Hinweis;
     }
 }
 
