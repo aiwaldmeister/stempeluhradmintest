@@ -72,17 +72,16 @@
             this.button_Stempelungen_Fehlerpruefung = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
             this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
+            this.label_Stempelungen_Hinweis = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.button_Stempelungen_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_EditierenErstellen = new System.Windows.Forms.GroupBox();
             this.TimePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
             this.comboBox_Stempelungen_Art = new System.Windows.Forms.ComboBox();
             this.textBox_Stempelungen_Auftragsnummer = new System.Windows.Forms.TextBox();
-            this.textBox_Stempelungen_ID = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.button_Stempelungen_neueStempelung = new System.Windows.Forms.Button();
             this.button_Stempelungen_stornieren = new System.Windows.Forms.Button();
             this.button_Stempelungen_ueberschreiben = new System.Windows.Forms.Button();
@@ -152,7 +151,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.label_Stempelungen_Hinweis = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -676,6 +674,16 @@
             this.label_Stempelungen_Zeitkonto_Berechnungsstand.TabIndex = 9;
             this.label_Stempelungen_Zeitkonto_Berechnungsstand.Text = "00000000";
             // 
+            // label_Stempelungen_Hinweis
+            // 
+            this.label_Stempelungen_Hinweis.AutoSize = true;
+            this.label_Stempelungen_Hinweis.BackColor = System.Drawing.Color.Gold;
+            this.label_Stempelungen_Hinweis.Location = new System.Drawing.Point(29, 50);
+            this.label_Stempelungen_Hinweis.Name = "label_Stempelungen_Hinweis";
+            this.label_Stempelungen_Hinweis.Size = new System.Drawing.Size(358, 13);
+            this.label_Stempelungen_Hinweis.TabIndex = 9;
+            this.label_Stempelungen_Hinweis.Text = "Änderungen zum gewählten Datum sind erst nach Rückrechnung möglich.";
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
@@ -701,11 +709,9 @@
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.TimePicker_Stempelungen);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.comboBox_Stempelungen_Art);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.textBox_Stempelungen_Auftragsnummer);
-            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.textBox_Stempelungen_ID);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label24);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label23);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label22);
-            this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.label21);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_neueStempelung);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_stornieren);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_ueberschreiben);
@@ -720,7 +726,7 @@
             // TimePicker_Stempelungen
             // 
             this.TimePicker_Stempelungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePicker_Stempelungen.Location = new System.Drawing.Point(213, 179);
+            this.TimePicker_Stempelungen.Location = new System.Drawing.Point(225, 158);
             this.TimePicker_Stempelungen.Name = "TimePicker_Stempelungen";
             this.TimePicker_Stempelungen.ShowUpDown = true;
             this.TimePicker_Stempelungen.Size = new System.Drawing.Size(107, 20);
@@ -732,7 +738,7 @@
             this.comboBox_Stempelungen_Art.Items.AddRange(new object[] {
             "an",
             "ab"});
-            this.comboBox_Stempelungen_Art.Location = new System.Drawing.Point(213, 118);
+            this.comboBox_Stempelungen_Art.Location = new System.Drawing.Point(225, 97);
             this.comboBox_Stempelungen_Art.MaxLength = 2;
             this.comboBox_Stempelungen_Art.Name = "comboBox_Stempelungen_Art";
             this.comboBox_Stempelungen_Art.Size = new System.Drawing.Size(107, 21);
@@ -740,25 +746,16 @@
             // 
             // textBox_Stempelungen_Auftragsnummer
             // 
-            this.textBox_Stempelungen_Auftragsnummer.Location = new System.Drawing.Point(213, 147);
+            this.textBox_Stempelungen_Auftragsnummer.Location = new System.Drawing.Point(225, 126);
             this.textBox_Stempelungen_Auftragsnummer.MaxLength = 6;
             this.textBox_Stempelungen_Auftragsnummer.Name = "textBox_Stempelungen_Auftragsnummer";
             this.textBox_Stempelungen_Auftragsnummer.Size = new System.Drawing.Size(107, 20);
             this.textBox_Stempelungen_Auftragsnummer.TabIndex = 11;
             // 
-            // textBox_Stempelungen_ID
-            // 
-            this.textBox_Stempelungen_ID.Enabled = false;
-            this.textBox_Stempelungen_ID.Location = new System.Drawing.Point(213, 89);
-            this.textBox_Stempelungen_ID.MaxLength = 10;
-            this.textBox_Stempelungen_ID.Name = "textBox_Stempelungen_ID";
-            this.textBox_Stempelungen_ID.Size = new System.Drawing.Size(105, 20);
-            this.textBox_Stempelungen_ID.TabIndex = 11;
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(89, 179);
+            this.label24.Location = new System.Drawing.Point(101, 158);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 13);
             this.label24.TabIndex = 10;
@@ -767,7 +764,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(89, 150);
+            this.label23.Location = new System.Drawing.Point(101, 129);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(88, 13);
             this.label23.TabIndex = 10;
@@ -776,48 +773,39 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(89, 121);
+            this.label22.Location = new System.Drawing.Point(101, 100);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(97, 13);
             this.label22.TabIndex = 10;
             this.label22.Text = "Art der Stempelung";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(89, 92);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 13);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "Stempelungs-ID";
-            // 
             // button_Stempelungen_neueStempelung
             // 
-            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(209, 237);
+            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(27, 243);
             this.button_Stempelungen_neueStempelung.Name = "button_Stempelungen_neueStempelung";
-            this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(193, 29);
+            this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_neueStempelung.TabIndex = 9;
-            this.button_Stempelungen_neueStempelung.Text = "Neue Stempelung erstellen";
+            this.button_Stempelungen_neueStempelung.Text = "Neue Stempelung mit diesen Werten erstellen";
             this.button_Stempelungen_neueStempelung.UseVisualStyleBackColor = true;
             this.button_Stempelungen_neueStempelung.Click += new System.EventHandler(this.button_Stempelungen_neueStempelung_Click);
             // 
             // button_Stempelungen_stornieren
             // 
-            this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 37);
+            this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 32);
             this.button_Stempelungen_stornieren.Name = "button_Stempelungen_stornieren";
             this.button_Stempelungen_stornieren.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_stornieren.TabIndex = 9;
-            this.button_Stempelungen_stornieren.Text = "Diese Stempelung stornieren";
+            this.button_Stempelungen_stornieren.Text = "Markierte Stempelung stornieren";
             this.button_Stempelungen_stornieren.UseVisualStyleBackColor = true;
             this.button_Stempelungen_stornieren.Click += new System.EventHandler(this.button_Stempelungen_stornieren_Click);
             // 
             // button_Stempelungen_ueberschreiben
             // 
-            this.button_Stempelungen_ueberschreiben.Location = new System.Drawing.Point(27, 237);
+            this.button_Stempelungen_ueberschreiben.Location = new System.Drawing.Point(27, 199);
             this.button_Stempelungen_ueberschreiben.Name = "button_Stempelungen_ueberschreiben";
-            this.button_Stempelungen_ueberschreiben.Size = new System.Drawing.Size(177, 29);
+            this.button_Stempelungen_ueberschreiben.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_ueberschreiben.TabIndex = 9;
-            this.button_Stempelungen_ueberschreiben.Text = "Diese Stempelung überschreiben";
+            this.button_Stempelungen_ueberschreiben.Text = "Markierte Stempelung mit diesen Werten überschreiben";
             this.button_Stempelungen_ueberschreiben.UseVisualStyleBackColor = true;
             this.button_Stempelungen_ueberschreiben.Click += new System.EventHandler(this.button_Stempelungen_ueberschreiben_Click);
             // 
@@ -1510,16 +1498,6 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // label_Stempelungen_Hinweis
-            // 
-            this.label_Stempelungen_Hinweis.AutoSize = true;
-            this.label_Stempelungen_Hinweis.BackColor = System.Drawing.Color.Gold;
-            this.label_Stempelungen_Hinweis.Location = new System.Drawing.Point(29, 50);
-            this.label_Stempelungen_Hinweis.Name = "label_Stempelungen_Hinweis";
-            this.label_Stempelungen_Hinweis.Size = new System.Drawing.Size(358, 13);
-            this.label_Stempelungen_Hinweis.TabIndex = 9;
-            this.label_Stempelungen_Hinweis.Text = "Änderungen zum gewählten Datum sind erst nach Rückrechnung möglich.";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1623,11 +1601,9 @@
         private System.Windows.Forms.ComboBox PersonPicker_Stempelungen;
         private System.Windows.Forms.GroupBox groupBox_Stempelungen_EditierenErstellen;
         private System.Windows.Forms.TextBox textBox_Stempelungen_Auftragsnummer;
-        private System.Windows.Forms.TextBox textBox_Stempelungen_ID;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button_Stempelungen_ueberschreiben;
         private System.Windows.Forms.Button button_Stempelungen_Fehlerpruefung;
         private System.Windows.Forms.ComboBox comboBox_Stempelungen_Art;

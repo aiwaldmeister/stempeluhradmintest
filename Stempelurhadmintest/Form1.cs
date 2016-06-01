@@ -1445,7 +1445,7 @@ namespace Stempelurhadmintest
 
             close_db();
             Stempelungsgrid_Stempelungen.ClearSelection();
-            
+            initEditFormular_Stempelungen();
         }
 
         private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
@@ -1459,9 +1459,13 @@ namespace Stempelurhadmintest
             if(Stempelungsgrid_Stempelungen.SelectedRows.Count == 1)
             {
                 prefillEditFormular_Stempelungen();
+                button_Stempelungen_ueberschreiben.Enabled = true;
+                button_Stempelungen_stornieren.Enabled = true;
             }else
             {
                 initEditFormular_Stempelungen();
+                button_Stempelungen_ueberschreiben.Enabled = false;
+                button_Stempelungen_stornieren.Enabled = false;
             }
 
         }
@@ -1469,10 +1473,19 @@ namespace Stempelurhadmintest
         private void initEditFormular_Stempelungen()
         {
             //Editformular im Stempelungstab leeren
-            textBox_Stempelungen_ID.Text = "";
             comboBox_Stempelungen_Art.SelectedIndex = 0;
             textBox_Stempelungen_Auftragsnummer.Text = "";
             TimePicker_Stempelungen.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            if(Stempelungsgrid_Stempelungen.SelectedRows.Count == 1)
+            {
+                button_Stempelungen_ueberschreiben.Enabled = true;
+                button_Stempelungen_stornieren.Enabled = true;
+            }
+            else
+            {
+                button_Stempelungen_ueberschreiben.Enabled = false;
+                button_Stempelungen_stornieren.Enabled = false;
+            }
 
         }
 
@@ -1480,8 +1493,6 @@ namespace Stempelurhadmintest
         {
             //Editformular im Stempelungstab mit den Werten der markierten Stempelung vorbelegen
             
-            textBox_Stempelungen_ID.Text = Stempelungsgrid_Stempelungen.SelectedCells[0].Value.ToString();
-
             comboBox_Stempelungen_Art.SelectedIndex = 0;
             if(Stempelungsgrid_Stempelungen.SelectedCells[1].Value.ToString() == "ab")
             {
@@ -1509,7 +1520,8 @@ namespace Stempelurhadmintest
         private void sucheStempelfehler()
         {
             //TODO Nach Problemen suchen und diese markieren (eventuell noch mit message erklären)
-            //TODO wurden keine Probleme mehr gefunden, das Stempelfehlerflag der Person auf 0 setzen (eventuell mit message darauf hinweisen)
+            //TODO wurden keine Probleme mehr gefunden, das Stempelfehlerflag der Person auf 0 setzen 
+                //TODO mit message darauf hinweisen
         }
 
         private void button_Stempelungen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
@@ -1699,7 +1711,7 @@ namespace Stempelurhadmintest
             if(fehler==false)
             {
                 //Bestaetigungsdialog vorbereiten
-                string dialogtext = "Die Stempelung mit der ID:" + markierteID + " wirklich stornieren?";
+                string dialogtext = "Die Stempelung mit der ID:" + markierteID + " wirklich mit den eingegebenen Werten überschreiben?";
                 DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
@@ -1737,11 +1749,14 @@ namespace Stempelurhadmintest
 
         private void button_Stempelungen_neueStempelung_Click(object sender, EventArgs e)
         {
-            //TODO es fehlen noch weitere werte für den insert
             bool fehler = false;
 
+            string userid = "";
             string task = "";
             string art = "";
+            string jahr = "";
+            string monat = "";
+            string tag = "";
             string stunde = "";
             string minute = "";
             string sekunde = "";
@@ -1753,9 +1768,19 @@ namespace Stempelurhadmintest
             int dezimal_int = 0;
 
             //nötige Werte ermitteln
+            userid = PersonPicker_Stempelungen.Text;
+            if (userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
 
             task = textBox_Stempelungen_Auftragsnummer.Text;
             art = comboBox_Stempelungen_Art.Text;
+
+            jahr = DatePicker_Stempelungen.Value.Year.ToString("D4");
+            monat = DatePicker_Stempelungen.Value.Month.ToString("D2");
+            tag = DatePicker_Stempelungen.Value.Day.ToString("D2");
+
             stunde_int = TimePicker_Stempelungen.Value.Hour;
             minute_int = TimePicker_Stempelungen.Value.Minute;
             sekunde_int = TimePicker_Stempelungen.Value.Second;
@@ -1765,7 +1790,7 @@ namespace Stempelurhadmintest
             sekunde = sekunde_int.ToString("D2");
             dezimal = dezimal_int.ToString("D2");
 
-            //ggf. Plausibilitätsprüfungen
+            //Plausibilitätsprüfung der Auftragsnummer
             if (task.Length != 6)
             {
                 fehler = true;
