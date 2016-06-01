@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,6 +151,38 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
+            this.groupBox_Verrechnungen_Insert = new System.Windows.Forms.GroupBox();
+            this.groupBox_Verrechnungen_Update = new System.Windows.Forms.GroupBox();
+            this.Auftragspicker_Verrechnung_Insert = new System.Windows.Forms.ComboBox();
+            this.textBox_Verrechnung_Auftragsnummer_Update = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.Verrechnungsgrid_Verrechnungen_Insert = new System.Windows.Forms.DataGridView();
+            this.label39 = new System.Windows.Forms.Label();
+            this.textBox_Verrechnungen_Stunden_Insert = new System.Windows.Forms.TextBox();
+            this.button_Verrechnungen_SatzErstellen = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.DatePicker_Verrechnung_Insert = new System.Windows.Forms.DateTimePicker();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.textBox_Verrechnungen_Mitarbeiter_Insert = new System.Windows.Forms.TextBox();
+            this.textBox_Verrechnungen_Auftragsnummer_Insert = new System.Windows.Forms.TextBox();
+            this.Verrechnungsgrid_Verrechnungen_Update = new System.Windows.Forms.DataGridView();
+            this.label41 = new System.Windows.Forms.Label();
+            this.textBox_Verrechnungen_Stunden_edit = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.DatePicker_Verrechnung_Update = new System.Windows.Forms.DateTimePicker();
+            this.button_Verrechnungen_SatzUeberschreiben = new System.Windows.Forms.Button();
+            this.button_Verrechnungen_SatzStornieren = new System.Windows.Forms.Button();
+            this.button_Verrechnungen_SaetzeSuchen = new System.Windows.Forms.Button();
+            this.Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dat_letzte_Stempelung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gesamtzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -158,6 +190,7 @@
             this.groupBox_Kalender_Voreinstellungen.SuspendLayout();
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
+            this.Verrechnung.SuspendLayout();
             this.Stempelungen.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox_Stempelungen_Zeitkonto.SuspendLayout();
@@ -167,6 +200,10 @@
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox_Verrechnungen_Insert.SuspendLayout();
+            this.groupBox_Verrechnungen_Update.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Update)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -195,14 +232,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -608,6 +645,8 @@
             // 
             // Verrechnung
             // 
+            this.Verrechnung.Controls.Add(this.groupBox_Verrechnungen_Update);
+            this.Verrechnung.Controls.Add(this.groupBox_Verrechnungen_Insert);
             this.Verrechnung.Location = new System.Drawing.Point(4, 22);
             this.Verrechnung.Name = "Verrechnung";
             this.Verrechnung.Size = new System.Drawing.Size(822, 559);
@@ -1498,6 +1537,315 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
+            // groupBox_Verrechnungen_Insert
+            // 
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.DatePicker_Verrechnung_Insert);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.button_Verrechnungen_SatzErstellen);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.Verrechnungsgrid_Verrechnungen_Insert);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.textBox_Verrechnungen_Stunden_Insert);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.textBox_Verrechnungen_Mitarbeiter_Insert);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.textBox_Verrechnungen_Auftragsnummer_Insert);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.label39);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.label40);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.label38);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.label37);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.label21);
+            this.groupBox_Verrechnungen_Insert.Controls.Add(this.Auftragspicker_Verrechnung_Insert);
+            this.groupBox_Verrechnungen_Insert.Location = new System.Drawing.Point(14, 22);
+            this.groupBox_Verrechnungen_Insert.Name = "groupBox_Verrechnungen_Insert";
+            this.groupBox_Verrechnungen_Insert.Size = new System.Drawing.Size(316, 519);
+            this.groupBox_Verrechnungen_Insert.TabIndex = 0;
+            this.groupBox_Verrechnungen_Insert.TabStop = false;
+            this.groupBox_Verrechnungen_Insert.Text = "Unverrechnete Zeiten Verrechnen";
+            // 
+            // groupBox_Verrechnungen_Update
+            // 
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.button_Verrechnungen_SaetzeSuchen);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.DatePicker_Verrechnung_Update);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.button_Verrechnungen_SatzStornieren);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.button_Verrechnungen_SatzUeberschreiben);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.label36);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.textBox_Verrechnung_Auftragsnummer_Update);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.Verrechnungsgrid_Verrechnungen_Update);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.textBox_Verrechnungen_Stunden_edit);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.label41);
+            this.groupBox_Verrechnungen_Update.Controls.Add(this.label42);
+            this.groupBox_Verrechnungen_Update.Location = new System.Drawing.Point(361, 22);
+            this.groupBox_Verrechnungen_Update.Name = "groupBox_Verrechnungen_Update";
+            this.groupBox_Verrechnungen_Update.Size = new System.Drawing.Size(438, 519);
+            this.groupBox_Verrechnungen_Update.TabIndex = 0;
+            this.groupBox_Verrechnungen_Update.TabStop = false;
+            this.groupBox_Verrechnungen_Update.Text = "Verrechnete Zeiten ändern";
+            // 
+            // Auftragspicker_Verrechnung_Insert
+            // 
+            this.Auftragspicker_Verrechnung_Insert.FormattingEnabled = true;
+            this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(123, 28);
+            this.Auftragspicker_Verrechnung_Insert.Name = "Auftragspicker_Verrechnung_Insert";
+            this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(167, 21);
+            this.Auftragspicker_Verrechnung_Insert.TabIndex = 1;
+            // 
+            // textBox_Verrechnung_Auftragsnummer_Update
+            // 
+            this.textBox_Verrechnung_Auftragsnummer_Update.Location = new System.Drawing.Point(121, 28);
+            this.textBox_Verrechnung_Auftragsnummer_Update.Name = "textBox_Verrechnung_Auftragsnummer_Update";
+            this.textBox_Verrechnung_Auftragsnummer_Update.Size = new System.Drawing.Size(114, 20);
+            this.textBox_Verrechnung_Auftragsnummer_Update.TabIndex = 2;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(18, 31);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(86, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "Auftragsnummer:";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(24, 31);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(86, 13);
+            this.label36.TabIndex = 3;
+            this.label36.Text = "Auftragsnummer:";
+            // 
+            // Verrechnungsgrid_Verrechnungen_Insert
+            // 
+            this.Verrechnungsgrid_Verrechnungen_Insert.BackgroundColor = System.Drawing.Color.White;
+            this.Verrechnungsgrid_Verrechnungen_Insert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Verrechnungsgrid_Verrechnungen_Insert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Mitarbeiter,
+            this.Dat_letzte_Stempelung,
+            this.gesamtzeit});
+            this.Verrechnungsgrid_Verrechnungen_Insert.Location = new System.Drawing.Point(42, 70);
+            this.Verrechnungsgrid_Verrechnungen_Insert.Name = "Verrechnungsgrid_Verrechnungen_Insert";
+            this.Verrechnungsgrid_Verrechnungen_Insert.ReadOnly = true;
+            this.Verrechnungsgrid_Verrechnungen_Insert.RowHeadersVisible = false;
+            this.Verrechnungsgrid_Verrechnungen_Insert.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Verrechnungsgrid_Verrechnungen_Insert.Size = new System.Drawing.Size(228, 192);
+            this.Verrechnungsgrid_Verrechnungen_Insert.TabIndex = 4;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(33, 421);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(120, 13);
+            this.label39.TabIndex = 3;
+            this.label39.Text = "Verrechenbare Stunden";
+            // 
+            // textBox_Verrechnungen_Stunden_Insert
+            // 
+            this.textBox_Verrechnungen_Stunden_Insert.Location = new System.Drawing.Point(179, 418);
+            this.textBox_Verrechnungen_Stunden_Insert.Name = "textBox_Verrechnungen_Stunden_Insert";
+            this.textBox_Verrechnungen_Stunden_Insert.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Verrechnungen_Stunden_Insert.TabIndex = 2;
+            // 
+            // button_Verrechnungen_SatzErstellen
+            // 
+            this.button_Verrechnungen_SatzErstellen.Location = new System.Drawing.Point(36, 463);
+            this.button_Verrechnungen_SatzErstellen.Name = "button_Verrechnungen_SatzErstellen";
+            this.button_Verrechnungen_SatzErstellen.Size = new System.Drawing.Size(254, 35);
+            this.button_Verrechnungen_SatzErstellen.TabIndex = 5;
+            this.button_Verrechnungen_SatzErstellen.Text = "Verrechnungssatz erstellen";
+            this.button_Verrechnungen_SatzErstellen.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(33, 382);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(102, 13);
+            this.label40.TabIndex = 3;
+            this.label40.Text = "Verrechnungsdatum";
+            // 
+            // DatePicker_Verrechnung_Insert
+            // 
+            this.DatePicker_Verrechnung_Insert.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePicker_Verrechnung_Insert.Location = new System.Drawing.Point(179, 376);
+            this.DatePicker_Verrechnung_Insert.Name = "DatePicker_Verrechnung_Insert";
+            this.DatePicker_Verrechnung_Insert.Size = new System.Drawing.Size(100, 20);
+            this.DatePicker_Verrechnung_Insert.TabIndex = 6;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(33, 335);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(93, 13);
+            this.label38.TabIndex = 3;
+            this.label38.Text = "Mitarbeiternummer";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(33, 292);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(86, 13);
+            this.label37.TabIndex = 3;
+            this.label37.Text = "Auftragsnummer:";
+            // 
+            // textBox_Verrechnungen_Mitarbeiter_Insert
+            // 
+            this.textBox_Verrechnungen_Mitarbeiter_Insert.Location = new System.Drawing.Point(179, 332);
+            this.textBox_Verrechnungen_Mitarbeiter_Insert.Name = "textBox_Verrechnungen_Mitarbeiter_Insert";
+            this.textBox_Verrechnungen_Mitarbeiter_Insert.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Verrechnungen_Mitarbeiter_Insert.TabIndex = 2;
+            // 
+            // textBox_Verrechnungen_Auftragsnummer_Insert
+            // 
+            this.textBox_Verrechnungen_Auftragsnummer_Insert.Location = new System.Drawing.Point(179, 289);
+            this.textBox_Verrechnungen_Auftragsnummer_Insert.Name = "textBox_Verrechnungen_Auftragsnummer_Insert";
+            this.textBox_Verrechnungen_Auftragsnummer_Insert.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Verrechnungen_Auftragsnummer_Insert.TabIndex = 2;
+            // 
+            // Verrechnungsgrid_Verrechnungen_Update
+            // 
+            this.Verrechnungsgrid_Verrechnungen_Update.BackgroundColor = System.Drawing.Color.White;
+            this.Verrechnungsgrid_Verrechnungen_Update.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Verrechnungsgrid_Verrechnungen_Update.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.Verrechnungsdatum,
+            this.dataGridViewTextBoxColumn3,
+            this.Verrechnet});
+            this.Verrechnungsgrid_Verrechnungen_Update.Location = new System.Drawing.Point(27, 70);
+            this.Verrechnungsgrid_Verrechnungen_Update.Name = "Verrechnungsgrid_Verrechnungen_Update";
+            this.Verrechnungsgrid_Verrechnungen_Update.ReadOnly = true;
+            this.Verrechnungsgrid_Verrechnungen_Update.RowHeadersVisible = false;
+            this.Verrechnungsgrid_Verrechnungen_Update.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(388, 192);
+            this.Verrechnungsgrid_Verrechnungen_Update.TabIndex = 4;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(79, 335);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(123, 13);
+            this.label41.TabIndex = 3;
+            this.label41.Text = "Verrechenbare Stunden:";
+            // 
+            // textBox_Verrechnungen_Stunden_edit
+            // 
+            this.textBox_Verrechnungen_Stunden_edit.Location = new System.Drawing.Point(257, 332);
+            this.textBox_Verrechnungen_Stunden_edit.Name = "textBox_Verrechnungen_Stunden_edit";
+            this.textBox_Verrechnungen_Stunden_edit.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Verrechnungen_Stunden_edit.TabIndex = 2;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(79, 292);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(105, 13);
+            this.label42.TabIndex = 3;
+            this.label42.Text = "Verrechnungsdatum:";
+            // 
+            // DatePicker_Verrechnung_Update
+            // 
+            this.DatePicker_Verrechnung_Update.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePicker_Verrechnung_Update.Location = new System.Drawing.Point(257, 286);
+            this.DatePicker_Verrechnung_Update.Name = "DatePicker_Verrechnung_Update";
+            this.DatePicker_Verrechnung_Update.Size = new System.Drawing.Size(100, 20);
+            this.DatePicker_Verrechnung_Update.TabIndex = 6;
+            // 
+            // button_Verrechnungen_SatzUeberschreiben
+            // 
+            this.button_Verrechnungen_SatzUeberschreiben.Location = new System.Drawing.Point(82, 387);
+            this.button_Verrechnungen_SatzUeberschreiben.Name = "button_Verrechnungen_SatzUeberschreiben";
+            this.button_Verrechnungen_SatzUeberschreiben.Size = new System.Drawing.Size(275, 35);
+            this.button_Verrechnungen_SatzUeberschreiben.TabIndex = 5;
+            this.button_Verrechnungen_SatzUeberschreiben.Text = "Verrechnungssatz überschreiben";
+            this.button_Verrechnungen_SatzUeberschreiben.UseVisualStyleBackColor = true;
+            // 
+            // button_Verrechnungen_SatzStornieren
+            // 
+            this.button_Verrechnungen_SatzStornieren.Location = new System.Drawing.Point(82, 463);
+            this.button_Verrechnungen_SatzStornieren.Name = "button_Verrechnungen_SatzStornieren";
+            this.button_Verrechnungen_SatzStornieren.Size = new System.Drawing.Size(275, 35);
+            this.button_Verrechnungen_SatzStornieren.TabIndex = 5;
+            this.button_Verrechnungen_SatzStornieren.Text = "Verrechnungssatz stornieren";
+            this.button_Verrechnungen_SatzStornieren.UseVisualStyleBackColor = true;
+            // 
+            // button_Verrechnungen_SaetzeSuchen
+            // 
+            this.button_Verrechnungen_SaetzeSuchen.Location = new System.Drawing.Point(257, 25);
+            this.button_Verrechnungen_SaetzeSuchen.Name = "button_Verrechnungen_SaetzeSuchen";
+            this.button_Verrechnungen_SaetzeSuchen.Size = new System.Drawing.Size(158, 25);
+            this.button_Verrechnungen_SaetzeSuchen.TabIndex = 7;
+            this.button_Verrechnungen_SaetzeSuchen.Text = "Verrechnungssätze suchen";
+            this.button_Verrechnungen_SaetzeSuchen.UseVisualStyleBackColor = true;
+            // 
+            // Mitarbeiter
+            // 
+            this.Mitarbeiter.HeaderText = "Mitarbeiter";
+            this.Mitarbeiter.Name = "Mitarbeiter";
+            this.Mitarbeiter.ReadOnly = true;
+            this.Mitarbeiter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Mitarbeiter.Width = 65;
+            // 
+            // Dat_letzte_Stempelung
+            // 
+            this.Dat_letzte_Stempelung.HeaderText = "letzt. Stempel";
+            this.Dat_letzte_Stempelung.Name = "Dat_letzte_Stempelung";
+            this.Dat_letzte_Stempelung.ReadOnly = true;
+            this.Dat_letzte_Stempelung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dat_letzte_Stempelung.Width = 80;
+            // 
+            // gesamtzeit
+            // 
+            this.gesamtzeit.HeaderText = "Gesamtzeit";
+            this.gesamtzeit.Name = "gesamtzeit";
+            this.gesamtzeit.ReadOnly = true;
+            this.gesamtzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gesamtzeit.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarbeiter";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "letzt. Stempel";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 80;
+            // 
+            // Verrechnungsdatum
+            // 
+            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
+            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
+            this.Verrechnungsdatum.ReadOnly = true;
+            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Verrechnungsdatum.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Gesamtzeit";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // Verrechnet
+            // 
+            this.Verrechnet.HeaderText = "Verrechnet";
+            this.Verrechnet.Name = "Verrechnet";
+            this.Verrechnet.ReadOnly = true;
+            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnet.Width = 80;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1516,6 +1864,7 @@
             this.groupBox_Kalender_Voreinstellungen.ResumeLayout(false);
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
+            this.Verrechnung.ResumeLayout(false);
             this.Stempelungen.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox_Stempelungen_Zeitkonto.ResumeLayout(false);
@@ -1530,6 +1879,12 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox_Verrechnungen_Insert.ResumeLayout(false);
+            this.groupBox_Verrechnungen_Insert.PerformLayout();
+            this.groupBox_Verrechnungen_Update.ResumeLayout(false);
+            this.groupBox_Verrechnungen_Update.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Update)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1658,6 +2013,38 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label_Stempelungen_Zeitkonto_Berechnungsstand;
         private System.Windows.Forms.Label label_Stempelungen_Hinweis;
+        private System.Windows.Forms.GroupBox groupBox_Verrechnungen_Update;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox textBox_Verrechnung_Auftragsnummer_Update;
+        private System.Windows.Forms.GroupBox groupBox_Verrechnungen_Insert;
+        private System.Windows.Forms.Button button_Verrechnungen_SatzErstellen;
+        private System.Windows.Forms.DataGridView Verrechnungsgrid_Verrechnungen_Insert;
+        private System.Windows.Forms.TextBox textBox_Verrechnungen_Stunden_Insert;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox Auftragspicker_Verrechnung_Insert;
+        private System.Windows.Forms.DateTimePicker DatePicker_Verrechnung_Update;
+        private System.Windows.Forms.Button button_Verrechnungen_SatzStornieren;
+        private System.Windows.Forms.Button button_Verrechnungen_SatzUeberschreiben;
+        private System.Windows.Forms.DataGridView Verrechnungsgrid_Verrechnungen_Update;
+        private System.Windows.Forms.TextBox textBox_Verrechnungen_Stunden_edit;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.DateTimePicker DatePicker_Verrechnung_Insert;
+        private System.Windows.Forms.TextBox textBox_Verrechnungen_Mitarbeiter_Insert;
+        private System.Windows.Forms.TextBox textBox_Verrechnungen_Auftragsnummer_Insert;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button button_Verrechnungen_SaetzeSuchen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnungsdatum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mitarbeiter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dat_letzte_Stempelung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gesamtzeit;
     }
 }
 
