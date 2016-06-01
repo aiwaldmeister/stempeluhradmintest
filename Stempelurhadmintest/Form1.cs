@@ -1660,20 +1660,164 @@ namespace Stempelurhadmintest
 
         private void button_Stempelungen_ueberschreiben_Click(object sender, EventArgs e)
         {
-            //TODO nötige Werte ermitteln
-            //TODO ggf. Plausibilitätsprüfungen
-            //TODO Bestätigungsdialog
-                //TODO Update auf Datensatz
-                //TODO Stempelungsgrid refreshen
+            bool fehler = false;
+
+            string markierteID = "";
+            string task = "";
+            string art = "";
+            string stunde = "";
+            string minute = "";
+            string sekunde = "";
+            string dezimal = "";
+
+            int stunde_int = 0;
+            int minute_int = 0;
+            int sekunde_int = 0;
+            int dezimal_int = 0;
+
+            //nötige Werte ermitteln
+            markierteID = Stempelungsgrid_Stempelungen.SelectedCells[0].Value.ToString();
+            task = textBox_Stempelungen_Auftragsnummer.Text;
+            art = comboBox_Stempelungen_Art.Text;
+            stunde_int = TimePicker_Stempelungen.Value.Hour;
+            minute_int = TimePicker_Stempelungen.Value.Minute;
+            sekunde_int = TimePicker_Stempelungen.Value.Second;
+            dezimal_int = ((minute_int * 60) + sekunde_int) / 36;
+            stunde = stunde_int.ToString("D2");
+            minute = minute_int.ToString("D2");
+            sekunde = sekunde_int.ToString("D2");
+            dezimal = dezimal_int.ToString("D2");
+
+            //ggf. Plausibilitätsprüfungen
+            if(task.Length != 6)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! die Auftragsnummer muss eine 6-Stellige Nummer unter 999000 sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+            if(fehler==false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Die Stempelung mit der ID:" + markierteID + " wirklich stornieren?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Stempelung stornieren
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE stamps SET task=@task, art=@art, stunde=@stunde, minute=@minute, sekunde=@sekunde, dezimal=@dezimal WHERE stampid = @stampid";
+
+                    comm.Parameters.Add("@stampid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
+                    comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = task;
+                    comm.Parameters.Add("@art", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = art;
+                    comm.Parameters.Add("@stunde", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = stunde;
+                    comm.Parameters.Add("@minute", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = minute;
+                    comm.Parameters.Add("@sekunde", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = sekunde;
+                    comm.Parameters.Add("@dezimal", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = dezimal;
+
+                    log("Ändere Stempelung mit ID:" + markierteID + "..." +
+                        "\r\n task:'" + task + "' " +
+                        "\r\n art:'" + art + "' " +
+                        "\r\n stunde:'" + stunde + "' " +
+                        "\r\n minute:'" + minute + "' " +
+                        "\r\n sekunde:'" + sekunde + "' " +
+                        "\r\n dezimal:'" + dezimal + "' " +
+                        "' \r\n");
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                }
+                refreshStempelungsgrid_Stempelungen();
+            }
         }
 
         private void button_Stempelungen_neueStempelung_Click(object sender, EventArgs e)
         {
-            //TODO nötige Werte ermitteln
-            //TODO ggf. Plausibilitätsprüfungen
-            //TODO Bestätigungsdialog
-                //TODO Insert auf Datenbank
-                //TODO Stempelungsgrid refreshen
+            //TODO es fehlen noch weitere werte für den insert
+            bool fehler = false;
+
+            string task = "";
+            string art = "";
+            string stunde = "";
+            string minute = "";
+            string sekunde = "";
+            string dezimal = "";
+
+            int stunde_int = 0;
+            int minute_int = 0;
+            int sekunde_int = 0;
+            int dezimal_int = 0;
+
+            //nötige Werte ermitteln
+
+            task = textBox_Stempelungen_Auftragsnummer.Text;
+            art = comboBox_Stempelungen_Art.Text;
+            stunde_int = TimePicker_Stempelungen.Value.Hour;
+            minute_int = TimePicker_Stempelungen.Value.Minute;
+            sekunde_int = TimePicker_Stempelungen.Value.Second;
+            dezimal_int = ((minute_int * 60) + sekunde_int) / 36;
+            stunde = stunde_int.ToString("D2");
+            minute = minute_int.ToString("D2");
+            sekunde = sekunde_int.ToString("D2");
+            dezimal = dezimal_int.ToString("D2");
+
+            //ggf. Plausibilitätsprüfungen
+            if (task.Length != 6)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! die Auftragsnummer muss eine 6-Stellige Nummer unter 999000 sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+            if(fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Eine neue Stempelung mit diesen Werten erstellen?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Stempelung stornieren
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "INSERT INTO stamps (userid,task,art,jahr,monat,tag,stunde,minute,sekunde,dezimal,quelle,storniert) "+
+                                        "VALUES(@userid,@task,@art,@jahr,@monat,@tag,@stunde,@minute,@sekunde,@dezimal,'admin',0)";
+
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                    comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = task;
+                    comm.Parameters.Add("@art", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = art;
+                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = jahr;
+                    comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = monat;
+                    comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = tag;
+                    comm.Parameters.Add("@stunde", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = stunde;
+                    comm.Parameters.Add("@minute", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = minute;
+                    comm.Parameters.Add("@sekunde", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = sekunde;
+                    comm.Parameters.Add("@dezimal", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = dezimal;
+
+                    
+                    log("Erstelle neue Stempelung für user " + userid + "..." +
+                        "\r\n task:'" + task + "' " +
+                        "\r\n art:'" + art + "' " +
+                        "\r\n jahr:'" + jahr + "' " +
+                        "\r\n monat:'" + monat + "' " +
+                        "\r\n tag:'" + tag + "' " +
+                        "\r\n stunde:'" + stunde + "' " +
+                        "\r\n minute:'" + minute + "' " +
+                        "\r\n sekunde:'" + sekunde + "' " +
+                        "\r\n dezimal:'" + dezimal + "' " +
+                        "' \r\n");
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                }
+                refreshStempelungsgrid_Stempelungen();
+            }
         }
 
         private double ermittleIstZeit(string usercode, string berechnungsjahr, string berechnungsmonat, string berechnungstag)
