@@ -765,6 +765,14 @@ namespace Stempelurhadmintest
                     refreshAuftragsPicker_Verrechnung_Insert();
                 }
             }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Auswertungen"])
+            {
+                if (auswertungstab_initialisiert_global == false)
+                {
+                    //TODO auswertungstab initialisieren
+                }
+            }
         }
 
         private void refreshAuftragsPicker_Verrechnung_Insert()
@@ -1402,6 +1410,7 @@ namespace Stempelurhadmintest
             {//gewähltes Datum ist gleich oder früher als der Zeitkonto-Berechnungsstand -> Stempelungen dürfen nicht editiert werden
                 groupBox_Stempelungen_EditierenErstellen.Enabled = false;
                 button_Stempelungen_ZeitkontoRueckrechnen.Enabled = true;
+                label_Stempelungen_Hinweis.Text = "Stempelungen vom " + date_selected.ToShortDateString() + " sind erst nach Rückrechnung veränderbar.";
                 label_Stempelungen_Hinweis.Visible = true;
             }
   
