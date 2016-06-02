@@ -1559,12 +1559,7 @@ namespace Stempelurhadmintest
             TimePicker_Stempelungen.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, second);
         }
 
-        private void button_Stempelungen_Fehlerpruefung_Click(object sender, EventArgs e)
-        {
-            sucheStempelfehler();
-        }
-
-        private void sucheStempelfehler()
+        private bool sucheStempelfehler()
         {
             bool Stempelfehler = false;
             string thisrow_art = "";
@@ -1640,6 +1635,8 @@ namespace Stempelurhadmintest
                 }
 
             }
+
+            return Stempelfehler;
 
         }
 
@@ -2232,6 +2229,28 @@ namespace Stempelurhadmintest
         }
 
         private void Auftragspicker_Verrechnung_Insert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO ausgewählte Auftragsnummer in Auftragsnummern-Eingabefeld übernehmen
+            textBox_Verrechnung_Auftragsnummer.Text = Auftragspicker_Verrechnung_Insert.Text;
+            //TODO das Changed-Event des Auswahlfelds triggern
+        }
+
+        private void textBox_Verrechnung_Auftragsnummer_TextChanged(object sender, EventArgs e)
+        {
+            //TODO linke seite refreshen
+            refreshInsertFormular_Verrechnung();
+
+            //TODO rechte seite refreshen
+            refreshUpdateFormular_Verrechnung();
+
+        }
+
+        private void refreshUpdateFormular_Verrechnung()
+        {
+           //TODO
+        }
+
+        private void refreshInsertFormular_Verrechnung()
         {
             //TODO für den gewählten Auftrag je Mitarbeiter die summe der abstempelungen und anstempelungen ermitteln 
                 //select auf datenbank mit einer ergebniszeile je mitarbeiter der stempelungen auf dem auftrag hat
