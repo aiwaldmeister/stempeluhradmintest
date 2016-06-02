@@ -1392,7 +1392,7 @@ namespace Stempelurhadmintest
             //select ausführen
             open_db();
             comm.Parameters.Clear();
-            comm.CommandText = "SELECT * FROM stamps WHERE userid=@userid AND jahr=@jahr AND monat=@monat AND tag=@tag AND storniert=0 ORDER BY stunde ASC, minute ASC, sekunde ASC, art DESC";
+            comm.CommandText = "SELECT * FROM stamps WHERE userid=@userid AND jahr=@jahr AND monat=@monat AND tag=@tag AND storniert=0 ORDER BY stunde ASC, minute ASC, sekunde ASC, art ASC";
 
             comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = jahr;
             comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = monat;
