@@ -427,7 +427,7 @@ namespace Stempelurhadmintest
                 actzuordnung = PersonPicker_Kalender.Text;
             }
 
-            if(actzuordnung != "Allgemein")
+            if(actzuordnung.Length >= 6 && actzuordnung != "Allgemein")
             {
                 actzuordnung = actzuordnung.Substring(0, 6);
             }
@@ -757,6 +757,52 @@ namespace Stempelurhadmintest
                     stempelungstab_initialisiert_global = true;
                 }
             }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Verrechnung"])
+            {
+                if (verrechnungstab_initialisiert_global == false)
+                {
+                    refreshAuftragsPicker_Verrechnung_Insert();
+                }
+            }
+        }
+
+        private void refreshAuftragsPicker_Verrechnung_Insert()
+        {
+            string thistaskid = "";
+
+            Auftragspicker_Verrechnung_Insert.Items.Clear();
+
+            open_db();
+            comm.Parameters.Clear();
+
+            //Das Ergebnis sollte alle Auftragsnummern enthalten, zu denen es für mindestens eine Person zwar Stempelungen aber keine Verrechnungen gibt.
+                //Dafür ist besonders wichtig, dass die bedingung und auch die gruppierung nach task UND userid gemacht werden
+
+            comm.CommandText = "SELECT DISTINCT a.task from stamps a where a.storniert = 0 AND NOT EXISTS (SELECT NULL"+
+                                " FROM verrechnung b WHERE a.task = b.auftrag AND a.userid = b.person AND b.storniert = 0)"+ 
+                                " GROUP BY a.task, a.userid ORDER BY a.task";
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer Auftragsnummer
+                while (Reader.Read())
+                {
+                   thistaskid = Reader["task"] + "";
+
+                    Auftragspicker_Verrechnung_Insert.Items.Add(thistaskid);
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+            PersonPicker_Kalender.SelectedIndex = 0;
         }
 
         private void PersonPicker_Personen_SelectedIndexChanged(object sender, EventArgs e)
@@ -2183,6 +2229,14 @@ namespace Stempelurhadmintest
             log("Ermittelte Sollzeit für " + berechnungstag + "." + berechnungsmonat + "." + berechnungsjahr + ": " + sollzeit + " Std. (" + sollzeitquelle + ")");
             return sollzeit;
 
+        }
+
+        private void Auftragspicker_Verrechnung_Insert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO für den gewählten Auftrag je Mitarbeiter die summe der abstempelungen und anstempelungen ermitteln 
+                //select auf datenbank mit einer ergebniszeile je mitarbeiter der stempelungen auf dem auftrag hat
+            //TODO aus den summen, die summe der gestempelten zeiten berechnen
+            //TODO Grid füllen
         }
     }
 }
