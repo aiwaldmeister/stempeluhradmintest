@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,8 +92,8 @@
             this.textBox_Verrechnung_Auftragsnummer = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.Stempelungen = new System.Windows.Forms.TabPage();
-            this.button_Kalender_Tagzurueck = new System.Windows.Forms.Button();
-            this.button_Kalender_Tagvorwaerts = new System.Windows.Forms.Button();
+            this.button_Stempelungen_DatePickerTagzurueck = new System.Windows.Forms.Button();
+            this.button_Stempelungen_DatePickerTagvorwaerts = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
             this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
             this.label_Stempelungen_Hinweis = new System.Windows.Forms.Label();
@@ -231,14 +231,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -928,8 +928,8 @@
             // 
             // Stempelungen
             // 
-            this.Stempelungen.Controls.Add(this.button_Kalender_Tagzurueck);
-            this.Stempelungen.Controls.Add(this.button_Kalender_Tagvorwaerts);
+            this.Stempelungen.Controls.Add(this.button_Stempelungen_DatePickerTagzurueck);
+            this.Stempelungen.Controls.Add(this.button_Stempelungen_DatePickerTagvorwaerts);
             this.Stempelungen.Controls.Add(this.groupBox_Stempelungen_Zeitkonto);
             this.Stempelungen.Controls.Add(this.groupBox_Stempelungen_EditierenErstellen);
             this.Stempelungen.Controls.Add(this.Stempelungsgrid_Stempelungen);
@@ -943,27 +943,27 @@
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
             // 
-            // button_Kalender_Tagzurueck
+            // button_Stempelungen_DatePickerTagzurueck
             // 
-            this.button_Kalender_Tagzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Tagzurueck.Location = new System.Drawing.Point(26, 60);
-            this.button_Kalender_Tagzurueck.Name = "button_Kalender_Tagzurueck";
-            this.button_Kalender_Tagzurueck.Size = new System.Drawing.Size(26, 26);
-            this.button_Kalender_Tagzurueck.TabIndex = 12;
-            this.button_Kalender_Tagzurueck.Text = "<";
-            this.button_Kalender_Tagzurueck.UseVisualStyleBackColor = true;
-            this.button_Kalender_Tagzurueck.Click += new System.EventHandler(this.button_Stempelungen_Tagzurueck_Click);
+            this.button_Stempelungen_DatePickerTagzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Stempelungen_DatePickerTagzurueck.Location = new System.Drawing.Point(26, 60);
+            this.button_Stempelungen_DatePickerTagzurueck.Name = "button_Stempelungen_DatePickerTagzurueck";
+            this.button_Stempelungen_DatePickerTagzurueck.Size = new System.Drawing.Size(26, 26);
+            this.button_Stempelungen_DatePickerTagzurueck.TabIndex = 12;
+            this.button_Stempelungen_DatePickerTagzurueck.Text = "<";
+            this.button_Stempelungen_DatePickerTagzurueck.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_DatePickerTagzurueck.Click += new System.EventHandler(this.button_Stempelungen_Tagzurueck_Click);
             // 
-            // button_Kalender_Tagvorwaerts
+            // button_Stempelungen_DatePickerTagvorwaerts
             // 
-            this.button_Kalender_Tagvorwaerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Tagvorwaerts.Location = new System.Drawing.Point(325, 60);
-            this.button_Kalender_Tagvorwaerts.Name = "button_Kalender_Tagvorwaerts";
-            this.button_Kalender_Tagvorwaerts.Size = new System.Drawing.Size(25, 26);
-            this.button_Kalender_Tagvorwaerts.TabIndex = 12;
-            this.button_Kalender_Tagvorwaerts.Text = ">";
-            this.button_Kalender_Tagvorwaerts.UseVisualStyleBackColor = true;
-            this.button_Kalender_Tagvorwaerts.Click += new System.EventHandler(this.button_Stempelungen_Tagvorwaerts_Click);
+            this.button_Stempelungen_DatePickerTagvorwaerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Stempelungen_DatePickerTagvorwaerts.Location = new System.Drawing.Point(325, 60);
+            this.button_Stempelungen_DatePickerTagvorwaerts.Name = "button_Stempelungen_DatePickerTagvorwaerts";
+            this.button_Stempelungen_DatePickerTagvorwaerts.Size = new System.Drawing.Size(25, 26);
+            this.button_Stempelungen_DatePickerTagvorwaerts.TabIndex = 12;
+            this.button_Stempelungen_DatePickerTagvorwaerts.Text = ">";
+            this.button_Stempelungen_DatePickerTagvorwaerts.UseVisualStyleBackColor = true;
+            this.button_Stempelungen_DatePickerTagvorwaerts.Click += new System.EventHandler(this.button_Stempelungen_Tagvorwaerts_Click);
             // 
             // groupBox_Stempelungen_Zeitkonto
             // 
@@ -2105,8 +2105,8 @@
         private System.Windows.Forms.TextBox textBox_Verrechnung_StundenGesamt;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox PersonPicker_Kalender;
-        private System.Windows.Forms.Button button_Kalender_Tagzurueck;
-        private System.Windows.Forms.Button button_Kalender_Tagvorwaerts;
+        private System.Windows.Forms.Button button_Stempelungen_DatePickerTagzurueck;
+        private System.Windows.Forms.Button button_Stempelungen_DatePickerTagvorwaerts;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mitarbeiter;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dat_letzte_Stempelung;

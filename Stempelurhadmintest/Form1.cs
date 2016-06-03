@@ -149,7 +149,9 @@ namespace Stempelurhadmintest
             {
                 if (kalendertab_initialisiert_global == false)
                 {
+                    refreshKalendergrid();
                     refreshPersonPicker_Kalender();
+                    refreshEreignisgrid_Kalender();
                     kalendertab_initialisiert_global = true;
                 }
             }
@@ -1178,6 +1180,7 @@ namespace Stempelurhadmintest
 
         private void Stempelungsgrid_Stempelungen_SelectionChanged(object sender, EventArgs e)
         {
+            //Prüfen ob eine Zeile markiert ist und wenn ja das Formular fuellen
             if (Stempelungsgrid_Stempelungen.SelectedRows.Count == 1)
             {
                 prefillEditFormular_Stempelungen();
@@ -1642,13 +1645,13 @@ namespace Stempelurhadmintest
 
         private void button_Stempelungen_Tagzurueck_Click(object sender, EventArgs e)
         {
-            //TODO Datepicker auf einen Tag früher setzen
+            //Datepicker auf einen Tag früher setzen
             DatePicker_Stempelungen.Value = DatePicker_Stempelungen.Value.AddDays(-1);
         }
 
         private void button_Stempelungen_Tagvorwaerts_Click(object sender, EventArgs e)
         {
-            //TODO Datepicker auf einen Tag später setzen
+            //Datepicker auf einen Tag später setzen
             DatePicker_Stempelungen.Value = DatePicker_Stempelungen.Value.AddDays(1);
         }
 
@@ -1695,9 +1698,9 @@ namespace Stempelurhadmintest
 
         private void Auftragspicker_Verrechnung_Insert_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO ausgewählte Auftragsnummer in Auftragsnummern-Eingabefeld übernehmen
+            //ausgewählte Auftragsnummer in Auftragsnummern-Eingabefeld übernehmen
             textBox_Verrechnung_Auftragsnummer.Text = Auftragspicker_Verrechnung_Insert.Text;
-            //TODO das Changed-Event des Auswahlfelds triggern
+            //dadurch triggert auch textBox_Verrechnung_Auftragsnummer_TextChanged()
         }
 
         private void textBox_Verrechnung_Auftragsnummer_TextChanged(object sender, EventArgs e)
@@ -1830,7 +1833,26 @@ namespace Stempelurhadmintest
 
         private void Verrechnungsgrid_Verrechnungen_Insert_SelectionChanged(object sender, EventArgs e)
         {
-            //TODO prüfen ob eine Zeile markiert ist und wenn ja das insert-Formular füllen
+            //TODO prüfen ob eine Zeile markiert ist und wenn ja das insert-Formular fuellen
+            if (Verrechnungsgrid_Verrechnungen_Insert.SelectedRows.Count == 1)
+            {
+                prefillInsertFormular_Verrechnung();
+
+            }
+            else
+            {
+                clearInsertFormular_Verrechnung();
+            }
+        }
+
+        private void clearInsertFormular_Verrechnung()
+        {
+            //TODO
+        }
+
+        private void prefillInsertFormular_Verrechnung()
+        {
+            //TODO
         }
 
 
