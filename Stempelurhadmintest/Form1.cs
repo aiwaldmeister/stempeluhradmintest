@@ -1010,45 +1010,6 @@ namespace Stempelurhadmintest
             PersonPicker_Stempelungen.SelectedIndex = 0;
         }
 
-        private void refreshPersonPicker_Personen()
-        {
-            PersonPicker_Personen.Items.Clear();
-
-            //Personen der Personentabelle dem PersonPicker hinzufügen
-            string thisperson_userid = "";
-            string thisperson_name = "";
-            string thisperson_vorname = "";
-
-            open_db();
-            comm.Parameters.Clear();
-            comm.CommandText = "SELECT userid, name, vorname FROM user ORDER BY userid";
-
-            try
-            {
-                //log("SQL:" + comm.CommandText);
-                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
-
-                //jeder Schleifendurchlauf entspricht einer gefundenen Person
-                while (Reader.Read())
-                {
-                    thisperson_userid = Reader["userid"] + "";
-                    thisperson_name = Reader["name"] + "";
-                    thisperson_vorname = Reader["vorname"] + "";
-
-                    PersonPicker_Personen.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
-                    
-
-                }
-                Reader.Close();
-            }
-            catch (Exception ex) { log(ex.Message); }
-
-
-            close_db();
-
-            PersonPicker_Personen.SelectedIndex = 0;
-        }
-
         private void PersonPicker_Stempelungen_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshStempelungsgrid_Stempelungen();
@@ -1206,7 +1167,7 @@ namespace Stempelurhadmintest
             close_db();
             Stempelungsgrid_Stempelungen.ClearSelection();
             initEditFormular_Stempelungen();
-            sucheStempelfehler();
+            sucheStempelfehler_Stempelungen();
         }
 
         private void DatePicker_Stempelungen_ValueChanged(object sender, EventArgs e)
@@ -1274,8 +1235,9 @@ namespace Stempelurhadmintest
             TimePicker_Stempelungen.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, second);
         }
 
-        private bool sucheStempelfehler()
-        {
+        private bool sucheStempelfehler_Stempelungen()
+        {//durchsucht das Stempelungsgrid nach offensichtlichen Stempelfehlern
+
             bool Stempelfehler = false;
             string thisrow_art = "";
             string lastrow_art = "";
@@ -1292,7 +1254,6 @@ namespace Stempelurhadmintest
             if (rowcount > 0)
             {   //Es gibt Stempelungen die es sich zu prüfen lohnt (würde sonst keinen Sinn machen und Fehler verursachen)
 
-
                 //Test 1: Ist die erste Stempelung keine anstempelung?
                 if (Stempelungsgrid_Stempelungen.Rows[0].Cells[1].Value.ToString() != "an")
                 {
@@ -1300,7 +1261,6 @@ namespace Stempelurhadmintest
                     Stempelungsgrid_Stempelungen.Rows[0].Cells[1].Style.BackColor = Color.Orange;
                     Stempelungsgrid_Stempelungen.Rows[0].Cells[1].ToolTipText = Stempelungsgrid_Stempelungen.Rows[0].Cells[1].ToolTipText + "Erste Stempelung des Tages sollte eine Anstempelung sein!\r\n";
                 }
-
 
                 lastrow_art = "";
                 lastrow_task = "";
@@ -1676,6 +1636,18 @@ namespace Stempelurhadmintest
             }
         }
 
+        private void button_Stempelungen_Tagzurueck_Click(object sender, EventArgs e)
+        {
+            //TODO Datepicker auf einen Tag früher setzen
+            DatePicker_Stempelungen.Value = DatePicker_Stempelungen.Value.AddDays(-1);
+        }
+
+        private void button_Stempelungen_Tagvorwaerts_Click(object sender, EventArgs e)
+        {
+            //TODO Datepicker auf einen Tag später setzen
+            DatePicker_Stempelungen.Value = DatePicker_Stempelungen.Value.AddDays(1);
+        }
+
 
         ///////////Verrechnung-Tab/////////////////////////////////////////////
 
@@ -1725,30 +1697,164 @@ namespace Stempelurhadmintest
         }
 
         private void textBox_Verrechnung_Auftragsnummer_TextChanged(object sender, EventArgs e)
-        {
-            //TODO linke seite refreshen
-            refreshInsertFormular_Verrechnung();
+        {   
+            if(textBox_Verrechnung_Auftragsnummer.Text.Length == 6)
+            {
+                //nach Problemen mit den Stempelungen des Auftrags suchen
+                if(sucheStempelfehler_Verrechnung() == true)
+                {
+                    //TODO gut sichtbares Warn-Label anzeigen mit Hinweis dass die angezeigten Zeiten vermutlich nicht stimmen.
+                }
 
-            //TODO rechte seite refreshen
-            refreshUpdateFormular_Verrechnung();
+                //linke seite refreshen
+                refreshInsertFormular_Verrechnung();
+
+                //rechte seite refreshen
+                refreshUpdateFormular_Verrechnung();
+            }
+        }
+
+        private bool sucheStempelfehler_Verrechnung()
+        {
+            bool fehler = false;
+            //TODO nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
+            //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
+            //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
+            // -> ausgeben an welchem tag bei welcher person das Problem besteht
+
+            return fehler;
 
         }
 
-        private void refreshUpdateFormular_Verrechnung()
+        private void refreshUpdateFormular_Verrechnung()//rechte seite
         {
             //TODO
         }
 
-        private void refreshInsertFormular_Verrechnung()
+        private void refreshInsertFormular_Verrechnung()//linke seite
         {
-            //TODO für den gewählten Auftrag je Mitarbeiter die summe der abstempelungen und anstempelungen ermitteln 
-            //select auf datenbank mit einer ergebniszeile je mitarbeiter der stempelungen auf dem auftrag hat
-            //TODO aus den summen, die summe der gestempelten zeiten berechnen
-            //TODO Grid füllen
+            string this_userid = "";
+            string this_name = "";
+            string this_ancount = "";
+            string this_abcount = "";
+            string this_laststamp = "";
+            string this_summezeiten = "";
+
+            Verrechnungsgrid_Verrechnungen_Insert.Rows.Clear();
+
+            //für den gewählten Auftrag je Mitarbeiter die summe der abstempelungen und anstempelungen ermitteln 
+            string Auftragsnummer = textBox_Verrechnung_Auftragsnummer.Text;
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "select an.userid, user.name, an.count as ancount, ab.count as abcount, laststamp, round(sum_ab-sum_an, 2) as summezeiten " +
+                                    "from " +
+                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_ab, max(concat(jahr, monat, tag)) as laststamp, count(stunde) as count " +
+                                            "from stamps where art = 'ab' and task = @task and storniert = 0 group by userid) ab," +
+                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_an, count(stunde) as count " +
+                                            "from stamps where art = 'an' and task = @task and storniert = 0 group by userid) an " +
+                                    "left join user on an.userid = user.userid " +
+                                    "WHERE ab.userid = an.userid";
+
+
+            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Auftragsnummer;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf betrachtet die Stempelungen einer Person auf den Auftrag
+                while (Reader.Read())
+                {
+                    this_userid = Reader["userid"] + "";
+                    this_name = Reader["name"] + "";
+                    this_ancount = Reader["ancount"] + "";
+                    this_abcount = Reader["abcount"] + "";
+                    this_laststamp = Reader["laststamp"] + "";
+                    this_summezeiten = Reader["summezeiten"] + "";
+
+                    //datum in leserliches Format bringen
+                    this_laststamp = this_laststamp.Substring(6, 2) + "." + this_laststamp.Substring(4, 2) + "." + this_laststamp.Substring(0, 4);
+                    
+                    //Stempelungsgrid befüllen
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell_userid = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_name = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_laststamp = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_summezeiten = new DataGridViewTextBoxCell();
+                    
+
+                    cell_userid.Value = this_userid;
+                    cell_name.Value = this_name;
+                    cell_laststamp.Value = this_laststamp;
+                    cell_summezeiten.Value = this_summezeiten;
+                    
+                    myrow.Cells.Add(cell_userid);
+                    myrow.Cells.Add(cell_name);
+                    myrow.Cells.Add(cell_laststamp);
+                    myrow.Cells.Add(cell_summezeiten);
+
+                    Verrechnungsgrid_Verrechnungen_Insert.Rows.Add(myrow);
+
+                    if (this_abcount != this_ancount)
+                    {
+                        //zeiten markieren in zeilen in denen ancount von abcount abweicht
+                        int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
+                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = "Anzahl An-/Ab-Stempelungen passt nichtzusammen.\r\nAngezeigte Zeit stimmt vermutlich nicht!";
+                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
+                    }
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+            close_db();
+            Verrechnungsgrid_Verrechnungen_Insert.ClearSelection();
+
         }
 
 
         ///////////Personen-Tab////////////////////////////////////////////////
+
+        private void refreshPersonPicker_Personen()
+        {
+            PersonPicker_Personen.Items.Clear();
+
+            //Personen der Personentabelle dem PersonPicker hinzufügen
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname FROM user ORDER BY userid";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname = Reader["vorname"] + "";
+
+                    PersonPicker_Personen.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
+
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+            PersonPicker_Personen.SelectedIndex = 0;
+        }
 
         private void PersonPicker_Personen_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2288,6 +2394,6 @@ namespace Stempelurhadmintest
 
 
         ///////////////////////////////////////////////////////////////////////
-        
+
     }
 }

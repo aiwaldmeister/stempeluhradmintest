@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,10 +86,6 @@
             this.DatePicker_Verrechnung_Insert = new System.Windows.Forms.DateTimePicker();
             this.button_Verrechnungen_SatzErstellen = new System.Windows.Forms.Button();
             this.Verrechnungsgrid_Verrechnungen_Insert = new System.Windows.Forms.DataGridView();
-            this.Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dat_letzte_Stempelung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gesamtzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_Verrechnungen_Stunden_Insert = new System.Windows.Forms.TextBox();
             this.textBox_Verrechnungen_Mitarbeiter_Insert = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -101,6 +97,8 @@
             this.textBox_Verrechnung_Auftragsnummer = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.Stempelungen = new System.Windows.Forms.TabPage();
+            this.button_Kalender_Tagzurueck = new System.Windows.Forms.Button();
+            this.button_Kalender_Tagvorwaerts = new System.Windows.Forms.Button();
             this.groupBox_Stempelungen_Zeitkonto = new System.Windows.Forms.GroupBox();
             this.label_Stempelungen_Zeitkonto_Berechnungsstand = new System.Windows.Forms.Label();
             this.label_Stempelungen_Hinweis = new System.Windows.Forms.Label();
@@ -182,6 +180,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
+            this.Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dat_letzte_Stempelung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gesamtzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -230,14 +232,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -709,6 +711,10 @@
             // 
             // Verrechnungsgrid_Verrechnungen_Update
             // 
+            this.Verrechnungsgrid_Verrechnungen_Update.AllowUserToAddRows = false;
+            this.Verrechnungsgrid_Verrechnungen_Update.AllowUserToDeleteRows = false;
+            this.Verrechnungsgrid_Verrechnungen_Update.AllowUserToResizeColumns = false;
+            this.Verrechnungsgrid_Verrechnungen_Update.AllowUserToResizeRows = false;
             this.Verrechnungsgrid_Verrechnungen_Update.BackgroundColor = System.Drawing.Color.White;
             this.Verrechnungsgrid_Verrechnungen_Update.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Verrechnungsgrid_Verrechnungen_Update.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -718,6 +724,7 @@
             this.dataGridViewTextBoxColumn3,
             this.Verrechnet});
             this.Verrechnungsgrid_Verrechnungen_Update.Location = new System.Drawing.Point(19, 76);
+            this.Verrechnungsgrid_Verrechnungen_Update.MultiSelect = false;
             this.Verrechnungsgrid_Verrechnungen_Update.Name = "Verrechnungsgrid_Verrechnungen_Update";
             this.Verrechnungsgrid_Verrechnungen_Update.ReadOnly = true;
             this.Verrechnungsgrid_Verrechnungen_Update.RowHeadersVisible = false;
@@ -852,6 +859,10 @@
             // 
             // Verrechnungsgrid_Verrechnungen_Insert
             // 
+            this.Verrechnungsgrid_Verrechnungen_Insert.AllowUserToAddRows = false;
+            this.Verrechnungsgrid_Verrechnungen_Insert.AllowUserToDeleteRows = false;
+            this.Verrechnungsgrid_Verrechnungen_Insert.AllowUserToResizeColumns = false;
+            this.Verrechnungsgrid_Verrechnungen_Insert.AllowUserToResizeRows = false;
             this.Verrechnungsgrid_Verrechnungen_Insert.BackgroundColor = System.Drawing.Color.White;
             this.Verrechnungsgrid_Verrechnungen_Insert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Verrechnungsgrid_Verrechnungen_Insert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -860,43 +871,13 @@
             this.Dat_letzte_Stempelung,
             this.gesamtzeit});
             this.Verrechnungsgrid_Verrechnungen_Insert.Location = new System.Drawing.Point(29, 34);
+            this.Verrechnungsgrid_Verrechnungen_Insert.MultiSelect = false;
             this.Verrechnungsgrid_Verrechnungen_Insert.Name = "Verrechnungsgrid_Verrechnungen_Insert";
             this.Verrechnungsgrid_Verrechnungen_Insert.ReadOnly = true;
             this.Verrechnungsgrid_Verrechnungen_Insert.RowHeadersVisible = false;
             this.Verrechnungsgrid_Verrechnungen_Insert.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Verrechnungsgrid_Verrechnungen_Insert.Size = new System.Drawing.Size(258, 193);
             this.Verrechnungsgrid_Verrechnungen_Insert.TabIndex = 4;
-            // 
-            // Mitarbeiter
-            // 
-            this.Mitarbeiter.HeaderText = "Mitarb.";
-            this.Mitarbeiter.Name = "Mitarbeiter";
-            this.Mitarbeiter.ReadOnly = true;
-            this.Mitarbeiter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Mitarbeiter.Width = 50;
-            // 
-            // PersName
-            // 
-            this.PersName.HeaderText = "Name";
-            this.PersName.Name = "PersName";
-            this.PersName.ReadOnly = true;
-            this.PersName.Width = 65;
-            // 
-            // Dat_letzte_Stempelung
-            // 
-            this.Dat_letzte_Stempelung.HeaderText = "letzt. Dat.";
-            this.Dat_letzte_Stempelung.Name = "Dat_letzte_Stempelung";
-            this.Dat_letzte_Stempelung.ReadOnly = true;
-            this.Dat_letzte_Stempelung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dat_letzte_Stempelung.Width = 70;
-            // 
-            // gesamtzeit
-            // 
-            this.gesamtzeit.HeaderText = "Gesamtzeit";
-            this.gesamtzeit.Name = "gesamtzeit";
-            this.gesamtzeit.ReadOnly = true;
-            this.gesamtzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.gesamtzeit.Width = 70;
             // 
             // textBox_Verrechnungen_Stunden_Insert
             // 
@@ -992,6 +973,8 @@
             // 
             // Stempelungen
             // 
+            this.Stempelungen.Controls.Add(this.button_Kalender_Tagzurueck);
+            this.Stempelungen.Controls.Add(this.button_Kalender_Tagvorwaerts);
             this.Stempelungen.Controls.Add(this.groupBox_Stempelungen_Zeitkonto);
             this.Stempelungen.Controls.Add(this.groupBox_Stempelungen_EditierenErstellen);
             this.Stempelungen.Controls.Add(this.Stempelungsgrid_Stempelungen);
@@ -1004,6 +987,28 @@
             this.Stempelungen.TabIndex = 1;
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
+            // 
+            // button_Kalender_Tagzurueck
+            // 
+            this.button_Kalender_Tagzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Tagzurueck.Location = new System.Drawing.Point(26, 60);
+            this.button_Kalender_Tagzurueck.Name = "button_Kalender_Tagzurueck";
+            this.button_Kalender_Tagzurueck.Size = new System.Drawing.Size(26, 26);
+            this.button_Kalender_Tagzurueck.TabIndex = 12;
+            this.button_Kalender_Tagzurueck.Text = "<";
+            this.button_Kalender_Tagzurueck.UseVisualStyleBackColor = true;
+            this.button_Kalender_Tagzurueck.Click += new System.EventHandler(this.button_Stempelungen_Tagzurueck_Click);
+            // 
+            // button_Kalender_Tagvorwaerts
+            // 
+            this.button_Kalender_Tagvorwaerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Tagvorwaerts.Location = new System.Drawing.Point(325, 60);
+            this.button_Kalender_Tagvorwaerts.Name = "button_Kalender_Tagvorwaerts";
+            this.button_Kalender_Tagvorwaerts.Size = new System.Drawing.Size(25, 26);
+            this.button_Kalender_Tagvorwaerts.TabIndex = 12;
+            this.button_Kalender_Tagvorwaerts.Text = ">";
+            this.button_Kalender_Tagvorwaerts.UseVisualStyleBackColor = true;
+            this.button_Kalender_Tagvorwaerts.Click += new System.EventHandler(this.button_Stempelungen_Tagvorwaerts_Click);
             // 
             // groupBox_Stempelungen_Zeitkonto
             // 
@@ -1234,10 +1239,10 @@
             // 
             // DatePicker_Stempelungen
             // 
-            this.DatePicker_Stempelungen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatePicker_Stempelungen.Location = new System.Drawing.Point(26, 60);
+            this.DatePicker_Stempelungen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatePicker_Stempelungen.Location = new System.Drawing.Point(52, 60);
             this.DatePicker_Stempelungen.Name = "DatePicker_Stempelungen";
-            this.DatePicker_Stempelungen.Size = new System.Drawing.Size(324, 29);
+            this.DatePicker_Stempelungen.Size = new System.Drawing.Size(273, 26);
             this.DatePicker_Stempelungen.TabIndex = 6;
             this.DatePicker_Stempelungen.ValueChanged += new System.EventHandler(this.DatePicker_Stempelungen_ValueChanged);
             // 
@@ -1890,6 +1895,37 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
+            // Mitarbeiter
+            // 
+            this.Mitarbeiter.HeaderText = "Mitarb.";
+            this.Mitarbeiter.Name = "Mitarbeiter";
+            this.Mitarbeiter.ReadOnly = true;
+            this.Mitarbeiter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Mitarbeiter.Width = 50;
+            // 
+            // PersName
+            // 
+            this.PersName.HeaderText = "Name";
+            this.PersName.Name = "PersName";
+            this.PersName.ReadOnly = true;
+            this.PersName.Width = 65;
+            // 
+            // Dat_letzte_Stempelung
+            // 
+            this.Dat_letzte_Stempelung.HeaderText = "letzt. Dat.";
+            this.Dat_letzte_Stempelung.Name = "Dat_letzte_Stempelung";
+            this.Dat_letzte_Stempelung.ReadOnly = true;
+            this.Dat_letzte_Stempelung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dat_letzte_Stempelung.Width = 70;
+            // 
+            // gesamtzeit
+            // 
+            this.gesamtzeit.HeaderText = "Stunden";
+            this.gesamtzeit.Name = "gesamtzeit";
+            this.gesamtzeit.ReadOnly = true;
+            this.gesamtzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gesamtzeit.Width = 70;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2080,14 +2116,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnet;
         private System.Windows.Forms.ComboBox comboBox_Stempelungen_Art;
         private System.Windows.Forms.ComboBox PersonPicker_Stempelungen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mitarbeiter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dat_letzte_Stempelung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gesamtzeit;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.TextBox textBox_Verrechnung_StundenGesamt;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox PersonPicker_Kalender;
+        private System.Windows.Forms.Button button_Kalender_Tagzurueck;
+        private System.Windows.Forms.Button button_Kalender_Tagvorwaerts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mitarbeiter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dat_letzte_Stempelung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gesamtzeit;
     }
 }
 
