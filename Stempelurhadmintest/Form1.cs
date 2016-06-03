@@ -1427,6 +1427,7 @@ namespace Stempelurhadmintest
 
             //alles erledigt -> Status des Formulars sollte entsprechend aktualisiert werden
             vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum();
+            personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
 
         }
 
@@ -1458,6 +1459,7 @@ namespace Stempelurhadmintest
                 close_db();
             }
             refreshStempelungsgrid_Stempelungen();
+            verrechnungstab_initialisiert_global = false; //gestempelte Zeit auf einem Auftrag kann sich geändert haben
 
         }
 
@@ -1535,6 +1537,7 @@ namespace Stempelurhadmintest
                     close_db();
                 }
                 refreshStempelungsgrid_Stempelungen();
+                verrechnungstab_initialisiert_global = false; //gestempelte Zeit auf einem Auftrag kann sich geändert haben
             }
         }
 
@@ -1633,6 +1636,7 @@ namespace Stempelurhadmintest
                     close_db();
                 }
                 refreshStempelungsgrid_Stempelungen();
+                verrechnungstab_initialisiert_global = false; //gestempelte Zeit auf einem Auftrag kann sich geändert haben
             }
         }
 
@@ -1720,15 +1724,19 @@ namespace Stempelurhadmintest
             //TODO nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
             //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
             //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
+
+            //vergleich: Tests aus der vergleichbaren funktion im Stempelungstab
+                //Test 1: Ist die erste Stempelung keine anstempelung?
+                //Test 2: kommt nicht immer abwechselnd eine an + eine abstempelung?
+                //Test 3: Hat ein Paar aus AN+AB-Stempelung verschiedene Auftragsnummern?
+                //Test 4: unkorrigierte automatische Abstempelung von einem Wartungslauf? (quelle = 'wartung')
+                //Test 5: Datum ist früher als das heutige und letzte Stempelung ist keine Abstempelung?
+
+
             // -> ausgeben an welchem tag bei welcher person das Problem besteht
 
             return fehler;
 
-        }
-
-        private void refreshUpdateFormular_Verrechnung()//rechte seite
-        {
-            //TODO
         }
 
         private void refreshInsertFormular_Verrechnung()//linke seite
@@ -1775,20 +1783,20 @@ namespace Stempelurhadmintest
 
                     //datum in leserliches Format bringen
                     this_laststamp = this_laststamp.Substring(6, 2) + "." + this_laststamp.Substring(4, 2) + "." + this_laststamp.Substring(0, 4);
-                    
+
                     //Stempelungsgrid befüllen
                     DataGridViewRow myrow = new DataGridViewRow();
                     DataGridViewCell cell_userid = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_name = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_laststamp = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_summezeiten = new DataGridViewTextBoxCell();
-                    
+
 
                     cell_userid.Value = this_userid;
                     cell_name.Value = this_name;
                     cell_laststamp.Value = this_laststamp;
                     cell_summezeiten.Value = this_summezeiten;
-                    
+
                     myrow.Cells.Add(cell_userid);
                     myrow.Cells.Add(cell_name);
                     myrow.Cells.Add(cell_laststamp);
@@ -1800,6 +1808,7 @@ namespace Stempelurhadmintest
                     {
                         //zeiten markieren in zeilen in denen ancount von abcount abweicht
                         int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
+
                         Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = "Anzahl An-/Ab-Stempelungen passt nichtzusammen.\r\nAngezeigte Zeit stimmt vermutlich nicht!";
                         Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
                     }
@@ -1812,6 +1821,16 @@ namespace Stempelurhadmintest
             close_db();
             Verrechnungsgrid_Verrechnungen_Insert.ClearSelection();
 
+        }
+
+        private void refreshUpdateFormular_Verrechnung()//rechte seite
+        {
+            //TODO
+        }
+
+        private void Verrechnungsgrid_Verrechnungen_Insert_SelectionChanged(object sender, EventArgs e)
+        {
+            //TODO prüfen ob eine Zeile markiert ist und wenn ja das insert-Formular füllen
         }
 
 
