@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,10 +72,6 @@
             this.button_Verrechnungen_SatzStornieren = new System.Windows.Forms.Button();
             this.button_Verrechnungen_SatzUeberschreiben = new System.Windows.Forms.Button();
             this.Verrechnungsgrid_Verrechnungen_Update = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_Verrechnung_StundenGesamt = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.textBox_Verrechnungen_Stunden_edit = new System.Windows.Forms.TextBox();
@@ -183,6 +179,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
+            this.satzid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -231,14 +232,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle6;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
@@ -590,6 +591,7 @@
             this.Vermerk});
             this.Ereignisgrid_Kalender.Location = new System.Drawing.Point(21, 27);
             this.Ereignisgrid_Kalender.Margin = new System.Windows.Forms.Padding(2);
+            this.Ereignisgrid_Kalender.MultiSelect = false;
             this.Ereignisgrid_Kalender.Name = "Ereignisgrid_Kalender";
             this.Ereignisgrid_Kalender.ReadOnly = true;
             this.Ereignisgrid_Kalender.RowHeadersVisible = false;
@@ -685,25 +687,25 @@
             // 
             this.DatePicker_Verrechnung_Update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Verrechnung_Update.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker_Verrechnung_Update.Location = new System.Drawing.Point(228, 362);
+            this.DatePicker_Verrechnung_Update.Location = new System.Drawing.Point(247, 362);
             this.DatePicker_Verrechnung_Update.Name = "DatePicker_Verrechnung_Update";
             this.DatePicker_Verrechnung_Update.Size = new System.Drawing.Size(100, 26);
             this.DatePicker_Verrechnung_Update.TabIndex = 6;
             // 
             // button_Verrechnungen_SatzStornieren
             // 
-            this.button_Verrechnungen_SatzStornieren.Location = new System.Drawing.Point(55, 292);
+            this.button_Verrechnungen_SatzStornieren.Location = new System.Drawing.Point(35, 292);
             this.button_Verrechnungen_SatzStornieren.Name = "button_Verrechnungen_SatzStornieren";
-            this.button_Verrechnungen_SatzStornieren.Size = new System.Drawing.Size(273, 35);
+            this.button_Verrechnungen_SatzStornieren.Size = new System.Drawing.Size(313, 35);
             this.button_Verrechnungen_SatzStornieren.TabIndex = 5;
             this.button_Verrechnungen_SatzStornieren.Text = "Markierten Verrechnungssatz stornieren";
             this.button_Verrechnungen_SatzStornieren.UseVisualStyleBackColor = true;
             // 
             // button_Verrechnungen_SatzUeberschreiben
             // 
-            this.button_Verrechnungen_SatzUeberschreiben.Location = new System.Drawing.Point(55, 449);
+            this.button_Verrechnungen_SatzUeberschreiben.Location = new System.Drawing.Point(35, 449);
             this.button_Verrechnungen_SatzUeberschreiben.Name = "button_Verrechnungen_SatzUeberschreiben";
-            this.button_Verrechnungen_SatzUeberschreiben.Size = new System.Drawing.Size(273, 35);
+            this.button_Verrechnungen_SatzUeberschreiben.Size = new System.Drawing.Size(312, 35);
             this.button_Verrechnungen_SatzUeberschreiben.TabIndex = 5;
             this.button_Verrechnungen_SatzUeberschreiben.Text = "Markierten Verrechnungssatz überschreiben";
             this.button_Verrechnungen_SatzUeberschreiben.UseVisualStyleBackColor = true;
@@ -717,68 +719,34 @@
             this.Verrechnungsgrid_Verrechnungen_Update.BackgroundColor = System.Drawing.Color.White;
             this.Verrechnungsgrid_Verrechnungen_Update.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Verrechnungsgrid_Verrechnungen_Update.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.satzid,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.Verrechnungsdatum,
             this.Verrechnet});
-            this.Verrechnungsgrid_Verrechnungen_Update.Location = new System.Drawing.Point(55, 76);
+            this.Verrechnungsgrid_Verrechnungen_Update.Location = new System.Drawing.Point(35, 76);
             this.Verrechnungsgrid_Verrechnungen_Update.MultiSelect = false;
             this.Verrechnungsgrid_Verrechnungen_Update.Name = "Verrechnungsgrid_Verrechnungen_Update";
             this.Verrechnungsgrid_Verrechnungen_Update.ReadOnly = true;
             this.Verrechnungsgrid_Verrechnungen_Update.RowHeadersVisible = false;
             this.Verrechnungsgrid_Verrechnungen_Update.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(273, 196);
+            this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(313, 196);
             this.Verrechnungsgrid_Verrechnungen_Update.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 80;
-            // 
-            // Verrechnungsdatum
-            // 
-            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
-            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
-            this.Verrechnungsdatum.ReadOnly = true;
-            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Verrechnungsdatum.Width = 70;
-            // 
-            // Verrechnet
-            // 
-            this.Verrechnet.HeaderText = "Verrechnet";
-            this.Verrechnet.Name = "Verrechnet";
-            this.Verrechnet.ReadOnly = true;
-            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnet.Width = 70;
             // 
             // textBox_Verrechnung_StundenGesamt
             // 
             this.textBox_Verrechnung_StundenGesamt.Enabled = false;
             this.textBox_Verrechnung_StundenGesamt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Verrechnung_StundenGesamt.Location = new System.Drawing.Point(262, 28);
+            this.textBox_Verrechnung_StundenGesamt.Location = new System.Drawing.Point(270, 28);
             this.textBox_Verrechnung_StundenGesamt.Name = "textBox_Verrechnung_StundenGesamt";
-            this.textBox_Verrechnung_StundenGesamt.Size = new System.Drawing.Size(85, 26);
+            this.textBox_Verrechnung_StundenGesamt.Size = new System.Drawing.Size(77, 26);
             this.textBox_Verrechnung_StundenGesamt.TabIndex = 2;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(24, 36);
+            this.label44.Location = new System.Drawing.Point(32, 36);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(232, 15);
             this.label44.TabIndex = 3;
@@ -788,7 +756,7 @@
             // textBox_Verrechnungen_Stunden_edit
             // 
             this.textBox_Verrechnungen_Stunden_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Verrechnungen_Stunden_edit.Location = new System.Drawing.Point(228, 404);
+            this.textBox_Verrechnungen_Stunden_edit.Location = new System.Drawing.Point(247, 404);
             this.textBox_Verrechnungen_Stunden_edit.Name = "textBox_Verrechnungen_Stunden_edit";
             this.textBox_Verrechnungen_Stunden_edit.Size = new System.Drawing.Size(100, 26);
             this.textBox_Verrechnungen_Stunden_edit.TabIndex = 2;
@@ -796,7 +764,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(52, 407);
+            this.label41.Location = new System.Drawing.Point(32, 412);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(123, 13);
             this.label41.TabIndex = 3;
@@ -805,7 +773,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(52, 368);
+            this.label42.Location = new System.Drawing.Point(32, 373);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(105, 13);
             this.label42.TabIndex = 3;
@@ -845,6 +813,7 @@
             this.button_Verrechnungen_SatzErstellen.TabIndex = 5;
             this.button_Verrechnungen_SatzErstellen.Text = "Verrechnungssatz mit diesen Werten erstellen";
             this.button_Verrechnungen_SatzErstellen.UseVisualStyleBackColor = true;
+            this.button_Verrechnungen_SatzErstellen.Click += new System.EventHandler(this.button_Verrechnungen_SatzErstellen_Click);
             // 
             // Verrechnungsgrid_Verrechnungen_Insert
             // 
@@ -1916,6 +1885,51 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
+            // satzid
+            // 
+            this.satzid.HeaderText = "ID";
+            this.satzid.Name = "satzid";
+            this.satzid.ReadOnly = true;
+            this.satzid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.satzid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.satzid.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 80;
+            // 
+            // Verrechnungsdatum
+            // 
+            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
+            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
+            this.Verrechnungsdatum.ReadOnly = true;
+            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Verrechnungsdatum.Width = 70;
+            // 
+            // Verrechnet
+            // 
+            this.Verrechnet.HeaderText = "Verrechnet";
+            this.Verrechnet.Name = "Verrechnet";
+            this.Verrechnet.ReadOnly = true;
+            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Verrechnet.Width = 70;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2111,6 +2125,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PersName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dat_letzte_Stempelung;
         private System.Windows.Forms.DataGridViewTextBoxColumn gesamtzeit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn satzid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnungsdatum;

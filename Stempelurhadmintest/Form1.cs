@@ -1786,7 +1786,7 @@ namespace Stempelurhadmintest
                                             "from stamps where art = 'an' and task = @task and storniert = 0 group by userid) an " +
                                     "left join user on an.userid = user.userid " +
                                     "WHERE ab.userid = an.userid";
-
+            //TODO query auf richtige Funktion überprüfen
 
             comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Auftragsnummer;
 
@@ -1847,7 +1847,83 @@ namespace Stempelurhadmintest
 
         private void refreshUpdateFormular_Verrechnung()//rechte seite
         {
-            //TODO
+            //TODO Funktionsfehler beseitigen (z.B. Grid zuerst leeren, gesamtzeitanzeige zum laufen bringen)
+
+            string this_satzid = "";
+            string this_userid = "";
+            string this_name = "";
+            string this_datum = "";
+            string this_stunden = "";
+            string this_gesamtzeit = "";
+
+            //Fuellen der Anzeige mit der gesamten auf den Auftrag verrechneten Zeit
+            string Auftragsnummer = textBox_Verrechnung_Auftragsnummer.Text;
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT SUM(stunden) FROM verrechnung WHERE auftrag=@auftrag AND storniert = 0";
+
+            comm.Parameters.Add("@auftrag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Auftragsnummer;
+
+            try
+            {
+                this_gesamtzeit = comm.ExecuteScalar() + "";
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+            close_db();
+
+            //Fuellen des Grids mit den einzelnen Verrechnungssaetzen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT a.satzid, a.person, b.name, a.jahr, a.monat, a.tag, a.stunden " +
+                                "FROM verrechnung a LEFT JOIN user b ON a.person = b.userid " +
+                                "WHERE auftrag=@auftrag AND storniert = 0" ;
+
+            comm.Parameters.Add("@auftrag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Auftragsnummer;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf/ErgebnisZeile betrachtet die Stempelungen einer Person auf den Auftrag
+                while (Reader.Read())
+                {
+                    this_satzid = Reader["satzid"] + "";
+                    this_userid = Reader["person"] + "";
+                    this_name = Reader["name"] + "";
+                    this_datum = Reader["tag"] + "." + Reader["monat"] + "." + Reader["jahr"];
+                    this_stunden = Reader["stunden"] + "";
+
+                    //Stempelungsgrid befüllen
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell_satzid = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_userid = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_name = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_datum = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_stunden = new DataGridViewTextBoxCell();
+
+                    cell_satzid.Value = this_satzid;
+                    cell_userid.Value = this_userid;
+                    cell_name.Value = this_name;
+                    cell_datum.Value = this_datum;
+                    cell_stunden.Value = this_stunden;
+
+                    myrow.Cells.Add(cell_satzid);
+                    myrow.Cells.Add(cell_userid);
+                    myrow.Cells.Add(cell_name);
+                    myrow.Cells.Add(cell_datum);
+                    myrow.Cells.Add(cell_stunden);
+
+                    Verrechnungsgrid_Verrechnungen_Update.Rows.Add(myrow);
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+            close_db();
+
         }
 
         private void Verrechnungsgrid_Verrechnungen_Insert_SelectionChanged(object sender, EventArgs e)
@@ -1886,6 +1962,107 @@ namespace Stempelurhadmintest
 
         }
 
+        private void button_Verrechnungen_SatzErstellen_Click(object sender, EventArgs e)
+        {
+            bool fehler = false;
+
+            string insert_auftragsnummer = "";
+            string insert_userid = "";
+            string insert_tag = "";
+            string insert_monat = "";
+            string insert_jahr = "";
+            string insert_stunden = "";
+            int tmp_intout = 0;
+            double tmp_doubleout = 0;
+
+            //Werte sammeln
+            insert_auftragsnummer = textBox_Verrechnung_Auftragsnummer.Text;
+            insert_userid = textBox_Verrechnungen_Mitarbeiter_Insert.Text;
+            insert_tag = DatePicker_Verrechnung_Insert.Value.Day.ToString("D2");
+            insert_monat = DatePicker_Verrechnung_Insert.Value.Month.ToString("D2");
+            insert_jahr = DatePicker_Verrechnung_Insert.Value.Year.ToString("D4");
+            insert_stunden = textBox_Verrechnungen_Stunden_Insert.Text;
+
+            //Werte plausibilisieren
+
+            if (insert_auftragsnummer.Length != 6)
+            {
+                fehler = true;
+                MessageBox.Show("Die eingegebene Auftragsnummer ist nicht 6-Stellig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (int.TryParse(insert_auftragsnummer, out tmp_intout) == false)
+            {
+                fehler = true;
+                MessageBox.Show("Die eingegebene Auftragsnummer ist keine Zahl.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (insert_userid.Length != 6)
+            {
+                fehler = true;
+                MessageBox.Show("Die eingegebene Mitarbeiternummer ist nicht 6-Stellig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            tmp_intout = 0;
+            if (int.TryParse(insert_userid, out tmp_intout) == false)
+            {
+                fehler = true;
+                MessageBox.Show("Die eingegebene Mitarbeiternummer ist keine Zahl!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (tmp_intout < 999000)
+            {
+                fehler = true;
+                MessageBox.Show("Die Mitarbeiternummer darf nicht kleiner als 999000 sein!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            tmp_doubleout = 0;
+            if (double.TryParse(insert_stunden, out tmp_doubleout) == false)
+            {
+                fehler = true;
+                MessageBox.Show("Die eingegebene Zeit ist keine Zahl!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Folgendes Verrechnungssatz für den Auftrag'" + insert_auftragsnummer + "' erstellen?\r\n\r\n" +
+                                        "Mitarbeiternummer: " + insert_userid + "\r\n" +
+                                        "Verrechnungsdatum: " + insert_tag + "." + insert_monat + "." + insert_jahr + "\r\n" +
+                                        "Verrechenbare Zeit: " + insert_stunden + " Stunden";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //insert auf Datenbank
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "INSERT INTO verrechnung (auftrag, person, stunden, jahr, monat, tag, storniert) " +
+                                        "VALUES(@auftrag, @person, @stunden, @jahr, @monat, @tag, 0)";
+
+                    comm.Parameters.Add("@auftrag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = insert_auftragsnummer;
+                    comm.Parameters.Add("@person", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = insert_userid;
+                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = insert_jahr;
+                    comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = insert_monat;
+                    comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = insert_tag;
+                    comm.Parameters.Add("@stunden", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@stunden"].Precision = 10;
+                    comm.Parameters["@stunden"].Scale = 2;
+                    comm.Parameters["@stunden"].Value = insert_stunden;
+
+                    log("Erstelle Verrechnungssatz zu Auftrag " + insert_auftragsnummer + " am " + insert_tag + "." + insert_monat + "." + insert_jahr + " " +
+                           "Mitarbeiter: " + insert_userid + " Stunden: " + insert_stunden);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+
+                    //nach erfolgreichem anlegen des Verrechnungssatzes beide seiten aktualisieren
+                    refreshInsertFormular_Verrechnung();
+                    refreshUpdateFormular_Verrechnung();
+
+                }
+            }
+        }
 
         ///////////Personen-Tab////////////////////////////////////////////////
 
