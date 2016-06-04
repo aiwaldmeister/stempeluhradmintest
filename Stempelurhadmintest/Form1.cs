@@ -958,18 +958,37 @@ namespace Stempelurhadmintest
 
         }
 
-        private void Ereignisgrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Ereignisgrid_Kalender_SelectionChanged(object sender, EventArgs e)
         {
             if (Ereignisgrid_Kalender.SelectedRows.Count > 0)
             {
+                //stornierbutton aktivieren
                 button_Kalender_storniereEintrag.Enabled = true;
             }
         }
+
+        private void Ereignisgrid_Kalender_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Ereignisgrid_Kalender.SelectedRows.Count > 0)
+            {
+                //ausgewählte zeile merken
+                int selectedrow = Ereignisgrid_Kalender.SelectedCells[0].RowIndex;
+
+                //Kalendergrid-ansicht auf den Monat des markierten ereignisses setzen
+                int selectedmonat = int.Parse(Ereignisgrid_Kalender.SelectedCells[1].Value.ToString().Substring(3, 2));
+                MonatsPicker_Kalender.Value = new DateTime(MonatsPicker_Kalender.Value.Year, selectedmonat, 1, 0, 0, 0);
+
+                //vorher gemerkte zeile wieder markieren, weil durch das refreshen des kalenders+ereignisgrid die auswahl verloren geht
+                Ereignisgrid_Kalender.Rows[selectedrow].Selected = true;
+
+                //Formular mit den werden des markierten eintrags vorbefüllen
+                textBox_Kalender_Sollzeit.Text = Ereignisgrid_Kalender.SelectedCells[2].Value.ToString();
+                textBox_Kalender_Urlaub.Text = Ereignisgrid_Kalender.SelectedCells[3].Value.ToString();
+                textBox_Kalender_Bemerkung.Text = Ereignisgrid_Kalender.SelectedCells[4].Value.ToString();
+
+            }
+        }
+
 
 
         ///////////Stempelungen-Tab////////////////////////////////////////////
@@ -1514,7 +1533,7 @@ namespace Stempelurhadmintest
                     //Stempelung stornieren
                     open_db();
                     comm.Parameters.Clear();
-                    comm.CommandText = "UPDATE stamps SET task=@task, art=@art, stunde=@stunde, minute=@minute, sekunde=@sekunde, dezimal=@dezimal WHERE stampid = @stampid";
+                    comm.CommandText = "UPDATE stamps SET task=@task, art=@art, stunde=@stunde, minute=@minute, sekunde=@sekunde, dezimal=@dezimal, quelle='admin' WHERE stampid = @stampid";
 
                     comm.Parameters.Add("@stampid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
                     comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = task;
@@ -1724,6 +1743,7 @@ namespace Stempelurhadmintest
         private bool sucheStempelfehler_Verrechnung()
         {
             bool fehler = false;
+
             //TODO nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
             //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
             //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
@@ -1774,7 +1794,7 @@ namespace Stempelurhadmintest
             {
                 MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
 
-                //jeder Schleifendurchlauf betrachtet die Stempelungen einer Person auf den Auftrag
+                //jeder Schleifendurchlauf/ErgebnisZeile betrachtet die Stempelungen einer Person auf den Auftrag
                 while (Reader.Read())
                 {
                     this_userid = Reader["userid"] + "";
@@ -1793,7 +1813,6 @@ namespace Stempelurhadmintest
                     DataGridViewCell cell_name = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_laststamp = new DataGridViewTextBoxCell();
                     DataGridViewCell cell_summezeiten = new DataGridViewTextBoxCell();
-
 
                     cell_userid.Value = this_userid;
                     cell_name.Value = this_name;
@@ -1833,26 +1852,38 @@ namespace Stempelurhadmintest
 
         private void Verrechnungsgrid_Verrechnungen_Insert_SelectionChanged(object sender, EventArgs e)
         {
-            //TODO prüfen ob eine Zeile markiert ist und wenn ja das insert-Formular fuellen
+            //prüfen ob eine Zeile markiert ist und wenn ja das insert-Formular fuellen
             if (Verrechnungsgrid_Verrechnungen_Insert.SelectedRows.Count == 1)
             {
                 prefillInsertFormular_Verrechnung();
 
             }
             else
-            {
+            {   //nichts markiert... insert formular leeren
                 clearInsertFormular_Verrechnung();
             }
         }
 
         private void clearInsertFormular_Verrechnung()
         {
-            //TODO
+            //insert-formular leeren, Datepicker auf heutiges datum setzen
+            textBox_Verrechnungen_Mitarbeiter_Insert.Text = "";
+            textBox_Verrechnungen_Stunden_Insert.Text = "";
+            DatePicker_Verrechnung_Insert.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
         }
 
         private void prefillInsertFormular_Verrechnung()
         {
-            //TODO
+            //Insert-Formular mit den Werten der Markierung vorbelegen 
+            //(Stunde wird absichtlich nicht vorgefüllt -> dieser wert soll bewusst eingetragen werden)
+
+            textBox_Verrechnungen_Mitarbeiter_Insert.Text = Verrechnungsgrid_Verrechnungen_Insert.SelectedCells[0].Value.ToString();
+
+            int selection_tag_laststamp = int.Parse(Verrechnungsgrid_Verrechnungen_Insert.SelectedCells[2].Value.ToString().Substring(0, 2));
+            int selection_monat_laststamp = int.Parse(Verrechnungsgrid_Verrechnungen_Insert.SelectedCells[2].Value.ToString().Substring(3, 2));
+            int selection_jahr_laststamp = int.Parse(Verrechnungsgrid_Verrechnungen_Insert.SelectedCells[2].Value.ToString().Substring(6, 4));
+            DatePicker_Verrechnung_Insert.Value = new DateTime(selection_jahr_laststamp, selection_monat_laststamp, selection_tag_laststamp, 0, 0, 0);
+
         }
 
 
@@ -2433,7 +2464,7 @@ namespace Stempelurhadmintest
             this.ActiveControl = null;
         }
 
-
+        
         ///////////////////////////////////////////////////////////////////////
 
     }
