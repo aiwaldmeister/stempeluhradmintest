@@ -501,6 +501,7 @@ namespace Stempelurhadmintest
             string cellvaluestring = "";
             string betrachtungsjahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
             string betrachtungsmonat = MonatsPicker_Kalender.Value.Month.ToString("D2");
+            string zuordnung = "";
 
             string thisevent_vermerk = "";
             string thisevent_tag = "";
@@ -508,6 +509,12 @@ namespace Stempelurhadmintest
             string thisevent_name = "";
             string thisevent_tooltipprefix = "";
 
+            zuordnung = PersonPicker_Kalender.Text;
+            if(zuordnung != "Allgemein" && zuordnung !="")
+            {
+                zuordnung = zuordnung.Substring(0, 6);
+            }
+            
             //select auf kalenderdatenbank mit betrachtungsjahr, betrachtungsmonat
             //wenn event gefunden, die entsprechende cell einfärben und den tooltip setzen
 
@@ -515,8 +522,15 @@ namespace Stempelurhadmintest
             comm.Parameters.Clear();
             comm.CommandText = "SELECT eventid, zuordnung, name, jahr, monat, tag, vermerk, urlaubstage_abziehen, sollzeit, storniert" +
                                 " FROM kalender left join user on kalender.zuordnung = user.userid" +
-                                " where jahr=@jahr AND monat=@monat AND storniert = 0 ORDER BY name";
+                                " where jahr=@jahr AND monat=@monat AND storniert = 0";
 
+            //Bei allgemein, alles anzeigen... sonst nur die der gewählten person zugeordneten.
+            if(zuordnung != "Allgemein")
+            {
+                comm.CommandText = comm.CommandText + " AND zuordnung=@zuordnung";
+                comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zuordnung;
+            }
+            
             comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = betrachtungsjahr;
             comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = betrachtungsmonat;
 
@@ -659,6 +673,7 @@ namespace Stempelurhadmintest
         private void PersonPicker_Kalender_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshEreignisgrid_Kalender();
+            refreshKalendergrid();
         }
 
         private void refreshEreignisgrid_Kalender()
@@ -813,6 +828,12 @@ namespace Stempelurhadmintest
             if (input_zuordnung != "Allgemein")
             {
                 input_zuordnung = input_zuordnung.Substring(0, 6);
+            }
+
+            if(input_zuordnung == "Allgemein" && input_urlaub > 0)
+            {
+                fehler = true;
+                MessageBox.Show("Bei Allgemeinen Ereignissen sollte kein Urlaub abgezogen werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -988,7 +1009,6 @@ namespace Stempelurhadmintest
 
             }
         }
-
 
 
         ///////////Stempelungen-Tab////////////////////////////////////////////
