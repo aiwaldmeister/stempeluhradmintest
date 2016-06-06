@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +72,11 @@
             this.button_Verrechnungen_SatzStornieren = new System.Windows.Forms.Button();
             this.button_Verrechnungen_SatzUeberschreiben = new System.Windows.Forms.Button();
             this.Verrechnungsgrid_Verrechnungen_Update = new System.Windows.Forms.DataGridView();
+            this.satzid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_Verrechnung_StundenGesamt = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.textBox_Verrechnungen_Stunden_edit = new System.Windows.Forms.TextBox();
@@ -179,11 +184,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.satzid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_Kalender_Monatzurueck = new System.Windows.Forms.Button();
+            this.button_Kalender_Monatvor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -232,17 +234,17 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
-            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(104, 96);
+            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(90, 94);
             this.KalenderGrid_Kalender.MultiSelect = false;
             this.KalenderGrid_Kalender.Name = "KalenderGrid_Kalender";
             this.KalenderGrid_Kalender.ReadOnly = true;
@@ -324,7 +326,7 @@
             this.MonatsPicker_Kalender.CustomFormat = "MMMM       yyyy";
             this.MonatsPicker_Kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MonatsPicker_Kalender.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(104, 61);
+            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(90, 59);
             this.MonatsPicker_Kalender.Margin = new System.Windows.Forms.Padding(0);
             this.MonatsPicker_Kalender.Name = "MonatsPicker_Kalender";
             this.MonatsPicker_Kalender.ShowUpDown = true;
@@ -363,6 +365,8 @@
             // 
             // Kalender
             // 
+            this.Kalender.Controls.Add(this.button_Kalender_Monatvor);
+            this.Kalender.Controls.Add(this.button_Kalender_Monatzurueck);
             this.Kalender.Controls.Add(this.KalenderGrid_Kalender);
             this.Kalender.Controls.Add(this.MonatsPicker_Kalender);
             this.Kalender.Controls.Add(this.PersonPicker_Kalender);
@@ -732,6 +736,51 @@
             this.Verrechnungsgrid_Verrechnungen_Update.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(313, 196);
             this.Verrechnungsgrid_Verrechnungen_Update.TabIndex = 4;
+            // 
+            // satzid
+            // 
+            this.satzid.HeaderText = "ID";
+            this.satzid.Name = "satzid";
+            this.satzid.ReadOnly = true;
+            this.satzid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.satzid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.satzid.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 80;
+            // 
+            // Verrechnungsdatum
+            // 
+            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
+            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
+            this.Verrechnungsdatum.ReadOnly = true;
+            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Verrechnungsdatum.Width = 70;
+            // 
+            // Verrechnet
+            // 
+            this.Verrechnet.HeaderText = "Verrechnet";
+            this.Verrechnet.Name = "Verrechnet";
+            this.Verrechnet.ReadOnly = true;
+            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Verrechnet.Width = 70;
             // 
             // textBox_Verrechnung_StundenGesamt
             // 
@@ -1580,7 +1629,7 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(511, 93);
+            this.groupBox1.Location = new System.Drawing.Point(546, 262);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(273, 294);
             this.groupBox1.TabIndex = 5;
@@ -1885,50 +1934,27 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // satzid
+            // button_Kalender_Monatzurueck
             // 
-            this.satzid.HeaderText = "ID";
-            this.satzid.Name = "satzid";
-            this.satzid.ReadOnly = true;
-            this.satzid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.satzid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.satzid.Width = 40;
+            this.button_Kalender_Monatzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(61, 59);
+            this.button_Kalender_Monatzurueck.Name = "button_Kalender_Monatzurueck";
+            this.button_Kalender_Monatzurueck.Size = new System.Drawing.Size(29, 29);
+            this.button_Kalender_Monatzurueck.TabIndex = 6;
+            this.button_Kalender_Monatzurueck.Text = "<";
+            this.button_Kalender_Monatzurueck.UseVisualStyleBackColor = true;
+            this.button_Kalender_Monatzurueck.Click += new System.EventHandler(this.button_Kalender_Monatzurueck_Click);
             // 
-            // dataGridViewTextBoxColumn1
+            // button_Kalender_Monatvor
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 80;
-            // 
-            // Verrechnungsdatum
-            // 
-            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
-            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
-            this.Verrechnungsdatum.ReadOnly = true;
-            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Verrechnungsdatum.Width = 70;
-            // 
-            // Verrechnet
-            // 
-            this.Verrechnet.HeaderText = "Verrechnet";
-            this.Verrechnet.Name = "Verrechnet";
-            this.Verrechnet.ReadOnly = true;
-            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Verrechnet.Width = 70;
+            this.button_Kalender_Monatvor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(338, 59);
+            this.button_Kalender_Monatvor.Name = "button_Kalender_Monatvor";
+            this.button_Kalender_Monatvor.Size = new System.Drawing.Size(29, 29);
+            this.button_Kalender_Monatvor.TabIndex = 6;
+            this.button_Kalender_Monatvor.Text = ">";
+            this.button_Kalender_Monatvor.UseVisualStyleBackColor = true;
+            this.button_Kalender_Monatvor.Click += new System.EventHandler(this.button_Kalender_Monatvor_Click);
             // 
             // Form1
             // 
@@ -2130,6 +2156,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnungsdatum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnet;
+        private System.Windows.Forms.Button button_Kalender_Monatvor;
+        private System.Windows.Forms.Button button_Kalender_Monatzurueck;
     }
 }
 

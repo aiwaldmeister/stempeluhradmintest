@@ -180,6 +180,7 @@ namespace Stempelurhadmintest
                 if (auswertungstab_initialisiert_global == false)
                 {
                     //TODO auswertungstab initialisieren
+                    //TODO Auswertung über Tatsächliche Arbeitszeit (Mitarbeiter/Jahr)
                 }
             }
         }
@@ -664,6 +665,16 @@ namespace Stempelurhadmintest
             PersonPicker_Kalender.SelectedIndex = 0;
         }
 
+        private void button_Kalender_Monatzurueck_Click(object sender, EventArgs e)
+        {
+            MonatsPicker_Kalender.Value = MonatsPicker_Kalender.Value.AddMonths(-1);
+        }
+
+        private void button_Kalender_Monatvor_Click(object sender, EventArgs e)
+        {
+            MonatsPicker_Kalender.Value = MonatsPicker_Kalender.Value.AddMonths(1);
+        }
+
         private void MonatsPicker_Kalender_ValueChanged(object sender, EventArgs e)
         {
             refreshKalendergrid();
@@ -697,10 +708,22 @@ namespace Stempelurhadmintest
                 actzuordnung = PersonPicker_Kalender.Text;
             }
 
-            if (actzuordnung.Length >= 6 && actzuordnung != "Allgemein")
+            if (actzuordnung.Length >= 6)
             {
-                actzuordnung = actzuordnung.Substring(0, 6);
+                if(actzuordnung != "Allgemein")
+                {
+                    groupBox_Kalender_AlleEreignisse.Text = "Alle Ereignisse für " + actzuordnung + " in " + actjahr;
+                    actzuordnung = actzuordnung.Substring(0, 6);
+                }else
+                {
+                    groupBox_Kalender_AlleEreignisse.Text = "Alle allgemeinen Ereignisse in " + actjahr;
+                }
+                
             }
+
+
+
+
 
             open_db();
             comm.Parameters.Clear();
@@ -2662,6 +2685,7 @@ namespace Stempelurhadmintest
         }
 
         
+
         ///////////////////////////////////////////////////////////////////////
 
     }
