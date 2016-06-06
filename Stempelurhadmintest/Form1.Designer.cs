@@ -45,7 +45,6 @@
             this.groupBox_Kalender_erstelleEintrag = new System.Windows.Forms.GroupBox();
             this.button_Kalender_erstelleEintrag = new System.Windows.Forms.Button();
             this.textBox_Kalender_Sollzeit = new System.Windows.Forms.TextBox();
-            this.groupBox_Kalender_Voreinstellungen = new System.Windows.Forms.GroupBox();
             this.button_Kalender_ganzerTagUrlaub = new System.Windows.Forms.Button();
             this.button_Kalender_Feiertag = new System.Windows.Forms.Button();
             this.button_Kalender_Krankheitstag = new System.Windows.Forms.Button();
@@ -186,11 +185,15 @@
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
             this.button_Kalender_Monatzurueck = new System.Windows.Forms.Button();
             this.button_Kalender_Monatvor = new System.Windows.Forms.Button();
+            this.groupBox_Kalender_Zeitkonto = new System.Windows.Forms.GroupBox();
+            this.label_Kalender_ZeitkontoBerechnungsstand = new System.Windows.Forms.Label();
+            this.label_Kalender_Hinweis = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button_Kalender_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
             this.groupBox_Kalender_erstelleEintrag.SuspendLayout();
-            this.groupBox_Kalender_Voreinstellungen.SuspendLayout();
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
             this.Verrechnung.SuspendLayout();
@@ -206,6 +209,7 @@
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox_Kalender_Zeitkonto.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -244,7 +248,7 @@
             this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
-            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(90, 94);
+            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(77, 83);
             this.KalenderGrid_Kalender.MultiSelect = false;
             this.KalenderGrid_Kalender.Name = "KalenderGrid_Kalender";
             this.KalenderGrid_Kalender.ReadOnly = true;
@@ -326,7 +330,7 @@
             this.MonatsPicker_Kalender.CustomFormat = "MMMM       yyyy";
             this.MonatsPicker_Kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MonatsPicker_Kalender.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(90, 59);
+            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(77, 54);
             this.MonatsPicker_Kalender.Margin = new System.Windows.Forms.Padding(0);
             this.MonatsPicker_Kalender.Name = "MonatsPicker_Kalender";
             this.MonatsPicker_Kalender.ShowUpDown = true;
@@ -345,7 +349,7 @@
             "Allgemein"});
             this.PersonPicker_Kalender.Location = new System.Drawing.Point(31, 16);
             this.PersonPicker_Kalender.Name = "PersonPicker_Kalender";
-            this.PersonPicker_Kalender.Size = new System.Drawing.Size(379, 32);
+            this.PersonPicker_Kalender.Size = new System.Drawing.Size(353, 32);
             this.PersonPicker_Kalender.TabIndex = 1;
             this.PersonPicker_Kalender.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Kalender_SelectedIndexChanged);
             // 
@@ -365,6 +369,7 @@
             // 
             // Kalender
             // 
+            this.Kalender.Controls.Add(this.groupBox_Kalender_Zeitkonto);
             this.Kalender.Controls.Add(this.button_Kalender_Monatvor);
             this.Kalender.Controls.Add(this.button_Kalender_Monatzurueck);
             this.Kalender.Controls.Add(this.KalenderGrid_Kalender);
@@ -383,9 +388,12 @@
             // 
             // groupBox_Kalender_erstelleEintrag
             // 
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_ganzerTagUrlaub);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_Feiertag);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_erstelleEintrag);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_Krankheitstag);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Sollzeit);
-            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.groupBox_Kalender_Voreinstellungen);
+            this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_halberTagUrlaub);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Urlaub);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.textBox_Kalender_Bemerkung);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label6);
@@ -393,18 +401,18 @@
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label4);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label5);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label3);
-            this.groupBox_Kalender_erstelleEintrag.Location = new System.Drawing.Point(11, 273);
+            this.groupBox_Kalender_erstelleEintrag.Location = new System.Drawing.Point(11, 252);
             this.groupBox_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_Kalender_erstelleEintrag.Name = "groupBox_Kalender_erstelleEintrag";
             this.groupBox_Kalender_erstelleEintrag.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox_Kalender_erstelleEintrag.Size = new System.Drawing.Size(399, 272);
+            this.groupBox_Kalender_erstelleEintrag.Size = new System.Drawing.Size(399, 186);
             this.groupBox_Kalender_erstelleEintrag.TabIndex = 4;
             this.groupBox_Kalender_erstelleEintrag.TabStop = false;
             this.groupBox_Kalender_erstelleEintrag.Text = "Eintrag erstellen";
             // 
             // button_Kalender_erstelleEintrag
             // 
-            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 217);
+            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 134);
             this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
             this.button_Kalender_erstelleEintrag.Size = new System.Drawing.Size(353, 34);
@@ -416,7 +424,7 @@
             // textBox_Kalender_Sollzeit
             // 
             this.textBox_Kalender_Sollzeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(22, 169);
+            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(22, 86);
             this.textBox_Kalender_Sollzeit.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
             this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(37, 26);
@@ -424,38 +432,23 @@
             this.textBox_Kalender_Sollzeit.Text = "7,2";
             this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // groupBox_Kalender_Voreinstellungen
-            // 
-            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_ganzerTagUrlaub);
-            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_Feiertag);
-            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_Krankheitstag);
-            this.groupBox_Kalender_Voreinstellungen.Controls.Add(this.button_Kalender_halberTagUrlaub);
-            this.groupBox_Kalender_Voreinstellungen.Location = new System.Drawing.Point(20, 26);
-            this.groupBox_Kalender_Voreinstellungen.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox_Kalender_Voreinstellungen.Name = "groupBox_Kalender_Voreinstellungen";
-            this.groupBox_Kalender_Voreinstellungen.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox_Kalender_Voreinstellungen.Size = new System.Drawing.Size(353, 81);
-            this.groupBox_Kalender_Voreinstellungen.TabIndex = 1;
-            this.groupBox_Kalender_Voreinstellungen.TabStop = false;
-            this.groupBox_Kalender_Voreinstellungen.Text = "Voreinstellungen";
-            // 
             // button_Kalender_ganzerTagUrlaub
             // 
-            this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(46, 17);
+            this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(12, 19);
             this.button_Kalender_ganzerTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_ganzerTagUrlaub.Name = "button_Kalender_ganzerTagUrlaub";
-            this.button_Kalender_ganzerTagUrlaub.Size = new System.Drawing.Size(122, 22);
+            this.button_Kalender_ganzerTagUrlaub.Size = new System.Drawing.Size(90, 21);
             this.button_Kalender_ganzerTagUrlaub.TabIndex = 1;
-            this.button_Kalender_ganzerTagUrlaub.Text = "ganzer Tag Urlaub";
+            this.button_Kalender_ganzerTagUrlaub.Text = "1 Tag Urlaub";
             this.button_Kalender_ganzerTagUrlaub.UseVisualStyleBackColor = true;
             this.button_Kalender_ganzerTagUrlaub.Click += new System.EventHandler(this.button_Kalender_ganzerTagUrlaub_Click);
             // 
             // button_Kalender_Feiertag
             // 
-            this.button_Kalender_Feiertag.Location = new System.Drawing.Point(196, 49);
+            this.button_Kalender_Feiertag.Location = new System.Drawing.Point(294, 19);
             this.button_Kalender_Feiertag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_Feiertag.Name = "button_Kalender_Feiertag";
-            this.button_Kalender_Feiertag.Size = new System.Drawing.Size(125, 21);
+            this.button_Kalender_Feiertag.Size = new System.Drawing.Size(90, 21);
             this.button_Kalender_Feiertag.TabIndex = 4;
             this.button_Kalender_Feiertag.Text = "Feiertag";
             this.button_Kalender_Feiertag.UseVisualStyleBackColor = true;
@@ -463,30 +456,30 @@
             // 
             // button_Kalender_Krankheitstag
             // 
-            this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(196, 17);
+            this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(200, 19);
             this.button_Kalender_Krankheitstag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_Krankheitstag.Name = "button_Kalender_Krankheitstag";
-            this.button_Kalender_Krankheitstag.Size = new System.Drawing.Size(125, 21);
+            this.button_Kalender_Krankheitstag.Size = new System.Drawing.Size(90, 21);
             this.button_Kalender_Krankheitstag.TabIndex = 2;
-            this.button_Kalender_Krankheitstag.Text = "ganzer Krankheitstag";
+            this.button_Kalender_Krankheitstag.Text = "1 Tag Krank";
             this.button_Kalender_Krankheitstag.UseVisualStyleBackColor = true;
             this.button_Kalender_Krankheitstag.Click += new System.EventHandler(this.button_Kalender_Krankheitstag_Click);
             // 
             // button_Kalender_halberTagUrlaub
             // 
-            this.button_Kalender_halberTagUrlaub.Location = new System.Drawing.Point(46, 50);
+            this.button_Kalender_halberTagUrlaub.Location = new System.Drawing.Point(106, 19);
             this.button_Kalender_halberTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_halberTagUrlaub.Name = "button_Kalender_halberTagUrlaub";
-            this.button_Kalender_halberTagUrlaub.Size = new System.Drawing.Size(122, 21);
+            this.button_Kalender_halberTagUrlaub.Size = new System.Drawing.Size(90, 21);
             this.button_Kalender_halberTagUrlaub.TabIndex = 3;
-            this.button_Kalender_halberTagUrlaub.Text = "halber Tag Urlaub";
+            this.button_Kalender_halberTagUrlaub.Text = "1/2 Tag Urlaub";
             this.button_Kalender_halberTagUrlaub.UseVisualStyleBackColor = true;
             this.button_Kalender_halberTagUrlaub.Click += new System.EventHandler(this.button_Kalender_halberTagUrlaub_Click);
             // 
             // textBox_Kalender_Urlaub
             // 
             this.textBox_Kalender_Urlaub.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Urlaub.Location = new System.Drawing.Point(125, 169);
+            this.textBox_Kalender_Urlaub.Location = new System.Drawing.Point(125, 86);
             this.textBox_Kalender_Urlaub.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Urlaub.Name = "textBox_Kalender_Urlaub";
             this.textBox_Kalender_Urlaub.Size = new System.Drawing.Size(37, 26);
@@ -496,7 +489,7 @@
             // textBox_Kalender_Bemerkung
             // 
             this.textBox_Kalender_Bemerkung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(230, 169);
+            this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(230, 86);
             this.textBox_Kalender_Bemerkung.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Bemerkung.MaxLength = 30;
             this.textBox_Kalender_Bemerkung.Name = "textBox_Kalender_Bemerkung";
@@ -507,7 +500,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(63, 177);
+            this.label6.Location = new System.Drawing.Point(63, 94);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
@@ -517,7 +510,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(122, 149);
+            this.label2.Location = new System.Drawing.Point(122, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
@@ -527,7 +520,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 149);
+            this.label4.Location = new System.Drawing.Point(19, 66);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
@@ -537,7 +530,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 177);
+            this.label5.Location = new System.Drawing.Point(168, 94);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
@@ -547,7 +540,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 149);
+            this.label3.Location = new System.Drawing.Point(227, 66);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
@@ -570,7 +563,7 @@
             // button_Kalender_storniereEintrag
             // 
             this.button_Kalender_storniereEintrag.Enabled = false;
-            this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 474);
+            this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 485);
             this.button_Kalender_storniereEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_storniereEintrag.Name = "button_Kalender_storniereEintrag";
             this.button_Kalender_storniereEintrag.Size = new System.Drawing.Size(330, 34);
@@ -602,7 +595,7 @@
             this.Ereignisgrid_Kalender.RowTemplate.Height = 24;
             this.Ereignisgrid_Kalender.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Ereignisgrid_Kalender.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 416);
+            this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 445);
             this.Ereignisgrid_Kalender.TabIndex = 1;
             this.Ereignisgrid_Kalender.TabStop = false;
             this.Ereignisgrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_Kalender_CellContentClick);
@@ -704,6 +697,7 @@
             this.button_Verrechnungen_SatzStornieren.TabIndex = 5;
             this.button_Verrechnungen_SatzStornieren.Text = "Markierten Verrechnungssatz stornieren";
             this.button_Verrechnungen_SatzStornieren.UseVisualStyleBackColor = true;
+            this.button_Verrechnungen_SatzStornieren.Click += new System.EventHandler(this.button_Verrechnungen_SatzStornieren_Click);
             // 
             // button_Verrechnungen_SatzUeberschreiben
             // 
@@ -713,6 +707,7 @@
             this.button_Verrechnungen_SatzUeberschreiben.TabIndex = 5;
             this.button_Verrechnungen_SatzUeberschreiben.Text = "Markierten Verrechnungssatz überschreiben";
             this.button_Verrechnungen_SatzUeberschreiben.UseVisualStyleBackColor = true;
+            this.button_Verrechnungen_SatzUeberschreiben.Click += new System.EventHandler(this.button_Verrechnungen_SatzUeberschreiben_Click);
             // 
             // Verrechnungsgrid_Verrechnungen_Update
             // 
@@ -972,6 +967,7 @@
             this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(100, 28);
             this.Auftragspicker_Verrechnung_Insert.TabIndex = 1;
             this.Auftragspicker_Verrechnung_Insert.SelectedIndexChanged += new System.EventHandler(this.Auftragspicker_Verrechnung_Insert_SelectedIndexChanged);
+            this.Auftragspicker_Verrechnung_Insert.Click += new System.EventHandler(this.Auftragspicker_Verrechnung_Insert_Click);
             // 
             // label43
             // 
@@ -1937,7 +1933,7 @@
             // button_Kalender_Monatzurueck
             // 
             this.button_Kalender_Monatzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(61, 59);
+            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(48, 54);
             this.button_Kalender_Monatzurueck.Name = "button_Kalender_Monatzurueck";
             this.button_Kalender_Monatzurueck.Size = new System.Drawing.Size(29, 29);
             this.button_Kalender_Monatzurueck.TabIndex = 6;
@@ -1948,13 +1944,65 @@
             // button_Kalender_Monatvor
             // 
             this.button_Kalender_Monatvor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(338, 59);
+            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(325, 54);
             this.button_Kalender_Monatvor.Name = "button_Kalender_Monatvor";
             this.button_Kalender_Monatvor.Size = new System.Drawing.Size(29, 29);
             this.button_Kalender_Monatvor.TabIndex = 6;
             this.button_Kalender_Monatvor.Text = ">";
             this.button_Kalender_Monatvor.UseVisualStyleBackColor = true;
             this.button_Kalender_Monatvor.Click += new System.EventHandler(this.button_Kalender_Monatvor_Click);
+            // 
+            // groupBox_Kalender_Zeitkonto
+            // 
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_ZeitkontoBerechnungsstand);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_Hinweis);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label46);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.button_Kalender_ZeitkontoRueckrechnen);
+            this.groupBox_Kalender_Zeitkonto.Location = new System.Drawing.Point(11, 448);
+            this.groupBox_Kalender_Zeitkonto.Name = "groupBox_Kalender_Zeitkonto";
+            this.groupBox_Kalender_Zeitkonto.Size = new System.Drawing.Size(399, 97);
+            this.groupBox_Kalender_Zeitkonto.TabIndex = 12;
+            this.groupBox_Kalender_Zeitkonto.TabStop = false;
+            this.groupBox_Kalender_Zeitkonto.Text = "Zeitkonto";
+            // 
+            // label_Kalender_ZeitkontoBerechnungsstand
+            // 
+            this.label_Kalender_ZeitkontoBerechnungsstand.AutoSize = true;
+            this.label_Kalender_ZeitkontoBerechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Kalender_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(283, 20);
+            this.label_Kalender_ZeitkontoBerechnungsstand.Name = "label_Kalender_ZeitkontoBerechnungsstand";
+            this.label_Kalender_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(72, 17);
+            this.label_Kalender_ZeitkontoBerechnungsstand.TabIndex = 9;
+            this.label_Kalender_ZeitkontoBerechnungsstand.Text = "00000000";
+            // 
+            // label_Kalender_Hinweis
+            // 
+            this.label_Kalender_Hinweis.AutoSize = true;
+            this.label_Kalender_Hinweis.BackColor = System.Drawing.Color.Gold;
+            this.label_Kalender_Hinweis.Location = new System.Drawing.Point(19, 42);
+            this.label_Kalender_Hinweis.Name = "label_Kalender_Hinweis";
+            this.label_Kalender_Hinweis.Size = new System.Drawing.Size(351, 13);
+            this.label_Kalender_Hinweis.TabIndex = 9;
+            this.label_Kalender_Hinweis.Text = "Sollzeiten für den 01.01.0001 sind erst nach Rückrechnung veränderbar.";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(19, 24);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(262, 13);
+            this.label46.TabIndex = 9;
+            this.label46.Text = "Stand der Zeitkontoberechnung für diesen Mitarbeiter:";
+            // 
+            // button_Kalender_ZeitkontoRueckrechnen
+            // 
+            this.button_Kalender_ZeitkontoRueckrechnen.Enabled = false;
+            this.button_Kalender_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(20, 58);
+            this.button_Kalender_ZeitkontoRueckrechnen.Name = "button_Kalender_ZeitkontoRueckrechnen";
+            this.button_Kalender_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(353, 29);
+            this.button_Kalender_ZeitkontoRueckrechnen.TabIndex = 8;
+            this.button_Kalender_ZeitkontoRueckrechnen.Text = "Zeitkonto bis zum Vorabend des gewählten Tages zurückrechnen";
+            this.button_Kalender_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1971,7 +2019,6 @@
             this.Kalender.ResumeLayout(false);
             this.groupBox_Kalender_erstelleEintrag.ResumeLayout(false);
             this.groupBox_Kalender_erstelleEintrag.PerformLayout();
-            this.groupBox_Kalender_Voreinstellungen.ResumeLayout(false);
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).EndInit();
             this.Verrechnung.ResumeLayout(false);
@@ -1995,6 +2042,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox_Kalender_Zeitkonto.ResumeLayout(false);
+            this.groupBox_Kalender_Zeitkonto.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2024,7 +2073,6 @@
         private System.Windows.Forms.TextBox textBox_Kalender_Urlaub;
         private System.Windows.Forms.GroupBox groupBox_Kalender_erstelleEintrag;
         private System.Windows.Forms.GroupBox groupBox_Kalender_AlleEreignisse;
-        private System.Windows.Forms.GroupBox groupBox_Kalender_Voreinstellungen;
         private System.Windows.Forms.Button button_Kalender_Krankheitstag;
         private System.Windows.Forms.Button button_Kalender_Feiertag;
         private System.Windows.Forms.DataGridView Ereignisgrid_Kalender;
@@ -2158,6 +2206,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnet;
         private System.Windows.Forms.Button button_Kalender_Monatvor;
         private System.Windows.Forms.Button button_Kalender_Monatzurueck;
+        private System.Windows.Forms.GroupBox groupBox_Kalender_Zeitkonto;
+        private System.Windows.Forms.Label label_Kalender_ZeitkontoBerechnungsstand;
+        private System.Windows.Forms.Label label_Kalender_Hinweis;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Button button_Kalender_ZeitkontoRueckrechnen;
     }
 }
 

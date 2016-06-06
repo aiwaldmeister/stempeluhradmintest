@@ -687,6 +687,19 @@ namespace Stempelurhadmintest
             refreshKalendergrid();
         }
 
+        private void pruefeZeitkontostand()
+        {
+            //TODO testen ob markiertes Datum später ist als der Zeitkontostand des ausgewählten Mitarbeiters
+                //TODO wenn ja, insertbox enablen
+                //TODO wenn nein, insertbox disablen und Hinweis setzen
+
+            
+            //TODO falls allgemein, prüfen ob markiertes Datum später ist, als die Zeitkontostände aller Mitarbeiter
+                //TODO wenn ja, insertbox enablen
+                //TODO wenn nein, insertbox disablen
+
+        }
+
         private void refreshEreignisgrid_Kalender()
         {   //Alle Ereignisse zu ausgewählter Person und Jahr auflisten
 
@@ -1720,6 +1733,11 @@ namespace Stempelurhadmintest
 
         ///////////Verrechnung-Tab/////////////////////////////////////////////
 
+        private void Auftragspicker_Verrechnung_Insert_Click(object sender, EventArgs e)
+        {
+            refreshAuftragsPicker_Verrechnung_Insert();
+        }
+
         private void refreshAuftragsPicker_Verrechnung_Insert()
         {
             string thistaskid = "";
@@ -1828,8 +1846,8 @@ namespace Stempelurhadmintest
                                         "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_an, count(stunde) as count " +
                                             "from stamps where art = 'an' and task = @task and storniert = 0 group by userid) an " +
                                     "left join user on an.userid = user.userid " +
-                                    "WHERE ab.userid = an.userid";
-            //TODO query auf richtige Funktion überprüfen
+                                    "WHERE ab.userid = an.userid " +
+                                    "AND NOT EXISTS (SELECT * FROM verrechnung v WHERE v.person=an.userid AND v.auftrag = @task AND storniert = 0)";
 
             comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Auftragsnummer;
 
@@ -1890,7 +1908,7 @@ namespace Stempelurhadmintest
 
         private void refreshUpdateFormular_Verrechnung()//rechte seite
         {
-            //TODO Funktionsfehler beseitigen (z.B. Grid zuerst leeren, gesamtzeitanzeige zum laufen bringen)
+            Verrechnungsgrid_Verrechnungen_Update.Rows.Clear();
 
             string this_satzid = "";
             string this_userid = "";
@@ -1915,6 +1933,9 @@ namespace Stempelurhadmintest
             catch (Exception ex) { log(ex.Message); }
 
             close_db();
+
+            textBox_Verrechnung_StundenGesamt.Text = this_gesamtzeit;
+
 
             //Fuellen des Grids mit den einzelnen Verrechnungssaetzen
             open_db();
@@ -1966,6 +1987,8 @@ namespace Stempelurhadmintest
             catch (Exception ex) { log(ex.Message); }
 
             close_db();
+
+            Verrechnungsgrid_Verrechnungen_Update.ClearSelection();
 
         }
 
@@ -2107,6 +2130,27 @@ namespace Stempelurhadmintest
             }
         }
 
+        private void clearUpdateFormular_Verrechnung()
+        {
+            //TODO
+        }
+
+        private void prefillUpdateFormular_Verrechnung()
+        {
+            //TODO Felder mit den Daten des Markierten Satzes vorbefuellen
+        }
+
+        private void button_Verrechnungen_SatzStornieren_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button_Verrechnungen_SatzUeberschreiben_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        
         ///////////Personen-Tab////////////////////////////////////////////////
 
         private void refreshPersonPicker_Personen()
@@ -2685,7 +2729,6 @@ namespace Stempelurhadmintest
         }
 
         
-
         ///////////////////////////////////////////////////////////////////////
 
     }
