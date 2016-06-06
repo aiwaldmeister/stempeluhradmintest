@@ -1507,7 +1507,7 @@ namespace Stempelurhadmintest
         {
             string userid = "";
 
-            userid = textBox_Stempelungen_Auftragsnummer.Text;
+            userid = PersonPicker_Stempelungen.Text;
             if(userid.Length >= 6)
             {
                 userid = userid.Substring(0,6);
