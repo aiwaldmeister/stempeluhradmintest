@@ -172,6 +172,8 @@ namespace Stempelurhadmintest
                 if (verrechnungstab_initialisiert_global == false)
                 {
                     refreshAuftragsPicker_Verrechnung_Insert();
+                    refreshInsertFormular_Verrechnung();
+                    refreshUpdateFormular_Verrechnung();
                 }
             }
 
@@ -1787,12 +1789,6 @@ namespace Stempelurhadmintest
         {   
             if(textBox_Verrechnung_Auftragsnummer.Text.Length == 6)
             {
-                //nach Problemen mit den Stempelungen des Auftrags suchen
-                if(sucheStempelfehler_Verrechnung() == true)
-                {
-                    //TODO gut sichtbares Warn-Label anzeigen mit Hinweis dass die angezeigten Zeiten vermutlich nicht stimmen.
-                }
-
                 //linke seite refreshen
                 refreshInsertFormular_Verrechnung();
 
@@ -1801,25 +1797,89 @@ namespace Stempelurhadmintest
             }
         }
 
-        private bool sucheStempelfehler_Verrechnung()
+        private string sucheStempelfehler_Verrechnung(string auftragsnummer, string userid)
         {
-            bool fehler = false;
+            string fehlermeldung = "";
 
-            //TODO nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
+            string this_an_count = "";
+            string this_ab_count = "";
+            string this_tag = "";
+            string this_monat = "";
+            string this_jahr = "";
+            string this_wartungscount = "";
+            string this_art_erstestempelung = "";
+            string this_art_letztestempelung = "";
+
+
+            //TODO die verschiedenen Testfälle testen
+            //nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
+
             //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "    SELECT an.count as an_count, ab.count as ab_count, an.jahr as jahr, an.monat as monat, an.tag as tag FROM " +
+                "(select count(*) as count, jahr, monat, tag from stamps where art = 'an' AND task = @task AND userid = @userid AND storniert = 0 " +
+                "GROUP BY jahr, monat, tag) an, " +
+                "(select count(*) as count, jahr, monat, tag from stamps where art = 'ab' AND task = @task AND userid = @userid AND storniert = 0 " +
+                "GROUP BY jahr, monat, tag) ab " +
+                "WHERE an.jahr = ab.jahr AND an.monat = ab.monat AND an.tag = ab.tag";
+
+            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                while (Reader.Read())
+                {
+                    this_an_count = Reader["an_count"] + "";
+                    this_ab_count = Reader["ab_count"] + "";
+                    this_jahr = Reader["jahr"] + "";
+                    this_monat = Reader["monat"] + "";
+                    this_tag = Reader["tag"] + "";
+
+                    if (this_an_count != this_ab_count)
+                    {//unterschiedliche Anzahl an/ab stempelungen
+                        fehlermeldung = fehlermeldung + "Anzahl an-ab-Stempelungen am " + this_tag + "." + this_monat + "." + this_jahr + " nicht gleich!\r\n";
+                    }
+                }
+                
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+
             //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "    SELECT count(*) as wartungscount, jahr, monat, tag FROM stamps " +
+                "WHERE task = @task AND userid = @userid AND storniert = 0 GROUP BY jahr, monat, tag";
 
-            //vergleich: Tests aus der vergleichbaren funktion im Stempelungstab
-                //Test 1: Ist die erste Stempelung keine anstempelung?
-                //Test 2: kommt nicht immer abwechselnd eine an + eine abstempelung?
-                //Test 3: Hat ein Paar aus AN+AB-Stempelung verschiedene Auftragsnummern?
-                //Test 4: unkorrigierte automatische Abstempelung von einem Wartungslauf? (quelle = 'wartung')
-                //Test 5: Datum ist früher als das heutige und letzte Stempelung ist keine Abstempelung?
+            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
 
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                while (Reader.Read())
+                {
+                    this_wartungscount = Reader["wartungscount"] + "";
 
-            // -> ausgeben an welchem tag bei welcher person das Problem besteht
+                    if (this_wartungscount != "0")
+                    {//unterschiedliche Anzahl an/ab stempelungen
+                        fehlermeldung = fehlermeldung + "Am " + this_tag + "." + this_monat + "." + this_jahr + " gibt es eine unkorrigierte automatische Stempelung!\r\n";
+                    }
+                }
 
-            return fehler;
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            // -> bei jedem gefundenen Fehler die Fehlermeldung um Fehlerbeschreibung und Datum ergänzen.
+
+            return fehlermeldung;
 
         }
 
@@ -1887,14 +1947,28 @@ namespace Stempelurhadmintest
 
                     Verrechnungsgrid_Verrechnungen_Insert.Rows.Add(myrow);
 
-                    if (this_abcount != this_ancount)
-                    {
-                        //zeiten markieren in zeilen in denen ancount von abcount abweicht
+                    //TODO fuer eine Variante der Fehlerpruefung entscheiden und die andere entfernen
+                    //                    if (this_abcount != this_ancount)
+                    //                    {
+                    //                        //zeiten markieren in zeilen in denen ancount von abcount abweicht
+                    //                        int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
+
+                    //                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = "Anzahl An-/Ab-Stempelungen passt nichtzusammen.\r\nAngezeigte Zeit stimmt vermutlich nicht!";
+                    //                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
+                    //                    }
+
+                    string this_stempelfehler = sucheStempelfehler_Verrechnung(Auftragsnummer, this_userid);
+                    if (this_stempelfehler != "")
+                    {   //die Fehlerliste ist nicht leer, also wurden wohl stempelfehler gefunden
+                        
+                        //die betroffene zeit markieren und den fehlertext als tooltip setzen
                         int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
 
-                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = "Anzahl An-/Ab-Stempelungen passt nichtzusammen.\r\nAngezeigte Zeit stimmt vermutlich nicht!";
+                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = this_stempelfehler;
                         Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
                     }
+
+
 
                 }
                 Reader.Close();
@@ -2208,6 +2282,8 @@ namespace Stempelurhadmintest
             string thisperson_bonuskonto_ausgezahlt_bis = "";
             string thisperson_bonuszeit_bei_letzter_auszahlung = "";
             string thisperson_jahresurlaub = "";
+            string thisperson_akturlaubsjahr = "";
+            string thisperson_resturlaub_vorjahr = "";
             bool thisperson_stempelfehler = false;
             bool thisperson_aktiv = false;
 
@@ -2238,6 +2314,8 @@ namespace Stempelurhadmintest
                 thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
                 thisperson_bonuszeit_bei_letzter_auszahlung = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
                 thisperson_jahresurlaub = Reader["jahresurlaub"] + "";
+                thisperson_akturlaubsjahr = Reader["akturlaubsjahr"] + "";
+                thisperson_resturlaub_vorjahr = Reader["resturlaub_vorjahr"] + "";
                 thisperson_stempelfehler = (bool)Reader["stempelfehler"];
                 thisperson_aktiv = (bool)Reader["aktiv"];
 
@@ -2255,6 +2333,8 @@ namespace Stempelurhadmintest
             textBox_Personen_Boniausgezahltbis_old.Text = thisperson_bonuskonto_ausgezahlt_bis;
             textBox_Personen_BetragletzterBonus_old.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
             textBox_Personen_Urlaubstage_old.Text = thisperson_jahresurlaub;
+            textBox_Personen_AktUrlaubsjahr_old.Text = thisperson_akturlaubsjahr;
+            textBox_Personen_ResturlaubVorjahr_old.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv_old.SelectedIndex = 0;
             comboBox_Personen_Stempelfehler_old.SelectedIndex = 0;
@@ -2270,6 +2350,8 @@ namespace Stempelurhadmintest
             textBox_Personen_Boniausgezahltbis.Text = thisperson_bonuskonto_ausgezahlt_bis;
             textBox_Personen_BetragletzterBonus.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
             textBox_Personen_Urlaubstage.Text = thisperson_jahresurlaub;
+            textBox_Personen_AktUrlaubsjahr.Text = thisperson_akturlaubsjahr;
+            textBox_Personen_ResturlaubVorjahr.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv.SelectedIndex = 0;
             comboBox_Personen_Stempelfehler.SelectedIndex = 0;
@@ -2287,6 +2369,13 @@ namespace Stempelurhadmintest
             textBox_Personen_Urlaubstage.BackColor = Color.White;
             comboBox_Personen_Aktiv.BackColor = Color.White;
             comboBox_Personen_Stempelfehler.BackColor = Color.White;
+            textBox_Personen_AktUrlaubsjahr.BackColor = Color.White;
+            textBox_Personen_ResturlaubVorjahr.BackColor = Color.White;
+
+
+            //TODO prüfen ob das aktuelle Urlaubsjahr nicht das aktuelle Jahr ist
+                    //TODO Urlaubsjahr_box ausblenden oder einblenden
+                    //TODO Hinweis ausblenden oder setzen und einblenden
 
         }
 
@@ -2728,7 +2817,40 @@ namespace Stempelurhadmintest
             this.ActiveControl = null;
         }
 
-        
+        private void textBox_Personen_AktUrlaubsjahr_TextChanged(object sender, EventArgs e)
+        {
+            //auf unterschied pruefen und ggf einfaerben
+            if(textBox_Personen_AktUrlaubsjahr.Text == textBox_Personen_AktUrlaubsjahr_old.Text)
+            {
+                textBox_Personen_AktUrlaubsjahr.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_AktUrlaubsjahr.BackColor = Color.Gold;
+            }
+        }
+
+        private void textBox_Personen_ResturlaubVorjahr_TextChanged(object sender, EventArgs e)
+        {
+            //auf unterschied pruefen und ggf einfaerben
+            if (textBox_Personen_ResturlaubVorjahr.Text == textBox_Personen_ResturlaubVorjahr_old.Text)
+            {
+                textBox_Personen_ResturlaubVorjahr.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_ResturlaubVorjahr.BackColor = Color.Gold;                    
+            }
+
+        }
+
+        private void button_Personen_UrlaubsjahrAktualisieren_Click(object sender, EventArgs e)
+        {   //
+            //TODO differez ermitteln zwischen genutzten urlaubstagen im urlaubsjahr und (jahresurlaub + resturlaub vom vorjahr des urlaubsjahres)
+            //TODO diese differenz ist für das nächste urlaubsjahr der resturlaub aus dem vorjahr
+        }
+
+
         ///////////////////////////////////////////////////////////////////////
 
     }

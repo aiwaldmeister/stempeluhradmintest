@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -250,14 +250,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle6;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(77, 83);
@@ -368,10 +368,10 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Kalender);
-            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Controls.Add(this.Verrechnung);
             this.tabControl1.Controls.Add(this.Stempelungen);
             this.tabControl1.Controls.Add(this.Personen);
+            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1646,7 +1646,7 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(170, 385);
+            this.groupBox1.Location = new System.Drawing.Point(253, 388);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(484, 165);
             this.groupBox1.TabIndex = 5;
@@ -2042,7 +2042,7 @@
             this.textBox_Personen_ResturlaubVorjahr.Name = "textBox_Personen_ResturlaubVorjahr";
             this.textBox_Personen_ResturlaubVorjahr.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_ResturlaubVorjahr.TabIndex = 1;
-            this.textBox_Personen_ResturlaubVorjahr.TextChanged += new System.EventHandler(this.textBox_Personen_AktAuftrag_TextChanged);
+            this.textBox_Personen_ResturlaubVorjahr.TextChanged += new System.EventHandler(this.textBox_Personen_ResturlaubVorjahr_TextChanged);
             // 
             // textBox_Personen_ResturlaubVorjahr_old
             // 
@@ -2072,7 +2072,7 @@
             this.textBox_Personen_AktUrlaubsjahr.Name = "textBox_Personen_AktUrlaubsjahr";
             this.textBox_Personen_AktUrlaubsjahr.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_AktUrlaubsjahr.TabIndex = 1;
-            this.textBox_Personen_AktUrlaubsjahr.TextChanged += new System.EventHandler(this.textBox_Personen_AktAuftrag_TextChanged);
+            this.textBox_Personen_AktUrlaubsjahr.TextChanged += new System.EventHandler(this.textBox_Personen_AktUrlaubsjahr_TextChanged);
             // 
             // textBox_Personen_AktUrlaubsjahr_old
             // 
@@ -2111,7 +2111,7 @@
             this.button_Personen_UrlaubsjahrAktualisieren.TabIndex = 4;
             this.button_Personen_UrlaubsjahrAktualisieren.Text = "Resturlaub berechnen und Urlaubsjahr aktualisieren";
             this.button_Personen_UrlaubsjahrAktualisieren.UseVisualStyleBackColor = true;
-            this.button_Personen_UrlaubsjahrAktualisieren.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
+            this.button_Personen_UrlaubsjahrAktualisieren.Click += new System.EventHandler(this.button_Personen_UrlaubsjahrAktualisieren_Click);
             // 
             // label_Personen_Hinweis_Urlaubsjahr
             // 
