@@ -2096,8 +2096,7 @@ namespace Stempelurhadmintest
 
         private void button_Verrechnungen_SatzErstellen_Click(object sender, EventArgs e)
         {
-            //TODO prüfen ob die bonuszeitberechnung dem verrechnungsdatum nicht wiederspricht
-
+            
             bool fehler = false;
 
             string insert_auftragsnummer = "";
@@ -2108,6 +2107,9 @@ namespace Stempelurhadmintest
             string insert_stunden = "";
             int tmp_intout = 0;
             double tmp_doubleout = 0;
+            string bonusausgezahltbis_db = "";
+            DateTime insert_verrechnungsdatum;
+            DateTime date_bonusausgezahltbis;
 
             //Werte sammeln
             insert_auftragsnummer = textBox_Verrechnung_Auftragsnummer.Text;
@@ -2154,6 +2156,36 @@ namespace Stempelurhadmintest
             }
 
 
+            //prüfen ob die bonuszeitberechnung dem verrechnungsdatum nicht wiederspricht
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis FROM user WHERE userid=@userid";
+            comm.Parameters.Add("@person", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = insert_userid;
+            try
+            {
+                bonusausgezahltbis_db =  comm.ExecuteScalar() + "";
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            if(bonusausgezahltbis_db == "")
+            {
+                fehler = true;
+                MessageBox.Show("Fehler beim ermitteln des Datums der letzten Bonusauszahlung!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                date_bonusausgezahltbis = new DateTime(int.Parse(bonusausgezahltbis_db.Substring(0, 4)), int.Parse(bonusausgezahltbis_db.Substring(4, 2)), int.Parse(bonusausgezahltbis_db.Substring(6, 2)), 0, 0, 0);
+                insert_verrechnungsdatum = new DateTime(int.Parse(insert_jahr), int.Parse(insert_monat), int.Parse(insert_tag), 0, 0, 0);
+
+                if (DateTime.Compare(date_bonusausgezahltbis,insert_verrechnungsdatum) >= 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + date_bonusausgezahltbis.ToShortDateString() + " ausgezahlt. Zeiten können nur mit einem späterem Datum Verrechnet werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+                        
             if (fehler == false)
             {
                 //Bestaetigungsdialog vorbereiten
@@ -2864,7 +2896,7 @@ namespace Stempelurhadmintest
             //TODO diese differenz ist für das nächste urlaubsjahr der resturlaub aus dem vorjahr
         }
 
-        
+
 
         ///////////////////////////////////////////////////////////////////////
 

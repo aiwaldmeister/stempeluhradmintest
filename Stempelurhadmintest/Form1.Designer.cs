@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,12 +42,19 @@
             this.PersonPicker_Kalender = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Kalender = new System.Windows.Forms.TabPage();
+            this.groupBox_Kalender_Zeitkonto = new System.Windows.Forms.GroupBox();
+            this.label_Kalender_ZeitkontoBerechnungsstand = new System.Windows.Forms.Label();
+            this.label_Kalender_Hinweis = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button_Kalender_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
+            this.button_Kalender_Monatvor = new System.Windows.Forms.Button();
+            this.button_Kalender_Monatzurueck = new System.Windows.Forms.Button();
             this.groupBox_Kalender_erstelleEintrag = new System.Windows.Forms.GroupBox();
-            this.button_Kalender_erstelleEintrag = new System.Windows.Forms.Button();
-            this.textBox_Kalender_Sollzeit = new System.Windows.Forms.TextBox();
             this.button_Kalender_ganzerTagUrlaub = new System.Windows.Forms.Button();
             this.button_Kalender_Feiertag = new System.Windows.Forms.Button();
+            this.button_Kalender_erstelleEintrag = new System.Windows.Forms.Button();
             this.button_Kalender_Krankheitstag = new System.Windows.Forms.Button();
+            this.textBox_Kalender_Sollzeit = new System.Windows.Forms.TextBox();
             this.button_Kalender_halberTagUrlaub = new System.Windows.Forms.Button();
             this.textBox_Kalender_Urlaub = new System.Windows.Forms.TextBox();
             this.textBox_Kalender_Bemerkung = new System.Windows.Forms.TextBox();
@@ -64,7 +71,6 @@
             this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Verrechnung = new System.Windows.Forms.TabPage();
             this.groupBox_Verrechnungen_Update = new System.Windows.Forms.GroupBox();
             this.DatePicker_Verrechnung_Update = new System.Windows.Forms.DateTimePicker();
@@ -126,10 +132,15 @@
             this.DatePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Stempelungen = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_Personen_Hinweis_Urlaubsjahr = new System.Windows.Forms.Label();
+            this.button_Personen_UrlaubsjahrAktualisieren = new System.Windows.Forms.Button();
             this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
             this.groupBox_Personen_Systemdaten = new System.Windows.Forms.GroupBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -137,7 +148,11 @@
             this.label29 = new System.Windows.Forms.Label();
             this.comboBox_Personen_Stempelfehler_old = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Stempelfehler = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_AktUrlaubsjahr_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_ResturlaubVorjahr_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_AktUrlaubsjahr = new System.Windows.Forms.TextBox();
             this.textBox_Personen_AktAuftrag_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_ResturlaubVorjahr = new System.Windows.Forms.TextBox();
             this.textBox_Personen_AktAuftrag = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox_Personen_BetragletzterBonus_old = new System.Windows.Forms.TextBox();
@@ -151,7 +166,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_Personen_Zeitkonto_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Zeitkonto = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DatePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
@@ -183,27 +200,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.button_Kalender_Monatzurueck = new System.Windows.Forms.Button();
-            this.button_Kalender_Monatvor = new System.Windows.Forms.Button();
-            this.groupBox_Kalender_Zeitkonto = new System.Windows.Forms.GroupBox();
-            this.label_Kalender_ZeitkontoBerechnungsstand = new System.Windows.Forms.Label();
-            this.label_Kalender_Hinweis = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.button_Kalender_ZeitkontoRueckrechnen = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.textBox_Personen_ResturlaubVorjahr = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_ResturlaubVorjahr_old = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.textBox_Personen_AktUrlaubsjahr = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_AktUrlaubsjahr_old = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.button_Personen_UrlaubsjahrAktualisieren = new System.Windows.Forms.Button();
-            this.label_Personen_Hinweis_Urlaubsjahr = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.button_Personen_ZeitkontoAktualisieren = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
+            this.groupBox_Kalender_Zeitkonto.SuspendLayout();
             this.groupBox_Kalender_erstelleEintrag.SuspendLayout();
             this.groupBox_Kalender_AlleEreignisse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ereignisgrid_Kalender)).BeginInit();
@@ -217,11 +220,10 @@
             this.groupBox_Stempelungen_EditierenErstellen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).BeginInit();
             this.Personen.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox_Kalender_Zeitkonto.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -250,14 +252,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(77, 83);
@@ -398,6 +400,80 @@
             this.Kalender.Text = "Kalender";
             this.Kalender.UseVisualStyleBackColor = true;
             // 
+            // groupBox_Kalender_Zeitkonto
+            // 
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_ZeitkontoBerechnungsstand);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_Hinweis);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label46);
+            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.button_Kalender_ZeitkontoRueckrechnen);
+            this.groupBox_Kalender_Zeitkonto.Location = new System.Drawing.Point(11, 448);
+            this.groupBox_Kalender_Zeitkonto.Name = "groupBox_Kalender_Zeitkonto";
+            this.groupBox_Kalender_Zeitkonto.Size = new System.Drawing.Size(399, 97);
+            this.groupBox_Kalender_Zeitkonto.TabIndex = 12;
+            this.groupBox_Kalender_Zeitkonto.TabStop = false;
+            this.groupBox_Kalender_Zeitkonto.Text = "Zeitkonto";
+            // 
+            // label_Kalender_ZeitkontoBerechnungsstand
+            // 
+            this.label_Kalender_ZeitkontoBerechnungsstand.AutoSize = true;
+            this.label_Kalender_ZeitkontoBerechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Kalender_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(283, 20);
+            this.label_Kalender_ZeitkontoBerechnungsstand.Name = "label_Kalender_ZeitkontoBerechnungsstand";
+            this.label_Kalender_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(72, 17);
+            this.label_Kalender_ZeitkontoBerechnungsstand.TabIndex = 9;
+            this.label_Kalender_ZeitkontoBerechnungsstand.Text = "00000000";
+            // 
+            // label_Kalender_Hinweis
+            // 
+            this.label_Kalender_Hinweis.AutoSize = true;
+            this.label_Kalender_Hinweis.BackColor = System.Drawing.Color.Gold;
+            this.label_Kalender_Hinweis.Location = new System.Drawing.Point(19, 42);
+            this.label_Kalender_Hinweis.Name = "label_Kalender_Hinweis";
+            this.label_Kalender_Hinweis.Size = new System.Drawing.Size(351, 13);
+            this.label_Kalender_Hinweis.TabIndex = 9;
+            this.label_Kalender_Hinweis.Text = "Sollzeiten für den 01.01.0001 sind erst nach Rückrechnung veränderbar.";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(19, 24);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(262, 13);
+            this.label46.TabIndex = 9;
+            this.label46.Text = "Stand der Zeitkontoberechnung für diesen Mitarbeiter:";
+            // 
+            // button_Kalender_ZeitkontoRueckrechnen
+            // 
+            this.button_Kalender_ZeitkontoRueckrechnen.Enabled = false;
+            this.button_Kalender_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(20, 58);
+            this.button_Kalender_ZeitkontoRueckrechnen.Name = "button_Kalender_ZeitkontoRueckrechnen";
+            this.button_Kalender_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(353, 29);
+            this.button_Kalender_ZeitkontoRueckrechnen.TabIndex = 8;
+            this.button_Kalender_ZeitkontoRueckrechnen.Text = "Zeitkonto bis zum Vorabend des gewählten Tages zurückrechnen";
+            this.button_Kalender_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
+            // 
+            // button_Kalender_Monatvor
+            // 
+            this.button_Kalender_Monatvor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(325, 54);
+            this.button_Kalender_Monatvor.Name = "button_Kalender_Monatvor";
+            this.button_Kalender_Monatvor.Size = new System.Drawing.Size(29, 29);
+            this.button_Kalender_Monatvor.TabIndex = 6;
+            this.button_Kalender_Monatvor.Text = ">";
+            this.button_Kalender_Monatvor.UseVisualStyleBackColor = true;
+            this.button_Kalender_Monatvor.Click += new System.EventHandler(this.button_Kalender_Monatvor_Click);
+            // 
+            // button_Kalender_Monatzurueck
+            // 
+            this.button_Kalender_Monatzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(48, 54);
+            this.button_Kalender_Monatzurueck.Name = "button_Kalender_Monatzurueck";
+            this.button_Kalender_Monatzurueck.Size = new System.Drawing.Size(29, 29);
+            this.button_Kalender_Monatzurueck.TabIndex = 6;
+            this.button_Kalender_Monatzurueck.Text = "<";
+            this.button_Kalender_Monatzurueck.UseVisualStyleBackColor = true;
+            this.button_Kalender_Monatzurueck.Click += new System.EventHandler(this.button_Kalender_Monatzurueck_Click);
+            // 
             // groupBox_Kalender_erstelleEintrag
             // 
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.button_Kalender_ganzerTagUrlaub);
@@ -422,28 +498,6 @@
             this.groupBox_Kalender_erstelleEintrag.TabStop = false;
             this.groupBox_Kalender_erstelleEintrag.Text = "Eintrag erstellen";
             // 
-            // button_Kalender_erstelleEintrag
-            // 
-            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 134);
-            this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
-            this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
-            this.button_Kalender_erstelleEintrag.Size = new System.Drawing.Size(353, 34);
-            this.button_Kalender_erstelleEintrag.TabIndex = 5;
-            this.button_Kalender_erstelleEintrag.Text = "Kalendereintrag erstellen";
-            this.button_Kalender_erstelleEintrag.UseVisualStyleBackColor = true;
-            this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_erstelleEintrag_Click);
-            // 
-            // textBox_Kalender_Sollzeit
-            // 
-            this.textBox_Kalender_Sollzeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(22, 86);
-            this.textBox_Kalender_Sollzeit.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
-            this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(37, 26);
-            this.textBox_Kalender_Sollzeit.TabIndex = 2;
-            this.textBox_Kalender_Sollzeit.Text = "7,2";
-            this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // button_Kalender_ganzerTagUrlaub
             // 
             this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(12, 19);
@@ -466,6 +520,17 @@
             this.button_Kalender_Feiertag.UseVisualStyleBackColor = true;
             this.button_Kalender_Feiertag.Click += new System.EventHandler(this.button_Kalender_Feiertag_Click);
             // 
+            // button_Kalender_erstelleEintrag
+            // 
+            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 134);
+            this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
+            this.button_Kalender_erstelleEintrag.Size = new System.Drawing.Size(353, 34);
+            this.button_Kalender_erstelleEintrag.TabIndex = 5;
+            this.button_Kalender_erstelleEintrag.Text = "Kalendereintrag erstellen";
+            this.button_Kalender_erstelleEintrag.UseVisualStyleBackColor = true;
+            this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_erstelleEintrag_Click);
+            // 
             // button_Kalender_Krankheitstag
             // 
             this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(200, 19);
@@ -476,6 +541,17 @@
             this.button_Kalender_Krankheitstag.Text = "1 Tag Krank";
             this.button_Kalender_Krankheitstag.UseVisualStyleBackColor = true;
             this.button_Kalender_Krankheitstag.Click += new System.EventHandler(this.button_Kalender_Krankheitstag_Click);
+            // 
+            // textBox_Kalender_Sollzeit
+            // 
+            this.textBox_Kalender_Sollzeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(22, 86);
+            this.textBox_Kalender_Sollzeit.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
+            this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(37, 26);
+            this.textBox_Kalender_Sollzeit.TabIndex = 2;
+            this.textBox_Kalender_Sollzeit.Text = "7,2";
+            this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button_Kalender_halberTagUrlaub
             // 
@@ -647,16 +723,6 @@
             this.Vermerk.Name = "Vermerk";
             this.Vermerk.ReadOnly = true;
             this.Vermerk.Width = 250;
-            // 
-            // Auswertungen
-            // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
-            this.Auswertungen.Name = "Auswertungen";
-            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
-            this.Auswertungen.TabIndex = 3;
-            this.Auswertungen.Text = "Auswertungen";
-            this.Auswertungen.UseVisualStyleBackColor = true;
             // 
             // Verrechnung
             // 
@@ -1324,9 +1390,42 @@
             this.Personen.Text = "Personen";
             this.Personen.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label49);
+            this.groupBox2.Controls.Add(this.label_Personen_Hinweis_Urlaubsjahr);
+            this.groupBox2.Controls.Add(this.button_Personen_ZeitkontoAktualisieren);
+            this.groupBox2.Controls.Add(this.button_Personen_UrlaubsjahrAktualisieren);
+            this.groupBox2.Location = new System.Drawing.Point(410, 41);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(381, 167);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Spezial-Funktionen";
+            // 
+            // label_Personen_Hinweis_Urlaubsjahr
+            // 
+            this.label_Personen_Hinweis_Urlaubsjahr.AutoSize = true;
+            this.label_Personen_Hinweis_Urlaubsjahr.BackColor = System.Drawing.Color.Gold;
+            this.label_Personen_Hinweis_Urlaubsjahr.Location = new System.Drawing.Point(12, 25);
+            this.label_Personen_Hinweis_Urlaubsjahr.Name = "label_Personen_Hinweis_Urlaubsjahr";
+            this.label_Personen_Hinweis_Urlaubsjahr.Size = new System.Drawing.Size(352, 13);
+            this.label_Personen_Hinweis_Urlaubsjahr.TabIndex = 10;
+            this.label_Personen_Hinweis_Urlaubsjahr.Text = "Das Urlaubsjahr des Mitarbeiters ist noch nicht auf dieses Jahr eingestellt.";
+            // 
+            // button_Personen_UrlaubsjahrAktualisieren
+            // 
+            this.button_Personen_UrlaubsjahrAktualisieren.Location = new System.Drawing.Point(15, 41);
+            this.button_Personen_UrlaubsjahrAktualisieren.Name = "button_Personen_UrlaubsjahrAktualisieren";
+            this.button_Personen_UrlaubsjahrAktualisieren.Size = new System.Drawing.Size(350, 29);
+            this.button_Personen_UrlaubsjahrAktualisieren.TabIndex = 4;
+            this.button_Personen_UrlaubsjahrAktualisieren.Text = "Resturlaub berechnen und Urlaubsjahr aktualisieren";
+            this.button_Personen_UrlaubsjahrAktualisieren.UseVisualStyleBackColor = true;
+            this.button_Personen_UrlaubsjahrAktualisieren.Click += new System.EventHandler(this.button_Personen_UrlaubsjahrAktualisieren_Click);
+            // 
             // button_Personen_Edit_Systemdaten
             // 
-            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(420, 3);
+            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(6, 216);
             this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
             this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(392, 21);
             this.button_Personen_Edit_Systemdaten.TabIndex = 6;
@@ -1342,9 +1441,9 @@
             this.PersonPicker_Personen.FormattingEnabled = true;
             this.PersonPicker_Personen.Items.AddRange(new object[] {
             "Allgemein"});
-            this.PersonPicker_Personen.Location = new System.Drawing.Point(6, 3);
+            this.PersonPicker_Personen.Location = new System.Drawing.Point(8, 6);
             this.PersonPicker_Personen.Name = "PersonPicker_Personen";
-            this.PersonPicker_Personen.Size = new System.Drawing.Size(383, 32);
+            this.PersonPicker_Personen.Size = new System.Drawing.Size(390, 32);
             this.PersonPicker_Personen.TabIndex = 1;
             this.PersonPicker_Personen.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Personen_SelectedIndexChanged);
             // 
@@ -1383,9 +1482,9 @@
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label37);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label12);
             this.groupBox_Personen_Systemdaten.Enabled = false;
-            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(420, 22);
+            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(6, 243);
             this.groupBox_Personen_Systemdaten.Name = "groupBox_Personen_Systemdaten";
-            this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(392, 295);
+            this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(392, 264);
             this.groupBox_Personen_Systemdaten.TabIndex = 3;
             this.groupBox_Personen_Systemdaten.TabStop = false;
             this.groupBox_Personen_Systemdaten.Text = "Systemdaten";
@@ -1393,16 +1492,34 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(255, 268);
+            this.label35.Location = new System.Drawing.Point(255, 231);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(19, 13);
             this.label35.TabIndex = 8;
             this.label35.Text = "-->";
             // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(255, 202);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(19, 13);
+            this.label48.TabIndex = 8;
+            this.label48.Text = "-->";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(255, 173);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(19, 13);
+            this.label47.TabIndex = 8;
+            this.label47.Text = "-->";
+            // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(255, 165);
+            this.label34.Location = new System.Drawing.Point(255, 144);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(19, 13);
             this.label34.TabIndex = 8;
@@ -1411,7 +1528,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(255, 133);
+            this.label33.Location = new System.Drawing.Point(255, 115);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(19, 13);
             this.label33.TabIndex = 8;
@@ -1420,7 +1537,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(255, 100);
+            this.label31.Location = new System.Drawing.Point(255, 86);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(19, 13);
             this.label31.TabIndex = 8;
@@ -1429,7 +1546,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(255, 66);
+            this.label30.Location = new System.Drawing.Point(255, 57);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(19, 13);
             this.label30.TabIndex = 8;
@@ -1438,7 +1555,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(255, 31);
+            this.label29.Location = new System.Drawing.Point(255, 28);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(19, 13);
             this.label29.TabIndex = 8;
@@ -1454,7 +1571,7 @@
             this.comboBox_Personen_Stempelfehler_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Stempelfehler_old.Location = new System.Drawing.Point(145, 260);
+            this.comboBox_Personen_Stempelfehler_old.Location = new System.Drawing.Point(145, 223);
             this.comboBox_Personen_Stempelfehler_old.Name = "comboBox_Personen_Stempelfehler_old";
             this.comboBox_Personen_Stempelfehler_old.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Stempelfehler_old.TabIndex = 7;
@@ -1469,27 +1586,69 @@
             this.comboBox_Personen_Stempelfehler.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Stempelfehler.Location = new System.Drawing.Point(285, 260);
+            this.comboBox_Personen_Stempelfehler.Location = new System.Drawing.Point(285, 223);
             this.comboBox_Personen_Stempelfehler.Name = "comboBox_Personen_Stempelfehler";
             this.comboBox_Personen_Stempelfehler.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Stempelfehler.TabIndex = 6;
             this.comboBox_Personen_Stempelfehler.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Stempelfehler_SelectedIndexChanged);
             // 
+            // textBox_Personen_AktUrlaubsjahr_old
+            // 
+            this.textBox_Personen_AktUrlaubsjahr_old.Enabled = false;
+            this.textBox_Personen_AktUrlaubsjahr_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_AktUrlaubsjahr_old.Location = new System.Drawing.Point(145, 165);
+            this.textBox_Personen_AktUrlaubsjahr_old.MaxLength = 6;
+            this.textBox_Personen_AktUrlaubsjahr_old.Name = "textBox_Personen_AktUrlaubsjahr_old";
+            this.textBox_Personen_AktUrlaubsjahr_old.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_AktUrlaubsjahr_old.TabIndex = 1;
+            this.textBox_Personen_AktUrlaubsjahr_old.TabStop = false;
+            // 
+            // textBox_Personen_ResturlaubVorjahr_old
+            // 
+            this.textBox_Personen_ResturlaubVorjahr_old.Enabled = false;
+            this.textBox_Personen_ResturlaubVorjahr_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_ResturlaubVorjahr_old.Location = new System.Drawing.Point(145, 194);
+            this.textBox_Personen_ResturlaubVorjahr_old.MaxLength = 6;
+            this.textBox_Personen_ResturlaubVorjahr_old.Name = "textBox_Personen_ResturlaubVorjahr_old";
+            this.textBox_Personen_ResturlaubVorjahr_old.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_ResturlaubVorjahr_old.TabIndex = 1;
+            this.textBox_Personen_ResturlaubVorjahr_old.TabStop = false;
+            // 
+            // textBox_Personen_AktUrlaubsjahr
+            // 
+            this.textBox_Personen_AktUrlaubsjahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_AktUrlaubsjahr.Location = new System.Drawing.Point(285, 165);
+            this.textBox_Personen_AktUrlaubsjahr.MaxLength = 6;
+            this.textBox_Personen_AktUrlaubsjahr.Name = "textBox_Personen_AktUrlaubsjahr";
+            this.textBox_Personen_AktUrlaubsjahr.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_AktUrlaubsjahr.TabIndex = 1;
+            this.textBox_Personen_AktUrlaubsjahr.TextChanged += new System.EventHandler(this.textBox_Personen_AktUrlaubsjahr_TextChanged);
+            // 
             // textBox_Personen_AktAuftrag_old
             // 
             this.textBox_Personen_AktAuftrag_old.Enabled = false;
             this.textBox_Personen_AktAuftrag_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_AktAuftrag_old.Location = new System.Drawing.Point(145, 23);
+            this.textBox_Personen_AktAuftrag_old.Location = new System.Drawing.Point(145, 20);
             this.textBox_Personen_AktAuftrag_old.MaxLength = 6;
             this.textBox_Personen_AktAuftrag_old.Name = "textBox_Personen_AktAuftrag_old";
             this.textBox_Personen_AktAuftrag_old.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_AktAuftrag_old.TabIndex = 1;
             this.textBox_Personen_AktAuftrag_old.TabStop = false;
             // 
+            // textBox_Personen_ResturlaubVorjahr
+            // 
+            this.textBox_Personen_ResturlaubVorjahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_ResturlaubVorjahr.Location = new System.Drawing.Point(285, 194);
+            this.textBox_Personen_ResturlaubVorjahr.MaxLength = 6;
+            this.textBox_Personen_ResturlaubVorjahr.Name = "textBox_Personen_ResturlaubVorjahr";
+            this.textBox_Personen_ResturlaubVorjahr.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_ResturlaubVorjahr.TabIndex = 1;
+            this.textBox_Personen_ResturlaubVorjahr.TextChanged += new System.EventHandler(this.textBox_Personen_ResturlaubVorjahr_TextChanged);
+            // 
             // textBox_Personen_AktAuftrag
             // 
             this.textBox_Personen_AktAuftrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(285, 23);
+            this.textBox_Personen_AktAuftrag.Location = new System.Drawing.Point(285, 20);
             this.textBox_Personen_AktAuftrag.MaxLength = 6;
             this.textBox_Personen_AktAuftrag.Name = "textBox_Personen_AktAuftrag";
             this.textBox_Personen_AktAuftrag.Size = new System.Drawing.Size(100, 26);
@@ -1499,7 +1658,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(25, 268);
+            this.label17.Location = new System.Drawing.Point(25, 231);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(71, 13);
             this.label17.TabIndex = 0;
@@ -1509,7 +1668,7 @@
             // 
             this.textBox_Personen_BetragletzterBonus_old.Enabled = false;
             this.textBox_Personen_BetragletzterBonus_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_BetragletzterBonus_old.Location = new System.Drawing.Point(145, 157);
+            this.textBox_Personen_BetragletzterBonus_old.Location = new System.Drawing.Point(145, 136);
             this.textBox_Personen_BetragletzterBonus_old.MaxLength = 10;
             this.textBox_Personen_BetragletzterBonus_old.Name = "textBox_Personen_BetragletzterBonus_old";
             this.textBox_Personen_BetragletzterBonus_old.Size = new System.Drawing.Size(100, 26);
@@ -1519,7 +1678,7 @@
             // textBox_Personen_BetragletzterBonus
             // 
             this.textBox_Personen_BetragletzterBonus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(285, 157);
+            this.textBox_Personen_BetragletzterBonus.Location = new System.Drawing.Point(285, 136);
             this.textBox_Personen_BetragletzterBonus.MaxLength = 10;
             this.textBox_Personen_BetragletzterBonus.Name = "textBox_Personen_BetragletzterBonus";
             this.textBox_Personen_BetragletzterBonus.Size = new System.Drawing.Size(100, 26);
@@ -1529,7 +1688,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(25, 165);
+            this.label16.Location = new System.Drawing.Point(25, 144);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(102, 13);
             this.label16.TabIndex = 0;
@@ -1539,7 +1698,7 @@
             // 
             this.textBox_Personen_Boniausgezahltbis_old.Enabled = false;
             this.textBox_Personen_Boniausgezahltbis_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Boniausgezahltbis_old.Location = new System.Drawing.Point(145, 125);
+            this.textBox_Personen_Boniausgezahltbis_old.Location = new System.Drawing.Point(145, 107);
             this.textBox_Personen_Boniausgezahltbis_old.MaxLength = 8;
             this.textBox_Personen_Boniausgezahltbis_old.Name = "textBox_Personen_Boniausgezahltbis_old";
             this.textBox_Personen_Boniausgezahltbis_old.Size = new System.Drawing.Size(100, 26);
@@ -1549,7 +1708,7 @@
             // textBox_Personen_Boniausgezahltbis
             // 
             this.textBox_Personen_Boniausgezahltbis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(285, 125);
+            this.textBox_Personen_Boniausgezahltbis.Location = new System.Drawing.Point(285, 107);
             this.textBox_Personen_Boniausgezahltbis.MaxLength = 8;
             this.textBox_Personen_Boniausgezahltbis.Name = "textBox_Personen_Boniausgezahltbis";
             this.textBox_Personen_Boniausgezahltbis.Size = new System.Drawing.Size(100, 26);
@@ -1559,7 +1718,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 133);
+            this.label15.Location = new System.Drawing.Point(25, 115);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(98, 13);
             this.label15.TabIndex = 0;
@@ -1569,7 +1728,7 @@
             // 
             this.textBox_Personen_ZeitkontoBerechnungsstand_old.Enabled = false;
             this.textBox_Personen_ZeitkontoBerechnungsstand_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Location = new System.Drawing.Point(145, 92);
+            this.textBox_Personen_ZeitkontoBerechnungsstand_old.Location = new System.Drawing.Point(145, 78);
             this.textBox_Personen_ZeitkontoBerechnungsstand_old.MaxLength = 8;
             this.textBox_Personen_ZeitkontoBerechnungsstand_old.Name = "textBox_Personen_ZeitkontoBerechnungsstand_old";
             this.textBox_Personen_ZeitkontoBerechnungsstand_old.Size = new System.Drawing.Size(100, 26);
@@ -1579,7 +1738,7 @@
             // textBox_Personen_ZeitkontoBerechnungsstand
             // 
             this.textBox_Personen_ZeitkontoBerechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(285, 92);
+            this.textBox_Personen_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(285, 78);
             this.textBox_Personen_ZeitkontoBerechnungsstand.MaxLength = 8;
             this.textBox_Personen_ZeitkontoBerechnungsstand.Name = "textBox_Personen_ZeitkontoBerechnungsstand";
             this.textBox_Personen_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(100, 26);
@@ -1589,7 +1748,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 100);
+            this.label14.Location = new System.Drawing.Point(25, 86);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 13);
             this.label14.TabIndex = 0;
@@ -1599,7 +1758,7 @@
             // 
             this.textBox_Personen_Zeitkonto_old.Enabled = false;
             this.textBox_Personen_Zeitkonto_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Zeitkonto_old.Location = new System.Drawing.Point(145, 58);
+            this.textBox_Personen_Zeitkonto_old.Location = new System.Drawing.Point(145, 49);
             this.textBox_Personen_Zeitkonto_old.MaxLength = 10;
             this.textBox_Personen_Zeitkonto_old.Name = "textBox_Personen_Zeitkonto_old";
             this.textBox_Personen_Zeitkonto_old.Size = new System.Drawing.Size(100, 26);
@@ -1609,26 +1768,44 @@
             // textBox_Personen_Zeitkonto
             // 
             this.textBox_Personen_Zeitkonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(285, 58);
+            this.textBox_Personen_Zeitkonto.Location = new System.Drawing.Point(285, 49);
             this.textBox_Personen_Zeitkonto.MaxLength = 10;
             this.textBox_Personen_Zeitkonto.Name = "textBox_Personen_Zeitkonto";
             this.textBox_Personen_Zeitkonto.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Zeitkonto.TabIndex = 2;
             this.textBox_Personen_Zeitkonto.TextChanged += new System.EventHandler(this.textBox_Personen_Zeitkonto_TextChanged);
             // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(25, 173);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(106, 13);
+            this.label45.TabIndex = 0;
+            this.label45.Text = "Aktuelles Urlaubsjahr";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 66);
+            this.label13.Location = new System.Drawing.Point(25, 57);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(52, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "Zeitkonto";
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(25, 202);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(117, 13);
+            this.label37.TabIndex = 0;
+            this.label37.Text = "Resturlaub vom Vorjahr";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 31);
+            this.label12.Location = new System.Drawing.Point(25, 28);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(85, 13);
             this.label12.TabIndex = 0;
@@ -1647,9 +1824,9 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(253, 388);
+            this.groupBox1.Location = new System.Drawing.Point(554, 348);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 165);
+            this.groupBox1.Size = new System.Drawing.Size(256, 202);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
@@ -1659,7 +1836,7 @@
             this.DatePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
             this.DatePicker_Personen_neu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DatePicker_Personen_neu.Location = new System.Drawing.Point(360, 42);
+            this.DatePicker_Personen_neu.Location = new System.Drawing.Point(136, 137);
             this.DatePicker_Personen_neu.Name = "DatePicker_Personen_neu";
             this.DatePicker_Personen_neu.Size = new System.Drawing.Size(100, 26);
             this.DatePicker_Personen_neu.TabIndex = 5;
@@ -1667,7 +1844,7 @@
             // textBox_Personen_Neu_WunschID
             // 
             this.textBox_Personen_Neu_WunschID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Neu_WunschID.Location = new System.Drawing.Point(106, 28);
+            this.textBox_Personen_Neu_WunschID.Location = new System.Drawing.Point(136, 21);
             this.textBox_Personen_Neu_WunschID.Name = "textBox_Personen_Neu_WunschID";
             this.textBox_Personen_Neu_WunschID.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Neu_WunschID.TabIndex = 1;
@@ -1675,7 +1852,7 @@
             // textBox_Personen_Neu_Urlaubstage
             // 
             this.textBox_Personen_Neu_Urlaubstage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Neu_Urlaubstage.Location = new System.Drawing.Point(360, 81);
+            this.textBox_Personen_Neu_Urlaubstage.Location = new System.Drawing.Point(136, 108);
             this.textBox_Personen_Neu_Urlaubstage.Name = "textBox_Personen_Neu_Urlaubstage";
             this.textBox_Personen_Neu_Urlaubstage.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Neu_Urlaubstage.TabIndex = 4;
@@ -1683,7 +1860,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(240, 49);
+            this.label7.Location = new System.Drawing.Point(17, 144);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 13);
             this.label7.TabIndex = 0;
@@ -1692,16 +1869,16 @@
             // textBox_Personen_Neu_Nachname
             // 
             this.textBox_Personen_Neu_Nachname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Neu_Nachname.Location = new System.Drawing.Point(106, 95);
+            this.textBox_Personen_Neu_Nachname.Location = new System.Drawing.Point(136, 79);
             this.textBox_Personen_Neu_Nachname.Name = "textBox_Personen_Neu_Nachname";
             this.textBox_Personen_Neu_Nachname.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Neu_Nachname.TabIndex = 3;
             // 
             // button_Personen_newPerson
             // 
-            this.button_Personen_newPerson.Location = new System.Drawing.Point(24, 133);
+            this.button_Personen_newPerson.Location = new System.Drawing.Point(20, 169);
             this.button_Personen_newPerson.Name = "button_Personen_newPerson";
-            this.button_Personen_newPerson.Size = new System.Drawing.Size(436, 26);
+            this.button_Personen_newPerson.Size = new System.Drawing.Size(217, 26);
             this.button_Personen_newPerson.TabIndex = 6;
             this.button_Personen_newPerson.Text = "Neuen Mitarbeiter anlegen";
             this.button_Personen_newPerson.UseVisualStyleBackColor = true;
@@ -1710,7 +1887,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(240, 86);
+            this.label18.Location = new System.Drawing.Point(16, 116);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(112, 13);
             this.label18.TabIndex = 0;
@@ -1719,7 +1896,7 @@
             // textBox_Personen_Neu_Vorname
             // 
             this.textBox_Personen_Neu_Vorname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Neu_Vorname.Location = new System.Drawing.Point(106, 62);
+            this.textBox_Personen_Neu_Vorname.Location = new System.Drawing.Point(136, 50);
             this.textBox_Personen_Neu_Vorname.Name = "textBox_Personen_Neu_Vorname";
             this.textBox_Personen_Neu_Vorname.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Neu_Vorname.TabIndex = 2;
@@ -1727,7 +1904,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(21, 103);
+            this.label19.Location = new System.Drawing.Point(17, 87);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 13);
             this.label19.TabIndex = 0;
@@ -1736,7 +1913,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(21, 36);
+            this.label25.Location = new System.Drawing.Point(17, 29);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(79, 13);
             this.label25.TabIndex = 0;
@@ -1745,7 +1922,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(21, 70);
+            this.label20.Location = new System.Drawing.Point(17, 58);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 13);
             this.label20.TabIndex = 0;
@@ -1769,9 +1946,9 @@
             this.groupBox5.Controls.Add(this.textBox_Personen_Vorname);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Location = new System.Drawing.Point(8, 53);
+            this.groupBox5.Location = new System.Drawing.Point(8, 41);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(383, 167);
+            this.groupBox5.Size = new System.Drawing.Size(390, 167);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
@@ -1944,196 +2121,42 @@
             // 
             // button_Personen_writeChanges
             // 
-            this.button_Personen_writeChanges.Location = new System.Drawing.Point(8, 323);
+            this.button_Personen_writeChanges.Location = new System.Drawing.Point(6, 524);
             this.button_Personen_writeChanges.Name = "button_Personen_writeChanges";
-            this.button_Personen_writeChanges.Size = new System.Drawing.Size(804, 35);
+            this.button_Personen_writeChanges.Size = new System.Drawing.Size(392, 29);
             this.button_Personen_writeChanges.TabIndex = 4;
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // button_Kalender_Monatzurueck
+            // Auswertungen
             // 
-            this.button_Kalender_Monatzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(48, 54);
-            this.button_Kalender_Monatzurueck.Name = "button_Kalender_Monatzurueck";
-            this.button_Kalender_Monatzurueck.Size = new System.Drawing.Size(29, 29);
-            this.button_Kalender_Monatzurueck.TabIndex = 6;
-            this.button_Kalender_Monatzurueck.Text = "<";
-            this.button_Kalender_Monatzurueck.UseVisualStyleBackColor = true;
-            this.button_Kalender_Monatzurueck.Click += new System.EventHandler(this.button_Kalender_Monatzurueck_Click);
+            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
+            this.Auswertungen.Name = "Auswertungen";
+            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
+            this.Auswertungen.TabIndex = 3;
+            this.Auswertungen.Text = "Auswertungen";
+            this.Auswertungen.UseVisualStyleBackColor = true;
             // 
-            // button_Kalender_Monatvor
+            // button_Personen_ZeitkontoAktualisieren
             // 
-            this.button_Kalender_Monatvor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(325, 54);
-            this.button_Kalender_Monatvor.Name = "button_Kalender_Monatvor";
-            this.button_Kalender_Monatvor.Size = new System.Drawing.Size(29, 29);
-            this.button_Kalender_Monatvor.TabIndex = 6;
-            this.button_Kalender_Monatvor.Text = ">";
-            this.button_Kalender_Monatvor.UseVisualStyleBackColor = true;
-            this.button_Kalender_Monatvor.Click += new System.EventHandler(this.button_Kalender_Monatvor_Click);
+            this.button_Personen_ZeitkontoAktualisieren.Location = new System.Drawing.Point(14, 117);
+            this.button_Personen_ZeitkontoAktualisieren.Name = "button_Personen_ZeitkontoAktualisieren";
+            this.button_Personen_ZeitkontoAktualisieren.Size = new System.Drawing.Size(350, 29);
+            this.button_Personen_ZeitkontoAktualisieren.TabIndex = 4;
+            this.button_Personen_ZeitkontoAktualisieren.Text = "Zeitkontostand auf stand von gestern Abend bringen";
+            this.button_Personen_ZeitkontoAktualisieren.UseVisualStyleBackColor = true;
             // 
-            // groupBox_Kalender_Zeitkonto
+            // label49
             // 
-            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_ZeitkontoBerechnungsstand);
-            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label_Kalender_Hinweis);
-            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.label46);
-            this.groupBox_Kalender_Zeitkonto.Controls.Add(this.button_Kalender_ZeitkontoRueckrechnen);
-            this.groupBox_Kalender_Zeitkonto.Location = new System.Drawing.Point(11, 448);
-            this.groupBox_Kalender_Zeitkonto.Name = "groupBox_Kalender_Zeitkonto";
-            this.groupBox_Kalender_Zeitkonto.Size = new System.Drawing.Size(399, 97);
-            this.groupBox_Kalender_Zeitkonto.TabIndex = 12;
-            this.groupBox_Kalender_Zeitkonto.TabStop = false;
-            this.groupBox_Kalender_Zeitkonto.Text = "Zeitkonto";
-            // 
-            // label_Kalender_ZeitkontoBerechnungsstand
-            // 
-            this.label_Kalender_ZeitkontoBerechnungsstand.AutoSize = true;
-            this.label_Kalender_ZeitkontoBerechnungsstand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Kalender_ZeitkontoBerechnungsstand.Location = new System.Drawing.Point(283, 20);
-            this.label_Kalender_ZeitkontoBerechnungsstand.Name = "label_Kalender_ZeitkontoBerechnungsstand";
-            this.label_Kalender_ZeitkontoBerechnungsstand.Size = new System.Drawing.Size(72, 17);
-            this.label_Kalender_ZeitkontoBerechnungsstand.TabIndex = 9;
-            this.label_Kalender_ZeitkontoBerechnungsstand.Text = "00000000";
-            // 
-            // label_Kalender_Hinweis
-            // 
-            this.label_Kalender_Hinweis.AutoSize = true;
-            this.label_Kalender_Hinweis.BackColor = System.Drawing.Color.Gold;
-            this.label_Kalender_Hinweis.Location = new System.Drawing.Point(19, 42);
-            this.label_Kalender_Hinweis.Name = "label_Kalender_Hinweis";
-            this.label_Kalender_Hinweis.Size = new System.Drawing.Size(351, 13);
-            this.label_Kalender_Hinweis.TabIndex = 9;
-            this.label_Kalender_Hinweis.Text = "Sollzeiten für den 01.01.0001 sind erst nach Rückrechnung veränderbar.";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(19, 24);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(262, 13);
-            this.label46.TabIndex = 9;
-            this.label46.Text = "Stand der Zeitkontoberechnung für diesen Mitarbeiter:";
-            // 
-            // button_Kalender_ZeitkontoRueckrechnen
-            // 
-            this.button_Kalender_ZeitkontoRueckrechnen.Enabled = false;
-            this.button_Kalender_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(20, 58);
-            this.button_Kalender_ZeitkontoRueckrechnen.Name = "button_Kalender_ZeitkontoRueckrechnen";
-            this.button_Kalender_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(353, 29);
-            this.button_Kalender_ZeitkontoRueckrechnen.TabIndex = 8;
-            this.button_Kalender_ZeitkontoRueckrechnen.Text = "Zeitkonto bis zum Vorabend des gewählten Tages zurückrechnen";
-            this.button_Kalender_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(25, 232);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(117, 13);
-            this.label37.TabIndex = 0;
-            this.label37.Text = "Resturlaub vom Vorjahr";
-            // 
-            // textBox_Personen_ResturlaubVorjahr
-            // 
-            this.textBox_Personen_ResturlaubVorjahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_ResturlaubVorjahr.Location = new System.Drawing.Point(285, 224);
-            this.textBox_Personen_ResturlaubVorjahr.MaxLength = 6;
-            this.textBox_Personen_ResturlaubVorjahr.Name = "textBox_Personen_ResturlaubVorjahr";
-            this.textBox_Personen_ResturlaubVorjahr.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_ResturlaubVorjahr.TabIndex = 1;
-            this.textBox_Personen_ResturlaubVorjahr.TextChanged += new System.EventHandler(this.textBox_Personen_ResturlaubVorjahr_TextChanged);
-            // 
-            // textBox_Personen_ResturlaubVorjahr_old
-            // 
-            this.textBox_Personen_ResturlaubVorjahr_old.Enabled = false;
-            this.textBox_Personen_ResturlaubVorjahr_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_ResturlaubVorjahr_old.Location = new System.Drawing.Point(145, 224);
-            this.textBox_Personen_ResturlaubVorjahr_old.MaxLength = 6;
-            this.textBox_Personen_ResturlaubVorjahr_old.Name = "textBox_Personen_ResturlaubVorjahr_old";
-            this.textBox_Personen_ResturlaubVorjahr_old.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_ResturlaubVorjahr_old.TabIndex = 1;
-            this.textBox_Personen_ResturlaubVorjahr_old.TabStop = false;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(25, 197);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(106, 13);
-            this.label45.TabIndex = 0;
-            this.label45.Text = "Aktuelles Urlaubsjahr";
-            // 
-            // textBox_Personen_AktUrlaubsjahr
-            // 
-            this.textBox_Personen_AktUrlaubsjahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_AktUrlaubsjahr.Location = new System.Drawing.Point(285, 189);
-            this.textBox_Personen_AktUrlaubsjahr.MaxLength = 6;
-            this.textBox_Personen_AktUrlaubsjahr.Name = "textBox_Personen_AktUrlaubsjahr";
-            this.textBox_Personen_AktUrlaubsjahr.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_AktUrlaubsjahr.TabIndex = 1;
-            this.textBox_Personen_AktUrlaubsjahr.TextChanged += new System.EventHandler(this.textBox_Personen_AktUrlaubsjahr_TextChanged);
-            // 
-            // textBox_Personen_AktUrlaubsjahr_old
-            // 
-            this.textBox_Personen_AktUrlaubsjahr_old.Enabled = false;
-            this.textBox_Personen_AktUrlaubsjahr_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_AktUrlaubsjahr_old.Location = new System.Drawing.Point(145, 189);
-            this.textBox_Personen_AktUrlaubsjahr_old.MaxLength = 6;
-            this.textBox_Personen_AktUrlaubsjahr_old.Name = "textBox_Personen_AktUrlaubsjahr_old";
-            this.textBox_Personen_AktUrlaubsjahr_old.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_AktUrlaubsjahr_old.TabIndex = 1;
-            this.textBox_Personen_AktUrlaubsjahr_old.TabStop = false;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(255, 197);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(19, 13);
-            this.label47.TabIndex = 8;
-            this.label47.Text = "-->";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(255, 232);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(19, 13);
-            this.label48.TabIndex = 8;
-            this.label48.Text = "-->";
-            // 
-            // button_Personen_UrlaubsjahrAktualisieren
-            // 
-            this.button_Personen_UrlaubsjahrAktualisieren.Location = new System.Drawing.Point(14, 47);
-            this.button_Personen_UrlaubsjahrAktualisieren.Name = "button_Personen_UrlaubsjahrAktualisieren";
-            this.button_Personen_UrlaubsjahrAktualisieren.Size = new System.Drawing.Size(358, 28);
-            this.button_Personen_UrlaubsjahrAktualisieren.TabIndex = 4;
-            this.button_Personen_UrlaubsjahrAktualisieren.Text = "Resturlaub berechnen und Urlaubsjahr aktualisieren";
-            this.button_Personen_UrlaubsjahrAktualisieren.UseVisualStyleBackColor = true;
-            this.button_Personen_UrlaubsjahrAktualisieren.Click += new System.EventHandler(this.button_Personen_UrlaubsjahrAktualisieren_Click);
-            // 
-            // label_Personen_Hinweis_Urlaubsjahr
-            // 
-            this.label_Personen_Hinweis_Urlaubsjahr.AutoSize = true;
-            this.label_Personen_Hinweis_Urlaubsjahr.BackColor = System.Drawing.Color.Gold;
-            this.label_Personen_Hinweis_Urlaubsjahr.Location = new System.Drawing.Point(12, 26);
-            this.label_Personen_Hinweis_Urlaubsjahr.Name = "label_Personen_Hinweis_Urlaubsjahr";
-            this.label_Personen_Hinweis_Urlaubsjahr.Size = new System.Drawing.Size(352, 13);
-            this.label_Personen_Hinweis_Urlaubsjahr.TabIndex = 10;
-            this.label_Personen_Hinweis_Urlaubsjahr.Text = "Das Urlaubsjahr des Mitarbeiters ist noch nicht auf dieses Jahr eingestellt.";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label_Personen_Hinweis_Urlaubsjahr);
-            this.groupBox2.Controls.Add(this.button_Personen_UrlaubsjahrAktualisieren);
-            this.groupBox2.Location = new System.Drawing.Point(8, 228);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(381, 89);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "aktuelles Urlaubsjahr";
+            this.label49.AutoSize = true;
+            this.label49.BackColor = System.Drawing.Color.Gold;
+            this.label49.Location = new System.Drawing.Point(11, 101);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(355, 13);
+            this.label49.TabIndex = 10;
+            this.label49.Text = "Das Zeitkonto des Mitarbeiters ist nicht auf dem Stand von gestern Abend";
             // 
             // Form1
             // 
@@ -2148,6 +2171,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Kalender.ResumeLayout(false);
+            this.groupBox_Kalender_Zeitkonto.ResumeLayout(false);
+            this.groupBox_Kalender_Zeitkonto.PerformLayout();
             this.groupBox_Kalender_erstelleEintrag.ResumeLayout(false);
             this.groupBox_Kalender_erstelleEintrag.PerformLayout();
             this.groupBox_Kalender_AlleEreignisse.ResumeLayout(false);
@@ -2167,16 +2192,14 @@
             this.groupBox_Stempelungen_EditierenErstellen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Stempelungsgrid_Stempelungen)).EndInit();
             this.Personen.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox_Personen_Systemdaten.ResumeLayout(false);
             this.groupBox_Personen_Systemdaten.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox_Kalender_Zeitkonto.ResumeLayout(false);
-            this.groupBox_Kalender_Zeitkonto.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2355,6 +2378,8 @@
         private System.Windows.Forms.TextBox textBox_Personen_ResturlaubVorjahr;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button button_Personen_ZeitkontoAktualisieren;
     }
 }
 
