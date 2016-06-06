@@ -181,8 +181,8 @@ namespace Stempelurhadmintest
             {
                 if (auswertungstab_initialisiert_global == false)
                 {
-                    //TODO auswertungstab initialisieren
-                    //TODO Auswertung über Tatsächliche Arbeitszeit (Mitarbeiter/Jahr)
+                    //auswertungstab initialisieren
+                    //Auswertung über Tatsächliche Arbeitszeit (Mitarbeiter/Jahr)
                 }
             }
         }
@@ -227,6 +227,113 @@ namespace Stempelurhadmintest
                     Ereignisgrid_Kalender.Rows.Add(myrow);
                 }
             }
+        }
+
+        private void ZeitkontoRueckrechnen(string userid, int zieljahr, int zielmonat, int zieltag)
+        {
+
+            bool fehler = false;
+
+            string zeitkonto_berechnungsstand_db = "";
+
+            double zeitkonto_betrag_db = 0;
+            double zeitkonto_betrag_tmp = 0;
+
+            DateTime date_berechnungsstand;
+            DateTime ZielDatum;
+            DateTime BerechnungsDatum_tmp;
+
+            int jahr_tmp = 0;
+            int monat_tmp = 0;
+            int tag_tmp = 0;
+            
+            //Zeitkonto-Berechnungsstand der gewählten Person aus Datenbank ermitteln.
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT zeitkonto_berechnungsstand, zeitkonto FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                zeitkonto_betrag_db = Convert.ToDouble(Reader["zeitkonto"]);
+                zeitkonto_berechnungsstand_db = Reader["zeitkonto_berechnungsstand"] + "";
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            //date_berechnungsstand setzen
+            jahr_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(0, 4));
+            monat_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(4, 2));
+            tag_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(6, 2));
+            date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+            ZielDatum = new DateTime(zieljahr, zielmonat, zieltag, 0,0,0);
+
+
+
+            BerechnungsDatum_tmp = date_berechnungsstand;
+            zeitkonto_betrag_tmp = zeitkonto_betrag_db;
+            //while schleife so lange bis Berechnungsstand früher ist als gewähltes datum oder ein Fehler auftritt
+            while (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) > 0 && fehler == false)
+            {
+                //IST-Zeit und SOLL-Zeit des Tages des Berechnungsstands berechnen
+                double istzeit_tmp = -1;
+                double sollzeit_tmp = -1;
+                double zeitueberschuss_tmp = 0;
+                istzeit_tmp = ermittleIstZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+                sollzeit_tmp = ermittleSollZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+
+                if (istzeit_tmp == -1 || sollzeit_tmp == -1)
+                {
+                    //bei einer der Zeitberechnungen trat ein Fehler auf...
+                    fehler = true;
+                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
+                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
+                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp - zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
+                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(-1);            //entspricht der neue Zeitkontostand dem des Vorabends.
+
+                }
+
+            }
+
+            if (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) == 0)
+            {   //Das Zieldatum für die Rückrechnung wurde erreicht -> Die While-Schleife wurde offensichtlich nicht wegen eines Fehlers vorzeitig beendet
+
+                String zeitkonto_berechnungsstand_neu = BerechnungsDatum_tmp.Year.ToString("D4") + BerechnungsDatum_tmp.Month.ToString("D2") + BerechnungsDatum_tmp.Day.ToString("D2");
+
+                //Den neue Datum für den Berechnungsstand und den neuen Betrag des Zeitkotnos in die Datenbank schreiben
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "UPDATE user SET zeitkonto=@zeitkonto, zeitkonto_berechnungsstand=@zeitkonto_berechnungsstand WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                comm.Parameters.Add("@zeitkonto_berechnungsstand", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zeitkonto_berechnungsstand_neu;
+                comm.Parameters.Add("@zeitkonto", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                comm.Parameters["@zeitkonto"].Precision = 10;
+                comm.Parameters["@zeitkonto"].Scale = 2;
+                comm.Parameters["@zeitkonto"].Value = zeitkonto_betrag_tmp;
+
+                log("setze Zeitkonto zurück. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'");
+
+                try
+                {
+                    comm.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                close_db();
+
+                MessageBox.Show("Der Zeitkontostand wurde bis " + ZielDatum.ToShortDateString() + " zurückgerechnet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
+                kalendertab_initialisiert_global = false;
+            }
+            
         }
 
         private double ermittleIstZeit(string usercode, string berechnungsjahr, string berechnungsmonat, string berechnungstag)
@@ -495,6 +602,7 @@ namespace Stempelurhadmintest
             return sollzeit;
 
         }
+
 
 
         ///////////Kalender-Tab////////////////////////////////////////////////
@@ -1397,118 +1505,21 @@ namespace Stempelurhadmintest
 
         private void button_Stempelungen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
         {
-            bool fehler = false;
             string userid = "";
-            string zeitkonto_berechnungsstand_db = "";
 
-            double zeitkonto_betrag_db = 0;
-            double zeitkonto_betrag_tmp = 0;
-
-            DateTime date_selected;
-            DateTime date_berechnungsstand;
-            DateTime ZielDatum;
-            DateTime BerechnungsDatum_tmp;
-
-            int jahr_tmp = 0;
-            int monat_tmp = 0;
-            int tag_tmp = 0;
-
-            userid = PersonPicker_Stempelungen.Text;
-            if (userid.Length >= 6)
+            userid = textBox_Stempelungen_Auftragsnummer.Text;
+            if(userid.Length >= 6)
             {
-                userid = userid.Substring(0, 6);
+                userid = userid.Substring(0,6);
             }
 
-            //Zeitkonto-Berechnungsstand der gewählten Person aus Datenbank ermitteln.
-            open_db();
-            comm.Parameters.Clear();
-            comm.CommandText = "SELECT zeitkonto_berechnungsstand, zeitkonto FROM user where userid=@userid";
-
-            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
-            try
-            {
-                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
-                Reader.Read();
-
-                zeitkonto_betrag_db = Convert.ToDouble(Reader["zeitkonto"]);
-                zeitkonto_berechnungsstand_db = Reader["zeitkonto_berechnungsstand"] + "";
-            }
-            catch (Exception ex) { log(ex.Message); }
-            close_db();
-
-            //date_berechnungsstand setzen
-            jahr_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(0, 4));
-            monat_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(4, 2));
-            tag_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(6, 2));
-            date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
-
-            //date_selected setzen
-            jahr_tmp = DatePicker_Stempelungen.Value.Year;
-            monat_tmp = DatePicker_Stempelungen.Value.Month;
-            tag_tmp = DatePicker_Stempelungen.Value.Day;
-            date_selected = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
-
-            //while schleife so lange bis Berechnungsstand früher ist als gewähltes datum oder ein Fehler auftritt
-            ZielDatum = date_selected.AddDays(-1);
-            BerechnungsDatum_tmp = date_berechnungsstand;
-            zeitkonto_betrag_tmp = zeitkonto_betrag_db;
-            while (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) > 0 && fehler == false)
-            {
-                //IST-Zeit und SOLL-Zeit des Tages des Berechnungsstands berechnen
-                double istzeit_tmp = -1;
-                double sollzeit_tmp = -1;
-                double zeitueberschuss_tmp = 0;
-                istzeit_tmp = ermittleIstZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
-                sollzeit_tmp = ermittleSollZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
-
-                if (istzeit_tmp == -1 || sollzeit_tmp == -1)
-                {
-                    //bei einer der Zeitberechnungen trat ein Fehler auf...
-                    fehler = true;
-                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
-                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
-                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp - zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
-                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(-1);            //entspricht der neue Zeitkontostand dem des Vorabends.
-
-                }
-
-            }
-
-            if (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) == 0)
-            {   //Das Zieldatum für die Rückrechnung wurde erreicht -> Die While-Schleife wurde offensichtlich nicht wegen eines Fehlers vorzeitig beendet
-
-                String zeitkonto_berechnungsstand_neu = BerechnungsDatum_tmp.Year.ToString("D4") + BerechnungsDatum_tmp.Month.ToString("D2") + BerechnungsDatum_tmp.Day.ToString("D2");
-
-                //Den neue Datum für den Berechnungsstand und den neuen Betrag des Zeitkotnos in die Datenbank schreiben
-                open_db();
-                comm.Parameters.Clear();
-                comm.CommandText = "UPDATE user SET zeitkonto=@zeitkonto, zeitkonto_berechnungsstand=@zeitkonto_berechnungsstand WHERE userid=@userid";
-
-                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
-                comm.Parameters.Add("@zeitkonto_berechnungsstand", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zeitkonto_berechnungsstand_neu;
-                comm.Parameters.Add("@zeitkonto", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
-                comm.Parameters["@zeitkonto"].Precision = 10;
-                comm.Parameters["@zeitkonto"].Scale = 2;
-                comm.Parameters["@zeitkonto"].Value = zeitkonto_betrag_tmp;
-
-                log("setze Zeitkonto zurück. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'");
-
-                try
-                {
-                    comm.ExecuteNonQuery();
-                }
-                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
-                close_db();
-            }
-
+            DateTime Dateselected = DatePicker_Stempelungen.Value;
+            DateTime Zieldatum = Dateselected.AddDays(-1);
+                                  
+            ZeitkontoRueckrechnen(userid,Zieldatum.Year,Zieldatum.Month,Zieldatum.Day);
+            
             //alles erledigt -> Status des Formulars sollte entsprechend aktualisiert werden
             vergleiche_Stempelungstab_Zeikonto_Berechnungsstand_Betrachtungsdatum();
-            personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
-
         }
 
         private void button_Stempelungen_stornieren_Click(object sender, EventArgs e)
@@ -1797,8 +1808,10 @@ namespace Stempelurhadmintest
             }
         }
 
-        private string sucheStempelfehler_Verrechnung(string auftragsnummer, string userid)
+        private void sucheStempelfehler_Verrechnung(string auftragsnummer)
         {
+            //zeile für zeile des gefuellten insertgrids abarbeiten
+
             string fehlermeldung = "";
 
             string this_an_count = "";
@@ -1807,88 +1820,91 @@ namespace Stempelurhadmintest
             string this_monat = "";
             string this_jahr = "";
             string this_wartungscount = "";
-            string this_art_erstestempelung = "";
-            string this_art_letztestempelung = "";
-
-
-            //TODO die verschiedenen Testfälle testen
-            //nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
-
-            //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
-            open_db();
-            comm.Parameters.Clear();
-            comm.CommandText = "    SELECT an.count as an_count, ab.count as ab_count, an.jahr as jahr, an.monat as monat, an.tag as tag FROM " +
-                "(select count(*) as count, jahr, monat, tag from stamps where art = 'an' AND task = @task AND userid = @userid AND storniert = 0 " +
-                "GROUP BY jahr, monat, tag) an, " +
-                "(select count(*) as count, jahr, monat, tag from stamps where art = 'ab' AND task = @task AND userid = @userid AND storniert = 0 " +
-                "GROUP BY jahr, monat, tag) ab " +
-                "WHERE an.jahr = ab.jahr AND an.monat = ab.monat AND an.tag = ab.tag";
-
-            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
-            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
-            
-            try
+            string this_userid = "";
+                        
+            if(Verrechnungsgrid_Verrechnungen_Insert.RowCount > 0)
             {
-                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
-                while (Reader.Read())
+                for(int actrow = 0; actrow < Verrechnungsgrid_Verrechnungen_Insert.RowCount; actrow++)
                 {
-                    this_an_count = Reader["an_count"] + "";
-                    this_ab_count = Reader["ab_count"] + "";
-                    this_jahr = Reader["jahr"] + "";
-                    this_monat = Reader["monat"] + "";
-                    this_tag = Reader["tag"] + "";
-
-                    if (this_an_count != this_ab_count)
-                    {//unterschiedliche Anzahl an/ab stempelungen
-                        fehlermeldung = fehlermeldung + "Anzahl an-ab-Stempelungen am " + this_tag + "." + this_monat + "." + this_jahr + " nicht gleich!\r\n";
-                    }
-                }
+                    fehlermeldung = "";
+                    this_userid = Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[0].Value.ToString();
                 
-                Reader.Close();
-            }
-            catch (Exception ex) { log(ex.Message); }
-            close_db();
+                    //nach offensichtlichen Problemen in den Stempelungen zum Auftrag suchen und warnen
 
+                    //Testfall 1 (anzahlen der ab/an stempelungen einer person an einem tag passen nicht zusammen)?
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "SELECT an.count as an_count, ab.count as ab_count, an.jahr as jahr, an.monat as monat, an.tag as tag FROM " +
+                        "(select count(*) as count, jahr, monat, tag from stamps where art = 'an' AND task = @task AND userid = @userid AND storniert = 0 " +
+                        "GROUP BY jahr, monat, tag) an, " +
+                        "(select count(*) as count, jahr, monat, tag from stamps where art = 'ab' AND task = @task AND userid = @userid AND storniert = 0 " +
+                        "GROUP BY jahr, monat, tag) ab " +
+                        "WHERE an.jahr = ab.jahr AND an.monat = ab.monat AND an.tag = ab.tag";
 
-            //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
-            open_db();
-            comm.Parameters.Clear();
-            comm.CommandText = "    SELECT count(*) as wartungscount, jahr, monat, tag FROM stamps " +
-                "WHERE task = @task AND userid = @userid AND storniert = 0 GROUP BY jahr, monat, tag";
+                    comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = this_userid;
 
-            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
-            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                    try
+                    {
+                        MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                        while (Reader.Read())
+                        {
+                            this_an_count = Reader["an_count"] + "";
+                            this_ab_count = Reader["ab_count"] + "";
+                            this_jahr = Reader["jahr"] + "";
+                            this_monat = Reader["monat"] + "";
+                            this_tag = Reader["tag"] + "";
 
-            try
-            {
-                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
-                while (Reader.Read())
-                {
-                    this_wartungscount = Reader["wartungscount"] + "";
+                            if (this_an_count != this_ab_count)
+                            {//unterschiedliche Anzahl an/ab stempelungen
+                                fehlermeldung = fehlermeldung + "Unterschiedlich viele An/Ab-Stempelungen für diesen Auftrag am " + this_tag + "." + this_monat + "." + this_jahr + " !\r\n";
+                                Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
+                                Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = fehlermeldung;
+                            }
+                        }
 
-                    if (this_wartungscount != "0")
-                    {//unterschiedliche Anzahl an/ab stempelungen
-                        fehlermeldung = fehlermeldung + "Am " + this_tag + "." + this_monat + "." + this_jahr + " gibt es eine unkorrigierte automatische Stempelung!\r\n";
+                        Reader.Close();
                     }
+                    catch (Exception ex) { log(ex.Message); }
+                    close_db();
+
+
+                    //Testfall 2 (unkorrigierte Wartungsstempelung vorhanden)
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "SELECT count(*) as wartungscount, jahr, monat, tag FROM stamps " +
+                        "WHERE task = @task AND userid = @userid AND quelle='wartung' AND storniert = 0 GROUP BY jahr, monat, tag";
+
+                    comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = auftragsnummer;
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = this_userid;
+
+                    try
+                    {
+                        MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                        while (Reader.Read())
+                        {
+                            this_wartungscount = Reader["wartungscount"] + "";
+
+                            if (this_wartungscount != "0")
+                            {//unterschiedliche Anzahl an/ab stempelungen
+                                fehlermeldung = fehlermeldung + "Am " + this_tag + "." + this_monat + "." + this_jahr + " gibt es eine unkorrigierte automatische Stempelung!\r\n";
+                                Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
+                                Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = fehlermeldung;
+                            }
+                        }
+
+                        Reader.Close();
+                    }
+                    catch (Exception ex) { log(ex.Message); }
+                    close_db();
                 }
-
-                Reader.Close();
             }
-            catch (Exception ex) { log(ex.Message); }
-            close_db();
-
-            // -> bei jedem gefundenen Fehler die Fehlermeldung um Fehlerbeschreibung und Datum ergänzen.
-
-            return fehlermeldung;
-
         }
 
         private void refreshInsertFormular_Verrechnung()//linke seite
         {
             string this_userid = "";
             string this_name = "";
-            string this_ancount = "";
-            string this_abcount = "";
             string this_laststamp = "";
             string this_summezeiten = "";
 
@@ -1899,11 +1915,11 @@ namespace Stempelurhadmintest
 
             open_db();
             comm.Parameters.Clear();
-            comm.CommandText = "select an.userid, user.name, an.count as ancount, ab.count as abcount, laststamp, round(sum_ab-sum_an, 2) as summezeiten " +
+            comm.CommandText = "select an.userid, user.name, laststamp, round(sum_ab-sum_an, 2) as summezeiten " +
                                     "from " +
-                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_ab, max(concat(jahr, monat, tag)) as laststamp, count(stunde) as count " +
-                                            "from stamps where art = 'ab' and task = @task and storniert = 0 group by userid) ab," +
-                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_an, count(stunde) as count " +
+                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_ab, max(concat(jahr, monat, tag)) as laststamp " +
+                                            "from stamps where art = 'ab' and task = @task and storniert = 0 group by userid) ab, " +
+                                        "(select userid, sum(stunde) + sum(dezimal) / 100 as sum_an " +
                                             "from stamps where art = 'an' and task = @task and storniert = 0 group by userid) an " +
                                     "left join user on an.userid = user.userid " +
                                     "WHERE ab.userid = an.userid " +
@@ -1920,8 +1936,6 @@ namespace Stempelurhadmintest
                 {
                     this_userid = Reader["userid"] + "";
                     this_name = Reader["name"] + "";
-                    this_ancount = Reader["ancount"] + "";
-                    this_abcount = Reader["abcount"] + "";
                     this_laststamp = Reader["laststamp"] + "";
                     this_summezeiten = Reader["summezeiten"] + "";
 
@@ -1947,29 +1961,6 @@ namespace Stempelurhadmintest
 
                     Verrechnungsgrid_Verrechnungen_Insert.Rows.Add(myrow);
 
-                    //TODO fuer eine Variante der Fehlerpruefung entscheiden und die andere entfernen
-                    //                    if (this_abcount != this_ancount)
-                    //                    {
-                    //                        //zeiten markieren in zeilen in denen ancount von abcount abweicht
-                    //                        int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
-
-                    //                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = "Anzahl An-/Ab-Stempelungen passt nichtzusammen.\r\nAngezeigte Zeit stimmt vermutlich nicht!";
-                    //                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
-                    //                    }
-
-                    string this_stempelfehler = sucheStempelfehler_Verrechnung(Auftragsnummer, this_userid);
-                    if (this_stempelfehler != "")
-                    {   //die Fehlerliste ist nicht leer, also wurden wohl stempelfehler gefunden
-                        
-                        //die betroffene zeit markieren und den fehlertext als tooltip setzen
-                        int actrow = Verrechnungsgrid_Verrechnungen_Insert.Rows.Count - 1;
-
-                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].ToolTipText = this_stempelfehler;
-                        Verrechnungsgrid_Verrechnungen_Insert.Rows[actrow].Cells[3].Style.BackColor = Color.Orange;
-                    }
-
-
-
                 }
                 Reader.Close();
             }
@@ -1977,6 +1968,7 @@ namespace Stempelurhadmintest
 
             close_db();
             Verrechnungsgrid_Verrechnungen_Insert.ClearSelection();
+            sucheStempelfehler_Verrechnung(Auftragsnummer);
 
         }
 
@@ -2104,6 +2096,8 @@ namespace Stempelurhadmintest
 
         private void button_Verrechnungen_SatzErstellen_Click(object sender, EventArgs e)
         {
+            //TODO prüfen ob die bonuszeitberechnung dem verrechnungsdatum nicht wiederspricht
+
             bool fehler = false;
 
             string insert_auftragsnummer = "";
@@ -2204,27 +2198,47 @@ namespace Stempelurhadmintest
             }
         }
 
+        private void Verrechnungsgrid_Verrechnungen_Update_SelectionChanged(object sender, EventArgs e)
+        {
+            //prüfen ob eine Zeile markiert ist und wenn ja das update-Formular fuellen
+            if (Verrechnungsgrid_Verrechnungen_Update.SelectedRows.Count == 1)
+            {
+                prefillUpdateFormular_Verrechnung();
+
+            }
+            else
+            {   //nichts markiert... update formular leeren
+                clearUpdateFormular_Verrechnung();
+            }
+        }
+
         private void clearUpdateFormular_Verrechnung()
         {
             //TODO
+            //TODO Buttons disablen
         }
 
         private void prefillUpdateFormular_Verrechnung()
         {
             //TODO Felder mit den Daten des Markierten Satzes vorbefuellen
+            //TODO verhindern dass sätze geändert/storniert werden können, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
+
+
         }
 
         private void button_Verrechnungen_SatzStornieren_Click(object sender, EventArgs e)
         {
             //TODO
+            //TODO verhindern dass sätze geändert/storniert werden können, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
         }
 
         private void button_Verrechnungen_SatzUeberschreiben_Click(object sender, EventArgs e)
         {
             //TODO
+            //TODO verhindern dass das neue verrechnungsdatum weiter zurückliegt als die bonusauszahlung des mitarbeiters
         }
 
-        
+
         ///////////Personen-Tab////////////////////////////////////////////////
 
         private void refreshPersonPicker_Personen()
@@ -2850,6 +2864,7 @@ namespace Stempelurhadmintest
             //TODO diese differenz ist für das nächste urlaubsjahr der resturlaub aus dem vorjahr
         }
 
+        
 
         ///////////////////////////////////////////////////////////////////////
 

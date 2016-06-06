@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -250,14 +250,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle8;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(77, 83);
@@ -743,6 +743,7 @@
             this.Verrechnungsgrid_Verrechnungen_Update.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(313, 196);
             this.Verrechnungsgrid_Verrechnungen_Update.TabIndex = 4;
+            this.Verrechnungsgrid_Verrechnungen_Update.SelectionChanged += new System.EventHandler(this.Verrechnungsgrid_Verrechnungen_Update_SelectionChanged);
             // 
             // satzid
             // 
@@ -1192,7 +1193,7 @@
             // 
             // button_Stempelungen_neueStempelung
             // 
-            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(27, 243);
+            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(27, 259);
             this.button_Stempelungen_neueStempelung.Name = "button_Stempelungen_neueStempelung";
             this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_neueStempelung.TabIndex = 9;
@@ -1202,7 +1203,7 @@
             // 
             // button_Stempelungen_stornieren
             // 
-            this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 32);
+            this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 24);
             this.button_Stempelungen_stornieren.Name = "button_Stempelungen_stornieren";
             this.button_Stempelungen_stornieren.Size = new System.Drawing.Size(375, 29);
             this.button_Stempelungen_stornieren.TabIndex = 9;
