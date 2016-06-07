@@ -296,7 +296,7 @@ namespace Stempelurhadmintest
                     //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
                     zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
                     zeitkonto_betrag_tmp = zeitkonto_betrag_tmp - zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
-                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(-1);            //entspricht der neue Zeitkontostand dem des Vorabends.
+                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(-1);            //...entspricht der neue Zeitkontostand dem des Vorabends.
 
                 }
 
@@ -2520,7 +2520,7 @@ namespace Stempelurhadmintest
             string thisperson_bonuskonto_ausgezahlt_bis = "";
             string thisperson_bonuszeit_bei_letzter_auszahlung = "";
             string thisperson_jahresurlaub = "";
-            string thisperson_akturlaubsjahr = "";
+            string thisperson_akt_urlaubsjahr = "";
             string thisperson_resturlaub_vorjahr = "";
             bool thisperson_stempelfehler = false;
             bool thisperson_aktiv = false;
@@ -2552,7 +2552,7 @@ namespace Stempelurhadmintest
                 thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
                 thisperson_bonuszeit_bei_letzter_auszahlung = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
                 thisperson_jahresurlaub = Reader["jahresurlaub"] + "";
-                thisperson_akturlaubsjahr = Reader["akturlaubsjahr"] + "";
+                thisperson_akt_urlaubsjahr = Reader["akt_urlaubsjahr"] + "";
                 thisperson_resturlaub_vorjahr = Reader["resturlaub_vorjahr"] + "";
                 thisperson_stempelfehler = (bool)Reader["stempelfehler"];
                 thisperson_aktiv = (bool)Reader["aktiv"];
@@ -2571,7 +2571,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Boniausgezahltbis_old.Text = thisperson_bonuskonto_ausgezahlt_bis;
             textBox_Personen_BetragletzterBonus_old.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
             textBox_Personen_Urlaubstage_old.Text = thisperson_jahresurlaub;
-            textBox_Personen_AktUrlaubsjahr_old.Text = thisperson_akturlaubsjahr;
+            textBox_Personen_AktUrlaubsjahr_old.Text = thisperson_akt_urlaubsjahr;
             textBox_Personen_ResturlaubVorjahr_old.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv_old.SelectedIndex = 0;
@@ -2588,7 +2588,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Boniausgezahltbis.Text = thisperson_bonuskonto_ausgezahlt_bis;
             textBox_Personen_BetragletzterBonus.Text = thisperson_bonuszeit_bei_letzter_auszahlung;
             textBox_Personen_Urlaubstage.Text = thisperson_jahresurlaub;
-            textBox_Personen_AktUrlaubsjahr.Text = thisperson_akturlaubsjahr;
+            textBox_Personen_AktUrlaubsjahr.Text = thisperson_akt_urlaubsjahr;
             textBox_Personen_ResturlaubVorjahr.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv.SelectedIndex = 0;
@@ -2610,11 +2610,39 @@ namespace Stempelurhadmintest
             textBox_Personen_AktUrlaubsjahr.BackColor = Color.White;
             textBox_Personen_ResturlaubVorjahr.BackColor = Color.White;
 
+            if(int.Parse(thisperson_akt_urlaubsjahr) < DateTime.Now.Year)
+            {//akturlaubsjahr ist kleiner als das derzeitige jahr
+                label_Personen_Hinweis_Urlaubsjahr.Text = "Das Urlaubsjahr des Mitarbeiters ist noch nicht auf dieses Jahr eingestellt.";
+                label_Personen_Hinweis_Urlaubsjahr.BackColor = Color.Gold;
+                button_Personen_UrlaubsjahrAktualisieren.Enabled = true;
 
-            //TODO prüfen ob das aktuelle Urlaubsjahr nicht das aktuelle Jahr ist
-                    //TODO Urlaubsjahr_box ausblenden oder einblenden
-                    //TODO Hinweis ausblenden oder setzen und einblenden
+            }
+            else
+            {//akturlaubsjahr ist das derzeitige jahr (oder später)
+                label_Personen_Hinweis_Urlaubsjahr.Text = "Das Urlaubsjahr des Mitarbeiters ist aktuell.";
+                label_Personen_Hinweis_Urlaubsjahr.BackColor = Color.Transparent;
+                button_Personen_UrlaubsjahrAktualisieren.Enabled = false;
+            }
 
+            //prüfen ob zeitkonto_berechnungsstand aktuell
+            int jahr_tmp = int.Parse(thisperson_zeitkonto_berechnungsstand.Substring(0,4));
+            int monat_tmp = int.Parse(thisperson_zeitkonto_berechnungsstand.Substring(4, 2));
+            int tag_tmp = int.Parse(thisperson_zeitkonto_berechnungsstand.Substring(6, 2));
+            DateTime date_berechnungsstand = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+            DateTime date_gesternabend = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
+            if(DateTime.Compare(date_berechnungsstand,date_gesternabend) < 0)
+            {//zeitkontostand früher als gestern abend
+                label_Personen_Hinweis_ZeitBerechnungsstand.Text = "Der Berechnungsstand des Zeitkontos liegt weiter zurück als gestern.";
+                label_Personen_Hinweis_ZeitBerechnungsstand.BackColor = Color.Gold;
+                button_Personen_ZeitkontoAktualisieren.Enabled = true;
+            }
+            else
+            {//zeitkontostand aktuell
+                label_Personen_Hinweis_ZeitBerechnungsstand.Text = "Der Berechnungsstand des Zeitkontos aktuell (Stand gestern Abend).";
+                label_Personen_Hinweis_ZeitBerechnungsstand.BackColor = Color.Transparent;
+                button_Personen_ZeitkontoAktualisieren.Enabled = false;
+            }
+            
         }
 
         private void initInsertFormular_Personen()
@@ -2774,6 +2802,8 @@ namespace Stempelurhadmintest
             string new_bonuskonto_ausgezahlt_bis = "";
             double new_bonuszeit_bei_letzter_auszahlung = 0;
             double new_jahresurlaub = 0;
+            int new_akt_urlaubsjahr = 0;
+            double new_resturlaub_vorjahr = 0;
             bool new_stempelfehler = false;
             bool new_aktiv = false;
 
@@ -2827,6 +2857,20 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Fehler! Der angegebene Wert für den Jahresurlaub ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            TryParse_Result = double.TryParse(textBox_Personen_ResturlaubVorjahr.Text, out new_resturlaub_vorjahr);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für den Resturlaub aus dem Vorjahr ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = int.TryParse(textBox_Personen_AktUrlaubsjahr.Text, out new_akt_urlaubsjahr);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige zahl
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für das aktuelle Urlaubsjahr ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             new_zeitkonto_berechnungsstand = textBox_Personen_ZeitkontoBerechnungsstand.Text;
             if (new_zeitkonto_berechnungsstand.Length != 8)
             {
@@ -2870,6 +2914,8 @@ namespace Stempelurhadmintest
                                             "bonuskonto_ausgezahlt_bis=@bonuskonto_ausgezahlt_bis, " +
                                             "bonuszeit_bei_letzter_auszahlung=@bonuszeit_bei_letzter_auszahlung, " +
                                             "jahresurlaub=@jahresurlaub, " +
+                                            "akt_urlaubsjahr=@akt_urlaubsjahr, " +
+                                            "resturlaub_vorjahr=@resturlaub_vorjahr, " +
                                             "stempelfehler=@stempelfehler, " +
                                             "aktiv=@aktiv " +
                                         "WHERE userid = @userid";
@@ -2891,6 +2937,11 @@ namespace Stempelurhadmintest
                     comm.Parameters["@jahresurlaub"].Precision = 10;
                     comm.Parameters["@jahresurlaub"].Scale = 2;
                     comm.Parameters["@jahresurlaub"].Value = new_jahresurlaub;
+                    comm.Parameters.Add("@akt_urlaubsjahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = new_akt_urlaubsjahr.ToString("D4");
+                    comm.Parameters.Add("@resturlaub_vorjahr", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@resturlaub_vorjahr"].Precision = 10;
+                    comm.Parameters["@resturlaub_vorjahr"].Scale = 2;
+                    comm.Parameters["@resturlaub_vorjahr"].Value = new_resturlaub_vorjahr;
                     comm.Parameters.Add("@stempelfehler", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_stempelfehler;
                     comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
@@ -2900,6 +2951,8 @@ namespace Stempelurhadmintest
                         "\r\n Name:'" + textBox_Personen_Nachname_old.Text + "'->'" + textBox_Personen_Nachname.Text + "' " +
                         "\r\n Vorname:'" + textBox_Personen_Vorname_old.Text + "'->'" + textBox_Personen_Vorname.Text + "' " +
                         "\r\n Jahresurlaub:'" + textBox_Personen_Urlaubstage_old.Text + "'->'" + textBox_Personen_Urlaubstage.Text + "' " +
+                        "\r\n Urlaubsjahr:'" + textBox_Personen_AktUrlaubsjahr_old.Text + "'->'" + textBox_Personen_AktUrlaubsjahr.Text + "' " +
+                        "\r\n Resturlaub_Vorjahr:'" + textBox_Personen_ResturlaubVorjahr_old.Text + "'->'" + textBox_Personen_ResturlaubVorjahr.Text + "' " +
                         "\r\n Aktiv:'" + comboBox_Personen_Aktiv_old.Text + "'->'" + comboBox_Personen_Aktiv.Text + "' " +
                         "\r\n Currenttask:'" + textBox_Personen_AktAuftrag_old.Text + "'->'" + textBox_Personen_AktAuftrag.Text + "' " +
                         "\r\n Zeitkonto:'" + textBox_Personen_Zeitkonto_old.Text + "'->'" + textBox_Personen_Zeitkonto.Text + "' " +
@@ -3083,10 +3136,124 @@ namespace Stempelurhadmintest
         }
 
         private void button_Personen_UrlaubsjahrAktualisieren_Click(object sender, EventArgs e)
-        {   //
+        {
+            bool fehler = false;
+
+            string urlaubsjahr_alt = "";
+            string urlaubsjahr_neu = "";
+
+
             //TODO differez ermitteln zwischen genutzten urlaubstagen im urlaubsjahr und (jahresurlaub + resturlaub vom vorjahr des urlaubsjahres)
             //TODO diese differenz ist für das nächste urlaubsjahr der resturlaub aus dem vorjahr
         }
+
+        private void button_Personen_ZeitkontoAktualisieren_Click(object sender, EventArgs e)
+        {
+            //Zeitkontostand tag für tag berechnen bis er aktuell ist
+            bool fehler = false;
+
+            string userid = "";
+            string zeitkonto_berechnungsstand_db = "";
+            double zeitkonto_betrag_db = 0;
+            double zeitkonto_betrag_tmp = 0;
+            DateTime BerechnungsDatum_tmp;
+            DateTime ZielDatum;
+
+            //Zieldatum setzen
+            ZielDatum = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
+
+
+            userid = PersonPicker_Personen.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+
+            //Zeitkonto-Berechnungsstand der gewählten Person aus Datenbank ermitteln.
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT zeitkonto_berechnungsstand, zeitkonto FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                zeitkonto_betrag_db = Convert.ToDouble(Reader["zeitkonto"]);
+                zeitkonto_berechnungsstand_db = Reader["zeitkonto_berechnungsstand"] + "";
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            //startwerte setzen
+            int jahr_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(0, 4));
+            int monat_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(4, 2));
+            int tag_tmp = int.Parse(zeitkonto_berechnungsstand_db.Substring(6, 2));            
+            BerechnungsDatum_tmp = new DateTime(jahr_tmp, monat_tmp, tag_tmp, 0, 0, 0);
+            zeitkonto_betrag_tmp = zeitkonto_betrag_db;
+            
+            //while schleife so lange bis Berechnungsstand früher ist als gewähltes datum oder ein Fehler auftritt
+            while (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) < 0 && fehler == false)
+            {
+                //IST-Zeit und SOLL-Zeit des Tages des Berechnungsstands berechnen
+                double istzeit_tmp = -1;
+                double sollzeit_tmp = -1;
+                double zeitueberschuss_tmp = 0;
+
+                istzeit_tmp = ermittleIstZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+                sollzeit_tmp = ermittleSollZeit(userid, BerechnungsDatum_tmp.Year.ToString("D4"), BerechnungsDatum_tmp.Month.ToString("D2"), BerechnungsDatum_tmp.Day.ToString("D2"));
+
+                if (istzeit_tmp == -1 || sollzeit_tmp == -1)
+                {
+                    //bei einer der Zeitberechnungen trat ein Fehler auf...
+                    fehler = true;
+                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
+                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
+                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp + zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
+                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(1);            //...entspricht der neue Zeitkontostand dem des Vorabends.
+                }
+
+            }
+
+            if (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) == 0)
+            {   //Das Zieldatum für die Rückrechnung wurde erreicht -> Die While-Schleife wurde offensichtlich nicht wegen eines Fehlers vorzeitig beendet
+
+                String zeitkonto_berechnungsstand_neu = BerechnungsDatum_tmp.Year.ToString("D4") + BerechnungsDatum_tmp.Month.ToString("D2") + BerechnungsDatum_tmp.Day.ToString("D2");
+
+                //Den neue Datum für den Berechnungsstand und den neuen Betrag des Zeitkotnos in die Datenbank schreiben
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "UPDATE user SET zeitkonto=@zeitkonto, zeitkonto_berechnungsstand=@zeitkonto_berechnungsstand WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                comm.Parameters.Add("@zeitkonto_berechnungsstand", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zeitkonto_berechnungsstand_neu;
+                comm.Parameters.Add("@zeitkonto", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                comm.Parameters["@zeitkonto"].Precision = 10;
+                comm.Parameters["@zeitkonto"].Scale = 2;
+                comm.Parameters["@zeitkonto"].Value = zeitkonto_betrag_tmp;
+
+                log("setze Zeitkonto zurück. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'");
+
+                try
+                {
+                    comm.ExecuteNonQuery();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                close_db();
+
+                MessageBox.Show("Der Zeitkontostand wurde bis " + ZielDatum.ToShortDateString() + " zurückgerechnet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
+                kalendertab_initialisiert_global = false;
+            }
+            
+        }
+
 
 
 

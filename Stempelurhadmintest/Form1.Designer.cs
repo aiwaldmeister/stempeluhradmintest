@@ -133,7 +133,9 @@
             this.PersonPicker_Stempelungen = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_Personen_Hinweis_ZeitBerechnungsstand = new System.Windows.Forms.Label();
             this.label_Personen_Hinweis_Urlaubsjahr = new System.Windows.Forms.Label();
+            this.button_Personen_ZeitkontoAktualisieren = new System.Windows.Forms.Button();
             this.button_Personen_UrlaubsjahrAktualisieren = new System.Windows.Forms.Button();
             this.button_Personen_Edit_Systemdaten = new System.Windows.Forms.Button();
             this.PersonPicker_Personen = new System.Windows.Forms.ComboBox();
@@ -201,8 +203,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
             this.Auswertungen = new System.Windows.Forms.TabPage();
-            this.button_Personen_ZeitkontoAktualisieren = new System.Windows.Forms.Button();
-            this.label49 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -1392,7 +1392,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label49);
+            this.groupBox2.Controls.Add(this.label_Personen_Hinweis_ZeitBerechnungsstand);
             this.groupBox2.Controls.Add(this.label_Personen_Hinweis_Urlaubsjahr);
             this.groupBox2.Controls.Add(this.button_Personen_ZeitkontoAktualisieren);
             this.groupBox2.Controls.Add(this.button_Personen_UrlaubsjahrAktualisieren);
@@ -1403,6 +1403,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Spezial-Funktionen";
             // 
+            // label_Personen_Hinweis_ZeitBerechnungsstand
+            // 
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.AutoSize = true;
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.BackColor = System.Drawing.Color.Gold;
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.Location = new System.Drawing.Point(11, 101);
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.Name = "label_Personen_Hinweis_ZeitBerechnungsstand";
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.Size = new System.Drawing.Size(355, 13);
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.TabIndex = 10;
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.Text = "Das Zeitkonto des Mitarbeiters ist nicht auf dem Stand von gestern Abend";
+            // 
             // label_Personen_Hinweis_Urlaubsjahr
             // 
             this.label_Personen_Hinweis_Urlaubsjahr.AutoSize = true;
@@ -1412,6 +1422,16 @@
             this.label_Personen_Hinweis_Urlaubsjahr.Size = new System.Drawing.Size(352, 13);
             this.label_Personen_Hinweis_Urlaubsjahr.TabIndex = 10;
             this.label_Personen_Hinweis_Urlaubsjahr.Text = "Das Urlaubsjahr des Mitarbeiters ist noch nicht auf dieses Jahr eingestellt.";
+            // 
+            // button_Personen_ZeitkontoAktualisieren
+            // 
+            this.button_Personen_ZeitkontoAktualisieren.Location = new System.Drawing.Point(14, 117);
+            this.button_Personen_ZeitkontoAktualisieren.Name = "button_Personen_ZeitkontoAktualisieren";
+            this.button_Personen_ZeitkontoAktualisieren.Size = new System.Drawing.Size(350, 29);
+            this.button_Personen_ZeitkontoAktualisieren.TabIndex = 4;
+            this.button_Personen_ZeitkontoAktualisieren.Text = "Zeitkontostand auf stand von gestern Abend bringen";
+            this.button_Personen_ZeitkontoAktualisieren.UseVisualStyleBackColor = true;
+            this.button_Personen_ZeitkontoAktualisieren.Click += new System.EventHandler(this.button_Personen_ZeitkontoAktualisieren_Click);
             // 
             // button_Personen_UrlaubsjahrAktualisieren
             // 
@@ -2139,25 +2159,6 @@
             this.Auswertungen.Text = "Auswertungen";
             this.Auswertungen.UseVisualStyleBackColor = true;
             // 
-            // button_Personen_ZeitkontoAktualisieren
-            // 
-            this.button_Personen_ZeitkontoAktualisieren.Location = new System.Drawing.Point(14, 117);
-            this.button_Personen_ZeitkontoAktualisieren.Name = "button_Personen_ZeitkontoAktualisieren";
-            this.button_Personen_ZeitkontoAktualisieren.Size = new System.Drawing.Size(350, 29);
-            this.button_Personen_ZeitkontoAktualisieren.TabIndex = 4;
-            this.button_Personen_ZeitkontoAktualisieren.Text = "Zeitkontostand auf stand von gestern Abend bringen";
-            this.button_Personen_ZeitkontoAktualisieren.UseVisualStyleBackColor = true;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.Gold;
-            this.label49.Location = new System.Drawing.Point(11, 101);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(355, 13);
-            this.label49.TabIndex = 10;
-            this.label49.Text = "Das Zeitkonto des Mitarbeiters ist nicht auf dem Stand von gestern Abend";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2378,7 +2379,7 @@
         private System.Windows.Forms.TextBox textBox_Personen_ResturlaubVorjahr;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label_Personen_Hinweis_ZeitBerechnungsstand;
         private System.Windows.Forms.Button button_Personen_ZeitkontoAktualisieren;
     }
 }
