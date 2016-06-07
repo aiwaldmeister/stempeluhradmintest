@@ -3267,6 +3267,7 @@ namespace Stempelurhadmintest
             //while schleife so lange bis Berechnungsstand früher ist als gewähltes datum oder ein Fehler auftritt
             while (DateTime.Compare(BerechnungsDatum_tmp, ZielDatum) < 0 && fehler == false)
             {
+                BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(1);            
                 //IST-Zeit und SOLL-Zeit des Tages des Berechnungsstands berechnen
                 double istzeit_tmp = -1;
                 double sollzeit_tmp = -1;
@@ -3284,9 +3285,9 @@ namespace Stempelurhadmintest
                 else
                 {
                     //Die berechnete Zeitkonto-änderung dieses Tages vom Zeitkontostand abziehen und Berechnungsstand auf einen Tag früher setzen
-                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das zeitkonto um so viel erhöht
-                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp + zeitueberschuss_tmp;  //zieht man diesen überschuss wieder ab...
-                    BerechnungsDatum_tmp = BerechnungsDatum_tmp.AddDays(1);            //...entspricht der neue Zeitkontostand dem des Vorabends.
+                    zeitueberschuss_tmp = istzeit_tmp - sollzeit_tmp;                   //Am aktuell betrachteten tag wurde das soll um so viel ueberschritten
+                    zeitkonto_betrag_tmp = zeitkonto_betrag_tmp + zeitueberschuss_tmp;  //zeitkonto um den ueberschuss erhoehen
+
                 }
 
             }
@@ -3308,7 +3309,7 @@ namespace Stempelurhadmintest
                 comm.Parameters["@zeitkonto"].Scale = 2;
                 comm.Parameters["@zeitkonto"].Value = zeitkonto_betrag_tmp;
 
-                log("setze Zeitkonto zurück. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'");
+                log("aktualisiere Zeitkonto. Berechnungsstand:'" + zeitkonto_berechnungsstand_db + "'->'" + zeitkonto_berechnungsstand_neu + "' Zeitkonto:'" + zeitkonto_betrag_db + "'->'" + zeitkonto_betrag_tmp + "'");
 
                 try
                 {
