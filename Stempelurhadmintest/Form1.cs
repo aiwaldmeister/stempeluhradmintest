@@ -1106,7 +1106,7 @@ namespace Stempelurhadmintest
                 comm.Parameters.Clear();
                 comm.CommandText = "UPDATE kalender SET storniert=1 where eventid = @eventid";
 
-                comm.Parameters.Add("@eventid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
+                comm.Parameters.Add("@eventid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(markierteID);
 
                 log("storniere Ereignis mit ID:" + markierteID);
                 try
@@ -1539,7 +1539,7 @@ namespace Stempelurhadmintest
                 comm.Parameters.Clear();
                 comm.CommandText = "UPDATE stamps SET storniert=1 where stampid = @stampid";
 
-                comm.Parameters.Add("@stampid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = markierteID;
+                comm.Parameters.Add("@stampid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(markierteID);
 
                 log("storniere Stempelung mit ID:" + markierteID);
                 try
@@ -2160,7 +2160,7 @@ namespace Stempelurhadmintest
             open_db();
             comm.Parameters.Clear();
             comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis FROM user WHERE userid=@userid";
-            comm.Parameters.Add("@person", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = insert_userid;
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = insert_userid;
             try
             {
                 bonusausgezahltbis_db =  comm.ExecuteScalar() + "";
@@ -2246,28 +2246,220 @@ namespace Stempelurhadmintest
 
         private void clearUpdateFormular_Verrechnung()
         {
-            //TODO
-            //TODO Buttons disablen
+            //eingabefelder zurücksetzen
+            textBox_Verrechnungen_Stunden_edit.Text = "";
+            DatePicker_Verrechnung_Update.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+
+            //eingabefelder disablen
+            textBox_Verrechnungen_Stunden_edit.Enabled = false;
+            button_Verrechnungen_SatzStornieren.Enabled = false;
+            button_Verrechnungen_SatzUeberschreiben.Enabled = false;
+            DatePicker_Verrechnung_Update.Enabled = false;
+
         }
 
         private void prefillUpdateFormular_Verrechnung()
         {
-            //TODO Felder mit den Daten des Markierten Satzes vorbefuellen
-            //TODO verhindern dass sätze geändert/storniert werden können, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
+            //eingabefelder enablen
+            textBox_Verrechnungen_Stunden_edit.Enabled = true;
+            button_Verrechnungen_SatzStornieren.Enabled = true;
+            button_Verrechnungen_SatzUeberschreiben.Enabled = true;
+            DatePicker_Verrechnung_Update.Enabled = true;
+            
+            //Felder mit den Daten des Markierten Satzes vorbefuellen
+            textBox_Verrechnungen_Stunden_edit.Text = Verrechnungsgrid_Verrechnungen_Update.SelectedCells[4].Value.ToString();
 
+            int vjahr_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(6, 4));
+            int vmonat_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(3, 2));
+            int vtag_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(0, 2));
+            DateTime Verrechnungsdatum_alt = new DateTime(vjahr_tmp, vmonat_tmp, vtag_tmp, 0, 0, 0);
+
+            DatePicker_Verrechnung_Update.Value = Verrechnungsdatum_alt;
 
         }
 
         private void button_Verrechnungen_SatzStornieren_Click(object sender, EventArgs e)
         {
-            //TODO
-            //TODO verhindern dass sätze geändert/storniert werden können, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
+            bool fehler = false;
+
+            string userid = "";
+            string id_alt = "";
+            string bonusausgezahltbis_db = "";
+            DateTime Verrechnungsdatum_alt;
+            DateTime Bonusauszahlungsdatum;
+
+            id_alt = Verrechnungsgrid_Verrechnungen_Update.SelectedCells[0].Value.ToString();
+            userid = Verrechnungsgrid_Verrechnungen_Update.SelectedCells[1].Value.ToString();
+            int vjahr_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(6, 4));
+            int vmonat_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(3, 2));
+            int vtag_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(0, 2));
+            Verrechnungsdatum_alt = new DateTime(vjahr_tmp, vmonat_tmp, vtag_tmp, 0, 0, 0);
+
+            //verhindern dass sätze storniert werden, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis FROM user WHERE userid=@userid";
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            try
+            {
+                bonusausgezahltbis_db = comm.ExecuteScalar() + "";
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            if (bonusausgezahltbis_db == "")
+            {
+                fehler = true;
+                MessageBox.Show("Fehler beim ermitteln des Datums der letzten Bonusauszahlung für diesen Mitarbeiter!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Bonusauszahlungsdatum = new DateTime(int.Parse(bonusausgezahltbis_db.Substring(0, 4)), int.Parse(bonusausgezahltbis_db.Substring(4, 2)), int.Parse(bonusausgezahltbis_db.Substring(6, 2)), 0, 0, 0);
+                
+                if (DateTime.Compare(Bonusauszahlungsdatum, Verrechnungsdatum_alt) >= 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + Bonusauszahlungsdatum.ToShortDateString() + " ausgezahlt. Verrechnungssätze bis zu diesem Datum können nicht mehr verändert oder storniert werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if (fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Den markierten Verrechnungssatz mit der ID: " + id_alt + " wirklich stornieren?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //satz stornieren
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE verrechnung SET storniert = 1 WHERE satzid=@satzid";
+                    comm.Parameters.Add("@satzid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(id_alt);
+                    try
+                    {
+                        bonusausgezahltbis_db = comm.ExecuteScalar() + "";
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+
+                    refreshAuftragsPicker_Verrechnung_Insert();
+                    refreshUpdateFormular_Verrechnung();
+                    refreshInsertFormular_Verrechnung();
+                }
+
+            }
+      
         }
 
         private void button_Verrechnungen_SatzUeberschreiben_Click(object sender, EventArgs e)
         {
-            //TODO
-            //TODO verhindern dass das neue verrechnungsdatum weiter zurückliegt als die bonusauszahlung des mitarbeiters
+            bool fehler = false;
+
+            string userid = "";
+            string id_alt = "";
+            string bonusausgezahltbis_db = "";
+            string stunden_neu = "";
+            string jahr_neu = "";
+            string monat_neu = "";
+            string tag_neu = "";
+            double outdouble_tmp;
+            DateTime Verrechnungsdatum_alt;
+            DateTime Verrechnungsdatum_neu;
+            DateTime Bonusauszahlungsdatum;
+
+            id_alt = Verrechnungsgrid_Verrechnungen_Update.SelectedCells[0].Value.ToString();
+            userid = Verrechnungsgrid_Verrechnungen_Update.SelectedCells[1].Value.ToString();
+            stunden_neu = textBox_Verrechnungen_Stunden_edit.Text;
+
+            if (double.TryParse(stunden_neu, out outdouble_tmp) == false)
+            {
+                fehler = true;
+                MessageBox.Show("Der Wert für die zu verrechnenden Stunden ist ungültig!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            int vjahr_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(6, 4));
+            int vmonat_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(3, 2));
+            int vtag_tmp = int.Parse(Verrechnungsgrid_Verrechnungen_Update.SelectedCells[3].Value.ToString().Substring(0, 2));
+            Verrechnungsdatum_alt = new DateTime(vjahr_tmp, vmonat_tmp, vtag_tmp, 0, 0, 0);
+            Verrechnungsdatum_neu = new DateTime(DatePicker_Verrechnung_Update.Value.Year, DatePicker_Verrechnung_Update.Value.Month, DatePicker_Verrechnung_Update.Value.Day, 0, 0, 0);
+
+            jahr_neu = Verrechnungsdatum_neu.Year.ToString("D4");
+            monat_neu = Verrechnungsdatum_neu.Month.ToString("D2");
+            tag_neu = Verrechnungsdatum_neu.Day.ToString("D2");
+
+            //verhindern dass sätze geändert werden, die weiter zurückliegen als die bonusauszahlung des mitarbeiters
+            //und verhindern, dass das neue verrechnungsdatum weiter zurückliegt als die bonuszahlung
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis FROM user WHERE userid=@userid";
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            try
+            {
+                bonusausgezahltbis_db = comm.ExecuteScalar() + "";
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            //ueberschreiben verhindern wenn das alte oder das neue verrechnungsdatum weiter zurückliegt als die bonusauszahlung des mitarbeiters
+            if (bonusausgezahltbis_db == "")
+            {
+                fehler = true;
+                MessageBox.Show("Fehler beim ermitteln des Datums der letzten Bonusauszahlung für diesen Mitarbeiter!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Bonusauszahlungsdatum = new DateTime(int.Parse(bonusausgezahltbis_db.Substring(0, 4)), int.Parse(bonusausgezahltbis_db.Substring(4, 2)), int.Parse(bonusausgezahltbis_db.Substring(6, 2)), 0, 0, 0);
+
+                if (DateTime.Compare(Bonusauszahlungsdatum, Verrechnungsdatum_alt) >= 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + Bonusauszahlungsdatum.ToShortDateString() + " ausgezahlt. Verrechnungssätze bis zu diesem Datum können nicht mehr verändert oder storniert werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }else if (DateTime.Compare(Bonusauszahlungsdatum, Verrechnungsdatum_neu) >= 0)
+                {
+                    fehler = true;
+                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + Bonusauszahlungsdatum.ToShortDateString() + " ausgezahlt. Der Verrechnungssatz kann nur auf ein späteres Datum umdatiert werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+
+            if (fehler == false)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Den markierten Verrechnungssatz mit der ID: " + id_alt + " wirklich mit den eingegebenen Werten überschreiben?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //satz updaten
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE verrechnung SET jahr=@jahr, monat=@monat, tag=@tag, stunden=@stunden WHERE satzid=@satzid";
+
+                    comm.Parameters.Add("@satzid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(id_alt);
+                    comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = jahr_neu;
+                    comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = monat_neu;
+                    comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = tag_neu;
+                    comm.Parameters.Add("@stunden", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@stunden"].Precision = 10;
+                    comm.Parameters["@stunden"].Scale = 2;
+                    comm.Parameters["@stunden"].Value = stunden_neu;
+
+
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+
+                    refreshAuftragsPicker_Verrechnung_Insert();
+                    refreshUpdateFormular_Verrechnung();
+                    refreshInsertFormular_Verrechnung();
+                }
+
+            }
+
         }
 
 
