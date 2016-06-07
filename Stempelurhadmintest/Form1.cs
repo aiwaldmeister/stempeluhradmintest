@@ -377,6 +377,8 @@ namespace Stempelurhadmintest
                 {
                     Fehler = "Zeitpaar passt nicht zusammen (verschiedene tasks)";
                     log(Fehler);
+                    Reader.Close();
+                    close_db();
                     return -1;
                 }
 
@@ -3137,14 +3139,83 @@ namespace Stempelurhadmintest
 
         private void button_Personen_UrlaubsjahrAktualisieren_Click(object sender, EventArgs e)
         {
-            bool fehler = false;
-
-            string urlaubsjahr_alt = "";
+            string userid = "";
+            string urlaubsjahr_db = "";
             string urlaubsjahr_neu = "";
+            double jahresurlaub_db = 0;
+            double resturlaub_db = 0;
+            double resturlaub_neu = 0;
+            double verbrauchterurlaub_in_urlaubsjahr_db = 0;
 
+            userid = PersonPicker_Personen.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
 
-            //TODO differez ermitteln zwischen genutzten urlaubstagen im urlaubsjahr und (jahresurlaub + resturlaub vom vorjahr des urlaubsjahres)
-            //TODO diese differenz ist für das nächste urlaubsjahr der resturlaub aus dem vorjahr
+            //die aktuellen urlaubswerte der person aus der datenbank lesen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT jahresurlaub, akt_urlaubsjahr, resturlaub_vorjahr FROM user WHERE userid=@userid ";
+ 
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                jahresurlaub_db = double.Parse(Reader["jahresurlaub"] + "");
+                urlaubsjahr_db = Reader["akt_urlaubsjahr"] + "";
+                resturlaub_db = double.Parse(Reader["resturlaub_vorjahr"] + "");
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            //verbrauchten urlaub im (noch) aktuellen urlaubsjahr_db ermitteln;
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT IFNULL(sum(urlaubstage_abziehen),0) FROM kalender WHERE zuordnung=@zuordnung AND jahr=@jahr AND storniert=0";
+
+            comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = urlaubsjahr_db;
+
+            try
+            {   
+                verbrauchterurlaub_in_urlaubsjahr_db = double.Parse(comm.ExecuteScalar() + "");
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            resturlaub_neu = jahresurlaub_db + resturlaub_db - verbrauchterurlaub_in_urlaubsjahr_db;
+            urlaubsjahr_neu = (int.Parse(urlaubsjahr_db) + 1).ToString("D4");
+
+            //Urlaubsjahr auf das neue Jahr setzen und ermittelten resturlaub entsprechend eintragen
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "UPDATE user SET akt_urlaubsjahr=@akt_urlaubsjahr, resturlaub_vorjahr=@resturlaub_vorjahr WHERE userid=@userid ";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            comm.Parameters.Add("@akt_urlaubsjahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = urlaubsjahr_neu;
+            comm.Parameters.Add("@resturlaub_vorjahr", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+            comm.Parameters["@resturlaub_vorjahr"].Precision = 10;
+            comm.Parameters["@resturlaub_vorjahr"].Scale = 2;
+            comm.Parameters["@resturlaub_vorjahr"].Value = resturlaub_neu;
+
+            try
+            {
+                comm.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+            close_db();
+
+            MessageBox.Show("Das aktuelle Urlaubsjahr wurde auf " + urlaubsjahr_neu + " gesetzt. Der Resturlaub von " + urlaubsjahr_db + " beträgt  " + resturlaub_neu + " Tage." , "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            refreshUpdateFormular_Personen();
+            personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
+            kalendertab_initialisiert_global = false;
+
         }
 
         private void button_Personen_ZeitkontoAktualisieren_Click(object sender, EventArgs e)
@@ -3208,7 +3279,7 @@ namespace Stempelurhadmintest
                 {
                     //bei einer der Zeitberechnungen trat ein Fehler auf...
                     fehler = true;
-                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Fehler bei der Ermittlung der Soll/Ist-Zeiten am " + BerechnungsDatum_tmp.ToShortDateString() + ".\r\nDie Stempelungen der Person an diesem Tag bitte auf Fehler überprüfen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -3246,16 +3317,15 @@ namespace Stempelurhadmintest
                 catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
                 close_db();
 
-                MessageBox.Show("Der Zeitkontostand wurde bis " + ZielDatum.ToShortDateString() + " zurückgerechnet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Der Zeitkontostand wurde bis " + ZielDatum.ToShortDateString() + " berechnet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                refreshUpdateFormular_Personen();
                 personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
                 kalendertab_initialisiert_global = false;
             }
             
         }
-
-
-
+        
 
         ///////////////////////////////////////////////////////////////////////
 
