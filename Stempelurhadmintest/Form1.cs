@@ -332,6 +332,7 @@ namespace Stempelurhadmintest
 
                 personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
                 kalendertab_initialisiert_global = false;
+                stempelungstab_initialisiert_global = false;
             }
             
         }
@@ -2759,10 +2760,12 @@ namespace Stempelurhadmintest
             string input_nachname = textBox_Personen_Neu_Nachname.Text;
             string input_Jahresurlaub = textBox_Personen_Neu_Urlaubstage.Text;
             double jahresurlaub = 0; //wird weiter unten erst versucht aus dem Formularfeld zu parsen
+            double resturlaub_vorjahr = 0;
 
             DateTime ersterarbeitstag = DatePicker_Personen_neu.Value.Date;
             DateTime tag_vor_arbeitsantritt = ersterarbeitstag.AddDays(-1);
             string tag_vor_arbeitsantritt_string = tag_vor_arbeitsantritt.Year.ToString("D4") + tag_vor_arbeitsantritt.Month.ToString("D2") + tag_vor_arbeitsantritt.Day.ToString("D2");
+            string urlaubsjahr = ersterarbeitstag.Year.ToString("D4");
 
             if (input_userid.Length != 6 || !input_userid.StartsWith("999"))
             {
@@ -2831,9 +2834,9 @@ namespace Stempelurhadmintest
                     //Person anlegen
                     open_db();
                     comm.Parameters.Clear();
-                    comm.CommandText = "INSERT INTO user (userid, currenttask, name, vorname, zeitkonto, zeitkonto_berechnungsstand, " +
-                                            "bonuskonto_ausgezahlt_bis, bonuszeit_bei_letzter_auszahlung, jahresurlaub, stempelfehler, aktiv) " +
-                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,0,1)";
+                    comm.CommandText = "INSERT INTO user (userid, currenttask, name, vorname, zeitkonto, zeitkonto_berechnungsstand, bonuskonto_ausgezahlt_bis, " +
+                                                "bonuszeit_bei_letzter_auszahlung, jahresurlaub,akt_urlaubsjahr, resturlaub_vorjahr, stempelfehler, aktiv) " +
+                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,@akt_urlaubsjahr,@resturlaub_vorjahr,0,1)";
 
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = input_userid;
                     comm.Parameters.Add("@nachname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_nachname;
@@ -2843,6 +2846,11 @@ namespace Stempelurhadmintest
                     comm.Parameters["@jahresurlaub"].Precision = 10;
                     comm.Parameters["@jahresurlaub"].Scale = 2;
                     comm.Parameters["@jahresurlaub"].Value = jahresurlaub;
+                    comm.Parameters.Add("@akt_urlaubsjahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = urlaubsjahr;
+                    comm.Parameters.Add("@resturlaub_vorjahr", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@resturlaub_vorjahr"].Precision = 10;
+                    comm.Parameters["@resturlaub_vorjahr"].Scale = 2;
+                    comm.Parameters["@resturlaub_vorjahr"].Value = resturlaub_vorjahr;
 
                     log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname + ")");
                     try
@@ -3416,7 +3424,28 @@ namespace Stempelurhadmintest
             }
             
         }
-        
+
+        private void button_Personen_ZeitkontoRueckrechnen_Click(object sender, EventArgs e)
+        {
+            string userid = "";
+            int zieljahr = 0;
+            int zielmonat = 0;
+            int zieltag = 0;
+
+            userid = PersonPicker_Personen.Text;
+            if (userid.Length >= 6)
+            {
+                userid = userid.Substring(0,6);
+            }
+            zieljahr = DatePicker_Personen_ZeitkontoRueckrechnen.Value.Year;
+            zielmonat = DatePicker_Personen_ZeitkontoRueckrechnen.Value.Month;
+            zieltag = DatePicker_Personen_ZeitkontoRueckrechnen.Value.Day;
+
+            ZeitkontoRueckrechnen(userid, zieljahr, zielmonat, zieltag);
+
+            refreshUpdateFormular_Personen();
+        }
+
 
         ///////////////////////////////////////////////////////////////////////
 
