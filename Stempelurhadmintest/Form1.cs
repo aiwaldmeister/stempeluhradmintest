@@ -32,6 +32,7 @@ namespace Stempelurhadmintest
         bool verrechnungstab_initialisiert_global = false;
         bool stempelungstab_initialisiert_global = false;
         bool kalendertab_initialisiert_global = false;
+        bool bonustab_initialisiert_global = false;
 
         public Form1()
         {
@@ -174,6 +175,16 @@ namespace Stempelurhadmintest
                     refreshAuftragsPicker_Verrechnung_Insert();
                     refreshInsertFormular_Verrechnung();
                     refreshUpdateFormular_Verrechnung();
+                    verrechnungstab_initialisiert_global = true;
+                }
+            }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Bonusberechnung"])
+            {
+                if (bonustab_initialisiert_global == false)
+                {
+                    refreshPersonPicker_Bonus();
+                    bonustab_initialisiert_global = true;
                 }
             }
 
@@ -183,6 +194,7 @@ namespace Stempelurhadmintest
                 {
                     //auswertungstab initialisieren
                     //Auswertung über Tatsächliche Arbeitszeit (Mitarbeiter/Jahr)
+                    auswertungstab_initialisiert_global = true;
                 }
             }
         }
@@ -1691,6 +1703,22 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Fehler! die Auftragsnummer muss eine 6-Stellige Nummer unter 999000 sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+
+            bool tryparseresult = false;
+            int outint_tmp = 0;
+            tryparseresult = int.TryParse(task, out outint_tmp);
+
+            if(tryparseresult == false)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! die Auftragsnummer muss eine 6-Stellige Nummer unter 999000 sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (outint_tmp >= 999000)
+            {
+                fehler = true;
+                MessageBox.Show("Fehler! die Auftragsnummer muss eine 6-Stellige Nummer unter 999000 sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
             if (fehler == false)
             {
@@ -3453,6 +3481,50 @@ namespace Stempelurhadmintest
             refreshUpdateFormular_Personen();
         }
 
+
+        ///////////Bonusberechnung/////////////////////////////////////////////
+
+        private void refreshPersonPicker_Bonus()
+        {
+            PersonPicker_Bonus.Items.Clear();
+
+            //Personen der Personentabelle dem PersonPicker hinzufügen
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+            string thisperson_bonuskonto_ausgezahlt_bis = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname, bonuskonto_ausgezahlt_bis FROM user where aktiv = 1";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname = Reader["vorname"] + "";
+                    thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
+
+                    thisperson_bonuskonto_ausgezahlt_bis = thisperson_bonuskonto_ausgezahlt_bis.Substring(6, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(4, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(0,4);
+
+                    PersonPicker_Bonus.Items.Add(thisperson_userid + " - Stand " + thisperson_bonuskonto_ausgezahlt_bis + " (" + thisperson_name + " " + thisperson_vorname + ")");
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+            PersonPicker_Bonus.SelectedIndex = 0;
+        }
 
         ///////////////////////////////////////////////////////////////////////
 
