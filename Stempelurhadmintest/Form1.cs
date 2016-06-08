@@ -728,9 +728,16 @@ namespace Stempelurhadmintest
                         {
                             KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.Beige;
                         }
+
+                        if (Betrachtungsjahr == DateTime.Now.Year && Betrachtungsmonat == DateTime.Now.Month && i == DateTime.Now.Day)
+                        {//die Zelle entspricht dem heutigen Tag
+                            KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.ForeColor = Color.Magenta;
+                        }
+
                         i++;
                     }
                     KalenderGrid_Kalender.Rows[actrow].Cells[actcol].ToolTipText = "";
+
                 }
             }
 
