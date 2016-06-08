@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -252,14 +252,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle2;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(77, 83);
@@ -686,7 +686,7 @@
             this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 445);
             this.Ereignisgrid_Kalender.TabIndex = 1;
             this.Ereignisgrid_Kalender.TabStop = false;
-            this.Ereignisgrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_Kalender_CellContentClick);
+            this.Ereignisgrid_Kalender.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_Kalender_CellClick);
             this.Ereignisgrid_Kalender.SelectionChanged += new System.EventHandler(this.Ereignisgrid_Kalender_SelectionChanged);
             // 
             // ID

@@ -799,17 +799,72 @@ namespace Stempelurhadmintest
             refreshKalendergrid();
         }
 
-        private void pruefeZeitkontostand()
+        private bool Aenderung_erlaubt_Kalender(string zuordnung, int jahr, int monat, int tag)
         {
-            //TODO testen ob markiertes Datum später ist als der Zeitkontostand des ausgewählten Mitarbeiters
-                //TODO wenn ja, insertbox enablen
-                //TODO wenn nein, insertbox disablen und Hinweis setzen
+            DateTime testdatum_DateTime = new DateTime(jahr, monat, tag, 0, 0, 0);
+            string zeitkontostand_string = "";
+            DateTime zeitkontostand_DateTime;
 
-            
-            //TODO falls allgemein, prüfen ob markiertes Datum später ist, als die Zeitkontostände aller Mitarbeiter
-                //TODO wenn ja, insertbox enablen
-                //TODO wenn nein, insertbox disablen
+            if(zuordnung == "Allgemein")
+            {//der späteste zeitkontostand aller aktiven mitarbeiter wird betrachtet
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT MAX(zeitkonto_berechnungsstand) FROM user WHERE aktiv = 1";
 
+                try
+                {
+                    zeitkontostand_string = comm.ExecuteScalar() + "";
+                }
+
+                catch (Exception ex) { log(ex.Message); }
+                close_db();
+                zeitkontostand_DateTime = new DateTime(int.Parse(zeitkontostand_string.Substring(0, 4)), int.Parse(zeitkontostand_string.Substring(4, 2)), int.Parse(zeitkontostand_string.Substring(6, 2)), 0, 0, 0);
+            }
+            else
+            {//der zeitkontostand des uebergebenen mitarbeiters wird betrachtet
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT zeitkonto_berechnungsstand FROM user WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = zuordnung;
+                
+                try
+                {
+                    zeitkontostand_string = comm.ExecuteScalar() + "";
+                }
+
+                catch (Exception ex) { log(ex.Message); }
+                close_db();
+                zeitkontostand_DateTime = new DateTime(int.Parse(zeitkontostand_string.Substring(0, 4)), int.Parse(zeitkontostand_string.Substring(4, 2)), int.Parse(zeitkontostand_string.Substring(6, 2)), 0, 0, 0);
+            }
+
+            if (DateTime.Compare(zeitkontostand_DateTime, testdatum_DateTime) >= 0)
+            {//Der Zeitkontostand ist später oder gleich dem fraglichen Datum -> änderungen sind nicht erlaubt
+
+                if (zuordnung == "Allgemein")
+                {
+                    MessageBox.Show("Die Aktion betrifft den " + testdatum_DateTime.ToShortDateString() +". " + 
+                        "Der Zeitkontostand von mindestens einem Mitarbeiters wurde jedoch bereits bis einschliesslich " 
+                        + zeitkontostand_DateTime.ToShortDateString() + " berechnet.\r\n\r\n" + 
+                        "Um allgemeine Ereignisse für diesen Tag erstellen oder stornieren zu können müssen die Zeitkonten ALLER aktiven Mitarbeiter " +
+                        " auf einem früheren Berechnungsstand als " + testdatum_DateTime.ToShortDateString() + " sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Die Aktion betrifft den " + testdatum_DateTime.ToShortDateString() + ". " +
+                        "Der Zeitkontostand dieses Mitarbeiters wurde jedoch bereits bis einschliesslich "
+                        + zeitkontostand_DateTime.ToShortDateString() + " berechnet.\r\n\r\n" +
+                        "Um Ereignisse dieses Mitarbeiters für diesen Tag erstelle oder stornieren zu können muss sein Zeitkonto " +
+                        " auf einem früheren Berechnungsstand als " + testdatum_DateTime.ToShortDateString() + " sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+                return false;   //änderungen nicht erlaubt
+            }
+            else
+            {
+                return true;  // Zeitkontostand ist früher als das fragliche Datum -> änderungen sind erlaubt
+            }
         }
 
         private void refreshEreignisgrid_Kalender()
@@ -821,11 +876,15 @@ namespace Stempelurhadmintest
             string actjahr = "";
 
             string thisevent_id = "";
+            string thisevent_tag = "";
+            string thisevent_monat = "";
             string thisevent_datum = "";
             string thisevent_sollzeit = "";
             string thisevent_urlaubstage = "";
             string thisevent_vermerk = "";
             bool thisevent_storniert = false;
+            DateTime datumheute = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime thisevent_datetime;
 
             actjahr = MonatsPicker_Kalender.Value.Year.ToString("D4");
             if (PersonPicker_Kalender.Text != null)
@@ -847,9 +906,6 @@ namespace Stempelurhadmintest
             }
 
 
-
-
-
             open_db();
             comm.Parameters.Clear();
             comm.CommandText = "SELECT eventid, tag, monat, vermerk, sollzeit, urlaubstage_abziehen, storniert FROM kalender WHERE jahr=@jahr AND zuordnung=@zuordnung AND storniert=0 ORDER BY monat, tag";
@@ -866,11 +922,15 @@ namespace Stempelurhadmintest
                 while (Reader.Read())
                 {
                     thisevent_id = Reader["eventid"] + "";
-                    thisevent_datum = Reader["tag"] + "." + Reader["monat"] + ".";
+                    thisevent_tag = Reader["tag"] + "";
+                    thisevent_monat = Reader["monat"] + "";
+                    thisevent_datum =  thisevent_tag + "." + thisevent_monat;
                     thisevent_sollzeit = Reader["sollzeit"] + "";
                     thisevent_urlaubstage = Reader["urlaubstage_abziehen"] + "";
                     thisevent_vermerk = Reader["vermerk"] + "";
                     thisevent_storniert = (bool)Reader["storniert"];
+
+                    thisevent_datetime = new DateTime(int.Parse(actjahr), int.Parse(thisevent_monat), int.Parse(thisevent_tag), 0, 0, 0);
 
                     //Eventgrid befüllen
                     DataGridViewRow myrow = new DataGridViewRow();
@@ -893,6 +953,14 @@ namespace Stempelurhadmintest
                     myrow.Cells.Add(cell_vermerk);
 
                     Ereignisgrid_Kalender.Rows.Add(myrow);
+
+                    if(DateTime.Compare(thisevent_datetime, datumheute) < 0)
+                    {//ereignis liegt in der Vergangenheit -> zeile ausgrauen
+                        for(int i = 0; i<Ereignisgrid_Kalender.ColumnCount; i++)
+                        {
+                            Ereignisgrid_Kalender.Rows[Ereignisgrid_Kalender.RowCount - 1].Cells[i].Style.BackColor = Color.LightGray;
+                        }
+                    }
 
 
                 }
@@ -984,9 +1052,13 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Bei Allgemeinen Ereignissen sollte kein Urlaub abgezogen werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
+            if(Aenderung_erlaubt_Kalender(input_zuordnung, int.Parse(input_jahr), int.Parse(input_monat), int.Parse(input_tag)) == false)
+            {
+                fehler = true;
+                //entsprechende Fehlermeldung wird von der Prüfungsfunktion bereits ausgegeben
+            }
+            
             //Prüfen ob schon ein anderer Eintrag mit den Werten da ist
-
             if (fehler == false)
             {
                 int count = -1;
@@ -1096,30 +1168,48 @@ namespace Stempelurhadmintest
 
             //ID ermitteln
             string markierteID = "";
+            string datumszelle = "";
+
             markierteID = Ereignisgrid_Kalender.SelectedCells[0].Value.ToString();
+            datumszelle = Ereignisgrid_Kalender.SelectedCells[1].Value.ToString();
 
-            //Bestaetigungsdialog vorbereiten
-            string dialogtext = "Das Ereignis mit ID:" + markierteID + " wirklich stornieren?";
-            DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            string zuordnung = PersonPicker_Kalender.Text;
+            if(zuordnung != "Allgemein" && zuordnung.Length >= 6)
             {
-                //ereignis stornieren
-                open_db();
-                comm.Parameters.Clear();
-                comm.CommandText = "UPDATE kalender SET storniert=1 where eventid = @eventid";
-
-                comm.Parameters.Add("@eventid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(markierteID);
-
-                log("storniere Ereignis mit ID:" + markierteID);
-                try
-                {
-                    comm.ExecuteNonQuery();
-                }
-                catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
-                close_db();
+                zuordnung = zuordnung.Substring(0,6);
             }
-            refreshKalendergrid();
-            refreshEreignisgrid_Kalender();
+            
+            //ermitteln des betroffenen datums fuer die prüfung auf zeitkontostände die der aktion im wege stehen
+            int jahr = MonatsPicker_Kalender.Value.Year;
+            int monat = int.Parse(datumszelle.Substring(3, 2));
+            int tag = int.Parse(datumszelle.Substring(0, 2));
+
+            //pruefe ob eine aenderung mit dieser zuordnung an diesem tag erlaubt ist
+            if (Aenderung_erlaubt_Kalender(zuordnung, jahr, monat, tag) == true)
+            {
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Das Ereignis mit ID:" + markierteID + " wirklich stornieren?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //ereignis stornieren
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE kalender SET storniert=1 where eventid = @eventid";
+
+                    comm.Parameters.Add("@eventid", MySql.Data.MySqlClient.MySqlDbType.UInt32).Value = int.Parse(markierteID);
+
+                    log("storniere Ereignis mit ID:" + markierteID);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+                    refreshKalendergrid();
+                    refreshEreignisgrid_Kalender();
+                }
+            }
         }
 
         private void KalenderGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1136,7 +1226,7 @@ namespace Stempelurhadmintest
             }
         }
 
-        private void Ereignisgrid_Kalender_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Ereignisgrid_Kalender_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (Ereignisgrid_Kalender.SelectedRows.Count > 0)
             {
