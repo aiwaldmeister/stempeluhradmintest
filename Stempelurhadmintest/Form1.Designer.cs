@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -268,14 +268,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle2;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -2129,9 +2129,9 @@
             this.PersonPicker_Bonus.FormattingEnabled = true;
             this.PersonPicker_Bonus.Items.AddRange(new object[] {
             "Allgemein"});
-            this.PersonPicker_Bonus.Location = new System.Drawing.Point(131, 23);
+            this.PersonPicker_Bonus.Location = new System.Drawing.Point(86, 19);
             this.PersonPicker_Bonus.Name = "PersonPicker_Bonus";
-            this.PersonPicker_Bonus.Size = new System.Drawing.Size(513, 32);
+            this.PersonPicker_Bonus.Size = new System.Drawing.Size(612, 32);
             this.PersonPicker_Bonus.TabIndex = 6;
             // 
             // label49
@@ -2139,9 +2139,9 @@
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(73, 30);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(224, 13);
+            this.label49.Size = new System.Drawing.Size(268, 13);
             this.label49.TabIndex = 7;
-            this.label49.Text = "Bonuszeit für diesen Mitarbeiter wurde bis zum";
+            this.label49.Text = "Bonuszeit für diesen Mitarbeiter wurde bis einschließlich";
             // 
             // label50
             // 
@@ -2155,11 +2155,11 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(73, 122);
+            this.label51.Location = new System.Drawing.Point(63, 127);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(308, 13);
+            this.label51.Size = new System.Drawing.Size(373, 13);
             this.label51.TabIndex = 7;
-            this.label51.Text = "Für den Berechnungszeitraum wurden dabei eine Bonuszeit von";
+            this.label51.Text = "Für den Berechnungszeitraum wurde dabei eine zu vergütende Bonuszeit von";
             // 
             // label52
             // 
@@ -2174,7 +2174,7 @@
             // 
             this.label53.Location = new System.Drawing.Point(73, 44);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(283, 61);
+            this.label53.Size = new System.Drawing.Size(283, 35);
             this.label53.TabIndex = 7;
             this.label53.Text = "Der aktuell letzte Tag für den dieser Mitarbeiter keine unverrechneten Stempelung" +
     "en mehr hat ist der";
@@ -2183,16 +2183,16 @@
             // 
             this.DatePicker_Bonus_Berechnen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Bonus_Berechnen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker_Bonus_Berechnen.Location = new System.Drawing.Point(289, 156);
+            this.DatePicker_Bonus_Berechnen.Location = new System.Drawing.Point(289, 164);
             this.DatePicker_Bonus_Berechnen.Name = "DatePicker_Bonus_Berechnen";
             this.DatePicker_Bonus_Berechnen.Size = new System.Drawing.Size(100, 29);
             this.DatePicker_Bonus_Berechnen.TabIndex = 13;
             // 
             // button_Bonus_BerechnenBis
             // 
-            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(112, 122);
+            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(88, 116);
             this.button_Bonus_BerechnenBis.Name = "button_Bonus_BerechnenBis";
-            this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(293, 26);
+            this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(330, 40);
             this.button_Bonus_BerechnenBis.TabIndex = 14;
             this.button_Bonus_BerechnenBis.Text = "Bonuszeit neu berechnen für den Zeitraum";
             this.button_Bonus_BerechnenBis.UseVisualStyleBackColor = true;
@@ -2263,7 +2263,7 @@
             this.groupBox4.Controls.Add(this.label57);
             this.groupBox4.Location = new System.Drawing.Point(131, 312);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(513, 214);
+            this.groupBox4.Size = new System.Drawing.Size(513, 224);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Neue Bonusberechnung";
@@ -2302,7 +2302,7 @@
             // 
             this.label56.AutoSize = true;
             this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(151, 158);
+            this.label56.Location = new System.Drawing.Point(151, 166);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(100, 24);
             this.label56.TabIndex = 17;
@@ -2311,16 +2311,16 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(120, 166);
+            this.label57.Location = new System.Drawing.Point(120, 174);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(25, 13);
+            this.label57.Size = new System.Drawing.Size(27, 13);
             this.label57.TabIndex = 7;
-            this.label57.Text = "von";
+            this.label57.Text = "vom";
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(252, 166);
+            this.label58.Location = new System.Drawing.Point(252, 174);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(20, 13);
             this.label58.TabIndex = 7;
