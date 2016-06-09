@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,6 +101,24 @@
             this.label21 = new System.Windows.Forms.Label();
             this.textBox_Verrechnung_Auftragsnummer = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
+            this.Bonusberechnung = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label_Bonus_Neu_ErstmoeglicherTag = new System.Windows.Forms.Label();
+            this.label_Bonus_Neu_LetzterVollverrechneterTag = new System.Windows.Forms.Label();
+            this.button_Bonus_BerechnenBis = new System.Windows.Forms.Button();
+            this.DatePicker_Bonus_Neu_BerechnenBis = new System.Windows.Forms.DateTimePicker();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.groupBoxLetzteBonusberechnung = new System.Windows.Forms.GroupBox();
+            this.label_Bonus_Alt_Bonuszeit = new System.Windows.Forms.Label();
+            this.label_Bonus_Alt_BerechnetBis = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.PersonPicker_Bonus = new System.Windows.Forms.ComboBox();
+            this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
             this.button_Stempelungen_DatePickerTagzurueck = new System.Windows.Forms.Button();
             this.button_Stempelungen_DatePickerTagvorwaerts = new System.Windows.Forms.Button();
@@ -198,24 +218,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.Bonusberechnung = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label_Bonus_Neu_ErstmoeglicherTag = new System.Windows.Forms.Label();
-            this.label_Bonus_Neu_LetzterVollverrechneterTag = new System.Windows.Forms.Label();
-            this.button_Bonus_BerechnenBis = new System.Windows.Forms.Button();
-            this.DatePicker_Bonus_Neu_BerechnenBis = new System.Windows.Forms.DateTimePicker();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.groupBoxLetzteBonusberechnung = new System.Windows.Forms.GroupBox();
-            this.label_Bonus_Alt_Bonuszeit = new System.Windows.Forms.Label();
-            this.label_Bonus_Alt_BerechnetBis = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.PersonPicker_Bonus = new System.Windows.Forms.ComboBox();
-            this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.myiconlist = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -227,6 +230,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Update)).BeginInit();
             this.groupBox_Verrechnungen_Insert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).BeginInit();
+            this.Bonusberechnung.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBoxLetzteBonusberechnung.SuspendLayout();
             this.Stempelungen.SuspendLayout();
             this.groupBox_Stempelungen_Zeitkonto.SuspendLayout();
             this.groupBox_Stempelungen_EditierenErstellen.SuspendLayout();
@@ -236,9 +242,6 @@
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.Bonusberechnung.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBoxLetzteBonusberechnung.SuspendLayout();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -258,14 +261,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -378,9 +381,9 @@
             this.tabControl1.Controls.Add(this.Kalender);
             this.tabControl1.Controls.Add(this.Verrechnung);
             this.tabControl1.Controls.Add(this.Bonusberechnung);
-            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Controls.Add(this.Stempelungen);
             this.tabControl1.Controls.Add(this.Personen);
+            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -475,6 +478,9 @@
             // 
             // button_Kalender_erstelleEintrag
             // 
+            this.button_Kalender_erstelleEintrag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Kalender_erstelleEintrag.ImageIndex = 0;
+            this.button_Kalender_erstelleEintrag.ImageList = this.myiconlist;
             this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 213);
             this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
@@ -604,6 +610,9 @@
             // button_Kalender_storniereEintrag
             // 
             this.button_Kalender_storniereEintrag.Enabled = false;
+            this.button_Kalender_storniereEintrag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Kalender_storniereEintrag.ImageIndex = 1;
+            this.button_Kalender_storniereEintrag.ImageList = this.myiconlist;
             this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 485);
             this.button_Kalender_storniereEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_storniereEintrag.Name = "button_Kalender_storniereEintrag";
@@ -727,6 +736,9 @@
             // 
             // button_Verrechnungen_SatzStornieren
             // 
+            this.button_Verrechnungen_SatzStornieren.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Verrechnungen_SatzStornieren.ImageIndex = 1;
+            this.button_Verrechnungen_SatzStornieren.ImageList = this.myiconlist;
             this.button_Verrechnungen_SatzStornieren.Location = new System.Drawing.Point(35, 292);
             this.button_Verrechnungen_SatzStornieren.Name = "button_Verrechnungen_SatzStornieren";
             this.button_Verrechnungen_SatzStornieren.Size = new System.Drawing.Size(313, 35);
@@ -737,6 +749,9 @@
             // 
             // button_Verrechnungen_SatzUeberschreiben
             // 
+            this.button_Verrechnungen_SatzUeberschreiben.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Verrechnungen_SatzUeberschreiben.ImageIndex = 2;
+            this.button_Verrechnungen_SatzUeberschreiben.ImageList = this.myiconlist;
             this.button_Verrechnungen_SatzUeberschreiben.Location = new System.Drawing.Point(35, 449);
             this.button_Verrechnungen_SatzUeberschreiben.Name = "button_Verrechnungen_SatzUeberschreiben";
             this.button_Verrechnungen_SatzUeberschreiben.Size = new System.Drawing.Size(312, 35);
@@ -888,11 +903,14 @@
             // 
             // button_Verrechnungen_SatzErstellen
             // 
+            this.button_Verrechnungen_SatzErstellen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Verrechnungen_SatzErstellen.ImageIndex = 0;
+            this.button_Verrechnungen_SatzErstellen.ImageList = this.myiconlist;
             this.button_Verrechnungen_SatzErstellen.Location = new System.Drawing.Point(30, 404);
             this.button_Verrechnungen_SatzErstellen.Name = "button_Verrechnungen_SatzErstellen";
             this.button_Verrechnungen_SatzErstellen.Size = new System.Drawing.Size(273, 35);
             this.button_Verrechnungen_SatzErstellen.TabIndex = 5;
-            this.button_Verrechnungen_SatzErstellen.Text = "Verrechnungssatz mit diesen Werten erstellen";
+            this.button_Verrechnungen_SatzErstellen.Text = "Satz mit diesen Werten erstellen";
             this.button_Verrechnungen_SatzErstellen.UseVisualStyleBackColor = true;
             this.button_Verrechnungen_SatzErstellen.Click += new System.EventHandler(this.button_Verrechnungen_SatzErstellen_Click);
             // 
@@ -1046,6 +1064,198 @@
             this.label36.TabIndex = 3;
             this.label36.Text = "Auftragsnummer:";
             // 
+            // Bonusberechnung
+            // 
+            this.Bonusberechnung.Controls.Add(this.groupBox4);
+            this.Bonusberechnung.Controls.Add(this.groupBoxLetzteBonusberechnung);
+            this.Bonusberechnung.Controls.Add(this.PersonPicker_Bonus);
+            this.Bonusberechnung.Location = new System.Drawing.Point(4, 22);
+            this.Bonusberechnung.Name = "Bonusberechnung";
+            this.Bonusberechnung.Padding = new System.Windows.Forms.Padding(3);
+            this.Bonusberechnung.Size = new System.Drawing.Size(822, 559);
+            this.Bonusberechnung.TabIndex = 5;
+            this.Bonusberechnung.Text = "Bonusberechnung";
+            this.Bonusberechnung.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label_Bonus_Neu_ErstmoeglicherTag);
+            this.groupBox4.Controls.Add(this.label_Bonus_Neu_LetzterVollverrechneterTag);
+            this.groupBox4.Controls.Add(this.button_Bonus_BerechnenBis);
+            this.groupBox4.Controls.Add(this.DatePicker_Bonus_Neu_BerechnenBis);
+            this.groupBox4.Controls.Add(this.label53);
+            this.groupBox4.Controls.Add(this.label58);
+            this.groupBox4.Controls.Add(this.label57);
+            this.groupBox4.Location = new System.Drawing.Point(187, 311);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(425, 224);
+            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Neue Bonusberechnung";
+            // 
+            // label_Bonus_Neu_ErstmoeglicherTag
+            // 
+            this.label_Bonus_Neu_ErstmoeglicherTag.AutoSize = true;
+            this.label_Bonus_Neu_ErstmoeglicherTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Bonus_Neu_ErstmoeglicherTag.Location = new System.Drawing.Point(98, 166);
+            this.label_Bonus_Neu_ErstmoeglicherTag.Name = "label_Bonus_Neu_ErstmoeglicherTag";
+            this.label_Bonus_Neu_ErstmoeglicherTag.Size = new System.Drawing.Size(100, 24);
+            this.label_Bonus_Neu_ErstmoeglicherTag.TabIndex = 17;
+            this.label_Bonus_Neu_ErstmoeglicherTag.Text = "00.00.0000";
+            // 
+            // label_Bonus_Neu_LetzterVollverrechneterTag
+            // 
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.AutoSize = true;
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.Location = new System.Drawing.Point(296, 44);
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.Name = "label_Bonus_Neu_LetzterVollverrechneterTag";
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.Size = new System.Drawing.Size(100, 24);
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.TabIndex = 17;
+            this.label_Bonus_Neu_LetzterVollverrechneterTag.Text = "00.00.0000";
+            // 
+            // button_Bonus_BerechnenBis
+            // 
+            this.button_Bonus_BerechnenBis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Bonus_BerechnenBis.ImageIndex = 3;
+            this.button_Bonus_BerechnenBis.ImageList = this.myiconlist;
+            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(35, 120);
+            this.button_Bonus_BerechnenBis.Name = "button_Bonus_BerechnenBis";
+            this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(330, 36);
+            this.button_Bonus_BerechnenBis.TabIndex = 14;
+            this.button_Bonus_BerechnenBis.Text = "Bonuszeit neu berechnen für den Zeitraum";
+            this.button_Bonus_BerechnenBis.UseVisualStyleBackColor = true;
+            this.button_Bonus_BerechnenBis.Click += new System.EventHandler(this.button_Bonus_BerechnenBis_Click);
+            // 
+            // DatePicker_Bonus_Neu_BerechnenBis
+            // 
+            this.DatePicker_Bonus_Neu_BerechnenBis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatePicker_Bonus_Neu_BerechnenBis.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePicker_Bonus_Neu_BerechnenBis.Location = new System.Drawing.Point(236, 164);
+            this.DatePicker_Bonus_Neu_BerechnenBis.Name = "DatePicker_Bonus_Neu_BerechnenBis";
+            this.DatePicker_Bonus_Neu_BerechnenBis.Size = new System.Drawing.Size(100, 29);
+            this.DatePicker_Bonus_Neu_BerechnenBis.TabIndex = 13;
+            // 
+            // label53
+            // 
+            this.label53.Location = new System.Drawing.Point(20, 44);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(283, 35);
+            this.label53.TabIndex = 7;
+            this.label53.Text = "Der aktuell letzte Tag für den dieser Mitarbeiter keine unverrechneten Stempelung" +
+    "en mehr hat, ist der";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(199, 174);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(20, 13);
+            this.label58.TabIndex = 7;
+            this.label58.Text = "bis";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(67, 174);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(27, 13);
+            this.label57.TabIndex = 7;
+            this.label57.Text = "vom";
+            // 
+            // groupBoxLetzteBonusberechnung
+            // 
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label_Bonus_Alt_Bonuszeit);
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label_Bonus_Alt_BerechnetBis);
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label49);
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label50);
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label51);
+            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label52);
+            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(187, 79);
+            this.groupBoxLetzteBonusberechnung.Name = "groupBoxLetzteBonusberechnung";
+            this.groupBoxLetzteBonusberechnung.Size = new System.Drawing.Size(425, 207);
+            this.groupBoxLetzteBonusberechnung.TabIndex = 15;
+            this.groupBoxLetzteBonusberechnung.TabStop = false;
+            this.groupBoxLetzteBonusberechnung.Text = "Letzte Bonusberechnung";
+            // 
+            // label_Bonus_Alt_Bonuszeit
+            // 
+            this.label_Bonus_Alt_Bonuszeit.AutoSize = true;
+            this.label_Bonus_Alt_Bonuszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Bonus_Alt_Bonuszeit.Location = new System.Drawing.Point(166, 158);
+            this.label_Bonus_Alt_Bonuszeit.Name = "label_Bonus_Alt_Bonuszeit";
+            this.label_Bonus_Alt_Bonuszeit.Size = new System.Drawing.Size(55, 24);
+            this.label_Bonus_Alt_Bonuszeit.TabIndex = 17;
+            this.label_Bonus_Alt_Bonuszeit.Text = "00,00";
+            // 
+            // label_Bonus_Alt_BerechnetBis
+            // 
+            this.label_Bonus_Alt_BerechnetBis.AutoSize = true;
+            this.label_Bonus_Alt_BerechnetBis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Bonus_Alt_BerechnetBis.Location = new System.Drawing.Point(141, 61);
+            this.label_Bonus_Alt_BerechnetBis.Name = "label_Bonus_Alt_BerechnetBis";
+            this.label_Bonus_Alt_BerechnetBis.Size = new System.Drawing.Size(100, 24);
+            this.label_Bonus_Alt_BerechnetBis.TabIndex = 17;
+            this.label_Bonus_Alt_BerechnetBis.Text = "00.00.0000";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(53, 36);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(301, 13);
+            this.label49.TabIndex = 7;
+            this.label49.Text = "Bonuszeit für diesen Mitarbeiter wurde zuletzt bis einschließlich";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(247, 69);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(58, 13);
+            this.label50.TabIndex = 7;
+            this.label50.Text = "berechnet.";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(53, 132);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(273, 13);
+            this.label51.TabIndex = 7;
+            this.label51.Text = "Bei dieser letzten Berechnung wurde eine Bonuszeit von";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(247, 166);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(89, 13);
+            this.label52.TabIndex = 7;
+            this.label52.Text = "Stunden ermittelt.";
+            // 
+            // PersonPicker_Bonus
+            // 
+            this.PersonPicker_Bonus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PersonPicker_Bonus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PersonPicker_Bonus.FormattingEnabled = true;
+            this.PersonPicker_Bonus.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.PersonPicker_Bonus.Location = new System.Drawing.Point(148, 20);
+            this.PersonPicker_Bonus.Name = "PersonPicker_Bonus";
+            this.PersonPicker_Bonus.Size = new System.Drawing.Size(514, 32);
+            this.PersonPicker_Bonus.TabIndex = 6;
+            this.PersonPicker_Bonus.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Bonus_SelectedIndexChanged);
+            // 
+            // Auswertungen
+            // 
+            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
+            this.Auswertungen.Name = "Auswertungen";
+            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
+            this.Auswertungen.TabIndex = 3;
+            this.Auswertungen.Text = "Auswertungen";
+            this.Auswertungen.UseVisualStyleBackColor = true;
+            // 
             // Stempelungen
             // 
             this.Stempelungen.Controls.Add(this.button_Stempelungen_DatePickerTagzurueck);
@@ -1130,11 +1340,15 @@
             // button_Stempelungen_ZeitkontoRueckrechnen
             // 
             this.button_Stempelungen_ZeitkontoRueckrechnen.Enabled = false;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.ImageIndex = 4;
+            this.button_Stempelungen_ZeitkontoRueckrechnen.ImageList = this.myiconlist;
             this.button_Stempelungen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(27, 81);
             this.button_Stempelungen_ZeitkontoRueckrechnen.Name = "button_Stempelungen_ZeitkontoRueckrechnen";
-            this.button_Stempelungen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(375, 29);
+            this.button_Stempelungen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(375, 30);
             this.button_Stempelungen_ZeitkontoRueckrechnen.TabIndex = 8;
             this.button_Stempelungen_ZeitkontoRueckrechnen.Text = "Zeitkonto bis zum Vorabend des gewählten Tages zurückrechnen";
+            this.button_Stempelungen_ZeitkontoRueckrechnen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Stempelungen_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
             this.button_Stempelungen_ZeitkontoRueckrechnen.Click += new System.EventHandler(this.button_Stempelungen_ZeitkontoRueckrechnen_Click);
             // 
@@ -1220,19 +1434,26 @@
             // 
             // button_Stempelungen_neueStempelung
             // 
-            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(155, 266);
+            this.button_Stempelungen_neueStempelung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Stempelungen_neueStempelung.ImageIndex = 0;
+            this.button_Stempelungen_neueStempelung.ImageList = this.myiconlist;
+            this.button_Stempelungen_neueStempelung.Location = new System.Drawing.Point(139, 261);
             this.button_Stempelungen_neueStempelung.Name = "button_Stempelungen_neueStempelung";
-            this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(247, 29);
+            this.button_Stempelungen_neueStempelung.Size = new System.Drawing.Size(263, 34);
             this.button_Stempelungen_neueStempelung.TabIndex = 9;
             this.button_Stempelungen_neueStempelung.Text = "Neue Stempelung mit diesen Werten erstellen";
+            this.button_Stempelungen_neueStempelung.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Stempelungen_neueStempelung.UseVisualStyleBackColor = true;
             this.button_Stempelungen_neueStempelung.Click += new System.EventHandler(this.button_Stempelungen_neueStempelung_Click);
             // 
             // button_Stempelungen_stornieren
             // 
+            this.button_Stempelungen_stornieren.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Stempelungen_stornieren.ImageIndex = 1;
+            this.button_Stempelungen_stornieren.ImageList = this.myiconlist;
             this.button_Stempelungen_stornieren.Location = new System.Drawing.Point(27, 24);
             this.button_Stempelungen_stornieren.Name = "button_Stempelungen_stornieren";
-            this.button_Stempelungen_stornieren.Size = new System.Drawing.Size(375, 29);
+            this.button_Stempelungen_stornieren.Size = new System.Drawing.Size(375, 35);
             this.button_Stempelungen_stornieren.TabIndex = 9;
             this.button_Stempelungen_stornieren.Text = "Markierte Stempelung stornieren";
             this.button_Stempelungen_stornieren.UseVisualStyleBackColor = true;
@@ -1240,9 +1461,12 @@
             // 
             // button_Stempelungen_ueberschreiben
             // 
+            this.button_Stempelungen_ueberschreiben.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Stempelungen_ueberschreiben.ImageIndex = 2;
+            this.button_Stempelungen_ueberschreiben.ImageList = this.myiconlist;
             this.button_Stempelungen_ueberschreiben.Location = new System.Drawing.Point(27, 199);
             this.button_Stempelungen_ueberschreiben.Name = "button_Stempelungen_ueberschreiben";
-            this.button_Stempelungen_ueberschreiben.Size = new System.Drawing.Size(375, 29);
+            this.button_Stempelungen_ueberschreiben.Size = new System.Drawing.Size(375, 35);
             this.button_Stempelungen_ueberschreiben.TabIndex = 9;
             this.button_Stempelungen_ueberschreiben.Text = "Markierte Stempelung mit diesen Werten überschreiben";
             this.button_Stempelungen_ueberschreiben.UseVisualStyleBackColor = true;
@@ -1368,11 +1592,15 @@
             // 
             // button_Personen_ZeitkontoRueckrechnen
             // 
+            this.button_Personen_ZeitkontoRueckrechnen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Personen_ZeitkontoRueckrechnen.ImageIndex = 4;
+            this.button_Personen_ZeitkontoRueckrechnen.ImageList = this.myiconlist;
             this.button_Personen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(14, 167);
             this.button_Personen_ZeitkontoRueckrechnen.Name = "button_Personen_ZeitkontoRueckrechnen";
-            this.button_Personen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(243, 29);
+            this.button_Personen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(243, 31);
             this.button_Personen_ZeitkontoRueckrechnen.TabIndex = 13;
-            this.button_Personen_ZeitkontoRueckrechnen.Text = "Zeitkonto zurückrechnen bis zum Stand vom";
+            this.button_Personen_ZeitkontoRueckrechnen.Text = "Zeitkonto rückrechnen bis zum Stand vom";
+            this.button_Personen_ZeitkontoRueckrechnen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Personen_ZeitkontoRueckrechnen.UseVisualStyleBackColor = true;
             this.button_Personen_ZeitkontoRueckrechnen.Click += new System.EventHandler(this.button_Personen_ZeitkontoRueckrechnen_Click);
             // 
@@ -1380,7 +1608,7 @@
             // 
             this.DatePicker_Personen_ZeitkontoRueckrechnen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Personen_ZeitkontoRueckrechnen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker_Personen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(263, 170);
+            this.DatePicker_Personen_ZeitkontoRueckrechnen.Location = new System.Drawing.Point(264, 169);
             this.DatePicker_Personen_ZeitkontoRueckrechnen.Name = "DatePicker_Personen_ZeitkontoRueckrechnen";
             this.DatePicker_Personen_ZeitkontoRueckrechnen.Size = new System.Drawing.Size(100, 26);
             this.DatePicker_Personen_ZeitkontoRueckrechnen.TabIndex = 12;
@@ -1389,7 +1617,7 @@
             // 
             this.label_Personen_Hinweis_ZeitBerechnungsstand.AutoSize = true;
             this.label_Personen_Hinweis_ZeitBerechnungsstand.BackColor = System.Drawing.Color.Gold;
-            this.label_Personen_Hinweis_ZeitBerechnungsstand.Location = new System.Drawing.Point(11, 101);
+            this.label_Personen_Hinweis_ZeitBerechnungsstand.Location = new System.Drawing.Point(11, 96);
             this.label_Personen_Hinweis_ZeitBerechnungsstand.Name = "label_Personen_Hinweis_ZeitBerechnungsstand";
             this.label_Personen_Hinweis_ZeitBerechnungsstand.Size = new System.Drawing.Size(355, 13);
             this.label_Personen_Hinweis_ZeitBerechnungsstand.TabIndex = 10;
@@ -1407,9 +1635,12 @@
             // 
             // button_Personen_ZeitkontoAktualisieren
             // 
-            this.button_Personen_ZeitkontoAktualisieren.Location = new System.Drawing.Point(14, 117);
+            this.button_Personen_ZeitkontoAktualisieren.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Personen_ZeitkontoAktualisieren.ImageIndex = 3;
+            this.button_Personen_ZeitkontoAktualisieren.ImageList = this.myiconlist;
+            this.button_Personen_ZeitkontoAktualisieren.Location = new System.Drawing.Point(14, 112);
             this.button_Personen_ZeitkontoAktualisieren.Name = "button_Personen_ZeitkontoAktualisieren";
-            this.button_Personen_ZeitkontoAktualisieren.Size = new System.Drawing.Size(350, 29);
+            this.button_Personen_ZeitkontoAktualisieren.Size = new System.Drawing.Size(350, 36);
             this.button_Personen_ZeitkontoAktualisieren.TabIndex = 4;
             this.button_Personen_ZeitkontoAktualisieren.Text = "Zeitkontostand auf stand von gestern Abend bringen";
             this.button_Personen_ZeitkontoAktualisieren.UseVisualStyleBackColor = true;
@@ -1417,9 +1648,12 @@
             // 
             // button_Personen_UrlaubsjahrAktualisieren
             // 
+            this.button_Personen_UrlaubsjahrAktualisieren.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Personen_UrlaubsjahrAktualisieren.ImageIndex = 3;
+            this.button_Personen_UrlaubsjahrAktualisieren.ImageList = this.myiconlist;
             this.button_Personen_UrlaubsjahrAktualisieren.Location = new System.Drawing.Point(15, 41);
             this.button_Personen_UrlaubsjahrAktualisieren.Name = "button_Personen_UrlaubsjahrAktualisieren";
-            this.button_Personen_UrlaubsjahrAktualisieren.Size = new System.Drawing.Size(350, 29);
+            this.button_Personen_UrlaubsjahrAktualisieren.Size = new System.Drawing.Size(350, 35);
             this.button_Personen_UrlaubsjahrAktualisieren.TabIndex = 4;
             this.button_Personen_UrlaubsjahrAktualisieren.Text = "Resturlaub berechnen und Urlaubsjahr aktualisieren";
             this.button_Personen_UrlaubsjahrAktualisieren.UseVisualStyleBackColor = true;
@@ -1826,9 +2060,9 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(563, 354);
+            this.groupBox1.Location = new System.Drawing.Point(563, 343);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 202);
+            this.groupBox1.Size = new System.Drawing.Size(256, 213);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
@@ -1878,9 +2112,12 @@
             // 
             // button_Personen_newPerson
             // 
-            this.button_Personen_newPerson.Location = new System.Drawing.Point(20, 169);
+            this.button_Personen_newPerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Personen_newPerson.ImageIndex = 0;
+            this.button_Personen_newPerson.ImageList = this.myiconlist;
+            this.button_Personen_newPerson.Location = new System.Drawing.Point(19, 173);
             this.button_Personen_newPerson.Name = "button_Personen_newPerson";
-            this.button_Personen_newPerson.Size = new System.Drawing.Size(217, 26);
+            this.button_Personen_newPerson.Size = new System.Drawing.Size(217, 34);
             this.button_Personen_newPerson.TabIndex = 6;
             this.button_Personen_newPerson.Text = "Neuen Mitarbeiter anlegen";
             this.button_Personen_newPerson.UseVisualStyleBackColor = true;
@@ -2123,202 +2360,26 @@
             // 
             // button_Personen_writeChanges
             // 
-            this.button_Personen_writeChanges.Location = new System.Drawing.Point(6, 524);
+            this.button_Personen_writeChanges.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Personen_writeChanges.ImageIndex = 2;
+            this.button_Personen_writeChanges.ImageList = this.myiconlist;
+            this.button_Personen_writeChanges.Location = new System.Drawing.Point(6, 516);
             this.button_Personen_writeChanges.Name = "button_Personen_writeChanges";
-            this.button_Personen_writeChanges.Size = new System.Drawing.Size(392, 29);
+            this.button_Personen_writeChanges.Size = new System.Drawing.Size(392, 34);
             this.button_Personen_writeChanges.TabIndex = 4;
             this.button_Personen_writeChanges.Text = "Änderungen festschreiben";
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // Bonusberechnung
+            // myiconlist
             // 
-            this.Bonusberechnung.Controls.Add(this.groupBox4);
-            this.Bonusberechnung.Controls.Add(this.groupBoxLetzteBonusberechnung);
-            this.Bonusberechnung.Controls.Add(this.PersonPicker_Bonus);
-            this.Bonusberechnung.Location = new System.Drawing.Point(4, 22);
-            this.Bonusberechnung.Name = "Bonusberechnung";
-            this.Bonusberechnung.Padding = new System.Windows.Forms.Padding(3);
-            this.Bonusberechnung.Size = new System.Drawing.Size(822, 559);
-            this.Bonusberechnung.TabIndex = 5;
-            this.Bonusberechnung.Text = "Bonusberechnung";
-            this.Bonusberechnung.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label_Bonus_Neu_ErstmoeglicherTag);
-            this.groupBox4.Controls.Add(this.label_Bonus_Neu_LetzterVollverrechneterTag);
-            this.groupBox4.Controls.Add(this.button_Bonus_BerechnenBis);
-            this.groupBox4.Controls.Add(this.DatePicker_Bonus_Neu_BerechnenBis);
-            this.groupBox4.Controls.Add(this.label53);
-            this.groupBox4.Controls.Add(this.label58);
-            this.groupBox4.Controls.Add(this.label57);
-            this.groupBox4.Location = new System.Drawing.Point(131, 312);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(513, 224);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Neue Bonusberechnung";
-            // 
-            // label_Bonus_Neu_ErstmoeglicherTag
-            // 
-            this.label_Bonus_Neu_ErstmoeglicherTag.AutoSize = true;
-            this.label_Bonus_Neu_ErstmoeglicherTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Bonus_Neu_ErstmoeglicherTag.Location = new System.Drawing.Point(151, 166);
-            this.label_Bonus_Neu_ErstmoeglicherTag.Name = "label_Bonus_Neu_ErstmoeglicherTag";
-            this.label_Bonus_Neu_ErstmoeglicherTag.Size = new System.Drawing.Size(100, 24);
-            this.label_Bonus_Neu_ErstmoeglicherTag.TabIndex = 17;
-            this.label_Bonus_Neu_ErstmoeglicherTag.Text = "00.00.0000";
-            // 
-            // label_Bonus_Neu_LetzterVollverrechneterTag
-            // 
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.AutoSize = true;
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.Location = new System.Drawing.Point(349, 44);
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.Name = "label_Bonus_Neu_LetzterVollverrechneterTag";
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.Size = new System.Drawing.Size(100, 24);
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.TabIndex = 17;
-            this.label_Bonus_Neu_LetzterVollverrechneterTag.Text = "00.00.0000";
-            // 
-            // button_Bonus_BerechnenBis
-            // 
-            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(88, 116);
-            this.button_Bonus_BerechnenBis.Name = "button_Bonus_BerechnenBis";
-            this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(330, 40);
-            this.button_Bonus_BerechnenBis.TabIndex = 14;
-            this.button_Bonus_BerechnenBis.Text = "Bonuszeit neu berechnen für den Zeitraum";
-            this.button_Bonus_BerechnenBis.UseVisualStyleBackColor = true;
-            this.button_Bonus_BerechnenBis.Click += new System.EventHandler(this.button_Bonus_BerechnenBis_Click);
-            // 
-            // DatePicker_Bonus_Neu_BerechnenBis
-            // 
-            this.DatePicker_Bonus_Neu_BerechnenBis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatePicker_Bonus_Neu_BerechnenBis.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker_Bonus_Neu_BerechnenBis.Location = new System.Drawing.Point(289, 164);
-            this.DatePicker_Bonus_Neu_BerechnenBis.Name = "DatePicker_Bonus_Neu_BerechnenBis";
-            this.DatePicker_Bonus_Neu_BerechnenBis.Size = new System.Drawing.Size(100, 29);
-            this.DatePicker_Bonus_Neu_BerechnenBis.TabIndex = 13;
-            // 
-            // label53
-            // 
-            this.label53.Location = new System.Drawing.Point(73, 44);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(283, 35);
-            this.label53.TabIndex = 7;
-            this.label53.Text = "Der aktuell letzte Tag für den dieser Mitarbeiter keine unverrechneten Stempelung" +
-    "en mehr hat, ist der";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(252, 174);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(20, 13);
-            this.label58.TabIndex = 7;
-            this.label58.Text = "bis";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(120, 174);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(27, 13);
-            this.label57.TabIndex = 7;
-            this.label57.Text = "vom";
-            // 
-            // groupBoxLetzteBonusberechnung
-            // 
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label_Bonus_Alt_Bonuszeit);
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label_Bonus_Alt_BerechnetBis);
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label49);
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label50);
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label51);
-            this.groupBoxLetzteBonusberechnung.Controls.Add(this.label52);
-            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(131, 78);
-            this.groupBoxLetzteBonusberechnung.Name = "groupBoxLetzteBonusberechnung";
-            this.groupBoxLetzteBonusberechnung.Size = new System.Drawing.Size(513, 207);
-            this.groupBoxLetzteBonusberechnung.TabIndex = 15;
-            this.groupBoxLetzteBonusberechnung.TabStop = false;
-            this.groupBoxLetzteBonusberechnung.Text = "Letzte Bonusberechnung";
-            // 
-            // label_Bonus_Alt_Bonuszeit
-            // 
-            this.label_Bonus_Alt_Bonuszeit.AutoSize = true;
-            this.label_Bonus_Alt_Bonuszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Bonus_Alt_Bonuszeit.Location = new System.Drawing.Point(186, 152);
-            this.label_Bonus_Alt_Bonuszeit.Name = "label_Bonus_Alt_Bonuszeit";
-            this.label_Bonus_Alt_Bonuszeit.Size = new System.Drawing.Size(55, 24);
-            this.label_Bonus_Alt_Bonuszeit.TabIndex = 17;
-            this.label_Bonus_Alt_Bonuszeit.Text = "00,00";
-            // 
-            // label_Bonus_Alt_BerechnetBis
-            // 
-            this.label_Bonus_Alt_BerechnetBis.AutoSize = true;
-            this.label_Bonus_Alt_BerechnetBis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Bonus_Alt_BerechnetBis.Location = new System.Drawing.Point(161, 55);
-            this.label_Bonus_Alt_BerechnetBis.Name = "label_Bonus_Alt_BerechnetBis";
-            this.label_Bonus_Alt_BerechnetBis.Size = new System.Drawing.Size(100, 24);
-            this.label_Bonus_Alt_BerechnetBis.TabIndex = 17;
-            this.label_Bonus_Alt_BerechnetBis.Text = "00.00.0000";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(73, 30);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(301, 13);
-            this.label49.TabIndex = 7;
-            this.label49.Text = "Bonuszeit für diesen Mitarbeiter wurde zuletzt bis einschließlich";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(267, 63);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(58, 13);
-            this.label50.TabIndex = 7;
-            this.label50.Text = "berechnet.";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(73, 126);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(273, 13);
-            this.label51.TabIndex = 7;
-            this.label51.Text = "Bei dieser letzten Berechnung wurde eine Bonuszeit von";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(267, 160);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(89, 13);
-            this.label52.TabIndex = 7;
-            this.label52.Text = "Stunden ermittelt.";
-            // 
-            // PersonPicker_Bonus
-            // 
-            this.PersonPicker_Bonus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PersonPicker_Bonus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonPicker_Bonus.FormattingEnabled = true;
-            this.PersonPicker_Bonus.Items.AddRange(new object[] {
-            "Allgemein"});
-            this.PersonPicker_Bonus.Location = new System.Drawing.Point(86, 19);
-            this.PersonPicker_Bonus.Name = "PersonPicker_Bonus";
-            this.PersonPicker_Bonus.Size = new System.Drawing.Size(612, 32);
-            this.PersonPicker_Bonus.TabIndex = 6;
-            this.PersonPicker_Bonus.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Bonus_SelectedIndexChanged);
-            // 
-            // Auswertungen
-            // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
-            this.Auswertungen.Name = "Auswertungen";
-            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
-            this.Auswertungen.TabIndex = 3;
-            this.Auswertungen.Text = "Auswertungen";
-            this.Auswertungen.UseVisualStyleBackColor = true;
+            this.myiconlist.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("myiconlist.ImageStream")));
+            this.myiconlist.TransparentColor = System.Drawing.Color.Transparent;
+            this.myiconlist.Images.SetKeyName(0, "add-icone-3727-96.png");
+            this.myiconlist.Images.SetKeyName(1, "remove-icone-8680-96.png");
+            this.myiconlist.Images.SetKeyName(2, "disk-backup-icone-6806-96.png");
+            this.myiconlist.Images.SetKeyName(3, "favorite-star-icone-5544-96.png");
+            this.myiconlist.Images.SetKeyName(4, "undo");
             // 
             // Form1
             // 
@@ -2345,6 +2406,11 @@
             this.groupBox_Verrechnungen_Insert.ResumeLayout(false);
             this.groupBox_Verrechnungen_Insert.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).EndInit();
+            this.Bonusberechnung.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBoxLetzteBonusberechnung.ResumeLayout(false);
+            this.groupBoxLetzteBonusberechnung.PerformLayout();
             this.Stempelungen.ResumeLayout(false);
             this.groupBox_Stempelungen_Zeitkonto.ResumeLayout(false);
             this.groupBox_Stempelungen_Zeitkonto.PerformLayout();
@@ -2360,11 +2426,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.Bonusberechnung.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBoxLetzteBonusberechnung.ResumeLayout(false);
-            this.groupBoxLetzteBonusberechnung.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2557,6 +2618,7 @@
         private System.Windows.Forms.GroupBox groupBoxLetzteBonusberechnung;
         private System.Windows.Forms.Label label_Bonus_Alt_Bonuszeit;
         private System.Windows.Forms.Label label_Bonus_Alt_BerechnetBis;
+        private System.Windows.Forms.ImageList myiconlist;
     }
 }
 
