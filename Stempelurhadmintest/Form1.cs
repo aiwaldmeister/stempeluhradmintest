@@ -3511,7 +3511,7 @@ namespace Stempelurhadmintest
                     thisperson_vorname = Reader["vorname"] + "";
                     thisperson_bonuskonto_ausgezahlt_bis = Reader["bonuskonto_ausgezahlt_bis"] + "";
 
-                    thisperson_bonuskonto_ausgezahlt_bis = thisperson_bonuskonto_ausgezahlt_bis.Substring(6, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(4, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(0,4);
+                    thisperson_bonuskonto_ausgezahlt_bis = thisperson_bonuskonto_ausgezahlt_bis.Substring(6, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(4, 2) + "." + thisperson_bonuskonto_ausgezahlt_bis.Substring(0, 4);
 
                     PersonPicker_Bonus.Items.Add(thisperson_userid + " - Stand " + thisperson_bonuskonto_ausgezahlt_bis + " (" + thisperson_name + " " + thisperson_vorname + ")");
 
@@ -3586,11 +3586,12 @@ namespace Stempelurhadmintest
             }
             else
             {
+                DatePicker_Bonus_Neu_BerechnenBis.Value = letzterVollverrechneterTag;
+
                 //Grenzen des Datepickers setzen
                 DatePicker_Bonus_Neu_BerechnenBis.MinDate = bonuskonto_ausgezahlt_bis_DateTime.AddDays(1);
                 DatePicker_Bonus_Neu_BerechnenBis.MaxDate = gestern;
-                DatePicker_Bonus_Neu_BerechnenBis.Value = DatePicker_Bonus_Neu_BerechnenBis.MinDate;
-
+   
                 button_Bonus_BerechnenBis.Enabled = true;
             }
   
@@ -3607,18 +3608,59 @@ namespace Stempelurhadmintest
             //TODO nach der Bestätigungsmeldung nochmal die Möglichkeit geben sich die alten Werte zu notieren bevor sie überschrieben werden.
             //TODO Bonuszeit Berechnen
             //TODO update auf Datenbank
-
-
+            //TODO die veränderung detailiert in die log schreiben, damit man im fehlerfall noch weiss wie die werte vorher waren
+            
             refreshFormular_Bonus();
+            //TODO die betroffenen tabs auf uninitialisiert setzen
         }
 
         private DateTime ermittleLetztenVollverrechnetenTag(string userid, DateTime bereits_berechnet_bis)
         {
-            DateTime ErgebnisDatum = bereits_berechnet_bis;
+            DateTime letzterSaubererTag = bereits_berechnet_bis;
 
-            //TODO letzten Tag ermitteln, zu dem es für diesen Mitarbeiter keine Stempelung ohne entsprechenden verrechnungssatz gibt
+            //ersten Tag ermitteln, zu dem der Mitarbeiter Stempelung ohne entsprechenden verrechnungssatz hat.
+            //der tag vor diesem ersten unsauberen, ist der letzte saubere
 
-                return ErgebnisDatum;
+            string jahr_db = "";
+            string monat_db = "";
+            string tag_db = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT a.userid, a.task, a.jahr, a.monat, a.tag FROM stamps a WHERE a.userid=@userid AND a.storniert = 0 " +
+                                    "AND NOT EXISTS(SELECT NULL FROM verrechnung b WHERE a.task = b.auftrag AND a.userid = b.person AND b.storniert = 0) " +
+                                "ORDER BY a.jahr, a.monat, a.tag";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                //durch die sortierung sollte die erste zeile das kleinste datum enthalten
+                jahr_db = Reader["jahr"] + "";
+                monat_db = Reader["monat"] + "";
+                tag_db = Reader["tag"] + "";
+                
+                //das datum aus der Datenbank entspricht dem frühesten tag, zu dem der user noch stempelungen ohne verrechnungssatz hat.
+                // => bis einen tag vorher sollte also alles voll verrechnet sein
+                DateTime ersterUnsaubererTag = new DateTime(int.Parse(jahr_db), int.Parse(monat_db), int.Parse(tag_db), 0, 0, 0);
+                letzterSaubererTag = ersterUnsaubererTag.AddDays(-1);
+
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+            
+            return letzterSaubererTag;
+        }
+
+        private double berechneBonuszeit(string userid, string jahr, string monat, string tag)
+        {
+            double ergebnis = 0;
+
+            return ergebnis;
         }
 
         ///////////////////////////////////////////////////////////////////////
