@@ -3526,6 +3526,101 @@ namespace Stempelurhadmintest
             PersonPicker_Bonus.SelectedIndex = 0;
         }
 
+        private void PersonPicker_Bonus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshFormular_Bonus();
+        }
+
+        private void refreshFormular_Bonus()
+        {
+            string userid = "";
+            userid = PersonPicker_Bonus.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+
+
+            //Werte der letzten Auszahlung ermitteln und anzeigen
+            string bonuskonto_ausgezahlt_bis_db = "";
+            string bonuszeit_bei_letzter_auszahlung_db = "";
+            DateTime bonuskonto_ausgezahlt_bis_DateTime;
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis, bonuszeit_bei_letzter_auszahlung FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                bonuskonto_ausgezahlt_bis_db = Reader["bonuskonto_ausgezahlt_bis"] + "";
+                bonuszeit_bei_letzter_auszahlung_db = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
+                
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            bonuskonto_ausgezahlt_bis_DateTime = new DateTime(int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(0, 4)), int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(4, 2)), int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(6, 2)), 0, 0, 0);
+            label_Bonus_Alt_BerechnetBis.Text = bonuskonto_ausgezahlt_bis_DateTime.ToShortDateString();
+            label_Bonus_Alt_Bonuszeit.Text = bonuszeit_bei_letzter_auszahlung_db;
+
+
+            //Grenzen einer möglichen neuberechnung ermitteln und Felder vorbelegen
+            DateTime letzterVollverrechneterTag = ermittleLetztenVollverrechnetenTag(userid, bonuskonto_ausgezahlt_bis_DateTime);
+            DateTime gestern = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,0,0,0).AddDays(-1);
+
+            label_Bonus_Neu_LetzterVollverrechneterTag.Text = letzterVollverrechneterTag.ToShortDateString();
+            label_Bonus_Neu_ErstmoeglicherTag.Text = bonuskonto_ausgezahlt_bis_DateTime.AddDays(1).ToShortDateString();
+            
+            
+            //Prüfen ob bereits bis zum gestrigen Tag ausbezahlt wurde -> dann macht eine neue Berechnung keinen Sinn
+            if(DateTime.Compare(bonuskonto_ausgezahlt_bis_DateTime, gestern) >= 0)
+            {//neue Berechnung nicht möglich, da schon bis einschliesslich gestern berechnet.
+
+                button_Bonus_BerechnenBis.Enabled = false;
+            }
+            else
+            {
+                //Grenzen des Datepickers setzen
+                DatePicker_Bonus_Neu_BerechnenBis.MinDate = bonuskonto_ausgezahlt_bis_DateTime.AddDays(1);
+                DatePicker_Bonus_Neu_BerechnenBis.MaxDate = gestern;
+                DatePicker_Bonus_Neu_BerechnenBis.Value = DatePicker_Bonus_Neu_BerechnenBis.MinDate;
+
+                button_Bonus_BerechnenBis.Enabled = true;
+            }
+  
+
+        }
+
+        private void button_Bonus_BerechnenBis_Click(object sender, EventArgs e)
+        {
+            bool fehler = false;
+
+            //TODO Werte sammeln
+            //TODO Plausibilität püfen
+            //TODO Bestätigungsmeldung
+            //TODO nach der Bestätigungsmeldung nochmal die Möglichkeit geben sich die alten Werte zu notieren bevor sie überschrieben werden.
+            //TODO Bonuszeit Berechnen
+            //TODO update auf Datenbank
+
+
+            refreshFormular_Bonus();
+        }
+
+        private DateTime ermittleLetztenVollverrechnetenTag(string userid, DateTime bereits_berechnet_bis)
+        {
+            DateTime ErgebnisDatum = bereits_berechnet_bis;
+
+            //TODO letzten Tag ermitteln, zu dem es für diesen Mitarbeiter keine Stempelung ohne entsprechenden verrechnungssatz gibt
+
+                return ErgebnisDatum;
+        }
+
         ///////////////////////////////////////////////////////////////////////
 
     }
