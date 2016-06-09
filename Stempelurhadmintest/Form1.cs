@@ -1916,6 +1916,8 @@ namespace Stempelurhadmintest
         private void refreshAuftragsPicker_Verrechnung_Insert()
         {
             string thistaskid = "";
+            string firstdate = "";
+            string lastdate = "";
 
             Auftragspicker_Verrechnung_Insert.Items.Clear();
 
@@ -1925,7 +1927,8 @@ namespace Stempelurhadmintest
             //Das Ergebnis sollte alle Auftragsnummern enthalten, zu denen es für mindestens eine Person zwar Stempelungen aber keine Verrechnungen gibt.
             //Dafür ist besonders wichtig, dass die bedingung und auch die gruppierung nach task UND userid gemacht werden
 
-            comm.CommandText = "SELECT DISTINCT a.task from stamps a where a.storniert = 0 AND NOT EXISTS (SELECT NULL" +
+            comm.CommandText = "SELECT DISTINCT a.task , MIN(CONCAT(a.jahr,a.monat,a.tag)) AS firstdate, MAX(CONCAT(a.jahr,a.monat,a.tag)) AS lastdate " +
+                                "FROM stamps a WHERE a.storniert = 0 AND NOT EXISTS (SELECT NULL" +
                                 " FROM verrechnung b WHERE a.task = b.auftrag AND a.userid = b.person AND b.storniert = 0)" +
                                 " GROUP BY a.task, a.userid ORDER BY a.task";
 
@@ -1937,8 +1940,13 @@ namespace Stempelurhadmintest
                 while (Reader.Read())
                 {
                     thistaskid = Reader["task"] + "";
+                    firstdate = Reader["firstdate"] + "";
+                    lastdate = Reader["lastdate"] + "";
 
-                    Auftragspicker_Verrechnung_Insert.Items.Add(thistaskid);
+
+                    Auftragspicker_Verrechnung_Insert.Items.Add(thistaskid + "           (" + 
+                        //firstdate.Substring(6, 2) + "." + firstdate.Substring(4, 2) + "." + firstdate.Substring(0, 4) + "-" +
+                        lastdate.Substring(6, 2) + "." + lastdate.Substring(4, 2) + "." + lastdate.Substring(0, 4) + ")");
 
                 }
                 Reader.Close();
@@ -1953,8 +1961,17 @@ namespace Stempelurhadmintest
 
         private void Auftragspicker_Verrechnung_Insert_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //ausgewählte Auftragsnummer ermitteln (rest des String der nicht zur nummer gehört abschneiden)
+            string auftragsnummer_tmp = "";
+            auftragsnummer_tmp = Auftragspicker_Verrechnung_Insert.Text;
+            if(auftragsnummer_tmp.Length >= 6)
+            {
+                auftragsnummer_tmp = auftragsnummer_tmp.Substring(0, 6);
+            }
+            
             //ausgewählte Auftragsnummer in Auftragsnummern-Eingabefeld übernehmen
-            textBox_Verrechnung_Auftragsnummer.Text = Auftragspicker_Verrechnung_Insert.Text;
+            textBox_Verrechnung_Auftragsnummer.Text = auftragsnummer_tmp;
+
             //dadurch triggert auch textBox_Verrechnung_Auftragsnummer_TextChanged()
         }
 

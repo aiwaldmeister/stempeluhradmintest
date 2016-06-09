@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.button1 = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -242,15 +241,6 @@
             this.groupBoxLetzteBonusberechnung.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(801, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 13);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // KalenderGrid_Kalender
             // 
             this.KalenderGrid_Kalender.AllowUserToAddRows = false;
@@ -268,14 +258,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle9;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -406,7 +396,6 @@
             this.Kalender.Controls.Add(this.MonatsPicker_Kalender);
             this.Kalender.Controls.Add(this.PersonPicker_Kalender);
             this.Kalender.Controls.Add(this.groupBox_Kalender_erstelleEintrag);
-            this.Kalender.Controls.Add(this.button1);
             this.Kalender.Controls.Add(this.groupBox_Kalender_AlleEreignisse);
             this.Kalender.Location = new System.Drawing.Point(4, 22);
             this.Kalender.Name = "Kalender";
@@ -1007,9 +996,12 @@
             // Auftragspicker_Verrechnung_Insert
             // 
             this.Auftragspicker_Verrechnung_Insert.BackColor = System.Drawing.SystemColors.Window;
+            this.Auftragspicker_Verrechnung_Insert.DropDownHeight = 200;
             this.Auftragspicker_Verrechnung_Insert.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Auftragspicker_Verrechnung_Insert.DropDownWidth = 200;
             this.Auftragspicker_Verrechnung_Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Auftragspicker_Verrechnung_Insert.FormattingEnabled = true;
+            this.Auftragspicker_Verrechnung_Insert.IntegralHeight = false;
             this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(264, 31);
             this.Auftragspicker_Verrechnung_Insert.Name = "Auftragspicker_Verrechnung_Insert";
             this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(100, 28);
@@ -2378,8 +2370,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView KalenderGrid_Kalender;
         private System.Windows.Forms.DateTimePicker MonatsPicker_Kalender;
         private System.Windows.Forms.TabControl tabControl1;
