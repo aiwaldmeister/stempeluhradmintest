@@ -3702,7 +3702,7 @@ namespace Stempelurhadmintest
                     //kumulierte Bonuszeit über den gewählten Zeitraum berechnen
                     for (DateTime date_tmp = Startdatum; DateTime.Compare(date_tmp,Enddatum) <= 0; date_tmp=date_tmp.AddDays(1))
                     {
-                        summe_bonuszeiten += berechneBonuszeitAnTag(userid, date_tmp.Year.ToString("D4"), date_tmp.Month.ToString("D"), date_tmp.Day.ToString("D"));
+                        summe_bonuszeiten += berechneBonuszeitAnTag(userid, date_tmp.Year.ToString("D4"), date_tmp.Month.ToString("D2"), date_tmp.Day.ToString("D2"));
                     }
                     
                     
