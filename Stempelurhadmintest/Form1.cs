@@ -618,7 +618,41 @@ namespace Stempelurhadmintest
 
         }
 
+        private double berechneBonuszeitAnTag(string userid, string jahr, string monat, string tag)
+        {
+            double ergebnis = 0;
+            double Bonus_Schwelle = 0.55; //Prozentsatz der Sollzeit, die mit den verrechneten Zeiten ueberschritten werden muss um die
+                                          //ueberschuessige verrechnete zeit als bonuszeit gewertet zu bekommen (1 wäre 100%, 0.55 entspricht 55%)
 
+            double thistag_sollzeit = 0;
+            double thistag_verrechnet = 0;
+
+            thistag_sollzeit = ermittleSollZeit(userid, jahr, monat, tag);
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT SUM(stunden) as summe_stunden FROM verrechnung WHERE person=@person AND jahr=@jahr AND monat=@monat AND tag=@tag AND storniert=0";
+
+            comm.Parameters.Add("@person", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+            comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = jahr;
+            comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = monat;
+            comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = tag;
+
+            try
+            {
+                //durch die sortierung sollte die erste zeile das kleinste datum enthalten
+                thistag_verrechnet = double.Parse(comm.ExecuteScalar() + "");
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            ergebnis = thistag_verrechnet - (thistag_sollzeit * Bonus_Schwelle);
+
+            //Das Ergebnis kann auch negativ sein fuer einen einzelnen Tag. 
+
+            return ergebnis;
+        }
+        
 
         ///////////Kalender-Tab////////////////////////////////////////////////
 
@@ -3602,16 +3636,113 @@ namespace Stempelurhadmintest
         {
             bool fehler = false;
 
-            //TODO Werte sammeln
-            //TODO Plausibilität püfen
-            //TODO Bestätigungsmeldung
-            //TODO nach der Bestätigungsmeldung nochmal die Möglichkeit geben sich die alten Werte zu notieren bevor sie überschrieben werden.
-            //TODO Bonuszeit Berechnen
-            //TODO update auf Datenbank
-            //TODO die veränderung detailiert in die log schreiben, damit man im fehlerfall noch weiss wie die werte vorher waren
-            
-            refreshFormular_Bonus();
-            //TODO die betroffenen tabs auf uninitialisiert setzen
+            string userid = PersonPicker_Bonus.Text;
+
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+            else
+            {
+                fehler = true;
+                MessageBox.Show("Keine gültige Person ausgewählt.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            DateTime Startdatum;
+            DateTime Enddatum;
+
+            string bonuskonto_ausgezahlt_bis_db = "";
+            string bonuszeit_bei_letzter_auszahlung_db = "";
+
+            double summe_bonuszeiten = 0;
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonuskonto_ausgezahlt_bis, bonuszeit_bei_letzter_auszahlung FROM user where userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+                Reader.Read();
+
+                bonuskonto_ausgezahlt_bis_db = Reader["bonuskonto_ausgezahlt_bis"] + "";
+                bonuszeit_bei_letzter_auszahlung_db = Reader["bonuszeit_bei_letzter_auszahlung"] + "";
+
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            Startdatum = new DateTime(int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(0, 4)), int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(4, 2)), int.Parse(bonuskonto_ausgezahlt_bis_db.Substring(6, 2)), 0, 0, 0).AddDays(1);
+            Enddatum = new DateTime(DatePicker_Bonus_Neu_BerechnenBis.Value.Year, DatePicker_Bonus_Neu_BerechnenBis.Value.Month, DatePicker_Bonus_Neu_BerechnenBis.Value.Day,0,0,0);
+
+            if (DateTime.Compare(Enddatum,Startdatum) < 0)
+            {
+                fehler = true;
+                MessageBox.Show("Das Enddatum liegt vor dem Startdatum.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (fehler == false)
+            {
+                //Bestätigungsmeldung vorbereiten und anzeigen
+                string dialogtext = "Die zu vergütende Bonuszeit für diesen Mitarbeiter bis einschließlich " + Enddatum.ToShortDateString() + " berechnen?" + 
+                                        "\r\n\r\n Verrechnungssätze des Mitarbeiters sind dann bis zu diesem Datum nicht mehr veränderbar!";
+
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MessageBox.Show("Auszahlungsstand und berechneter Bonus der vorherigen Berechnung werden mit den neuen Werten überschrieben.\r\n" +
+                                    "Falls nötig, die alten Werte vorher notieren:\r\n\r\n" +
+                                    "Auszahlungsstand alt: " + bonuskonto_ausgezahlt_bis_db + "  Bonuszeit alt: " + bonuszeit_bei_letzter_auszahlung_db + " Stunden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
+                    //kumulierte Bonuszeit über den gewählten Zeitraum berechnen
+                    for (DateTime date_tmp = Startdatum; DateTime.Compare(date_tmp,Enddatum) <= 0; date_tmp=date_tmp.AddDays(1))
+                    {
+                        summe_bonuszeiten += berechneBonuszeitAnTag(userid, date_tmp.Year.ToString("D4"), date_tmp.Month.ToString("D"), date_tmp.Day.ToString("D"));
+                    }
+                    
+                    
+                    //update auf Datenbank
+                    open_db();
+                    comm.Parameters.Clear();
+                    comm.CommandText = "UPDATE user SET bonuskonto_ausgezahlt_bis=@bonuskonto_ausgezahlt_bis, bonuszeit_bei_letzter_auszahlung=@bonuszeit_bei_letzter_auszahlung WHERE userid=@userid";
+
+                    comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
+                    comm.Parameters.Add("@bonuskonto_ausgezahlt_bis", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = Enddatum.Year.ToString("D4") + Enddatum.Month.ToString("D2") + Enddatum.Day.ToString("D2");
+                    comm.Parameters.Add("@bonuszeit_bei_letzter_auszahlung", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Precision = 10;
+                    comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Scale = 2;
+                    comm.Parameters["@bonuszeit_bei_letzter_auszahlung"].Value = summe_bonuszeiten;
+
+                    //die veränderung detailiert in die log schreiben, damit man im Fehlerfall noch weiss wie die werte vorher waren
+                    log("Bonuszeit neu berechnet. Berechnungsstand: '" + bonuskonto_ausgezahlt_bis_db + "'->'" 
+                        + Enddatum.Year.ToString("D4") + Enddatum.Month.ToString("D2") + Enddatum.Day.ToString("D2") + 
+                        "'  Auszuzahlende Bonuszeit: '" + bonuszeit_bei_letzter_auszahlung_db + "'->'" + summe_bonuszeiten + "'");
+
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex) { log(ex.Message); }
+                    close_db();
+
+                    //den Personpicker und dadurch das Formular refreshen, dazu die ausgewählte person kurz merken
+                    int selectedperson_tmp = PersonPicker_Bonus.SelectedIndex;
+                    refreshPersonPicker_Bonus();
+                    PersonPicker_Bonus.SelectedIndex = selectedperson_tmp;
+                    
+                    //die anderen tabs auf uninitialisiert setzen
+                    verrechnungstab_initialisiert_global = false;
+                    personentab_initialisiert_global = false;
+                    kalendertab_initialisiert_global = false;
+                    stempelungstab_initialisiert_global = false;
+                    auswertungstab_initialisiert_global = false;
+                }
+            }
         }
 
         private DateTime ermittleLetztenVollverrechnetenTag(string userid, DateTime bereits_berechnet_bis)
@@ -3654,13 +3785,6 @@ namespace Stempelurhadmintest
             close_db();
             
             return letzterSaubererTag;
-        }
-
-        private double berechneBonuszeit(string userid, string jahr, string monat, string tag)
-        {
-            double ergebnis = 0;
-
-            return ergebnis;
         }
 
         ///////////////////////////////////////////////////////////////////////
