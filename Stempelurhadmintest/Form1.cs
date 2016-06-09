@@ -1930,7 +1930,7 @@ namespace Stempelurhadmintest
             comm.CommandText = "SELECT DISTINCT a.task , MIN(CONCAT(a.jahr,a.monat,a.tag)) AS firstdate, MAX(CONCAT(a.jahr,a.monat,a.tag)) AS lastdate " +
                                 "FROM stamps a WHERE a.storniert = 0 AND NOT EXISTS (SELECT NULL" +
                                 " FROM verrechnung b WHERE a.task = b.auftrag AND a.userid = b.person AND b.storniert = 0)" +
-                                " GROUP BY a.task, a.userid ORDER BY a.task";
+                                " GROUP BY a.task ORDER BY lastdate, a.task";
 
             try
             {
