@@ -1110,7 +1110,7 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Urlaube sollen nicht als Allgemeine Ereignisse erstellt werden.\r\nDen Urlaub bitte stattdessen bei den einzelnen Mitarbeitern eintragen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if(Aenderung_erlaubt_Kalender(input_zuordnung, int.Parse(input_jahr), int.Parse(input_monat), int.Parse(input_tag)) == false)
+            if(fehler == false && Aenderung_erlaubt_Kalender(input_zuordnung, int.Parse(input_jahr), int.Parse(input_monat), int.Parse(input_tag)) == false)
             {
                 fehler = true;
                 //entsprechende Fehlermeldung wird von der Prüfungsfunktion bereits ausgegeben
