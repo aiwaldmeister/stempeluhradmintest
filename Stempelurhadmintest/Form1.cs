@@ -2420,10 +2420,17 @@ namespace Stempelurhadmintest
             {
                 prefillUpdateFormular_Verrechnung();
 
+                //storno und editbutton einblenden
+                button_Verrechnungen_SatzStornieren.Enabled = true;
+                button_Verrechnungen_SatzUeberschreiben.Enabled = true;
             }
             else
             {   //nichts markiert... update formular leeren
                 clearUpdateFormular_Verrechnung();
+
+                //storno und editbutton ausblenden
+                button_Verrechnungen_SatzStornieren.Enabled = false;
+                button_Verrechnungen_SatzUeberschreiben.Enabled = false;
             }
         }
 
@@ -3184,6 +3191,7 @@ namespace Stempelurhadmintest
                 textBox_Personen_Vorname.BackColor = Color.Gold;
             }
 
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_Nachname_TextChanged(object sender, EventArgs e)
@@ -3196,6 +3204,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_Nachname.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_Urlaubstage_TextChanged(object sender, EventArgs e)
@@ -3208,6 +3218,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_Urlaubstage.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void comboBox_Personen_Aktiv_SelectedIndexChanged(object sender, EventArgs e)
@@ -3222,6 +3234,8 @@ namespace Stempelurhadmintest
             }
             //fokus von der combobox nehmen, damit man die goldene markierung sehen kann
             this.ActiveControl = null;
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_AktAuftrag_TextChanged(object sender, EventArgs e)
@@ -3234,6 +3248,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_AktAuftrag.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_Zeitkonto_TextChanged(object sender, EventArgs e)
@@ -3246,6 +3262,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_Zeitkonto.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_ZeitkontoBerechnungsstand_TextChanged(object sender, EventArgs e)
@@ -3258,6 +3276,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_ZeitkontoBerechnungsstand.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_Boniausgezahltbis_TextChanged(object sender, EventArgs e)
@@ -3270,6 +3290,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_Boniausgezahltbis.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_BetragletzterBonus_TextChanged(object sender, EventArgs e)
@@ -3282,6 +3304,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_BetragletzterBonus.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void comboBox_Personen_Stempelfehler_SelectedIndexChanged(object sender, EventArgs e)
@@ -3296,6 +3320,8 @@ namespace Stempelurhadmintest
             }
             //fokus von der combobox nehmen, damit man die goldene markierung sehen kann
             this.ActiveControl = null;
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_AktUrlaubsjahr_TextChanged(object sender, EventArgs e)
@@ -3309,6 +3335,8 @@ namespace Stempelurhadmintest
             {
                 textBox_Personen_AktUrlaubsjahr.BackColor = Color.Gold;
             }
+
+            pruefeFelderAufVeränderungen();
         }
 
         private void textBox_Personen_ResturlaubVorjahr_TextChanged(object sender, EventArgs e)
@@ -3323,6 +3351,7 @@ namespace Stempelurhadmintest
                 textBox_Personen_ResturlaubVorjahr.BackColor = Color.Gold;                    
             }
 
+            pruefeFelderAufVeränderungen();
         }
 
         private void button_Personen_UrlaubsjahrAktualisieren_Click(object sender, EventArgs e)
@@ -3535,6 +3564,43 @@ namespace Stempelurhadmintest
 
             refreshUpdateFormular_Personen();
         }
+
+        private void textBox_Personen_Neu_WunschID_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox_Personen_Neu_WunschID.Text != "")
+            {
+                button_Personen_newPerson.Enabled = true;
+            }
+            else
+            {
+                button_Personen_newPerson.Enabled = false;
+            }
+        }
+
+        private void pruefeFelderAufVeränderungen()
+        {
+            //Speicherbutton ausblenden wenn nichts verändert ist
+            if((textBox_Personen_Vorname.BackColor == Color.Gold) ||
+               (textBox_Personen_Nachname.BackColor == Color.Gold) ||
+               (textBox_Personen_Urlaubstage.BackColor == Color.Gold) ||
+               (comboBox_Personen_Aktiv.BackColor == Color.Gold) ||
+               (textBox_Personen_AktAuftrag.BackColor == Color.Gold) ||
+               (textBox_Personen_Zeitkonto.BackColor == Color.Gold) ||
+               (textBox_Personen_ZeitkontoBerechnungsstand.BackColor == Color.Gold) ||
+               (textBox_Personen_Boniausgezahltbis.BackColor == Color.Gold) ||
+               (textBox_Personen_BetragletzterBonus.BackColor == Color.Gold) ||
+               (comboBox_Personen_Stempelfehler.BackColor == Color.Gold) ||
+               (textBox_Personen_AktUrlaubsjahr.BackColor == Color.Gold) ||
+               (textBox_Personen_ResturlaubVorjahr.BackColor == Color.Gold))
+            {
+                button_Personen_writeChanges.Enabled = true;
+            }
+            else
+            {
+                button_Personen_writeChanges.Enabled = false;
+            }
+        }
+
 
 
         ///////////Bonusberechnung/////////////////////////////////////////////
