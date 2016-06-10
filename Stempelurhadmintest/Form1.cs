@@ -1107,7 +1107,7 @@ namespace Stempelurhadmintest
             if(input_zuordnung == "Allgemein" && input_urlaub > 0)
             {
                 fehler = true;
-                MessageBox.Show("Bei Allgemeinen Ereignissen sollte kein Urlaub abgezogen werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Urlaube sollen nicht als Allgemeine Ereignisse erstellt werden.\r\nDen Urlaub bitte stattdessen bei den einzelnen Mitarbeitern eintragen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if(Aenderung_erlaubt_Kalender(input_zuordnung, int.Parse(input_jahr), int.Parse(input_monat), int.Parse(input_tag)) == false)
@@ -1920,8 +1920,11 @@ namespace Stempelurhadmintest
         private void refreshAuftragsPicker_Verrechnung_Insert()
         {
             string thistaskid = "";
-            string firstdate = "";
-            string lastdate = "";
+            string firststampdate = "";
+            string laststampdate = "";
+            DateTime heute = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime thislaststampdate;
+            int TageseitletzterStempelung = 0;
 
             Auftragspicker_Verrechnung_Insert.Items.Clear();
 
@@ -1944,13 +1947,13 @@ namespace Stempelurhadmintest
                 while (Reader.Read())
                 {
                     thistaskid = Reader["task"] + "";
-                    firstdate = Reader["firstdate"] + "";
-                    lastdate = Reader["lastdate"] + "";
+                    firststampdate = Reader["firstdate"] + "";
+                    laststampdate = Reader["lastdate"] + "";
 
+                    thislaststampdate = new DateTime(int.Parse(laststampdate.Substring(0, 4)), int.Parse(laststampdate.Substring(4, 2)), int.Parse(laststampdate.Substring(6, 2)), 0, 0, 0);
+                    TageseitletzterStempelung = (heute - thislaststampdate).Days;
 
-                    Auftragspicker_Verrechnung_Insert.Items.Add(thistaskid + "           (" + 
-                        //firstdate.Substring(6, 2) + "." + firstdate.Substring(4, 2) + "." + firstdate.Substring(0, 4) + "-" +
-                        lastdate.Substring(6, 2) + "." + lastdate.Substring(4, 2) + "." + lastdate.Substring(0, 4) + ")");
+                    Auftragspicker_Verrechnung_Insert.Items.Add(thistaskid + "        " + TageseitletzterStempelung + " T. her");
 
                 }
                 Reader.Close();
@@ -2364,7 +2367,7 @@ namespace Stempelurhadmintest
                 if (DateTime.Compare(date_bonusausgezahltbis,insert_verrechnungsdatum) >= 0)
                 {
                     fehler = true;
-                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + date_bonusausgezahltbis.ToShortDateString() + " ausgezahlt. Zeiten können nur mit einem späterem Datum Verrechnet werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Boni wurden für diesen Mitarbeiter schon bis " + date_bonusausgezahltbis.ToShortDateString() + " ausgezahlt. Zeiten können nur mit einem späterem Datum verrechnet werden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
