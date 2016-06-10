@@ -185,6 +185,10 @@ namespace Stempelurhadmintest
                 {
                     refreshPersonPicker_Bonus();
                     bonustab_initialisiert_global = true;
+
+                    button_Bonus_ShowGroupbox_Neu.Visible = true;
+                    groupBox_Bonus_neu.Visible = false;
+
                 }
             }
 
@@ -3596,6 +3600,9 @@ namespace Stempelurhadmintest
             string bonuskonto_ausgezahlt_bis_db = "";
             string bonuszeit_bei_letzter_auszahlung_db = "";
             DateTime bonuskonto_ausgezahlt_bis_DateTime;
+            DateTime letzterVollverrechneterTag;
+            DateTime gestern;
+            DateTime ausgewaehltesDatum;
 
             open_db();
             comm.Parameters.Clear();
@@ -3622,8 +3629,8 @@ namespace Stempelurhadmintest
 
 
             //Grenzen einer möglichen neuberechnung ermitteln und Felder vorbelegen
-            DateTime letzterVollverrechneterTag = ermittleLetztenVollverrechnetenTag(userid, bonuskonto_ausgezahlt_bis_DateTime);
-            DateTime gestern = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,0,0,0).AddDays(-1);
+            letzterVollverrechneterTag = ermittleLetztenVollverrechnetenTag(userid);
+            gestern = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,0,0,0).AddDays(-1);
 
             label_Bonus_Neu_LetzterVollverrechneterTag.Text = letzterVollverrechneterTag.ToShortDateString();
             label_Bonus_Neu_ErstmoeglicherTag.Text = bonuskonto_ausgezahlt_bis_DateTime.AddDays(1).ToShortDateString();
@@ -3637,15 +3644,38 @@ namespace Stempelurhadmintest
             }
             else
             {
-                DatePicker_Bonus_Neu_BerechnenBis.Value = letzterVollverrechneterTag;
 
                 //Grenzen des Datepickers setzen
                 DatePicker_Bonus_Neu_BerechnenBis.MinDate = bonuskonto_ausgezahlt_bis_DateTime.AddDays(1);
                 DatePicker_Bonus_Neu_BerechnenBis.MaxDate = gestern;
-   
+
+                if(DateTime.Compare(DatePicker_Bonus_Neu_BerechnenBis.MinDate,letzterVollverrechneterTag) <= 0 && DateTime.Compare(DatePicker_Bonus_Neu_BerechnenBis.MaxDate, letzterVollverrechneterTag) >= 0)
+                {
+                    DatePicker_Bonus_Neu_BerechnenBis.Value = letzterVollverrechneterTag;
+                }
+
                 button_Bonus_BerechnenBis.Enabled = true;
             }
-  
+
+
+            ausgewaehltesDatum = new DateTime(DatePicker_Bonus_Neu_BerechnenBis.Value.Year, DatePicker_Bonus_Neu_BerechnenBis.Value.Month, DatePicker_Bonus_Neu_BerechnenBis.Value.Day,0,0,0);
+            
+            //testen ob das startdatum oder enddatum später ist, als der letzte saubere tag (ohne unverrechnete stempelungen)
+            if (DateTime.Compare(ausgewaehltesDatum, letzterVollverrechneterTag) > 0 || DateTime.Compare(bonuskonto_ausgezahlt_bis_DateTime.AddDays(1), letzterVollverrechneterTag) > 0)
+            {
+                //gewähltes Datum ausserhalb der sicheren Range -> warnen
+
+                label_Bonus_Hinweis.Visible = true;
+                label_Bonus_Neu_LetzterVollverrechneterTag.BackColor = Color.Gold;
+            }
+            else
+            {
+                //gewähltes Datum innerhalb der sicheren Range -> nicht warnen
+                label_Bonus_Hinweis.Visible = false;
+                label_Bonus_Neu_LetzterVollverrechneterTag.BackColor = Color.Transparent;
+
+            }
+
 
         }
 
@@ -3762,9 +3792,10 @@ namespace Stempelurhadmintest
             }
         }
 
-        private DateTime ermittleLetztenVollverrechnetenTag(string userid, DateTime bereits_berechnet_bis)
+        private DateTime ermittleLetztenVollverrechnetenTag(string userid)
         {
-            DateTime letzterSaubererTag = bereits_berechnet_bis;
+            //Defaultwert ist das Datum von gestern. Werden keine unsauberen Tage gefunden, dann sind alle sauber bis gestern.
+            DateTime letzterSaubererTag = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,0,0,0).AddDays(-1);
 
             //ersten Tag ermitteln, zu dem der Mitarbeiter Stempelung ohne entsprechenden verrechnungssatz hat.
             //der tag vor diesem ersten unsauberen, ist der letzte saubere
@@ -3802,6 +3833,50 @@ namespace Stempelurhadmintest
             close_db();
             
             return letzterSaubererTag;
+        }
+
+        private void DatePicker_Bonus_Neu_BerechnenBis_ValueChanged(object sender, EventArgs e)
+        {
+            //testen ob das datum später ist, als der letzte saubere tag (ohne unverrechnete stempelungen)
+            string userid = "";
+            DateTime letztersauberertag;
+            DateTime ausgewaehltertag;
+            userid = PersonPicker_Bonus.Text;
+            if(userid.Length >= 6)
+            {
+                userid = userid.Substring(0, 6);
+            }
+            letztersauberertag = ermittleLetztenVollverrechnetenTag(userid);
+            ausgewaehltertag = DatePicker_Bonus_Neu_BerechnenBis.Value;
+
+            //sicherstellen dass die uhrzeiten der datetimes nicht verschieden sind und den vergleich beeinflussen
+            letztersauberertag = new DateTime(letztersauberertag.Year, letztersauberertag.Month, letztersauberertag.Day, 0, 0, 0);
+            ausgewaehltertag = new DateTime(ausgewaehltertag.Year, ausgewaehltertag.Month, ausgewaehltertag.Day, 0, 0, 0);
+
+            if(DateTime.Compare(ausgewaehltertag,letztersauberertag) > 0)
+            {
+                //gewähltes Datum ausserhalb der sicheren Range -> warnen
+                
+                label_Bonus_Hinweis.Visible = true;
+                label_Bonus_Neu_LetzterVollverrechneterTag.BackColor = Color.Gold;
+            }
+            else
+            {
+                //gewähltes Datum innerhalb der sicheren Range -> nicht warnen
+                label_Bonus_Hinweis.Visible = false;
+                label_Bonus_Neu_LetzterVollverrechneterTag.BackColor = Color.Transparent;
+
+            }
+
+
+
+
+        }
+
+        private void button_Bonus_ShowGroupbox_Neu_Click(object sender, EventArgs e)
+        {
+            button_Bonus_ShowGroupbox_Neu.Visible = false;
+            groupBox_Bonus_neu.Visible = true;
         }
 
         ///////////////////////////////////////////////////////////////////////

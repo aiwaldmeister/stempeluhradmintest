@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +49,7 @@
             this.button_Kalender_ganzerTagUrlaub = new System.Windows.Forms.Button();
             this.button_Kalender_Feiertag = new System.Windows.Forms.Button();
             this.button_Kalender_erstelleEintrag = new System.Windows.Forms.Button();
+            this.myiconlist = new System.Windows.Forms.ImageList(this.components);
             this.button_Kalender_Krankheitstag = new System.Windows.Forms.Button();
             this.textBox_Kalender_Sollzeit = new System.Windows.Forms.TextBox();
             this.button_Kalender_halberTagUrlaub = new System.Windows.Forms.Button();
@@ -102,7 +103,7 @@
             this.textBox_Verrechnung_Auftragsnummer = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.Bonusberechnung = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox_Bonus_neu = new System.Windows.Forms.GroupBox();
             this.label_Bonus_Neu_ErstmoeglicherTag = new System.Windows.Forms.Label();
             this.label_Bonus_Neu_LetzterVollverrechneterTag = new System.Windows.Forms.Label();
             this.button_Bonus_BerechnenBis = new System.Windows.Forms.Button();
@@ -118,7 +119,6 @@
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.PersonPicker_Bonus = new System.Windows.Forms.ComboBox();
-            this.Auswertungen = new System.Windows.Forms.TabPage();
             this.Stempelungen = new System.Windows.Forms.TabPage();
             this.button_Stempelungen_DatePickerTagzurueck = new System.Windows.Forms.Button();
             this.button_Stempelungen_DatePickerTagvorwaerts = new System.Windows.Forms.Button();
@@ -218,7 +218,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.myiconlist = new System.Windows.Forms.ImageList(this.components);
+            this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.label_Bonus_Hinweis = new System.Windows.Forms.Label();
+            this.button_Bonus_ShowGroupbox_Neu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -231,7 +233,7 @@
             this.groupBox_Verrechnungen_Insert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).BeginInit();
             this.Bonusberechnung.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox_Bonus_neu.SuspendLayout();
             this.groupBoxLetzteBonusberechnung.SuspendLayout();
             this.Stempelungen.SuspendLayout();
             this.groupBox_Stempelungen_Zeitkonto.SuspendLayout();
@@ -261,14 +263,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle5;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -489,6 +491,16 @@
             this.button_Kalender_erstelleEintrag.Text = "Kalendereintrag erstellen";
             this.button_Kalender_erstelleEintrag.UseVisualStyleBackColor = true;
             this.button_Kalender_erstelleEintrag.Click += new System.EventHandler(this.button_Kalender_erstelleEintrag_Click);
+            // 
+            // myiconlist
+            // 
+            this.myiconlist.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("myiconlist.ImageStream")));
+            this.myiconlist.TransparentColor = System.Drawing.Color.Transparent;
+            this.myiconlist.Images.SetKeyName(0, "add-icone-3727-96.png");
+            this.myiconlist.Images.SetKeyName(1, "remove-icone-8680-96.png");
+            this.myiconlist.Images.SetKeyName(2, "disk-backup-icone-6806-96.png");
+            this.myiconlist.Images.SetKeyName(3, "favorite-star-icone-5544-96.png");
+            this.myiconlist.Images.SetKeyName(4, "undo");
             // 
             // button_Kalender_Krankheitstag
             // 
@@ -1066,7 +1078,8 @@
             // 
             // Bonusberechnung
             // 
-            this.Bonusberechnung.Controls.Add(this.groupBox4);
+            this.Bonusberechnung.Controls.Add(this.button_Bonus_ShowGroupbox_Neu);
+            this.Bonusberechnung.Controls.Add(this.groupBox_Bonus_neu);
             this.Bonusberechnung.Controls.Add(this.groupBoxLetzteBonusberechnung);
             this.Bonusberechnung.Controls.Add(this.PersonPicker_Bonus);
             this.Bonusberechnung.Location = new System.Drawing.Point(4, 22);
@@ -1077,27 +1090,29 @@
             this.Bonusberechnung.Text = "Bonusberechnung";
             this.Bonusberechnung.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // groupBox_Bonus_neu
             // 
-            this.groupBox4.Controls.Add(this.label_Bonus_Neu_ErstmoeglicherTag);
-            this.groupBox4.Controls.Add(this.label_Bonus_Neu_LetzterVollverrechneterTag);
-            this.groupBox4.Controls.Add(this.button_Bonus_BerechnenBis);
-            this.groupBox4.Controls.Add(this.DatePicker_Bonus_Neu_BerechnenBis);
-            this.groupBox4.Controls.Add(this.label53);
-            this.groupBox4.Controls.Add(this.label58);
-            this.groupBox4.Controls.Add(this.label57);
-            this.groupBox4.Location = new System.Drawing.Point(187, 311);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(425, 224);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Neue Bonusberechnung";
+            this.groupBox_Bonus_neu.Controls.Add(this.label_Bonus_Hinweis);
+            this.groupBox_Bonus_neu.Controls.Add(this.label_Bonus_Neu_ErstmoeglicherTag);
+            this.groupBox_Bonus_neu.Controls.Add(this.label_Bonus_Neu_LetzterVollverrechneterTag);
+            this.groupBox_Bonus_neu.Controls.Add(this.button_Bonus_BerechnenBis);
+            this.groupBox_Bonus_neu.Controls.Add(this.DatePicker_Bonus_Neu_BerechnenBis);
+            this.groupBox_Bonus_neu.Controls.Add(this.label53);
+            this.groupBox_Bonus_neu.Controls.Add(this.label58);
+            this.groupBox_Bonus_neu.Controls.Add(this.label57);
+            this.groupBox_Bonus_neu.Location = new System.Drawing.Point(187, 311);
+            this.groupBox_Bonus_neu.Name = "groupBox_Bonus_neu";
+            this.groupBox_Bonus_neu.Size = new System.Drawing.Size(425, 224);
+            this.groupBox_Bonus_neu.TabIndex = 16;
+            this.groupBox_Bonus_neu.TabStop = false;
+            this.groupBox_Bonus_neu.Text = "Neue Bonusberechnung";
+            this.groupBox_Bonus_neu.Visible = false;
             // 
             // label_Bonus_Neu_ErstmoeglicherTag
             // 
             this.label_Bonus_Neu_ErstmoeglicherTag.AutoSize = true;
             this.label_Bonus_Neu_ErstmoeglicherTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Bonus_Neu_ErstmoeglicherTag.Location = new System.Drawing.Point(98, 166);
+            this.label_Bonus_Neu_ErstmoeglicherTag.Location = new System.Drawing.Point(101, 152);
             this.label_Bonus_Neu_ErstmoeglicherTag.Name = "label_Bonus_Neu_ErstmoeglicherTag";
             this.label_Bonus_Neu_ErstmoeglicherTag.Size = new System.Drawing.Size(100, 24);
             this.label_Bonus_Neu_ErstmoeglicherTag.TabIndex = 17;
@@ -1118,7 +1133,7 @@
             this.button_Bonus_BerechnenBis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Bonus_BerechnenBis.ImageIndex = 3;
             this.button_Bonus_BerechnenBis.ImageList = this.myiconlist;
-            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(35, 120);
+            this.button_Bonus_BerechnenBis.Location = new System.Drawing.Point(38, 106);
             this.button_Bonus_BerechnenBis.Name = "button_Bonus_BerechnenBis";
             this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(330, 36);
             this.button_Bonus_BerechnenBis.TabIndex = 14;
@@ -1130,10 +1145,11 @@
             // 
             this.DatePicker_Bonus_Neu_BerechnenBis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Bonus_Neu_BerechnenBis.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker_Bonus_Neu_BerechnenBis.Location = new System.Drawing.Point(236, 164);
+            this.DatePicker_Bonus_Neu_BerechnenBis.Location = new System.Drawing.Point(239, 150);
             this.DatePicker_Bonus_Neu_BerechnenBis.Name = "DatePicker_Bonus_Neu_BerechnenBis";
             this.DatePicker_Bonus_Neu_BerechnenBis.Size = new System.Drawing.Size(100, 29);
             this.DatePicker_Bonus_Neu_BerechnenBis.TabIndex = 13;
+            this.DatePicker_Bonus_Neu_BerechnenBis.ValueChanged += new System.EventHandler(this.DatePicker_Bonus_Neu_BerechnenBis_ValueChanged);
             // 
             // label53
             // 
@@ -1147,7 +1163,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(199, 174);
+            this.label58.Location = new System.Drawing.Point(202, 160);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(20, 13);
             this.label58.TabIndex = 7;
@@ -1156,7 +1172,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(67, 174);
+            this.label57.Location = new System.Drawing.Point(70, 160);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(27, 13);
             this.label57.TabIndex = 7;
@@ -1245,16 +1261,6 @@
             this.PersonPicker_Bonus.Size = new System.Drawing.Size(514, 32);
             this.PersonPicker_Bonus.TabIndex = 6;
             this.PersonPicker_Bonus.SelectedIndexChanged += new System.EventHandler(this.PersonPicker_Bonus_SelectedIndexChanged);
-            // 
-            // Auswertungen
-            // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
-            this.Auswertungen.Name = "Auswertungen";
-            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
-            this.Auswertungen.TabIndex = 3;
-            this.Auswertungen.Text = "Auswertungen";
-            this.Auswertungen.UseVisualStyleBackColor = true;
             // 
             // Stempelungen
             // 
@@ -2371,15 +2377,39 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // myiconlist
+            // Auswertungen
             // 
-            this.myiconlist.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("myiconlist.ImageStream")));
-            this.myiconlist.TransparentColor = System.Drawing.Color.Transparent;
-            this.myiconlist.Images.SetKeyName(0, "add-icone-3727-96.png");
-            this.myiconlist.Images.SetKeyName(1, "remove-icone-8680-96.png");
-            this.myiconlist.Images.SetKeyName(2, "disk-backup-icone-6806-96.png");
-            this.myiconlist.Images.SetKeyName(3, "favorite-star-icone-5544-96.png");
-            this.myiconlist.Images.SetKeyName(4, "undo");
+            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
+            this.Auswertungen.Name = "Auswertungen";
+            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
+            this.Auswertungen.TabIndex = 3;
+            this.Auswertungen.Text = "Auswertungen";
+            this.Auswertungen.UseVisualStyleBackColor = true;
+            // 
+            // label_Bonus_Hinweis
+            // 
+            this.label_Bonus_Hinweis.BackColor = System.Drawing.Color.Gold;
+            this.label_Bonus_Hinweis.Location = new System.Drawing.Point(38, 182);
+            this.label_Bonus_Hinweis.Name = "label_Bonus_Hinweis";
+            this.label_Bonus_Hinweis.Size = new System.Drawing.Size(330, 30);
+            this.label_Bonus_Hinweis.TabIndex = 17;
+            this.label_Bonus_Hinweis.Text = "Der gewählte Berechnungszeitraum geht über das Datum hinaus,\r\nbis zu dem alle Ste" +
+    "mpelungen bereits verrechnet sind.";
+            this.label_Bonus_Hinweis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_Bonus_ShowGroupbox_Neu
+            // 
+            this.button_Bonus_ShowGroupbox_Neu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Bonus_ShowGroupbox_Neu.ImageIndex = 3;
+            this.button_Bonus_ShowGroupbox_Neu.ImageList = this.myiconlist;
+            this.button_Bonus_ShowGroupbox_Neu.Location = new System.Drawing.Point(187, 297);
+            this.button_Bonus_ShowGroupbox_Neu.Name = "button_Bonus_ShowGroupbox_Neu";
+            this.button_Bonus_ShowGroupbox_Neu.Size = new System.Drawing.Size(423, 32);
+            this.button_Bonus_ShowGroupbox_Neu.TabIndex = 17;
+            this.button_Bonus_ShowGroupbox_Neu.Text = "Neue Bonuszeit berechnen";
+            this.button_Bonus_ShowGroupbox_Neu.UseVisualStyleBackColor = true;
+            this.button_Bonus_ShowGroupbox_Neu.Click += new System.EventHandler(this.button_Bonus_ShowGroupbox_Neu_Click);
             // 
             // Form1
             // 
@@ -2407,8 +2437,8 @@
             this.groupBox_Verrechnungen_Insert.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Verrechnungsgrid_Verrechnungen_Insert)).EndInit();
             this.Bonusberechnung.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.groupBox_Bonus_neu.ResumeLayout(false);
+            this.groupBox_Bonus_neu.PerformLayout();
             this.groupBoxLetzteBonusberechnung.ResumeLayout(false);
             this.groupBoxLetzteBonusberechnung.PerformLayout();
             this.Stempelungen.ResumeLayout(false);
@@ -2610,7 +2640,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sollzeit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Urlaub;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vermerk;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox_Bonus_neu;
         private System.Windows.Forms.Label label_Bonus_Neu_ErstmoeglicherTag;
         private System.Windows.Forms.Label label_Bonus_Neu_LetzterVollverrechneterTag;
         private System.Windows.Forms.Label label58;
@@ -2619,6 +2649,8 @@
         private System.Windows.Forms.Label label_Bonus_Alt_Bonuszeit;
         private System.Windows.Forms.Label label_Bonus_Alt_BerechnetBis;
         private System.Windows.Forms.ImageList myiconlist;
+        private System.Windows.Forms.Label label_Bonus_Hinweis;
+        private System.Windows.Forms.Button button_Bonus_ShowGroupbox_Neu;
     }
 }
 
