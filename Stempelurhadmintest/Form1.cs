@@ -380,6 +380,7 @@ namespace Stempelurhadmintest
                 string an_stunde = Reader["stunde"] + "";
                 string an_dezimal = Reader["dezimal"] + "";
                 string an_task = Reader["task"] + "";
+                string an_art = Reader["art"] + "";
                 double an_uhrzeit_dezimal = double.Parse(an_stunde + "," + an_dezimal);
 
 
@@ -388,14 +389,28 @@ namespace Stempelurhadmintest
                 string ab_stunde = Reader["stunde"] + "";
                 string ab_dezimal = Reader["dezimal"] + "";
                 string ab_task = Reader["task"] + "";
+                string ab_art = Reader["art"] + "";
                 double ab_uhrzeit_dezimal = double.Parse(ab_stunde + "," + ab_dezimal);
+
+                if (an_art != "an" || ab_art != "ab")
+                {
+                    Fehler = "Abstempelung wo Anstempelung erwartet wurde oder umgekehrt";
+                    log(Fehler);
+
+                    Reader.Close();
+                    close_db();
+
+                    return -1;
+                }
 
                 if (an_task != ab_task)
                 {
                     Fehler = "Zeitpaar passt nicht zusammen (verschiedene tasks)";
                     log(Fehler);
+
                     Reader.Close();
                     close_db();
+
                     return -1;
                 }
 
