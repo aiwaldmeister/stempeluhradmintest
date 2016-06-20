@@ -2776,6 +2776,7 @@ namespace Stempelurhadmintest
             string thisperson_resturlaub_vorjahr = "";
             bool thisperson_stempelfehler = false;
             bool thisperson_aktiv = false;
+            bool thisperson_details = false;
 
 
             thisperson_userid = PersonPicker_Personen.Text;
@@ -2808,6 +2809,7 @@ namespace Stempelurhadmintest
                 thisperson_resturlaub_vorjahr = Reader["resturlaub_vorjahr"] + "";
                 thisperson_stempelfehler = (bool)Reader["stempelfehler"];
                 thisperson_aktiv = (bool)Reader["aktiv"];
+                thisperson_details = (bool)Reader["detailanzeige_erlaubt"];
 
                 Reader.Close();
             }
@@ -2827,8 +2829,10 @@ namespace Stempelurhadmintest
             textBox_Personen_ResturlaubVorjahr_old.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv_old.SelectedIndex = 0;
+            comboBox_Personen_Details_old.SelectedIndex = 0;
             comboBox_Personen_Stempelfehler_old.SelectedIndex = 0;
             if (thisperson_aktiv) { comboBox_Personen_Aktiv_old.SelectedIndex = 1; }
+            if (thisperson_details) { comboBox_Personen_Details_old.SelectedIndex = 1; }
             if (thisperson_stempelfehler) { comboBox_Personen_Stempelfehler_old.SelectedIndex = 1; }
 
             //eigentliche Formularfelder (rechte spalte) befüllen (mit den selben Werten)
@@ -2844,8 +2848,10 @@ namespace Stempelurhadmintest
             textBox_Personen_ResturlaubVorjahr.Text = thisperson_resturlaub_vorjahr;
 
             comboBox_Personen_Aktiv.SelectedIndex = 0;
+            comboBox_Personen_Details.SelectedIndex = 0;
             comboBox_Personen_Stempelfehler.SelectedIndex = 0;
             if (thisperson_aktiv) { comboBox_Personen_Aktiv.SelectedIndex = 1; }
+            if (thisperson_details) { comboBox_Personen_Details.SelectedIndex = 1; }
             if (thisperson_stempelfehler) { comboBox_Personen_Stempelfehler.SelectedIndex = 1; }
 
             //eventuell vorhandene farbliche Hinterlegungen in der rechten Formularhälfte entfernen
@@ -2858,6 +2864,7 @@ namespace Stempelurhadmintest
             textBox_Personen_BetragletzterBonus.BackColor = Color.White;
             textBox_Personen_Urlaubstage.BackColor = Color.White;
             comboBox_Personen_Aktiv.BackColor = Color.White;
+            comboBox_Personen_Details.BackColor = Color.White;
             comboBox_Personen_Stempelfehler.BackColor = Color.White;
             textBox_Personen_AktUrlaubsjahr.BackColor = Color.White;
             textBox_Personen_ResturlaubVorjahr.BackColor = Color.White;
@@ -2994,8 +3001,8 @@ namespace Stempelurhadmintest
                     open_db();
                     comm.Parameters.Clear();
                     comm.CommandText = "INSERT INTO user (userid, currenttask, name, vorname, zeitkonto, zeitkonto_berechnungsstand, bonuskonto_ausgezahlt_bis, " +
-                                                "bonuszeit_bei_letzter_auszahlung, jahresurlaub,akt_urlaubsjahr, resturlaub_vorjahr, stempelfehler, aktiv) " +
-                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,@akt_urlaubsjahr,@resturlaub_vorjahr,0,1)";
+                                                "bonuszeit_bei_letzter_auszahlung, jahresurlaub,akt_urlaubsjahr, resturlaub_vorjahr, stempelfehler, aktiv, detailanzeige_erlaubt) " +
+                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,@akt_urlaubsjahr,@resturlaub_vorjahr,0,1,0)";
 
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = input_userid;
                     comm.Parameters.Add("@nachname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_nachname;
@@ -3065,6 +3072,7 @@ namespace Stempelurhadmintest
             double new_resturlaub_vorjahr = 0;
             bool new_stempelfehler = false;
             bool new_aktiv = false;
+            bool new_details = false;
 
 
             //Werte sammeln + ggf. Konvertierungen und Plausiprüfungen
@@ -3147,6 +3155,9 @@ namespace Stempelurhadmintest
             new_aktiv = false;
             if (comboBox_Personen_Aktiv.Text == "1") { new_aktiv = true; }
 
+            new_details = false;
+            if (comboBox_Personen_Details.Text == "1") { new_details = true; }
+
             new_stempelfehler = false;
             if (comboBox_Personen_Stempelfehler.Text == "1") { new_stempelfehler = true; }
 
@@ -3177,6 +3188,7 @@ namespace Stempelurhadmintest
                                             "resturlaub_vorjahr=@resturlaub_vorjahr, " +
                                             "stempelfehler=@stempelfehler, " +
                                             "aktiv=@aktiv " +
+                                            "detailanzeige_erlaubt=@details " +
                                         "WHERE userid = @userid";
 
                     comm.Parameters.Add("@currenttask", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = new_currenttask;
@@ -3203,6 +3215,7 @@ namespace Stempelurhadmintest
                     comm.Parameters["@resturlaub_vorjahr"].Value = new_resturlaub_vorjahr;
                     comm.Parameters.Add("@stempelfehler", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_stempelfehler;
                     comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
+                    comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_details;
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
 
                     //veränderte Daten loggen für nachvollziehbarkeit.
@@ -3213,6 +3226,7 @@ namespace Stempelurhadmintest
                         "\r\n Urlaubsjahr:'" + textBox_Personen_AktUrlaubsjahr_old.Text + "'->'" + textBox_Personen_AktUrlaubsjahr.Text + "' " +
                         "\r\n Resturlaub_Vorjahr:'" + textBox_Personen_ResturlaubVorjahr_old.Text + "'->'" + textBox_Personen_ResturlaubVorjahr.Text + "' " +
                         "\r\n Aktiv:'" + comboBox_Personen_Aktiv_old.Text + "'->'" + comboBox_Personen_Aktiv.Text + "' " +
+                        "\r\n Detailanzeige:'" + comboBox_Personen_Details_old.Text + "'->'" + comboBox_Personen_Details.Text + "' " +
                         "\r\n Currenttask:'" + textBox_Personen_AktAuftrag_old.Text + "'->'" + textBox_Personen_AktAuftrag.Text + "' " +
                         "\r\n Zeitkonto:'" + textBox_Personen_Zeitkonto_old.Text + "'->'" + textBox_Personen_Zeitkonto.Text + "' " +
                         "\r\n Zeitkonto_Berechnungsstand:'" + textBox_Personen_ZeitkontoBerechnungsstand_old.Text + "'->'" + textBox_Personen_ZeitkontoBerechnungsstand.Text + "' " +
@@ -3294,6 +3308,22 @@ namespace Stempelurhadmintest
             else
             {
                 comboBox_Personen_Aktiv.BackColor = Color.Gold;
+            }
+            //fokus von der combobox nehmen, damit man die goldene markierung sehen kann
+            this.ActiveControl = null;
+
+            pruefeFelderAufVeränderungen();
+        }
+
+        private void comboBox_Personen_Details_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Personen_Details.Text == comboBox_Personen_Details_old.Text)
+            {
+                comboBox_Personen_Details.BackColor = Color.White;
+            }
+            else
+            {
+                comboBox_Personen_Details.BackColor = Color.Gold;
             }
             //fokus von der combobox nehmen, damit man die goldene markierung sehen kann
             this.ActiveControl = null;
@@ -3654,6 +3684,7 @@ namespace Stempelurhadmintest
                (textBox_Personen_Nachname.BackColor == Color.Gold) ||
                (textBox_Personen_Urlaubstage.BackColor == Color.Gold) ||
                (comboBox_Personen_Aktiv.BackColor == Color.Gold) ||
+               (comboBox_Personen_Details.BackColor == Color.Gold) ||
                (textBox_Personen_AktAuftrag.BackColor == Color.Gold) ||
                (textBox_Personen_Zeitkonto.BackColor == Color.Gold) ||
                (textBox_Personen_ZeitkontoBerechnungsstand.BackColor == Color.Gold) ||

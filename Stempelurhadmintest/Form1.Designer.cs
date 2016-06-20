@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -225,6 +225,10 @@
             this.button_Login_Enter = new System.Windows.Forms.Button();
             this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.comboBox_Personen_Details = new System.Windows.Forms.ComboBox();
+            this.comboBox_Personen_Details_old = new System.Windows.Forms.ComboBox();
+            this.label55 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -268,14 +272,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -2210,14 +2214,18 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label55);
             this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Controls.Add(this.label27);
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.comboBox_Personen_Details_old);
             this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv_old);
+            this.groupBox5.Controls.Add(this.comboBox_Personen_Details);
             this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage);
+            this.groupBox5.Controls.Add(this.label54);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname);
@@ -2228,7 +2236,7 @@
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Location = new System.Drawing.Point(8, 41);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(390, 167);
+            this.groupBox5.Size = new System.Drawing.Size(390, 172);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
@@ -2236,7 +2244,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(242, 133);
+            this.label28.Location = new System.Drawing.Point(242, 110);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(19, 13);
             this.label28.TabIndex = 8;
@@ -2245,7 +2253,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(242, 99);
+            this.label27.Location = new System.Drawing.Point(242, 81);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(19, 13);
             this.label27.TabIndex = 8;
@@ -2254,7 +2262,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(242, 63);
+            this.label26.Location = new System.Drawing.Point(242, 52);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(19, 13);
             this.label26.TabIndex = 8;
@@ -2263,7 +2271,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(242, 25);
+            this.label8.Location = new System.Drawing.Point(242, 21);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(19, 13);
             this.label8.TabIndex = 8;
@@ -2279,7 +2287,7 @@
             this.comboBox_Personen_Aktiv_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(132, 125);
+            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(132, 102);
             this.comboBox_Personen_Aktiv_old.Name = "comboBox_Personen_Aktiv_old";
             this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Aktiv_old.TabIndex = 7;
@@ -2294,7 +2302,7 @@
             this.comboBox_Personen_Aktiv.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(272, 125);
+            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(272, 102);
             this.comboBox_Personen_Aktiv.Name = "comboBox_Personen_Aktiv";
             this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Aktiv.TabIndex = 4;
@@ -2304,7 +2312,7 @@
             // 
             this.textBox_Personen_Urlaubstage_old.Enabled = false;
             this.textBox_Personen_Urlaubstage_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Urlaubstage_old.Location = new System.Drawing.Point(132, 91);
+            this.textBox_Personen_Urlaubstage_old.Location = new System.Drawing.Point(132, 73);
             this.textBox_Personen_Urlaubstage_old.MaxLength = 10;
             this.textBox_Personen_Urlaubstage_old.Name = "textBox_Personen_Urlaubstage_old";
             this.textBox_Personen_Urlaubstage_old.Size = new System.Drawing.Size(100, 26);
@@ -2314,7 +2322,7 @@
             // textBox_Personen_Urlaubstage
             // 
             this.textBox_Personen_Urlaubstage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(272, 91);
+            this.textBox_Personen_Urlaubstage.Location = new System.Drawing.Point(272, 73);
             this.textBox_Personen_Urlaubstage.MaxLength = 10;
             this.textBox_Personen_Urlaubstage.Name = "textBox_Personen_Urlaubstage";
             this.textBox_Personen_Urlaubstage.Size = new System.Drawing.Size(100, 26);
@@ -2324,7 +2332,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 133);
+            this.label1.Location = new System.Drawing.Point(12, 110);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -2334,7 +2342,7 @@
             // 
             this.textBox_Personen_Nachname_old.Enabled = false;
             this.textBox_Personen_Nachname_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Nachname_old.Location = new System.Drawing.Point(132, 55);
+            this.textBox_Personen_Nachname_old.Location = new System.Drawing.Point(132, 44);
             this.textBox_Personen_Nachname_old.MaxLength = 30;
             this.textBox_Personen_Nachname_old.Name = "textBox_Personen_Nachname_old";
             this.textBox_Personen_Nachname_old.Size = new System.Drawing.Size(100, 26);
@@ -2344,7 +2352,7 @@
             // textBox_Personen_Nachname
             // 
             this.textBox_Personen_Nachname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(272, 55);
+            this.textBox_Personen_Nachname.Location = new System.Drawing.Point(272, 44);
             this.textBox_Personen_Nachname.MaxLength = 30;
             this.textBox_Personen_Nachname.Name = "textBox_Personen_Nachname";
             this.textBox_Personen_Nachname.Size = new System.Drawing.Size(100, 26);
@@ -2354,7 +2362,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 99);
+            this.label11.Location = new System.Drawing.Point(12, 81);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(87, 13);
             this.label11.TabIndex = 0;
@@ -2364,7 +2372,7 @@
             // 
             this.textBox_Personen_Vorname_old.Enabled = false;
             this.textBox_Personen_Vorname_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Vorname_old.Location = new System.Drawing.Point(132, 19);
+            this.textBox_Personen_Vorname_old.Location = new System.Drawing.Point(132, 15);
             this.textBox_Personen_Vorname_old.MaxLength = 30;
             this.textBox_Personen_Vorname_old.Name = "textBox_Personen_Vorname_old";
             this.textBox_Personen_Vorname_old.Size = new System.Drawing.Size(100, 26);
@@ -2374,7 +2382,7 @@
             // textBox_Personen_Vorname
             // 
             this.textBox_Personen_Vorname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(272, 19);
+            this.textBox_Personen_Vorname.Location = new System.Drawing.Point(272, 15);
             this.textBox_Personen_Vorname.MaxLength = 30;
             this.textBox_Personen_Vorname.Name = "textBox_Personen_Vorname";
             this.textBox_Personen_Vorname.Size = new System.Drawing.Size(100, 26);
@@ -2384,7 +2392,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 60);
+            this.label10.Location = new System.Drawing.Point(12, 49);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 13);
             this.label10.TabIndex = 0;
@@ -2393,7 +2401,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 27);
+            this.label9.Location = new System.Drawing.Point(12, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 13);
             this.label9.TabIndex = 0;
@@ -2458,6 +2466,55 @@
             this.label46.Size = new System.Drawing.Size(130, 13);
             this.label46.TabIndex = 2;
             this.label46.Text = "Bitte Passwort eingeben...";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(12, 140);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(71, 13);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Detailanzeige";
+            // 
+            // comboBox_Personen_Details
+            // 
+            this.comboBox_Personen_Details.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Personen_Details.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Personen_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Personen_Details.FormattingEnabled = true;
+            this.comboBox_Personen_Details.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Details.Location = new System.Drawing.Point(272, 132);
+            this.comboBox_Personen_Details.Name = "comboBox_Personen_Details";
+            this.comboBox_Personen_Details.Size = new System.Drawing.Size(100, 28);
+            this.comboBox_Personen_Details.TabIndex = 4;
+            this.comboBox_Personen_Details.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Aktiv_SelectedIndexChanged);
+            // 
+            // comboBox_Personen_Details_old
+            // 
+            this.comboBox_Personen_Details_old.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Personen_Details_old.Enabled = false;
+            this.comboBox_Personen_Details_old.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Personen_Details_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Personen_Details_old.FormattingEnabled = true;
+            this.comboBox_Personen_Details_old.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Details_old.Location = new System.Drawing.Point(132, 132);
+            this.comboBox_Personen_Details_old.Name = "comboBox_Personen_Details_old";
+            this.comboBox_Personen_Details_old.Size = new System.Drawing.Size(100, 28);
+            this.comboBox_Personen_Details_old.TabIndex = 7;
+            this.comboBox_Personen_Details_old.TabStop = false;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(242, 140);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(19, 13);
+            this.label55.TabIndex = 8;
+            this.label55.Text = "-->";
             // 
             // Form1
             // 
@@ -2708,6 +2765,10 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox textBox_Login_Password;
         private System.Windows.Forms.Button button_Login_Enter;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Details_old;
+        private System.Windows.Forms.ComboBox comboBox_Personen_Details;
+        private System.Windows.Forms.Label label54;
     }
 }
 
