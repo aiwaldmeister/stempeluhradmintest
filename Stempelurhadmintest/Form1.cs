@@ -144,7 +144,7 @@ namespace Stempelurhadmintest
             if (getHashSha256(textBox_Login_Password.Text) == expectedhash)
             {
                 //login erfolgreich -> loginpanel ausblenden, tabcontrol einblenden
-                log("Login erfolgreich...")
+                log("Login erfolgreich...");
 
                 panel_Login.Enabled = false;
                 panel_Login.Visible = false;
