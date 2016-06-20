@@ -3187,7 +3187,7 @@ namespace Stempelurhadmintest
                                             "akt_urlaubsjahr=@akt_urlaubsjahr, " +
                                             "resturlaub_vorjahr=@resturlaub_vorjahr, " +
                                             "stempelfehler=@stempelfehler, " +
-                                            "aktiv=@aktiv " +
+                                            "aktiv=@aktiv, " +
                                             "detailanzeige_erlaubt=@details " +
                                         "WHERE userid = @userid";
 
@@ -3215,7 +3215,7 @@ namespace Stempelurhadmintest
                     comm.Parameters["@resturlaub_vorjahr"].Value = new_resturlaub_vorjahr;
                     comm.Parameters.Add("@stempelfehler", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_stempelfehler;
                     comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
-                    comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_details;
+                    comm.Parameters.Add("@details", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_details;
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = userid;
 
                     //veränderte Daten loggen für nachvollziehbarkeit.
