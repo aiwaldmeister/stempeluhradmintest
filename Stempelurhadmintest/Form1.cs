@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Configuration;     //Zum lesen der Config-File
 using MySql.Data;               //der MySql-Connector
 using System.IO;                //zum schreiben der Logfiles
+using System.Security.Cryptography;
 
 namespace Stempelurhadmintest
 {
@@ -59,6 +60,8 @@ namespace Stempelurhadmintest
             refreshPersonPicker_Kalender();
             refreshEreignisgrid_Kalender();
             kalendertab_initialisiert_global = true;
+
+            textBox_Login_Password.Focus();
             
 
         }
@@ -132,6 +135,45 @@ namespace Stempelurhadmintest
                 file.WriteLine(DateTime.Now.ToLongTimeString() + ": " + text);
             }
             Console.WriteLine("Log: " + DateTime.Now.ToLongTimeString() + ": " + text);
+        }
+
+        private void button_Login_Enter_Click(object sender, EventArgs e)
+        {
+            string expectedhash = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08";
+
+            if (getHashSha256(textBox_Login_Password.Text) == expectedhash)
+            {
+                //login erfolgreich -> loginpanel ausblenden, tabcontrol einblenden
+                log("Login erfolgreich...")
+
+                panel_Login.Enabled = false;
+                panel_Login.Visible = false;
+                tabControl1.Visible = true;
+                tabControl1.Enabled = true;
+
+            }
+            else
+            {
+                MessageBox.Show("Ungültiges Passwort!");
+                log("PW-Falscheingabe...");
+                //log("Hash:" + getHashSha256(textBox_Login_Password.Text));  //anzeige des hashs der eingabe (testzwecke)
+                textBox_Login_Password.Text = "";
+                textBox_Login_Password.Focus();
+            }
+
+        }
+
+        public static string getHashSha256(string text)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(text);
+            SHA256Managed hashstring = new SHA256Managed();
+            byte[] hash = hashstring.ComputeHash(bytes);
+            string hashString = string.Empty;
+            foreach (byte x in hash)
+            {
+                hashString += String.Format("{0:x2}", x);
+            }
+            return hashString;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -671,6 +713,8 @@ namespace Stempelurhadmintest
 
             return ergebnis;
         }
+
+
         
 
         ///////////Kalender-Tab////////////////////////////////////////////////
@@ -3193,6 +3237,7 @@ namespace Stempelurhadmintest
                     stempelungstab_initialisiert_global = false;
                     auswertungstab_initialisiert_global = false;
                     verrechnungstab_initialisiert_global = false;
+                    bonustab_initialisiert_global = false;
 
                 }
             }
@@ -3556,8 +3601,11 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Der Zeitkontostand wurde bis " + ZielDatum.ToShortDateString() + " berechnet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 refreshUpdateFormular_Personen();
-                personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
+                //personentab_initialisiert_global = false; //systemdaten einer person haben sich geändert
                 kalendertab_initialisiert_global = false;
+                bonustab_initialisiert_global = false;
+                stempelungstab_initialisiert_global = false;
+                verrechnungstab_initialisiert_global = false;
             }
             
         }
@@ -3581,6 +3629,10 @@ namespace Stempelurhadmintest
             ZeitkontoRueckrechnen(userid, zieljahr, zielmonat, zieltag);
 
             refreshUpdateFormular_Personen();
+            kalendertab_initialisiert_global = false;
+            bonustab_initialisiert_global = false;
+            stempelungstab_initialisiert_global = false;
+            verrechnungstab_initialisiert_global = false;
         }
 
         private void textBox_Personen_Neu_WunschID_TextChanged(object sender, EventArgs e)
@@ -3962,6 +4014,7 @@ namespace Stempelurhadmintest
             button_Bonus_ShowGroupbox_Neu.Visible = false;
             groupBox_Bonus_neu.Visible = true;
         }
+
 
         ///////////////////////////////////////////////////////////////////////
 

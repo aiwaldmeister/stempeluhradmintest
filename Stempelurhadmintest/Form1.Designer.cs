@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -221,6 +221,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
             this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.panel_Login = new System.Windows.Forms.Panel();
+            this.button_Login_Enter = new System.Windows.Forms.Button();
+            this.textBox_Login_Password = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -244,6 +248,7 @@
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.panel_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -263,14 +268,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle8;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -386,11 +391,13 @@
             this.tabControl1.Controls.Add(this.Stempelungen);
             this.tabControl1.Controls.Add(this.Personen);
             this.tabControl1.Controls.Add(this.Auswertungen);
+            this.tabControl1.Enabled = false;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(830, 585);
             this.tabControl1.TabIndex = 5;
+            this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // Kalender
@@ -2415,13 +2422,53 @@
             this.Auswertungen.Text = "Auswertungen";
             this.Auswertungen.UseVisualStyleBackColor = true;
             // 
+            // panel_Login
+            // 
+            this.panel_Login.Controls.Add(this.label46);
+            this.panel_Login.Controls.Add(this.textBox_Login_Password);
+            this.panel_Login.Controls.Add(this.button_Login_Enter);
+            this.panel_Login.Location = new System.Drawing.Point(334, 225);
+            this.panel_Login.Name = "panel_Login";
+            this.panel_Login.Size = new System.Drawing.Size(149, 91);
+            this.panel_Login.TabIndex = 6;
+            // 
+            // button_Login_Enter
+            // 
+            this.button_Login_Enter.Location = new System.Drawing.Point(3, 51);
+            this.button_Login_Enter.Name = "button_Login_Enter";
+            this.button_Login_Enter.Size = new System.Drawing.Size(141, 25);
+            this.button_Login_Enter.TabIndex = 0;
+            this.button_Login_Enter.Text = "Einloggen";
+            this.button_Login_Enter.UseVisualStyleBackColor = true;
+            this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
+            // 
+            // textBox_Login_Password
+            // 
+            this.textBox_Login_Password.Location = new System.Drawing.Point(3, 25);
+            this.textBox_Login_Password.Name = "textBox_Login_Password";
+            this.textBox_Login_Password.Size = new System.Drawing.Size(140, 20);
+            this.textBox_Login_Password.TabIndex = 1;
+            this.textBox_Login_Password.UseSystemPasswordChar = true;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(4, 7);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(130, 13);
+            this.label46.TabIndex = 2;
+            this.label46.Text = "Bitte Passwort eingeben...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 584);
+            this.ClientSize = new System.Drawing.Size(828, 583);
+            this.Controls.Add(this.panel_Login);
             this.Controls.Add(this.tabControl1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2460,6 +2507,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.panel_Login.ResumeLayout(false);
+            this.panel_Login.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2655,6 +2704,10 @@
         private System.Windows.Forms.ImageList myiconlist;
         private System.Windows.Forms.Label label_Bonus_Hinweis;
         private System.Windows.Forms.Button button_Bonus_ShowGroupbox_Neu;
+        private System.Windows.Forms.Panel panel_Login;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox textBox_Login_Password;
+        private System.Windows.Forms.Button button_Login_Enter;
     }
 }
 
