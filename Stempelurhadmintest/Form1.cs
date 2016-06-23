@@ -847,7 +847,7 @@ namespace Stempelurhadmintest
             {
                 for (int actcol = 0; actcol < 7; actcol++)
                 {
-                    KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.ForeColor = Color.Black;
+                    KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.Font = new Font(KalenderGrid_Kalender.Rows[actrow].Cells[actcol].InheritedStyle.Font, FontStyle.Regular); //Markierung des evtl vorher heutigen Tages entfernen
                     if ((actrow == 0 && actcol + 1 < Wochentagdesersten) || i > DateTime.DaysInMonth(Betrachtungsjahr,Betrachtungsmonat))
                     {
                         KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value = "";
@@ -863,8 +863,8 @@ namespace Stempelurhadmintest
                         }
 
                         if (Betrachtungsjahr == DateTime.Now.Year && Betrachtungsmonat == DateTime.Now.Month && i == DateTime.Now.Day)
-                        {//die Zelle entspricht dem heutigen Tag
-                            KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.ForeColor = Color.Magenta;
+                        {//die Zelle entspricht dem heutigen Tag -> fett machen
+                            KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.Font = new Font(KalenderGrid_Kalender.Rows[actrow].Cells[actcol].InheritedStyle.Font, FontStyle.Bold);
                         }
 
                         i++;
