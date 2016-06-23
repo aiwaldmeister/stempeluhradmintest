@@ -38,7 +38,6 @@ namespace Stempelurhadmintest
 
         //TODO: Bonustab wird nicht richtig aktualisiert, wenn verrechnungen verändert werden
         //TODO: Anlegen neuer Personen aktualisiert die Personpicker nicht
-        //TODO: Kalendergrid soll auch bei einzelnem Mitarbeiter die allgemeinen events zeigen
         //TODO: Beim eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
         //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
         //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
@@ -769,10 +768,10 @@ namespace Stempelurhadmintest
                                 " FROM kalender left join user on kalender.zuordnung = user.userid" +
                                 " where jahr=@jahr AND monat=@monat AND storniert = 0";
 
-            //Bei allgemein, alles anzeigen... sonst nur die der gewählten person zugeordneten.
+            //Bei allgemein, alle events von jedem anzeigen... sonst nur die der gewählten person zugeordneten und die allgemeinen.
             if(zuordnung != "Allgemein")
             {
-                comm.CommandText = comm.CommandText + " AND zuordnung=@zuordnung";
+                comm.CommandText = comm.CommandText + " AND (zuordnung=@zuordnung OR zuordnung='Allgemein') ";
                 comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = zuordnung;
             }
             
