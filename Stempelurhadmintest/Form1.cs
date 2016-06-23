@@ -3851,25 +3851,34 @@ namespace Stempelurhadmintest
                 { //mitarbeiter ist garnicht eingestempelt
                     thisstatus = "Abwesend";
                     thiszeitbisherstring = "---";
+                    thistask = "---";
+                    Statusgrid_Status.Rows[row].DefaultCellStyle.BackColor = Color.LightGray;
                 }
                 else if(thistask == "888000")
                 { //Leerlauf-Code
                     thisstatus = "Leerlauf";
+                    thistask = "---";
                     thiszeitbisherstring = "---";
+                    Statusgrid_Status.Rows[row].DefaultCellStyle.BackColor = Color.Gold;
+
                 }
                 else if (thistask == "888001")
                 { //Pausen-Code
                     thisstatus = "Pause";
+                    thistask = "---";
                     thiszeitbisherstring = "---";
+                    Statusgrid_Status.Rows[row].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
                 }
                 else
                 { //weder nix, noch pause noch leerlauf -> sollte dann ein ganz normaler Auftrag sein -> bisherige Zeit ermitteln...
                     thisstatus = "an Auftrag";
                     thiszeitbisherdouble = berechne_Zeit_auf_laufendem_Auftrag(thisuser, thistask);
                     thiszeitbisherstring = thiszeitbisherdouble.ToString() + " Std";
+                    Statusgrid_Status.Rows[row].DefaultCellStyle.BackColor = Color.LightSkyBlue;
                 }
 
                 Statusgrid_Status.Rows[row].Cells[2].Value = thisstatus;
+                Statusgrid_Status.Rows[row].Cells[3].Value = thistask;
                 Statusgrid_Status.Rows[row].Cells[4].Value = thiszeitbisherstring;
                 
             }
@@ -3878,10 +3887,13 @@ namespace Stempelurhadmintest
             Statusgrid_Status.ClearSelection();
         }
 
+        private void button_Status_Aktualisieren_Click(object sender, EventArgs e)
+        {
+            refreshStatusgrid_Status();
+        }
+
         private double berechne_Zeit_auf_laufendem_Auftrag(string user, string task)
         {
-            //TODO etwas an der Berechnung stimmt wohl noch nicht... vermutlich wird beim teilen durch hundert der kommateil verschlampt
-
             log("Berechne bisherige Zeit von Mitarbeiter" + user + " auf laufendem Auftrag " + task + ".");
             int summe_abstempelungen = 0;
             int summe_anstempelungen = 0;
@@ -3931,7 +3943,7 @@ namespace Stempelurhadmintest
                 log(ex.Message);
             }
             close_db();
-            ergebnis = (summe_abstempelungen - summe_anstempelungen) / 100;
+            ergebnis = (double)(summe_abstempelungen - summe_anstempelungen) / 100;
                  
             log("Ermittelte Zeit bisher von " + user  + " auf laufendem Auftrag " + task + ": " + ergebnis + " Std.");
 
@@ -4292,7 +4304,9 @@ namespace Stempelurhadmintest
             groupBox_Bonus_neu.Visible = true;
         }
 
-        
+
+
+
         ///////////////////////////////////////////////////////////////////////
 
     }
