@@ -39,9 +39,7 @@ namespace Stempelurhadmintest
         //TODO: Beim Eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
         //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
         //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
-        //TODO: Zeitkonto rückrechnung/aktualisierung... Hinweis einfügen dass es etwas dauern kann.
-
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -308,6 +306,7 @@ namespace Stempelurhadmintest
 
         private void ZeitkontoRueckrechnen(string userid, int zieljahr, int zielmonat, int zieltag)
         {
+            MessageBox.Show("Der Zeitkontostand wird jetzt zürückgerechnet.\r\n\r\nDas kann je nach Zeitspanne etwas dauern.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             bool fehler = false;
 
@@ -3553,6 +3552,9 @@ namespace Stempelurhadmintest
 
         private void button_Personen_ZeitkontoAktualisieren_Click(object sender, EventArgs e)
         {
+
+            MessageBox.Show("Der Zeitkontostand wird jetzt aktualisiert.\r\n\r\nDas kann je nach Zeitspanne etwas dauern.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             //Zeitkontostand tag für tag berechnen bis er aktuell ist
             bool fehler = false;
 
