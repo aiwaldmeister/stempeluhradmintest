@@ -35,6 +35,20 @@ namespace Stempelurhadmintest
         bool kalendertab_initialisiert_global = false;
         bool bonustab_initialisiert_global = false;
 
+        //TODO: Passwortfeld braucht Focus am Anfang
+        //TODO: Passwortfeld braucht Focus bei Fehleingabe
+        //TODO: Passwort sollte mit Enter bestätigbar sein
+        //TODO: Tagesmarkierung wird nicht aus der zelle entfernt beim monatswechsel
+        //TODO: Bonustab wird nicht richtig aktualisiert, wenn verrechnungen verändert werden
+        //TODO: Anlegen neuer Personen aktualisiert die Personpicker nicht
+        //TODO: Tippfehler in einer Fehlermeldung (vermutlich verrechnungstab oder kalendertab)
+        //TODO: Kalendergrid soll auch bei einzelnem Mitarbeiter die allgemeinen events zeigen
+        //TODO: Beim eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
+        //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
+        //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
+        //TODO: Zeitkonto rückrechnung/aktualisierung... Hinweis einfügen dass es etwas dauern kann.
+
+
         public Form1()
         {
             InitializeComponent();
