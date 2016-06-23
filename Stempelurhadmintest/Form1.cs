@@ -35,9 +35,7 @@ namespace Stempelurhadmintest
         bool kalendertab_initialisiert_global = false;
         bool bonustab_initialisiert_global = false;
 
-        //TODO: Passwortfeld braucht Focus am Anfang
-        //TODO: Passwortfeld braucht Focus bei Fehleingabe
-        //TODO: Passwort sollte mit Enter bestätigbar sein
+
         //TODO: Tagesmarkierung wird nicht aus der zelle entfernt beim monatswechsel
         //TODO: Bonustab wird nicht richtig aktualisiert, wenn verrechnungen verändert werden
         //TODO: Anlegen neuer Personen aktualisiert die Personpicker nicht
@@ -997,7 +995,7 @@ namespace Stempelurhadmintest
                     MessageBox.Show("Die Aktion betrifft den " + testdatum_DateTime.ToShortDateString() + ". " +
                         "Der Zeitkontostand dieses Mitarbeiters wurde jedoch bereits bis einschliesslich "
                         + zeitkontostand_DateTime.ToShortDateString() + " berechnet.\r\n\r\n" +
-                        "Um Ereignisse dieses Mitarbeiters für diesen Tag erstelle oder stornieren zu können muss sein Zeitkonto " +
+                        "Um Ereignisse dieses Mitarbeiters für diesen Tag erstellen oder stornieren zu können muss sein Zeitkonto " +
                         " auf einem früheren Berechnungsstand als " + testdatum_DateTime.ToShortDateString() + " sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
