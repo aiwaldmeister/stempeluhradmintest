@@ -80,6 +80,11 @@ namespace Stempelurhadmintest
 
         }
 
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            textBox_Login_Password.Focus();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             log("Programm wird beendet.......................................................................");
@@ -151,6 +156,14 @@ namespace Stempelurhadmintest
             Console.WriteLine("Log: " + DateTime.Now.ToLongTimeString() + ": " + text);
         }
 
+        private void textBox_Login_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_Login_Enter_Click(this, new EventArgs());
+            }
+        }
+        
         private void button_Login_Enter_Click(object sender, EventArgs e)
         {
             string expectedhash = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08";
@@ -169,8 +182,7 @@ namespace Stempelurhadmintest
             else
             {
                 MessageBox.Show("Ungültiges Passwort!");
-                log("PW-Falscheingabe...");
-                //log("Hash:" + getHashSha256(textBox_Login_Password.Text));  //anzeige des hashs der eingabe (testzwecke)
+                log("PW-Falscheingabe... (Hash:" + getHashSha256(textBox_Login_Password.Text) + ")");  //anzeige des hashs der eingabe (testzwecke)
                 textBox_Login_Password.Text = "";
                 textBox_Login_Password.Focus();
             }
@@ -4060,7 +4072,7 @@ namespace Stempelurhadmintest
             groupBox_Bonus_neu.Visible = true;
         }
 
-
+        
         ///////////////////////////////////////////////////////////////////////
 
     }

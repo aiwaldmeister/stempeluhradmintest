@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,14 +203,18 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label55 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_Personen_Details_old = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Aktiv_old = new System.Windows.Forms.ComboBox();
+            this.comboBox_Personen_Details = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
             this.textBox_Personen_Urlaubstage_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Personen_Nachname_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
@@ -222,13 +226,9 @@
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
             this.Auswertungen = new System.Windows.Forms.TabPage();
             this.panel_Login = new System.Windows.Forms.Panel();
-            this.button_Login_Enter = new System.Windows.Forms.Button();
-            this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.comboBox_Personen_Details = new System.Windows.Forms.ComboBox();
-            this.comboBox_Personen_Details_old = new System.Windows.Forms.ComboBox();
-            this.label55 = new System.Windows.Forms.Label();
+            this.textBox_Login_Password = new System.Windows.Forms.TextBox();
+            this.button_Login_Enter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -272,14 +272,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -2241,6 +2241,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
             // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(242, 140);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(19, 13);
+            this.label55.TabIndex = 8;
+            this.label55.Text = "-->";
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -2277,6 +2286,22 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "-->";
             // 
+            // comboBox_Personen_Details_old
+            // 
+            this.comboBox_Personen_Details_old.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Personen_Details_old.Enabled = false;
+            this.comboBox_Personen_Details_old.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Personen_Details_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Personen_Details_old.FormattingEnabled = true;
+            this.comboBox_Personen_Details_old.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Details_old.Location = new System.Drawing.Point(132, 132);
+            this.comboBox_Personen_Details_old.Name = "comboBox_Personen_Details_old";
+            this.comboBox_Personen_Details_old.Size = new System.Drawing.Size(100, 28);
+            this.comboBox_Personen_Details_old.TabIndex = 7;
+            this.comboBox_Personen_Details_old.TabStop = false;
+            // 
             // comboBox_Personen_Aktiv_old
             // 
             this.comboBox_Personen_Aktiv_old.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -2292,6 +2317,21 @@
             this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Aktiv_old.TabIndex = 7;
             this.comboBox_Personen_Aktiv_old.TabStop = false;
+            // 
+            // comboBox_Personen_Details
+            // 
+            this.comboBox_Personen_Details.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Personen_Details.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Personen_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Personen_Details.FormattingEnabled = true;
+            this.comboBox_Personen_Details.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.comboBox_Personen_Details.Location = new System.Drawing.Point(272, 132);
+            this.comboBox_Personen_Details.Name = "comboBox_Personen_Details";
+            this.comboBox_Personen_Details.Size = new System.Drawing.Size(100, 28);
+            this.comboBox_Personen_Details.TabIndex = 4;
+            this.comboBox_Personen_Details.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Details_SelectedIndexChanged);
             // 
             // comboBox_Personen_Aktiv
             // 
@@ -2328,6 +2368,15 @@
             this.textBox_Personen_Urlaubstage.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Urlaubstage.TabIndex = 3;
             this.textBox_Personen_Urlaubstage.TextChanged += new System.EventHandler(this.textBox_Personen_Urlaubstage_TextChanged);
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(12, 140);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(71, 13);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Detailanzeige";
             // 
             // label1
             // 
@@ -2440,24 +2489,6 @@
             this.panel_Login.Size = new System.Drawing.Size(149, 91);
             this.panel_Login.TabIndex = 6;
             // 
-            // button_Login_Enter
-            // 
-            this.button_Login_Enter.Location = new System.Drawing.Point(3, 51);
-            this.button_Login_Enter.Name = "button_Login_Enter";
-            this.button_Login_Enter.Size = new System.Drawing.Size(141, 25);
-            this.button_Login_Enter.TabIndex = 0;
-            this.button_Login_Enter.Text = "Einloggen";
-            this.button_Login_Enter.UseVisualStyleBackColor = true;
-            this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
-            // 
-            // textBox_Login_Password
-            // 
-            this.textBox_Login_Password.Location = new System.Drawing.Point(3, 25);
-            this.textBox_Login_Password.Name = "textBox_Login_Password";
-            this.textBox_Login_Password.Size = new System.Drawing.Size(140, 20);
-            this.textBox_Login_Password.TabIndex = 1;
-            this.textBox_Login_Password.UseSystemPasswordChar = true;
-            // 
             // label46
             // 
             this.label46.AutoSize = true;
@@ -2467,54 +2498,24 @@
             this.label46.TabIndex = 2;
             this.label46.Text = "Bitte Passwort eingeben...";
             // 
-            // label54
+            // textBox_Login_Password
             // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(12, 140);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(71, 13);
-            this.label54.TabIndex = 0;
-            this.label54.Text = "Detailanzeige";
+            this.textBox_Login_Password.Location = new System.Drawing.Point(3, 25);
+            this.textBox_Login_Password.Name = "textBox_Login_Password";
+            this.textBox_Login_Password.Size = new System.Drawing.Size(140, 20);
+            this.textBox_Login_Password.TabIndex = 1;
+            this.textBox_Login_Password.UseSystemPasswordChar = true;
+            this.textBox_Login_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Login_Password_KeyDown);
             // 
-            // comboBox_Personen_Details
+            // button_Login_Enter
             // 
-            this.comboBox_Personen_Details.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Personen_Details.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox_Personen_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox_Personen_Details.FormattingEnabled = true;
-            this.comboBox_Personen_Details.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.comboBox_Personen_Details.Location = new System.Drawing.Point(272, 132);
-            this.comboBox_Personen_Details.Name = "comboBox_Personen_Details";
-            this.comboBox_Personen_Details.Size = new System.Drawing.Size(100, 28);
-            this.comboBox_Personen_Details.TabIndex = 4;
-            this.comboBox_Personen_Details.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Details_SelectedIndexChanged);
-            // 
-            // comboBox_Personen_Details_old
-            // 
-            this.comboBox_Personen_Details_old.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Personen_Details_old.Enabled = false;
-            this.comboBox_Personen_Details_old.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox_Personen_Details_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox_Personen_Details_old.FormattingEnabled = true;
-            this.comboBox_Personen_Details_old.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.comboBox_Personen_Details_old.Location = new System.Drawing.Point(132, 132);
-            this.comboBox_Personen_Details_old.Name = "comboBox_Personen_Details_old";
-            this.comboBox_Personen_Details_old.Size = new System.Drawing.Size(100, 28);
-            this.comboBox_Personen_Details_old.TabIndex = 7;
-            this.comboBox_Personen_Details_old.TabStop = false;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(242, 140);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(19, 13);
-            this.label55.TabIndex = 8;
-            this.label55.Text = "-->";
+            this.button_Login_Enter.Location = new System.Drawing.Point(3, 51);
+            this.button_Login_Enter.Name = "button_Login_Enter";
+            this.button_Login_Enter.Size = new System.Drawing.Size(141, 25);
+            this.button_Login_Enter.TabIndex = 0;
+            this.button_Login_Enter.Text = "Einloggen";
+            this.button_Login_Enter.UseVisualStyleBackColor = true;
+            this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
             // 
             // Form1
             // 
@@ -2529,6 +2530,7 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Kalender.ResumeLayout(false);
