@@ -36,7 +36,6 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
 
 
-        //TODO: Beim Eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
         //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
         
         public Form1()
@@ -1221,6 +1220,55 @@ namespace Stempelurhadmintest
 
                 close_db();
             }
+
+            //prüfen ob es für ein allgemeines event schon ein persönliches am selben tag gibt, oder umgekehrt.... ggf darauf hinweisen.
+            if (fehler == false)
+            {
+                int count = -1;
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT count(*) FROM kalender WHERE jahr=@jahr AND monat=@monat AND tag=@tag AND storniert = 0";
+
+                if(input_zuordnung == 'Allgemein')
+                {
+                    comm.CommandText += " AND zuordnung!=@zuordnung";
+                }
+                else
+                {
+                    comm.CommandText += " AND zuordnung=@zuordnung";
+                }
+
+
+                comm.Parameters.Add("@zuordnung", MySql.Data.MySqlClient.MySqlDbType.VarChar, 9).Value = "Allgemein";
+                comm.Parameters.Add("@jahr", MySql.Data.MySqlClient.MySqlDbType.VarChar, 4).Value = input_jahr;
+                comm.Parameters.Add("@monat", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_monat;
+                comm.Parameters.Add("@tag", MySql.Data.MySqlClient.MySqlDbType.VarChar, 2).Value = input_tag;
+
+                try
+                {
+                    //log("SQL:" + comm.CommandText);
+                    count = Convert.ToInt32(comm.ExecuteScalar());
+                }
+                catch (Exception ex) { log(ex.Message); }
+
+                if (count != 0)
+                {
+                    if(input_zuordnung=="Allgemein")
+                    {
+                        MessageBox.Show("Hinweis!\r\n\r\nFür diesen Tag gibt es bei einem Mitarbeiter schon einen persönliches Kalendereintrag.\r\n" +
+                            "Für diesen Mitarbeiter hat der allgemeine Eintrag keine Wirkung solange es am gleichen Tag einen persönlichen Eintrag gibt.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hinweis!\r\n\r\nFür diesen Tag gibt es schon einen allgemeinen Kalendereintrag.\r\n" +
+                            "Der allgemeine Eintrag hat für diesen Mitarbeiter keine Wirkung, wenn er am gleichen Tag zusätzlich einen persönlichen Eintrag hat.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                   
+                }
+
+                close_db();
+            }
+
 
 
             //Kalendereintrag erstellen
