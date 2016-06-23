@@ -35,9 +35,6 @@ namespace Stempelurhadmintest
         bool kalendertab_initialisiert_global = false;
         bool bonustab_initialisiert_global = false;
 
-
-        //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
-        
         public Form1()
         {
             InitializeComponent();
@@ -3778,7 +3775,6 @@ namespace Stempelurhadmintest
         }
 
 
-
         ///////////Bonusberechnung/////////////////////////////////////////////
 
         private void refreshPersonPicker_Bonus()
@@ -3830,6 +3826,10 @@ namespace Stempelurhadmintest
 
         private void refreshFormular_Bonus()
         {
+            button_Bonus_ShowGroupbox_Neu.Enabled = true;
+            button_Bonus_ShowGroupbox_Neu.Visible = true;
+            groupBox_Bonus_neu.Visible = false;
+
             string userid = "";
             userid = PersonPicker_Bonus.Text;
             if(userid.Length >= 6)
@@ -3917,6 +3917,11 @@ namespace Stempelurhadmintest
                 label_Bonus_Neu_LetzterVollverrechneterTag.BackColor = Color.Transparent;
 
             }
+
+            //testen ob schon bis einschliesslich verrechnet wurde... dann mach neuberechnung garkeinen sinn -> Neuberechnungsbutton ausgrauen
+
+            button_Bonus_ShowGroupbox_Neu.Enabled = false;
+            
 
 
         }
