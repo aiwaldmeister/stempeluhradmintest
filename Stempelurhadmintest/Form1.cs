@@ -36,9 +36,7 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
 
 
-        //TODO: Bonustab wird nicht richtig aktualisiert, wenn verrechnungen verändert werden
-        //TODO: Anlegen neuer Personen aktualisiert die Personpicker nicht
-        //TODO: Beim eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
+        //TODO: Beim Eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
         //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
         //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
         //TODO: Zeitkonto rückrechnung/aktualisierung... Hinweis einfügen dass es etwas dauern kann.
@@ -2492,7 +2490,7 @@ namespace Stempelurhadmintest
                     //nach erfolgreichem anlegen des Verrechnungssatzes beide seiten aktualisieren
                     refreshInsertFormular_Verrechnung();
                     refreshUpdateFormular_Verrechnung();
-
+                    bonustab_initialisiert_global = false; //Hat auswirkungen auf Bonusberechnung -> Bonustab ggf. neu initialisieren
                 }
             }
         }
@@ -2620,6 +2618,7 @@ namespace Stempelurhadmintest
                     refreshAuftragsPicker_Verrechnung_Insert();
                     refreshUpdateFormular_Verrechnung();
                     refreshInsertFormular_Verrechnung();
+                    bonustab_initialisiert_global = false; //Hat auswirkungen auf Bonusberechnung -> Bonustab ggf. neu initialisieren
                 }
 
             }
@@ -2730,6 +2729,7 @@ namespace Stempelurhadmintest
                     refreshAuftragsPicker_Verrechnung_Insert();
                     refreshUpdateFormular_Verrechnung();
                     refreshInsertFormular_Verrechnung();
+                    bonustab_initialisiert_global = false; //Hat auswirkungen auf Bonusberechnung -> Bonustab ggf. neu initialisieren
                 }
 
             }
@@ -3055,6 +3055,7 @@ namespace Stempelurhadmintest
                     auswertungstab_initialisiert_global = false;
                     stempelungstab_initialisiert_global = false;
                     verrechnungstab_initialisiert_global = false;
+                    bonustab_initialisiert_global = false;
                 }
             }
         }
