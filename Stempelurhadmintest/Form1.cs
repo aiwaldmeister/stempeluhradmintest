@@ -37,7 +37,6 @@ namespace Stempelurhadmintest
 
 
         //TODO: Beim Eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
-        //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
         //TODO: Nachdem der Bonus berechnet wurde, Neuberechnungs-Funktion wieder verstecken (und knopf ausgrauen falls bis inkl gestern ausgezahlt)
         
         public Form1()
@@ -2148,6 +2147,9 @@ namespace Stempelurhadmintest
                         while (Reader.Read())
                         {
                             this_wartungscount = Reader["wartungscount"] + "";
+                            this_jahr = Reader["jahr"] + "";
+                            this_monat = Reader["monat"] + "";
+                            this_tag = Reader["tag"] + "";
 
                             if (this_wartungscount != "0")
                             {//unterschiedliche Anzahl an/ab stempelungen
