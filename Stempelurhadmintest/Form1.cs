@@ -3794,14 +3794,15 @@ namespace Stempelurhadmintest
             string thisvorname = "";
             string thistask = "";
             string thisstatus = "";
-            double thiszeitbisher = 0;
+            double thiszeitbisherdouble = 0;
+            string thiszeitbisherstring = "";
 
             //grid zuerst leeren, damit frisch befuellt werden kann
             Statusgrid_Status.Rows.Clear();
 
             open_db();
             comm.Parameters.Clear();
-            comm.CommandText = "SELECT userid, name, vorname, currenttask FROM user where aktiv = 1";
+            comm.CommandText = "SELECT userid, name, vorname, currenttask FROM user where aktiv = 1 ORDER BY name ASC";
 
             try
             {
@@ -3840,7 +3841,38 @@ namespace Stempelurhadmintest
             catch (Exception ex) { log(ex.Message); }
             close_db();
 
-            //TODO jede Zeile des Grids durchgehen, und jeweils den status und die bisherige zeit ermitteln und eintragen
+            // jede Zeile des Grids durchgehen, und jeweils den status und ggf. die bisherige zeit auf dem aktuellen Auftrag ermitteln und eintragen
+            for(int row = 0; row < Statusgrid_Status.Rows.Count; row++)
+            {
+                thisuser = Statusgrid_Status.Rows[row].Cells[0].Value.ToString();
+                thistask = Statusgrid_Status.Rows[row].Cells[3].Value.ToString();
+
+                if(thistask == "")
+                { //mitarbeiter ist garnicht eingestempelt
+                    thisstatus = "Abwesend";
+                    thiszeitbisherstring = "---";
+                }
+                else if(thistask == "888000")
+                { //Leerlauf-Code
+                    thisstatus = "Leerlauf";
+                    thiszeitbisherstring = "---";
+                }
+                else if (thistask == "888001")
+                { //Pausen-Code
+                    thisstatus = "Pause";
+                    thiszeitbisherstring = "---";
+                }
+                else
+                { //weder nix, noch pause noch leerlauf -> sollte dann ein ganz normaler Auftrag sein -> bisherige Zeit ermitteln...
+                    thisstatus = "an Auftrag";
+                    thiszeitbisherdouble = berechne_Zeit_auf_laufendem_Auftrag(thisuser, thistask);
+                    thiszeitbisherstring = thiszeitbisherdouble.ToString() + " Std";
+                }
+
+                Statusgrid_Status.Rows[row].Cells[2].Value = thisstatus;
+                Statusgrid_Status.Rows[row].Cells[4].Value = thiszeitbisherstring;
+                
+            }
 
 
             Statusgrid_Status.ClearSelection();
@@ -3848,11 +3880,14 @@ namespace Stempelurhadmintest
 
         private double berechne_Zeit_auf_laufendem_Auftrag(string user, string task)
         {
+            //TODO etwas an der Berechnung stimmt wohl noch nicht... vermutlich wird beim teilen durch hundert der kommateil verschlampt
+
             log("Berechne bisherige Zeit von Mitarbeiter" + user + " auf laufendem Auftrag " + task + ".");
             int summe_abstempelungen = 0;
             int summe_anstempelungen = 0;
             double ergebnis = 0;
             string sumstring = "";
+            open_db();
             comm.Parameters.Clear();
             comm.CommandText = "SELECT IFNULL((SUM(stunde) * 100)  + (SUM(dezimal)),0) FROM stamps WHERE userid = @userid AND " +
                                 "task = @task AND art='ab' AND storniert = 0";
@@ -3895,6 +3930,7 @@ namespace Stempelurhadmintest
             {
                 log(ex.Message);
             }
+            close_db();
             ergebnis = (summe_abstempelungen - summe_anstempelungen) / 100;
                  
             log("Ermittelte Zeit bisher von " + user  + " auf laufendem Auftrag " + task + ": " + ergebnis + " Std.");

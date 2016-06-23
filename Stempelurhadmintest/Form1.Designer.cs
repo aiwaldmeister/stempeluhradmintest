@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -283,14 +283,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -405,8 +405,8 @@
             this.tabControl1.Controls.Add(this.Bonusberechnung);
             this.tabControl1.Controls.Add(this.Stempelungen);
             this.tabControl1.Controls.Add(this.Personen);
-            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Controls.Add(this.Status);
+            this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Enabled = false;
             this.tabControl1.ItemSize = new System.Drawing.Size(54, 25);
             this.tabControl1.Location = new System.Drawing.Point(39, 31);
@@ -736,7 +736,7 @@
             this.Verrechnung.Controls.Add(this.label21);
             this.Verrechnung.Controls.Add(this.textBox_Verrechnung_Auftragsnummer);
             this.Verrechnung.Controls.Add(this.label36);
-            this.Verrechnung.Location = new System.Drawing.Point(4, 22);
+            this.Verrechnung.Location = new System.Drawing.Point(4, 29);
             this.Verrechnung.Name = "Verrechnung";
             this.Verrechnung.Size = new System.Drawing.Size(822, 559);
             this.Verrechnung.TabIndex = 4;
@@ -1623,7 +1623,7 @@
             this.Personen.Controls.Add(this.groupBox1);
             this.Personen.Controls.Add(this.groupBox5);
             this.Personen.Controls.Add(this.button_Personen_writeChanges);
-            this.Personen.Location = new System.Drawing.Point(4, 22);
+            this.Personen.Location = new System.Drawing.Point(4, 29);
             this.Personen.Name = "Personen";
             this.Personen.Padding = new System.Windows.Forms.Padding(3);
             this.Personen.Size = new System.Drawing.Size(822, 559);
@@ -2561,17 +2561,17 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle4;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.Statusgrid_Status.Location = new System.Drawing.Point(18, 65);
+            this.Statusgrid_Status.Location = new System.Drawing.Point(23, 67);
             this.Statusgrid_Status.MultiSelect = false;
             this.Statusgrid_Status.Name = "Statusgrid_Status";
             this.Statusgrid_Status.ReadOnly = true;
@@ -2580,7 +2580,7 @@
             this.Statusgrid_Status.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Statusgrid_Status.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Statusgrid_Status.ShowEditingIcon = false;
-            this.Statusgrid_Status.Size = new System.Drawing.Size(783, 476);
+            this.Statusgrid_Status.Size = new System.Drawing.Size(773, 467);
             this.Statusgrid_Status.TabIndex = 0;
             // 
             // button_Status_Aktualisieren
@@ -2617,7 +2617,7 @@
             this.stat_Status.HeaderText = "Status";
             this.stat_Status.Name = "stat_Status";
             this.stat_Status.ReadOnly = true;
-            this.stat_Status.Width = 150;
+            this.stat_Status.Width = 140;
             // 
             // stat_Auftrag
             // 
@@ -2632,7 +2632,7 @@
             // 
             this.stat_Zeit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.stat_Zeit.Frozen = true;
-            this.stat_Zeit.HeaderText = "Zeit auf dem aktuellen Auftrag";
+            this.stat_Zeit.HeaderText = "Zeit bisher auf akt. Auftrag";
             this.stat_Zeit.Name = "stat_Zeit";
             this.stat_Zeit.ReadOnly = true;
             this.stat_Zeit.Width = 160;
