@@ -36,10 +36,8 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
 
 
-        //TODO: Tagesmarkierung wird nicht aus der zelle entfernt beim monatswechsel
         //TODO: Bonustab wird nicht richtig aktualisiert, wenn verrechnungen verändert werden
         //TODO: Anlegen neuer Personen aktualisiert die Personpicker nicht
-        //TODO: Tippfehler in einer Fehlermeldung (vermutlich verrechnungstab oder kalendertab)
         //TODO: Kalendergrid soll auch bei einzelnem Mitarbeiter die allgemeinen events zeigen
         //TODO: Beim eintragen von allgemeinem event warnen wenn es schon ein persönliches gibt (und umgekehrt)
         //TODO: Warnhinweis im Verrechnungstab gibt falsches Datum der Wartungsstempelung an
@@ -848,7 +846,8 @@ namespace Stempelurhadmintest
             {
                 for (int actcol = 0; actcol < 7; actcol++)
                 {
-                    if((actrow == 0 && actcol + 1 < Wochentagdesersten) || i > DateTime.DaysInMonth(Betrachtungsjahr,Betrachtungsmonat))
+                    KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.ForeColor = Color.Black;
+                    if ((actrow == 0 && actcol + 1 < Wochentagdesersten) || i > DateTime.DaysInMonth(Betrachtungsjahr,Betrachtungsmonat))
                     {
                         KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Value = "";
                         KalenderGrid_Kalender.Rows[actrow].Cells[actcol].Style.BackColor = Color.LightGray;
