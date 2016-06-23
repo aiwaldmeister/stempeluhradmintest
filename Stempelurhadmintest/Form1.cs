@@ -68,6 +68,9 @@ namespace Stempelurhadmintest
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            //passworteingabe-panel ins sichtfeld ruecken
+            panel_Login.Location = new Point(340, 240);
+            //und cursor ins textfeld legen
             textBox_Login_Password.Focus();
         }
 
@@ -727,9 +730,7 @@ namespace Stempelurhadmintest
             return ergebnis;
         }
 
-
         
-
         ///////////Kalender-Tab////////////////////////////////////////////////
 
         private void markiereTagemitEreignissen(String PersonFilter)
@@ -3918,9 +3919,12 @@ namespace Stempelurhadmintest
 
             }
 
-            //testen ob schon bis einschliesslich verrechnet wurde... dann mach neuberechnung garkeinen sinn -> Neuberechnungsbutton ausgrauen
-
-            button_Bonus_ShowGroupbox_Neu.Enabled = false;
+            //testen ob schon bis einschliesslich gestern verrechnet wurde... dann mach neuberechnung garkeinen sinn -> Neuberechnungsbutton ausgrauen
+            if(DateTime.Compare(bonuskonto_ausgezahlt_bis_DateTime,gestern)>= 0)
+            {
+                button_Bonus_ShowGroupbox_Neu.Enabled = false;
+            }
+            
             
 
 

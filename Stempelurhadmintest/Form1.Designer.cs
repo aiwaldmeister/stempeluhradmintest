@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -272,14 +272,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle7;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -396,7 +396,7 @@
             this.tabControl1.Controls.Add(this.Personen);
             this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Enabled = false;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(39, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(830, 585);
@@ -2484,36 +2484,39 @@
             this.panel_Login.Controls.Add(this.label46);
             this.panel_Login.Controls.Add(this.textBox_Login_Password);
             this.panel_Login.Controls.Add(this.button_Login_Enter);
-            this.panel_Login.Location = new System.Drawing.Point(334, 225);
+            this.panel_Login.Location = new System.Drawing.Point(361, 681);
             this.panel_Login.Name = "panel_Login";
-            this.panel_Login.Size = new System.Drawing.Size(149, 91);
+            this.panel_Login.Size = new System.Drawing.Size(240, 125);
             this.panel_Login.TabIndex = 6;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.Location = new System.Drawing.Point(4, 7);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(130, 13);
+            this.label46.Size = new System.Drawing.Size(226, 24);
             this.label46.TabIndex = 2;
             this.label46.Text = "Bitte Passwort eingeben...";
             // 
             // textBox_Login_Password
             // 
-            this.textBox_Login_Password.Location = new System.Drawing.Point(3, 25);
+            this.textBox_Login_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Login_Password.Location = new System.Drawing.Point(8, 45);
             this.textBox_Login_Password.Name = "textBox_Login_Password";
-            this.textBox_Login_Password.Size = new System.Drawing.Size(140, 20);
+            this.textBox_Login_Password.Size = new System.Drawing.Size(222, 29);
             this.textBox_Login_Password.TabIndex = 1;
             this.textBox_Login_Password.UseSystemPasswordChar = true;
             this.textBox_Login_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Login_Password_KeyDown);
             // 
             // button_Login_Enter
             // 
-            this.button_Login_Enter.Location = new System.Drawing.Point(3, 51);
+            this.button_Login_Enter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Login_Enter.Location = new System.Drawing.Point(8, 80);
             this.button_Login_Enter.Name = "button_Login_Enter";
-            this.button_Login_Enter.Size = new System.Drawing.Size(141, 25);
+            this.button_Login_Enter.Size = new System.Drawing.Size(222, 38);
             this.button_Login_Enter.TabIndex = 0;
-            this.button_Login_Enter.Text = "Einloggen";
+            this.button_Login_Enter.Text = "Anmelden";
             this.button_Login_Enter.UseVisualStyleBackColor = true;
             this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
             // 
@@ -2521,7 +2524,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 583);
+            this.ClientSize = new System.Drawing.Size(914, 657);
             this.Controls.Add(this.panel_Login);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
