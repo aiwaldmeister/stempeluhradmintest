@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -229,6 +230,14 @@
             this.label46 = new System.Windows.Forms.Label();
             this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.button_Login_Enter = new System.Windows.Forms.Button();
+            this.Status = new System.Windows.Forms.TabPage();
+            this.Statusgrid_Status = new System.Windows.Forms.DataGridView();
+            this.button_Status_Aktualisieren = new System.Windows.Forms.Button();
+            this.stat_Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stat_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stat_Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stat_Auftrag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stat_Zeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -253,6 +262,8 @@
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.panel_Login.SuspendLayout();
+            this.Status.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).BeginInit();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -272,14 +283,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -395,11 +406,13 @@
             this.tabControl1.Controls.Add(this.Stempelungen);
             this.tabControl1.Controls.Add(this.Personen);
             this.tabControl1.Controls.Add(this.Auswertungen);
+            this.tabControl1.Controls.Add(this.Status);
             this.tabControl1.Enabled = false;
+            this.tabControl1.ItemSize = new System.Drawing.Size(54, 25);
             this.tabControl1.Location = new System.Drawing.Point(39, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(830, 585);
+            this.tabControl1.Size = new System.Drawing.Size(830, 592);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -413,7 +426,7 @@
             this.Kalender.Controls.Add(this.PersonPicker_Kalender);
             this.Kalender.Controls.Add(this.groupBox_Kalender_erstelleEintrag);
             this.Kalender.Controls.Add(this.groupBox_Kalender_AlleEreignisse);
-            this.Kalender.Location = new System.Drawing.Point(4, 22);
+            this.Kalender.Location = new System.Drawing.Point(4, 29);
             this.Kalender.Name = "Kalender";
             this.Kalender.Padding = new System.Windows.Forms.Padding(3);
             this.Kalender.Size = new System.Drawing.Size(822, 559);
@@ -1095,7 +1108,7 @@
             this.Bonusberechnung.Controls.Add(this.groupBox_Bonus_neu);
             this.Bonusberechnung.Controls.Add(this.groupBoxLetzteBonusberechnung);
             this.Bonusberechnung.Controls.Add(this.PersonPicker_Bonus);
-            this.Bonusberechnung.Location = new System.Drawing.Point(4, 22);
+            this.Bonusberechnung.Location = new System.Drawing.Point(4, 29);
             this.Bonusberechnung.Name = "Bonusberechnung";
             this.Bonusberechnung.Padding = new System.Windows.Forms.Padding(3);
             this.Bonusberechnung.Size = new System.Drawing.Size(822, 559);
@@ -1112,7 +1125,7 @@
             this.button_Bonus_ShowGroupbox_Neu.Name = "button_Bonus_ShowGroupbox_Neu";
             this.button_Bonus_ShowGroupbox_Neu.Size = new System.Drawing.Size(423, 32);
             this.button_Bonus_ShowGroupbox_Neu.TabIndex = 17;
-            this.button_Bonus_ShowGroupbox_Neu.Text = "Neue Bonuszeit berechnen";
+            this.button_Bonus_ShowGroupbox_Neu.Text = "Bonuszeit neu berechnen";
             this.button_Bonus_ShowGroupbox_Neu.UseVisualStyleBackColor = true;
             this.button_Bonus_ShowGroupbox_Neu.Click += new System.EventHandler(this.button_Bonus_ShowGroupbox_Neu_Click);
             // 
@@ -1174,7 +1187,7 @@
             this.button_Bonus_BerechnenBis.Name = "button_Bonus_BerechnenBis";
             this.button_Bonus_BerechnenBis.Size = new System.Drawing.Size(330, 36);
             this.button_Bonus_BerechnenBis.TabIndex = 14;
-            this.button_Bonus_BerechnenBis.Text = "Bonuszeit neu berechnen für den Zeitraum";
+            this.button_Bonus_BerechnenBis.Text = "Bonuszeit berechnen und auszahlen für den Zeitraum";
             this.button_Bonus_BerechnenBis.UseVisualStyleBackColor = true;
             this.button_Bonus_BerechnenBis.Click += new System.EventHandler(this.button_Bonus_BerechnenBis_Click);
             // 
@@ -1308,7 +1321,7 @@
             this.Stempelungen.Controls.Add(this.Stempelungsgrid_Stempelungen);
             this.Stempelungen.Controls.Add(this.DatePicker_Stempelungen);
             this.Stempelungen.Controls.Add(this.PersonPicker_Stempelungen);
-            this.Stempelungen.Location = new System.Drawing.Point(4, 22);
+            this.Stempelungen.Location = new System.Drawing.Point(4, 29);
             this.Stempelungen.Name = "Stempelungen";
             this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
             this.Stempelungen.Size = new System.Drawing.Size(822, 559);
@@ -2471,7 +2484,7 @@
             // 
             // Auswertungen
             // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 22);
+            this.Auswertungen.Location = new System.Drawing.Point(4, 29);
             this.Auswertungen.Name = "Auswertungen";
             this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
             this.Auswertungen.Size = new System.Drawing.Size(822, 559);
@@ -2519,6 +2532,110 @@
             this.button_Login_Enter.Text = "Anmelden";
             this.button_Login_Enter.UseVisualStyleBackColor = true;
             this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
+            // 
+            // Status
+            // 
+            this.Status.Controls.Add(this.button_Status_Aktualisieren);
+            this.Status.Controls.Add(this.Statusgrid_Status);
+            this.Status.Location = new System.Drawing.Point(4, 29);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(822, 559);
+            this.Status.TabIndex = 6;
+            this.Status.Text = "Status";
+            this.Status.UseVisualStyleBackColor = true;
+            // 
+            // Statusgrid_Status
+            // 
+            this.Statusgrid_Status.AllowUserToAddRows = false;
+            this.Statusgrid_Status.AllowUserToDeleteRows = false;
+            this.Statusgrid_Status.AllowUserToResizeColumns = false;
+            this.Statusgrid_Status.AllowUserToResizeRows = false;
+            this.Statusgrid_Status.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Statusgrid_Status.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Statusgrid_Status.BackgroundColor = System.Drawing.Color.White;
+            this.Statusgrid_Status.ColumnHeadersHeight = 40;
+            this.Statusgrid_Status.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.Statusgrid_Status.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.stat_Mitarbeiter,
+            this.stat_Name,
+            this.stat_Status,
+            this.stat_Auftrag,
+            this.stat_Zeit});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.Statusgrid_Status.Location = new System.Drawing.Point(18, 65);
+            this.Statusgrid_Status.MultiSelect = false;
+            this.Statusgrid_Status.Name = "Statusgrid_Status";
+            this.Statusgrid_Status.ReadOnly = true;
+            this.Statusgrid_Status.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Statusgrid_Status.RowHeadersVisible = false;
+            this.Statusgrid_Status.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Statusgrid_Status.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Statusgrid_Status.ShowEditingIcon = false;
+            this.Statusgrid_Status.Size = new System.Drawing.Size(783, 476);
+            this.Statusgrid_Status.TabIndex = 0;
+            // 
+            // button_Status_Aktualisieren
+            // 
+            this.button_Status_Aktualisieren.Location = new System.Drawing.Point(304, 19);
+            this.button_Status_Aktualisieren.Name = "button_Status_Aktualisieren";
+            this.button_Status_Aktualisieren.Size = new System.Drawing.Size(205, 33);
+            this.button_Status_Aktualisieren.TabIndex = 1;
+            this.button_Status_Aktualisieren.Text = "Aktualisieren";
+            this.button_Status_Aktualisieren.UseVisualStyleBackColor = true;
+            // 
+            // stat_Mitarbeiter
+            // 
+            this.stat_Mitarbeiter.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stat_Mitarbeiter.Frozen = true;
+            this.stat_Mitarbeiter.HeaderText = "Mitarbeiter";
+            this.stat_Mitarbeiter.Name = "stat_Mitarbeiter";
+            this.stat_Mitarbeiter.ReadOnly = true;
+            this.stat_Mitarbeiter.Width = 110;
+            // 
+            // stat_Name
+            // 
+            this.stat_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stat_Name.Frozen = true;
+            this.stat_Name.HeaderText = "Name";
+            this.stat_Name.Name = "stat_Name";
+            this.stat_Name.ReadOnly = true;
+            this.stat_Name.Width = 250;
+            // 
+            // stat_Status
+            // 
+            this.stat_Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stat_Status.Frozen = true;
+            this.stat_Status.HeaderText = "Status";
+            this.stat_Status.Name = "stat_Status";
+            this.stat_Status.ReadOnly = true;
+            this.stat_Status.Width = 150;
+            // 
+            // stat_Auftrag
+            // 
+            this.stat_Auftrag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stat_Auftrag.Frozen = true;
+            this.stat_Auftrag.HeaderText = "Auftrag";
+            this.stat_Auftrag.Name = "stat_Auftrag";
+            this.stat_Auftrag.ReadOnly = true;
+            this.stat_Auftrag.Width = 110;
+            // 
+            // stat_Zeit
+            // 
+            this.stat_Zeit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stat_Zeit.Frozen = true;
+            this.stat_Zeit.HeaderText = "Zeit auf dem aktuellen Auftrag";
+            this.stat_Zeit.Name = "stat_Zeit";
+            this.stat_Zeit.ReadOnly = true;
+            this.stat_Zeit.Width = 160;
             // 
             // Form1
             // 
@@ -2571,6 +2688,8 @@
             this.groupBox5.PerformLayout();
             this.panel_Login.ResumeLayout(false);
             this.panel_Login.PerformLayout();
+            this.Status.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2774,6 +2893,14 @@
         private System.Windows.Forms.ComboBox comboBox_Personen_Details_old;
         private System.Windows.Forms.ComboBox comboBox_Personen_Details;
         private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TabPage Status;
+        private System.Windows.Forms.DataGridView Statusgrid_Status;
+        private System.Windows.Forms.Button button_Status_Aktualisieren;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stat_Mitarbeiter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stat_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stat_Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stat_Auftrag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stat_Zeit;
     }
 }
 

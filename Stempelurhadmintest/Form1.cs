@@ -34,6 +34,7 @@ namespace Stempelurhadmintest
         bool stempelungstab_initialisiert_global = false;
         bool kalendertab_initialisiert_global = false;
         bool bonustab_initialisiert_global = false;
+        bool statustab_initialisiert_global = false;
 
         public Form1()
         {
@@ -246,6 +247,14 @@ namespace Stempelurhadmintest
                     button_Bonus_ShowGroupbox_Neu.Visible = true;
                     groupBox_Bonus_neu.Visible = false;
 
+                }
+            }
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["Status"])
+            {
+                if (statustab_initialisiert_global == false)
+                {
+                    refreshStatusgrid_Status();                    
                 }
             }
 
@@ -3775,6 +3784,123 @@ namespace Stempelurhadmintest
             }
         }
 
+
+        ///////////Statustab///////////////////////////////////////////////////
+
+        private void refreshStatusgrid_Status()
+        {
+            string thisuser = "";
+            string thisname = "";
+            string thisvorname = "";
+            string thistask = "";
+            string thisstatus = "";
+            double thiszeitbisher = 0;
+
+            //grid zuerst leeren, damit frisch befuellt werden kann
+            Statusgrid_Status.Rows.Clear();
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname, currenttask FROM user where aktiv = 1";
+
+            try
+            {
+                //log("SQL:" + comm.CommandText);
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen aktiven Person
+                while (Reader.Read())
+                {
+                    thisuser = Reader["userid"] + "";
+                    thisname = Reader["name"] + "";
+                    thisvorname = Reader["vorname"] + "";
+                    thistask = Reader["currenttask"] + "";
+
+                    //Stempelungsgrid mit zeilen fuellen
+                    DataGridViewRow myrow = new DataGridViewRow();
+                    DataGridViewCell cell_userid = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_name = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_status = new DataGridViewTextBoxCell();
+                    DataGridViewCell cell_task = new DataGridViewTextBoxCell();
+                    
+                    cell_userid.Value = thisuser;
+                    cell_name.Value = thisname + " " + thisvorname;
+                    cell_status.Value = "?";
+                    cell_task.Value = thistask;
+                    
+                    myrow.Cells.Add(cell_userid);
+                    myrow.Cells.Add(cell_name);
+                    myrow.Cells.Add(cell_status);
+                    myrow.Cells.Add(cell_task);
+
+                    Statusgrid_Status.Rows.Add(myrow);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
+
+            //TODO jede Zeile des Grids durchgehen, und jeweils den status und die bisherige zeit ermitteln und eintragen
+
+
+            Statusgrid_Status.ClearSelection();
+        }
+
+        private double berechne_Zeit_auf_laufendem_Auftrag(string user, string task)
+        {
+            log("Berechne bisherige Zeit von Mitarbeiter" + user + " auf laufendem Auftrag " + task + ".");
+            int summe_abstempelungen = 0;
+            int summe_anstempelungen = 0;
+            double ergebnis = 0;
+            string sumstring = "";
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT IFNULL((SUM(stunde) * 100)  + (SUM(dezimal)),0) FROM stamps WHERE userid = @userid AND " +
+                                "task = @task AND art='ab' AND storniert = 0";
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = user;
+            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = task;
+
+            log("SQL:" + comm.CommandText);
+            try
+            {
+                sumstring = comm.ExecuteScalar() + "";
+                if (sumstring == "")
+                {
+                    sumstring = "0";
+                }
+                summe_abstempelungen = int.Parse(sumstring);
+                summe_abstempelungen = summe_abstempelungen + DateTime.Now.Hour * 100 + (((DateTime.Now.Minute * 60) + DateTime.Now.Second) / 36);
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                log(ex.Message);
+            }
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT IFNULL((SUM(stunde) * 100)  + (SUM(dezimal)),0) FROM stamps WHERE userid = @userid AND " +
+                                 "task = @task AND art='an' AND storniert = 0";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = user;
+            comm.Parameters.Add("@task", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = task;
+
+            log("SQL:" + comm.CommandText);
+            try
+            {
+                sumstring = comm.ExecuteScalar() + "";
+                if (sumstring == "")
+                {
+                    sumstring = "0";
+                }
+                summe_anstempelungen = int.Parse(sumstring);
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                log(ex.Message);
+            }
+            ergebnis = (summe_abstempelungen - summe_anstempelungen) / 100;
+                 
+            log("Ermittelte Zeit bisher von " + user  + " auf laufendem Auftrag " + task + ": " + ergebnis + " Std.");
+
+            return ergebnis;
+        }
 
         ///////////Bonusberechnung/////////////////////////////////////////////
 
