@@ -1229,7 +1229,7 @@ namespace Stempelurhadmintest
                 comm.Parameters.Clear();
                 comm.CommandText = "SELECT count(*) FROM kalender WHERE jahr=@jahr AND monat=@monat AND tag=@tag AND storniert = 0";
 
-                if(input_zuordnung == 'Allgemein')
+                if(input_zuordnung == "Allgemein")
                 {
                     comm.CommandText += " AND zuordnung!=@zuordnung";
                 }
