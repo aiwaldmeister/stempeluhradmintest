@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -225,19 +225,25 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Personen_writeChanges = new System.Windows.Forms.Button();
-            this.Auswertungen = new System.Windows.Forms.TabPage();
-            this.panel_Login = new System.Windows.Forms.Panel();
-            this.label46 = new System.Windows.Forms.Label();
-            this.textBox_Login_Password = new System.Windows.Forms.TextBox();
-            this.button_Login_Enter = new System.Windows.Forms.Button();
             this.Status = new System.Windows.Forms.TabPage();
-            this.Statusgrid_Status = new System.Windows.Forms.DataGridView();
             this.button_Status_Aktualisieren = new System.Windows.Forms.Button();
+            this.Statusgrid_Status = new System.Windows.Forms.DataGridView();
             this.stat_Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stat_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stat_Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stat_Auftrag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stat_Zeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.panel_Login = new System.Windows.Forms.Panel();
+            this.label46 = new System.Windows.Forms.Label();
+            this.textBox_Login_Password = new System.Windows.Forms.TextBox();
+            this.button_Login_Enter = new System.Windows.Forms.Button();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox_Personen_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Wochenarbeitszeit_old = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.textBox_Personen_neu_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -261,9 +267,9 @@
             this.groupBox_Personen_Systemdaten.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.panel_Login.SuspendLayout();
             this.Status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).BeginInit();
+            this.panel_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -283,14 +289,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
@@ -409,10 +415,10 @@
             this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Enabled = false;
             this.tabControl1.ItemSize = new System.Drawing.Size(54, 25);
-            this.tabControl1.Location = new System.Drawing.Point(39, 31);
+            this.tabControl1.Location = new System.Drawing.Point(44, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(830, 592);
+            this.tabControl1.Size = new System.Drawing.Size(843, 641);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -429,7 +435,7 @@
             this.Kalender.Location = new System.Drawing.Point(4, 29);
             this.Kalender.Name = "Kalender";
             this.Kalender.Padding = new System.Windows.Forms.Padding(3);
-            this.Kalender.Size = new System.Drawing.Size(822, 559);
+            this.Kalender.Size = new System.Drawing.Size(835, 608);
             this.Kalender.TabIndex = 2;
             this.Kalender.Text = "Kalender";
             this.Kalender.UseVisualStyleBackColor = true;
@@ -475,17 +481,17 @@
             this.groupBox_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_Kalender_erstelleEintrag.Name = "groupBox_Kalender_erstelleEintrag";
             this.groupBox_Kalender_erstelleEintrag.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox_Kalender_erstelleEintrag.Size = new System.Drawing.Size(399, 257);
+            this.groupBox_Kalender_erstelleEintrag.Size = new System.Drawing.Size(399, 301);
             this.groupBox_Kalender_erstelleEintrag.TabIndex = 4;
             this.groupBox_Kalender_erstelleEintrag.TabStop = false;
             this.groupBox_Kalender_erstelleEintrag.Text = "Eintrag erstellen";
             // 
             // button_Kalender_ganzerTagUrlaub
             // 
-            this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(20, 28);
+            this.button_Kalender_ganzerTagUrlaub.Location = new System.Drawing.Point(20, 29);
             this.button_Kalender_ganzerTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_ganzerTagUrlaub.Name = "button_Kalender_ganzerTagUrlaub";
-            this.button_Kalender_ganzerTagUrlaub.Size = new System.Drawing.Size(84, 25);
+            this.button_Kalender_ganzerTagUrlaub.Size = new System.Drawing.Size(84, 28);
             this.button_Kalender_ganzerTagUrlaub.TabIndex = 1;
             this.button_Kalender_ganzerTagUrlaub.Text = "1 Tag Urlaub";
             this.button_Kalender_ganzerTagUrlaub.UseVisualStyleBackColor = true;
@@ -493,10 +499,10 @@
             // 
             // button_Kalender_Feiertag
             // 
-            this.button_Kalender_Feiertag.Location = new System.Drawing.Point(296, 28);
+            this.button_Kalender_Feiertag.Location = new System.Drawing.Point(296, 29);
             this.button_Kalender_Feiertag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_Feiertag.Name = "button_Kalender_Feiertag";
-            this.button_Kalender_Feiertag.Size = new System.Drawing.Size(77, 25);
+            this.button_Kalender_Feiertag.Size = new System.Drawing.Size(77, 28);
             this.button_Kalender_Feiertag.TabIndex = 4;
             this.button_Kalender_Feiertag.Text = "Feiertag";
             this.button_Kalender_Feiertag.UseVisualStyleBackColor = true;
@@ -507,7 +513,7 @@
             this.button_Kalender_erstelleEintrag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Kalender_erstelleEintrag.ImageIndex = 0;
             this.button_Kalender_erstelleEintrag.ImageList = this.myiconlist;
-            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 213);
+            this.button_Kalender_erstelleEintrag.Location = new System.Drawing.Point(20, 246);
             this.button_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_erstelleEintrag.Name = "button_Kalender_erstelleEintrag";
             this.button_Kalender_erstelleEintrag.Size = new System.Drawing.Size(353, 34);
@@ -528,7 +534,7 @@
             // 
             // button_Kalender_Krankheitstag
             // 
-            this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(208, 28);
+            this.button_Kalender_Krankheitstag.Location = new System.Drawing.Point(208, 29);
             this.button_Kalender_Krankheitstag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_Krankheitstag.Name = "button_Kalender_Krankheitstag";
             this.button_Kalender_Krankheitstag.Size = new System.Drawing.Size(84, 25);
@@ -540,20 +546,19 @@
             // textBox_Kalender_Sollzeit
             // 
             this.textBox_Kalender_Sollzeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(89, 161);
+            this.textBox_Kalender_Sollzeit.Location = new System.Drawing.Point(92, 186);
             this.textBox_Kalender_Sollzeit.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Sollzeit.Name = "textBox_Kalender_Sollzeit";
             this.textBox_Kalender_Sollzeit.Size = new System.Drawing.Size(37, 26);
             this.textBox_Kalender_Sollzeit.TabIndex = 2;
-            this.textBox_Kalender_Sollzeit.Text = "7,2";
             this.textBox_Kalender_Sollzeit.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button_Kalender_halberTagUrlaub
             // 
-            this.button_Kalender_halberTagUrlaub.Location = new System.Drawing.Point(108, 28);
+            this.button_Kalender_halberTagUrlaub.Location = new System.Drawing.Point(108, 29);
             this.button_Kalender_halberTagUrlaub.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_halberTagUrlaub.Name = "button_Kalender_halberTagUrlaub";
-            this.button_Kalender_halberTagUrlaub.Size = new System.Drawing.Size(96, 25);
+            this.button_Kalender_halberTagUrlaub.Size = new System.Drawing.Size(96, 28);
             this.button_Kalender_halberTagUrlaub.TabIndex = 3;
             this.button_Kalender_halberTagUrlaub.Text = "1/2 Tag Urlaub";
             this.button_Kalender_halberTagUrlaub.UseVisualStyleBackColor = true;
@@ -562,28 +567,26 @@
             // textBox_Kalender_Urlaub
             // 
             this.textBox_Kalender_Urlaub.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Urlaub.Location = new System.Drawing.Point(226, 161);
+            this.textBox_Kalender_Urlaub.Location = new System.Drawing.Point(229, 186);
             this.textBox_Kalender_Urlaub.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Urlaub.Name = "textBox_Kalender_Urlaub";
             this.textBox_Kalender_Urlaub.Size = new System.Drawing.Size(37, 26);
             this.textBox_Kalender_Urlaub.TabIndex = 3;
-            this.textBox_Kalender_Urlaub.Text = "0";
             // 
             // textBox_Kalender_Bemerkung
             // 
             this.textBox_Kalender_Bemerkung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(89, 101);
+            this.textBox_Kalender_Bemerkung.Location = new System.Drawing.Point(92, 126);
             this.textBox_Kalender_Bemerkung.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kalender_Bemerkung.MaxLength = 30;
             this.textBox_Kalender_Bemerkung.Name = "textBox_Kalender_Bemerkung";
             this.textBox_Kalender_Bemerkung.Size = new System.Drawing.Size(218, 26);
             this.textBox_Kalender_Bemerkung.TabIndex = 4;
-            this.textBox_Kalender_Bemerkung.Text = "Halber Tag Urlaub";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(130, 169);
+            this.label6.Location = new System.Drawing.Point(133, 194);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
@@ -593,7 +596,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 146);
+            this.label2.Location = new System.Drawing.Point(226, 171);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
@@ -603,7 +606,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(86, 146);
+            this.label4.Location = new System.Drawing.Point(89, 171);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
@@ -613,7 +616,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(269, 169);
+            this.label5.Location = new System.Drawing.Point(272, 194);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
@@ -623,7 +626,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(86, 86);
+            this.label3.Location = new System.Drawing.Point(89, 111);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
@@ -634,11 +637,11 @@
             // 
             this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.button_Kalender_storniereEintrag);
             this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.Ereignisgrid_Kalender);
-            this.groupBox_Kalender_AlleEreignisse.Location = new System.Drawing.Point(435, 16);
+            this.groupBox_Kalender_AlleEreignisse.Location = new System.Drawing.Point(444, 16);
             this.groupBox_Kalender_AlleEreignisse.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_Kalender_AlleEreignisse.Name = "groupBox_Kalender_AlleEreignisse";
             this.groupBox_Kalender_AlleEreignisse.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox_Kalender_AlleEreignisse.Size = new System.Drawing.Size(370, 529);
+            this.groupBox_Kalender_AlleEreignisse.Size = new System.Drawing.Size(370, 573);
             this.groupBox_Kalender_AlleEreignisse.TabIndex = 5;
             this.groupBox_Kalender_AlleEreignisse.TabStop = false;
             this.groupBox_Kalender_AlleEreignisse.Text = "Alle Einträge für diese Auswahl (Mitarbeiter + Jahr)";
@@ -649,7 +652,7 @@
             this.button_Kalender_storniereEintrag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Kalender_storniereEintrag.ImageIndex = 1;
             this.button_Kalender_storniereEintrag.ImageList = this.myiconlist;
-            this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 485);
+            this.button_Kalender_storniereEintrag.Location = new System.Drawing.Point(21, 518);
             this.button_Kalender_storniereEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kalender_storniereEintrag.Name = "button_Kalender_storniereEintrag";
             this.button_Kalender_storniereEintrag.Size = new System.Drawing.Size(330, 34);
@@ -681,7 +684,7 @@
             this.Ereignisgrid_Kalender.RowTemplate.Height = 24;
             this.Ereignisgrid_Kalender.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Ereignisgrid_Kalender.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 445);
+            this.Ereignisgrid_Kalender.Size = new System.Drawing.Size(330, 477);
             this.Ereignisgrid_Kalender.TabIndex = 1;
             this.Ereignisgrid_Kalender.TabStop = false;
             this.Ereignisgrid_Kalender.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_Kalender_CellClick);
@@ -738,7 +741,7 @@
             this.Verrechnung.Controls.Add(this.label36);
             this.Verrechnung.Location = new System.Drawing.Point(4, 29);
             this.Verrechnung.Name = "Verrechnung";
-            this.Verrechnung.Size = new System.Drawing.Size(822, 559);
+            this.Verrechnung.Size = new System.Drawing.Size(835, 608);
             this.Verrechnung.TabIndex = 4;
             this.Verrechnung.Text = "Verrechnung";
             this.Verrechnung.UseVisualStyleBackColor = true;
@@ -756,7 +759,7 @@
             this.groupBox_Verrechnungen_Update.Controls.Add(this.label42);
             this.groupBox_Verrechnungen_Update.Location = new System.Drawing.Point(409, 36);
             this.groupBox_Verrechnungen_Update.Name = "groupBox_Verrechnungen_Update";
-            this.groupBox_Verrechnungen_Update.Size = new System.Drawing.Size(383, 505);
+            this.groupBox_Verrechnungen_Update.Size = new System.Drawing.Size(383, 546);
             this.groupBox_Verrechnungen_Update.TabIndex = 0;
             this.groupBox_Verrechnungen_Update.TabStop = false;
             this.groupBox_Verrechnungen_Update.Text = "Verrechnete Zeiten";
@@ -925,7 +928,7 @@
             this.groupBox_Verrechnungen_Insert.Controls.Add(this.label38);
             this.groupBox_Verrechnungen_Insert.Location = new System.Drawing.Point(24, 81);
             this.groupBox_Verrechnungen_Insert.Name = "groupBox_Verrechnungen_Insert";
-            this.groupBox_Verrechnungen_Insert.Size = new System.Drawing.Size(340, 460);
+            this.groupBox_Verrechnungen_Insert.Size = new System.Drawing.Size(340, 501);
             this.groupBox_Verrechnungen_Insert.TabIndex = 0;
             this.groupBox_Verrechnungen_Insert.TabStop = false;
             this.groupBox_Verrechnungen_Insert.Text = "Unverrechnete Zeiten";
@@ -1111,7 +1114,7 @@
             this.Bonusberechnung.Location = new System.Drawing.Point(4, 29);
             this.Bonusberechnung.Name = "Bonusberechnung";
             this.Bonusberechnung.Padding = new System.Windows.Forms.Padding(3);
-            this.Bonusberechnung.Size = new System.Drawing.Size(822, 559);
+            this.Bonusberechnung.Size = new System.Drawing.Size(835, 608);
             this.Bonusberechnung.TabIndex = 5;
             this.Bonusberechnung.Text = "Bonusberechnung";
             this.Bonusberechnung.UseVisualStyleBackColor = true;
@@ -1121,7 +1124,7 @@
             this.button_Bonus_ShowGroupbox_Neu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Bonus_ShowGroupbox_Neu.ImageIndex = 3;
             this.button_Bonus_ShowGroupbox_Neu.ImageList = this.myiconlist;
-            this.button_Bonus_ShowGroupbox_Neu.Location = new System.Drawing.Point(187, 297);
+            this.button_Bonus_ShowGroupbox_Neu.Location = new System.Drawing.Point(199, 329);
             this.button_Bonus_ShowGroupbox_Neu.Name = "button_Bonus_ShowGroupbox_Neu";
             this.button_Bonus_ShowGroupbox_Neu.Size = new System.Drawing.Size(423, 32);
             this.button_Bonus_ShowGroupbox_Neu.TabIndex = 17;
@@ -1139,7 +1142,7 @@
             this.groupBox_Bonus_neu.Controls.Add(this.label53);
             this.groupBox_Bonus_neu.Controls.Add(this.label58);
             this.groupBox_Bonus_neu.Controls.Add(this.label57);
-            this.groupBox_Bonus_neu.Location = new System.Drawing.Point(187, 311);
+            this.groupBox_Bonus_neu.Location = new System.Drawing.Point(199, 343);
             this.groupBox_Bonus_neu.Name = "groupBox_Bonus_neu";
             this.groupBox_Bonus_neu.Size = new System.Drawing.Size(425, 224);
             this.groupBox_Bonus_neu.TabIndex = 16;
@@ -1236,7 +1239,7 @@
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label50);
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label51);
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label52);
-            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(187, 79);
+            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(199, 82);
             this.groupBoxLetzteBonusberechnung.Name = "groupBoxLetzteBonusberechnung";
             this.groupBoxLetzteBonusberechnung.Size = new System.Drawing.Size(425, 207);
             this.groupBoxLetzteBonusberechnung.TabIndex = 15;
@@ -1306,7 +1309,7 @@
             this.PersonPicker_Bonus.FormattingEnabled = true;
             this.PersonPicker_Bonus.Items.AddRange(new object[] {
             "Allgemein"});
-            this.PersonPicker_Bonus.Location = new System.Drawing.Point(148, 20);
+            this.PersonPicker_Bonus.Location = new System.Drawing.Point(160, 20);
             this.PersonPicker_Bonus.Name = "PersonPicker_Bonus";
             this.PersonPicker_Bonus.Size = new System.Drawing.Size(514, 32);
             this.PersonPicker_Bonus.TabIndex = 6;
@@ -1324,7 +1327,7 @@
             this.Stempelungen.Location = new System.Drawing.Point(4, 29);
             this.Stempelungen.Name = "Stempelungen";
             this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Stempelungen.Size = new System.Drawing.Size(822, 559);
+            this.Stempelungen.Size = new System.Drawing.Size(835, 608);
             this.Stempelungen.TabIndex = 1;
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
@@ -1357,7 +1360,7 @@
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label_Stempelungen_Hinweis);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label32);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.button_Stempelungen_ZeitkontoRueckrechnen);
-            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(365, 403);
+            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(379, 446);
             this.groupBox_Stempelungen_Zeitkonto.Name = "groupBox_Stempelungen_Zeitkonto";
             this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 138);
             this.groupBox_Stempelungen_Zeitkonto.TabIndex = 11;
@@ -1421,7 +1424,7 @@
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_stornieren);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_ueberschreiben);
             this.groupBox_Stempelungen_EditierenErstellen.Enabled = false;
-            this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(365, 71);
+            this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(379, 114);
             this.groupBox_Stempelungen_EditierenErstellen.Name = "groupBox_Stempelungen_EditierenErstellen";
             this.groupBox_Stempelungen_EditierenErstellen.Size = new System.Drawing.Size(424, 310);
             this.groupBox_Stempelungen_EditierenErstellen.TabIndex = 10;
@@ -1548,7 +1551,7 @@
             this.Stempelungsgrid_Stempelungen.ReadOnly = true;
             this.Stempelungsgrid_Stempelungen.RowHeadersVisible = false;
             this.Stempelungsgrid_Stempelungen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Stempelungsgrid_Stempelungen.Size = new System.Drawing.Size(324, 446);
+            this.Stempelungsgrid_Stempelungen.Size = new System.Drawing.Size(324, 489);
             this.Stempelungsgrid_Stempelungen.TabIndex = 7;
             this.Stempelungsgrid_Stempelungen.SelectionChanged += new System.EventHandler(this.Stempelungsgrid_Stempelungen_SelectionChanged);
             // 
@@ -1626,7 +1629,7 @@
             this.Personen.Location = new System.Drawing.Point(4, 29);
             this.Personen.Name = "Personen";
             this.Personen.Padding = new System.Windows.Forms.Padding(3);
-            this.Personen.Size = new System.Drawing.Size(822, 559);
+            this.Personen.Size = new System.Drawing.Size(835, 608);
             this.Personen.TabIndex = 0;
             this.Personen.Text = "Personen";
             this.Personen.UseVisualStyleBackColor = true;
@@ -1639,7 +1642,7 @@
             this.groupBox2.Controls.Add(this.label_Personen_Hinweis_Urlaubsjahr);
             this.groupBox2.Controls.Add(this.button_Personen_ZeitkontoAktualisieren);
             this.groupBox2.Controls.Add(this.button_Personen_UrlaubsjahrAktualisieren);
-            this.groupBox2.Location = new System.Drawing.Point(420, 41);
+            this.groupBox2.Location = new System.Drawing.Point(424, 41);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(381, 211);
             this.groupBox2.TabIndex = 11;
@@ -1717,7 +1720,7 @@
             // 
             // button_Personen_Edit_Systemdaten
             // 
-            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(6, 216);
+            this.button_Personen_Edit_Systemdaten.Location = new System.Drawing.Point(6, 255);
             this.button_Personen_Edit_Systemdaten.Name = "button_Personen_Edit_Systemdaten";
             this.button_Personen_Edit_Systemdaten.Size = new System.Drawing.Size(392, 21);
             this.button_Personen_Edit_Systemdaten.TabIndex = 6;
@@ -1774,7 +1777,7 @@
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label37);
             this.groupBox_Personen_Systemdaten.Controls.Add(this.label12);
             this.groupBox_Personen_Systemdaten.Enabled = false;
-            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(6, 243);
+            this.groupBox_Personen_Systemdaten.Location = new System.Drawing.Point(6, 282);
             this.groupBox_Personen_Systemdaten.Name = "groupBox_Personen_Systemdaten";
             this.groupBox_Personen_Systemdaten.Size = new System.Drawing.Size(392, 264);
             this.groupBox_Personen_Systemdaten.TabIndex = 3;
@@ -2107,18 +2110,20 @@
             // 
             this.groupBox1.Controls.Add(this.DatePicker_Personen_neu);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_WunschID);
+            this.groupBox1.Controls.Add(this.textBox_Personen_neu_Wochenarbeitszeit);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Urlaubstage);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Nachname);
             this.groupBox1.Controls.Add(this.button_Personen_newPerson);
+            this.groupBox1.Controls.Add(this.label60);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.textBox_Personen_Neu_Vorname);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(563, 343);
+            this.groupBox1.Location = new System.Drawing.Point(560, 339);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 213);
+            this.groupBox1.Size = new System.Drawing.Size(256, 255);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Mitarbeiter";
@@ -2128,7 +2133,7 @@
             this.DatePicker_Personen_neu.CustomFormat = "dd.MM.yyyy";
             this.DatePicker_Personen_neu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatePicker_Personen_neu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DatePicker_Personen_neu.Location = new System.Drawing.Point(136, 137);
+            this.DatePicker_Personen_neu.Location = new System.Drawing.Point(136, 166);
             this.DatePicker_Personen_neu.Name = "DatePicker_Personen_neu";
             this.DatePicker_Personen_neu.Size = new System.Drawing.Size(100, 26);
             this.DatePicker_Personen_neu.TabIndex = 5;
@@ -2153,7 +2158,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 144);
+            this.label7.Location = new System.Drawing.Point(17, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 13);
             this.label7.TabIndex = 0;
@@ -2173,7 +2178,7 @@
             this.button_Personen_newPerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Personen_newPerson.ImageIndex = 0;
             this.button_Personen_newPerson.ImageList = this.myiconlist;
-            this.button_Personen_newPerson.Location = new System.Drawing.Point(19, 173);
+            this.button_Personen_newPerson.Location = new System.Drawing.Point(19, 206);
             this.button_Personen_newPerson.Name = "button_Personen_newPerson";
             this.button_Personen_newPerson.Size = new System.Drawing.Size(217, 34);
             this.button_Personen_newPerson.TabIndex = 6;
@@ -2229,6 +2234,7 @@
             // 
             this.groupBox5.Controls.Add(this.label55);
             this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.label59);
             this.groupBox5.Controls.Add(this.label27);
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.label8);
@@ -2236,11 +2242,14 @@
             this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv_old);
             this.groupBox5.Controls.Add(this.comboBox_Personen_Details);
             this.groupBox5.Controls.Add(this.comboBox_Personen_Aktiv);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Wochenarbeitszeit_old);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage_old);
+            this.groupBox5.Controls.Add(this.textBox_Personen_Wochenarbeitszeit);
             this.groupBox5.Controls.Add(this.textBox_Personen_Urlaubstage);
             this.groupBox5.Controls.Add(this.label54);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname_old);
+            this.groupBox5.Controls.Add(this.label56);
             this.groupBox5.Controls.Add(this.textBox_Personen_Nachname);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.textBox_Personen_Vorname_old);
@@ -2249,7 +2258,7 @@
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Location = new System.Drawing.Point(8, 41);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(390, 172);
+            this.groupBox5.Size = new System.Drawing.Size(390, 211);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Stammdaten";
@@ -2257,7 +2266,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(242, 140);
+            this.label55.Location = new System.Drawing.Point(242, 178);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(19, 13);
             this.label55.TabIndex = 8;
@@ -2266,7 +2275,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(242, 110);
+            this.label28.Location = new System.Drawing.Point(242, 148);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(19, 13);
             this.label28.TabIndex = 8;
@@ -2309,7 +2318,7 @@
             this.comboBox_Personen_Details_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Details_old.Location = new System.Drawing.Point(132, 132);
+            this.comboBox_Personen_Details_old.Location = new System.Drawing.Point(132, 170);
             this.comboBox_Personen_Details_old.Name = "comboBox_Personen_Details_old";
             this.comboBox_Personen_Details_old.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Details_old.TabIndex = 7;
@@ -2325,7 +2334,7 @@
             this.comboBox_Personen_Aktiv_old.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(132, 102);
+            this.comboBox_Personen_Aktiv_old.Location = new System.Drawing.Point(132, 140);
             this.comboBox_Personen_Aktiv_old.Name = "comboBox_Personen_Aktiv_old";
             this.comboBox_Personen_Aktiv_old.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Aktiv_old.TabIndex = 7;
@@ -2340,7 +2349,7 @@
             this.comboBox_Personen_Details.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Details.Location = new System.Drawing.Point(272, 132);
+            this.comboBox_Personen_Details.Location = new System.Drawing.Point(272, 170);
             this.comboBox_Personen_Details.Name = "comboBox_Personen_Details";
             this.comboBox_Personen_Details.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Details.TabIndex = 4;
@@ -2355,7 +2364,7 @@
             this.comboBox_Personen_Aktiv.Items.AddRange(new object[] {
             "0",
             "1"});
-            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(272, 102);
+            this.comboBox_Personen_Aktiv.Location = new System.Drawing.Point(272, 140);
             this.comboBox_Personen_Aktiv.Name = "comboBox_Personen_Aktiv";
             this.comboBox_Personen_Aktiv.Size = new System.Drawing.Size(100, 28);
             this.comboBox_Personen_Aktiv.TabIndex = 4;
@@ -2385,7 +2394,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(12, 140);
+            this.label54.Location = new System.Drawing.Point(12, 178);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(71, 13);
             this.label54.TabIndex = 0;
@@ -2394,7 +2403,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 110);
+            this.label1.Location = new System.Drawing.Point(12, 148);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -2474,7 +2483,7 @@
             this.button_Personen_writeChanges.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Personen_writeChanges.ImageIndex = 2;
             this.button_Personen_writeChanges.ImageList = this.myiconlist;
-            this.button_Personen_writeChanges.Location = new System.Drawing.Point(6, 516);
+            this.button_Personen_writeChanges.Location = new System.Drawing.Point(6, 560);
             this.button_Personen_writeChanges.Name = "button_Personen_writeChanges";
             this.button_Personen_writeChanges.Size = new System.Drawing.Size(392, 34);
             this.button_Personen_writeChanges.TabIndex = 4;
@@ -2482,67 +2491,26 @@
             this.button_Personen_writeChanges.UseVisualStyleBackColor = true;
             this.button_Personen_writeChanges.Click += new System.EventHandler(this.button_Personen_writeChanges_Click);
             // 
-            // Auswertungen
-            // 
-            this.Auswertungen.Location = new System.Drawing.Point(4, 29);
-            this.Auswertungen.Name = "Auswertungen";
-            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Auswertungen.Size = new System.Drawing.Size(822, 559);
-            this.Auswertungen.TabIndex = 3;
-            this.Auswertungen.Text = "Auswertungen";
-            this.Auswertungen.UseVisualStyleBackColor = true;
-            // 
-            // panel_Login
-            // 
-            this.panel_Login.Controls.Add(this.label46);
-            this.panel_Login.Controls.Add(this.textBox_Login_Password);
-            this.panel_Login.Controls.Add(this.button_Login_Enter);
-            this.panel_Login.Location = new System.Drawing.Point(361, 681);
-            this.panel_Login.Name = "panel_Login";
-            this.panel_Login.Size = new System.Drawing.Size(240, 125);
-            this.panel_Login.TabIndex = 6;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(4, 7);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(226, 24);
-            this.label46.TabIndex = 2;
-            this.label46.Text = "Bitte Passwort eingeben...";
-            // 
-            // textBox_Login_Password
-            // 
-            this.textBox_Login_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Login_Password.Location = new System.Drawing.Point(8, 45);
-            this.textBox_Login_Password.Name = "textBox_Login_Password";
-            this.textBox_Login_Password.Size = new System.Drawing.Size(222, 29);
-            this.textBox_Login_Password.TabIndex = 1;
-            this.textBox_Login_Password.UseSystemPasswordChar = true;
-            this.textBox_Login_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Login_Password_KeyDown);
-            // 
-            // button_Login_Enter
-            // 
-            this.button_Login_Enter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Login_Enter.Location = new System.Drawing.Point(8, 80);
-            this.button_Login_Enter.Name = "button_Login_Enter";
-            this.button_Login_Enter.Size = new System.Drawing.Size(222, 38);
-            this.button_Login_Enter.TabIndex = 0;
-            this.button_Login_Enter.Text = "Anmelden";
-            this.button_Login_Enter.UseVisualStyleBackColor = true;
-            this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
-            // 
             // Status
             // 
             this.Status.Controls.Add(this.button_Status_Aktualisieren);
             this.Status.Controls.Add(this.Statusgrid_Status);
             this.Status.Location = new System.Drawing.Point(4, 29);
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(822, 559);
+            this.Status.Size = new System.Drawing.Size(835, 608);
             this.Status.TabIndex = 6;
             this.Status.Text = "Status";
             this.Status.UseVisualStyleBackColor = true;
+            // 
+            // button_Status_Aktualisieren
+            // 
+            this.button_Status_Aktualisieren.Location = new System.Drawing.Point(304, 24);
+            this.button_Status_Aktualisieren.Name = "button_Status_Aktualisieren";
+            this.button_Status_Aktualisieren.Size = new System.Drawing.Size(205, 33);
+            this.button_Status_Aktualisieren.TabIndex = 1;
+            this.button_Status_Aktualisieren.Text = "Aktualisieren";
+            this.button_Status_Aktualisieren.UseVisualStyleBackColor = true;
+            this.button_Status_Aktualisieren.Click += new System.EventHandler(this.button_Status_Aktualisieren_Click);
             // 
             // Statusgrid_Status
             // 
@@ -2561,17 +2529,17 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle4;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.Statusgrid_Status.Location = new System.Drawing.Point(23, 67);
+            this.Statusgrid_Status.Location = new System.Drawing.Point(31, 79);
             this.Statusgrid_Status.MultiSelect = false;
             this.Statusgrid_Status.Name = "Statusgrid_Status";
             this.Statusgrid_Status.ReadOnly = true;
@@ -2580,18 +2548,8 @@
             this.Statusgrid_Status.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Statusgrid_Status.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Statusgrid_Status.ShowEditingIcon = false;
-            this.Statusgrid_Status.Size = new System.Drawing.Size(773, 467);
+            this.Statusgrid_Status.Size = new System.Drawing.Size(773, 498);
             this.Statusgrid_Status.TabIndex = 0;
-            // 
-            // button_Status_Aktualisieren
-            // 
-            this.button_Status_Aktualisieren.Location = new System.Drawing.Point(304, 19);
-            this.button_Status_Aktualisieren.Name = "button_Status_Aktualisieren";
-            this.button_Status_Aktualisieren.Size = new System.Drawing.Size(205, 33);
-            this.button_Status_Aktualisieren.TabIndex = 1;
-            this.button_Status_Aktualisieren.Text = "Aktualisieren";
-            this.button_Status_Aktualisieren.UseVisualStyleBackColor = true;
-            this.button_Status_Aktualisieren.Click += new System.EventHandler(this.button_Status_Aktualisieren_Click);
             // 
             // stat_Mitarbeiter
             // 
@@ -2638,11 +2596,118 @@
             this.stat_Zeit.ReadOnly = true;
             this.stat_Zeit.Width = 160;
             // 
+            // Auswertungen
+            // 
+            this.Auswertungen.Location = new System.Drawing.Point(4, 29);
+            this.Auswertungen.Name = "Auswertungen";
+            this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
+            this.Auswertungen.Size = new System.Drawing.Size(835, 608);
+            this.Auswertungen.TabIndex = 3;
+            this.Auswertungen.Text = "Auswertungen";
+            this.Auswertungen.UseVisualStyleBackColor = true;
+            // 
+            // panel_Login
+            // 
+            this.panel_Login.Controls.Add(this.label46);
+            this.panel_Login.Controls.Add(this.textBox_Login_Password);
+            this.panel_Login.Controls.Add(this.button_Login_Enter);
+            this.panel_Login.Location = new System.Drawing.Point(361, 729);
+            this.panel_Login.Name = "panel_Login";
+            this.panel_Login.Size = new System.Drawing.Size(240, 125);
+            this.panel_Login.TabIndex = 6;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(4, 7);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(226, 24);
+            this.label46.TabIndex = 2;
+            this.label46.Text = "Bitte Passwort eingeben...";
+            // 
+            // textBox_Login_Password
+            // 
+            this.textBox_Login_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Login_Password.Location = new System.Drawing.Point(8, 45);
+            this.textBox_Login_Password.Name = "textBox_Login_Password";
+            this.textBox_Login_Password.Size = new System.Drawing.Size(222, 29);
+            this.textBox_Login_Password.TabIndex = 1;
+            this.textBox_Login_Password.UseSystemPasswordChar = true;
+            this.textBox_Login_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Login_Password_KeyDown);
+            // 
+            // button_Login_Enter
+            // 
+            this.button_Login_Enter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Login_Enter.Location = new System.Drawing.Point(8, 80);
+            this.button_Login_Enter.Name = "button_Login_Enter";
+            this.button_Login_Enter.Size = new System.Drawing.Size(222, 38);
+            this.button_Login_Enter.TabIndex = 0;
+            this.button_Login_Enter.Text = "Anmelden";
+            this.button_Login_Enter.UseVisualStyleBackColor = true;
+            this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(12, 110);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(95, 13);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "Wochenarbeitszeit";
+            // 
+            // textBox_Personen_Wochenarbeitszeit
+            // 
+            this.textBox_Personen_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_Wochenarbeitszeit.Location = new System.Drawing.Point(272, 102);
+            this.textBox_Personen_Wochenarbeitszeit.MaxLength = 10;
+            this.textBox_Personen_Wochenarbeitszeit.Name = "textBox_Personen_Wochenarbeitszeit";
+            this.textBox_Personen_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_Wochenarbeitszeit.TabIndex = 3;
+            this.textBox_Personen_Wochenarbeitszeit.TextChanged += new System.EventHandler(this.textBox_Personen_Urlaubstage_TextChanged);
+            // 
+            // textBox_Personen_Wochenarbeitszeit_old
+            // 
+            this.textBox_Personen_Wochenarbeitszeit_old.Enabled = false;
+            this.textBox_Personen_Wochenarbeitszeit_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_Wochenarbeitszeit_old.Location = new System.Drawing.Point(132, 102);
+            this.textBox_Personen_Wochenarbeitszeit_old.MaxLength = 10;
+            this.textBox_Personen_Wochenarbeitszeit_old.Name = "textBox_Personen_Wochenarbeitszeit_old";
+            this.textBox_Personen_Wochenarbeitszeit_old.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_Wochenarbeitszeit_old.TabIndex = 1;
+            this.textBox_Personen_Wochenarbeitszeit_old.TabStop = false;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(242, 110);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(19, 13);
+            this.label59.TabIndex = 8;
+            this.label59.Text = "-->";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(16, 145);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(95, 13);
+            this.label60.TabIndex = 0;
+            this.label60.Text = "Wochenarbeitszeit";
+            // 
+            // textBox_Personen_neu_Wochenarbeitszeit
+            // 
+            this.textBox_Personen_neu_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_neu_Wochenarbeitszeit.Location = new System.Drawing.Point(136, 137);
+            this.textBox_Personen_neu_Wochenarbeitszeit.Name = "textBox_Personen_neu_Wochenarbeitszeit";
+            this.textBox_Personen_neu_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_neu_Wochenarbeitszeit.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 657);
+            this.ClientSize = new System.Drawing.Size(936, 719);
             this.Controls.Add(this.panel_Login);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
@@ -2687,10 +2752,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.panel_Login.ResumeLayout(false);
-            this.panel_Login.PerformLayout();
             this.Status.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).EndInit();
+            this.panel_Login.ResumeLayout(false);
+            this.panel_Login.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2902,6 +2967,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stat_Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn stat_Auftrag;
         private System.Windows.Forms.DataGridViewTextBoxColumn stat_Zeit;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.TextBox textBox_Personen_Wochenarbeitszeit_old;
+        private System.Windows.Forms.TextBox textBox_Personen_Wochenarbeitszeit;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox textBox_Personen_neu_Wochenarbeitszeit;
+        private System.Windows.Forms.Label label60;
     }
 }
 

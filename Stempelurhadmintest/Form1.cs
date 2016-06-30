@@ -36,6 +36,16 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
         bool statustab_initialisiert_global = false;
 
+        //TODO: überall wo mit Sollzeit gerechnet wird, diese vom Mitarbeiter ermitteln
+        //TODO: bei Änderung der Wochenarbeitszeit auf richtige Vorgehensweise hinweisen und warnen was sonst passiert
+            //darf erst geändert werden, wenn die neue Wochenarbeitszeit bereits gilt,
+            //bonus und zeitkonto müssen dabei genau auf dem Stand vom letzten tag mit der alten Sollzeit stehen, damit nichts falsch berechnet wird.
+            //TODO: diese Besonderheit gut dokumentieren
+
+        //TODO: Feld für Wochenarbeitszeit bei Neuanlage von Mitarbeitern hinzufügen
+        //TODO: Neue buttons und Felder für Wochenarbeitszeit im Personentab richtig benennen
+        //TODO: Funktion des Eingabefelds für Wochenarbeitszeit erstellen wie bei den restlichen Feldern
+
         public Form1()
         {
             InitializeComponent();
@@ -211,6 +221,12 @@ namespace Stempelurhadmintest
                     refreshKalendergrid();
                     refreshPersonPicker_Kalender();
                     refreshEreignisgrid_Kalender();
+
+                    //Die Eingabefelder leeren
+                    textBox_Kalender_Bemerkung.Text = "";
+                    textBox_Kalender_Sollzeit.Text = "";
+                    textBox_Kalender_Urlaub.Text = "";
+
                     kalendertab_initialisiert_global = true;
                 }
             }
@@ -936,8 +952,33 @@ namespace Stempelurhadmintest
 
         private void PersonPicker_Kalender_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //TODO: Für den Ausgewählten Mitarbeiter die normale tägliche Sollzeit ermitteln und anzeigen.
+
             refreshEreignisgrid_Kalender();
             refreshKalendergrid();
+
+            //Die Eingabefelder leeren
+            textBox_Kalender_Bemerkung.Text = "";
+            textBox_Kalender_Sollzeit.Text = "";
+            textBox_Kalender_Urlaub.Text = "";
+
+            if (PersonPicker_Kalender.Text == "Allgemein")
+            {
+                //Die preset-Buttons für Urlaube und Krankheitstag disablen, für Feiertag enablen
+                button_Kalender_ganzerTagUrlaub.Enabled = false;
+                button_Kalender_halberTagUrlaub.Enabled = false;
+                button_Kalender_Krankheitstag.Enabled = false;
+                button_Kalender_Feiertag.Enabled = true;
+            }
+            else
+            {
+                //Die preset-Buttons für Urlaube und Krankheitstag disablen, für Feiertag enablen
+                button_Kalender_ganzerTagUrlaub.Enabled = true;
+                button_Kalender_halberTagUrlaub.Enabled = true;
+                button_Kalender_Krankheitstag.Enabled = true;
+                button_Kalender_Feiertag.Enabled = false;
+            }
+
         }
 
         private bool Aenderung_erlaubt_Kalender(string zuordnung, int jahr, int monat, int tag)
@@ -1328,6 +1369,9 @@ namespace Stempelurhadmintest
 
         private void button_Kalender_halberTagUrlaub_Click(object sender, EventArgs e)
         {
+            //TODO: tägliche sollarbeitszeit des Mitarbeiters aus der wochenarbeitszeit ermitteln
+            //TODO: voreinstellung für die sollzeit entsprechend setzen
+
             //Voreinstellungen für halben Urlaubstag setzen...
             textBox_Kalender_Sollzeit.Text = "3,6";
             textBox_Kalender_Urlaub.Text = "0,5";
