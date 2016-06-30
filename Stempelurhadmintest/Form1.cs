@@ -36,16 +36,6 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
         bool statustab_initialisiert_global = false;
 
-        //TODO: bei Änderung der Wochenarbeitszeit auf richtige Vorgehensweise hinweisen und warnen was sonst passiert
-            //darf erst geändert werden, wenn die neue Wochenarbeitszeit bereits gilt,
-            //bonus und zeitkonto müssen dabei genau auf dem Stand vom letzten tag mit der alten Sollzeit stehen, damit nichts falsch berechnet wird.
-            //Halbe urlaubstage die bereits geplant sind müssen storniert und neu angelegt werden (weil die halbe tägliche sollzeit sich ändert)
-            //für ganze urlaubstage ist das egal, (sollzeit 0 für ganzen urlaubstag bleibt sollzeit 0)
-            //TODO: diese Besonderheit gut dokumentieren
-
-        //TODO: Feld für Wochenarbeitszeit bei Neuanlage von Mitarbeitern hinzufügen
-        //TODO: Funktion des Eingabefelds für Wochenarbeitszeit erstellen wie bei den restlichen Feldern
-
         public Form1()
         {
             InitializeComponent();
@@ -166,7 +156,16 @@ namespace Stempelurhadmintest
         
         private void button_Login_Enter_Click(object sender, EventArgs e)
         {
-            string expectedhash = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08";
+            string expectedhash = "";
+
+            //Passworthash aus der Datenbank lesen...
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT pwhash FROM login";
+            try{ expectedhash = comm.ExecuteScalar() + "";
+            }
+            catch (Exception ex) { log(ex.Message); }
+            close_db();
 
             if (getHashSha256(textBox_Login_Password.Text) == expectedhash)
             {
@@ -944,8 +943,7 @@ namespace Stempelurhadmintest
 
         private void PersonPicker_Kalender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: Für den Ausgewählten Mitarbeiter die normale tägliche Sollzeit ermitteln und anzeigen.
-
+            
             refreshEreignisgrid_Kalender();
             refreshKalendergrid();
 
@@ -3368,11 +3366,13 @@ namespace Stempelurhadmintest
                 //Bestaetigungsdialog vorbereiten
                 string dialogtext = "Sie versuchen die Wochenarbeitszeit des Mitarbeiters zu verändern\r\n\r\n\r\n" +
                                         "Damit keine Berechnungsfehler entstehen müssen Folgende Voraussetzungen erfüllt sein:\r\n\r\n" +
-                                        "  - Die Boni müssen bis genau zum letzten Tag mit der alten Wochenarbeitszeit berechnet berechnet worden sein.\r\n\r\n" + 
-                                        "  - Das Zeitkonto muss bis genau zum letzten Tag mit der alten Wochenarbeitszeit berechnet worden sein.\r\n\r\n" + 
-                                        "  - Kalendereinträge ab dem ersten Tag mit der neuen Wochenarbeitszeit, deren Sollzeit von der Wochenarbeitszeit abhängt,\r\n" + 
-                                        "    müssen storniert und entprechend richtig wieder angelegt werden (z.B. halbe Urlaubstage)\r\n\r\n\r\n" + 
+                                        "  - Die Boni müssen bis GENAU zum letzten Tag mit der alten Wochenarbeitszeit berechnet berechnet worden sein.\r\n\r\n" + 
+                                        "  - Das Zeitkonto muss bis GENAU zum letzten Tag mit der alten Wochenarbeitszeit berechnet worden sein.\r\n\r\n" + 
+                                        "  - Kalendereinträge ab dem ersten Tag mit der neuen Wochenarbeitszeit, deren Sollzeit von der\r\n" +
+                                        "    Wochenarbeitszeit abhängt, müssen storniert und entprechend richtig wieder angelegt werden.\r\n" +
+                                        "    Das betrifft vor allem halbe Urlaubstage. Ganze Urlaubstage/Feiertage (sollzeit 0) sind egal.)\r\n\r\n\r\n" + 
                                         " Sind alle diese Voraussetzungen erfüllt?";
+
                 DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if(dialogResult != DialogResult.Yes)
@@ -3939,7 +3939,8 @@ namespace Stempelurhadmintest
                (textBox_Personen_BetragletzterBonus.BackColor == Color.Gold) ||
                (comboBox_Personen_Stempelfehler.BackColor == Color.Gold) ||
                (textBox_Personen_AktUrlaubsjahr.BackColor == Color.Gold) ||
-               (textBox_Personen_ResturlaubVorjahr.BackColor == Color.Gold))
+               (textBox_Personen_ResturlaubVorjahr.BackColor == Color.Gold) ||
+               (textBox_Personen_Wochenarbeitszeit.BackColor == Color.Gold))
             {
                 button_Personen_writeChanges.Enabled = true;
             }

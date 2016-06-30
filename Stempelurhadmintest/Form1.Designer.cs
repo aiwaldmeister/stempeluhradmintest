@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -289,17 +289,17 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
-            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(82, 108);
+            this.KalenderGrid_Kalender.Location = new System.Drawing.Point(93, 108);
             this.KalenderGrid_Kalender.MultiSelect = false;
             this.KalenderGrid_Kalender.Name = "KalenderGrid_Kalender";
             this.KalenderGrid_Kalender.ReadOnly = true;
@@ -381,7 +381,7 @@
             this.MonatsPicker_Kalender.CustomFormat = "MMMM       yyyy";
             this.MonatsPicker_Kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MonatsPicker_Kalender.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(82, 74);
+            this.MonatsPicker_Kalender.Location = new System.Drawing.Point(93, 74);
             this.MonatsPicker_Kalender.Margin = new System.Windows.Forms.Padding(0);
             this.MonatsPicker_Kalender.Name = "MonatsPicker_Kalender";
             this.MonatsPicker_Kalender.ShowUpDown = true;
@@ -398,7 +398,7 @@
             this.PersonPicker_Kalender.FormattingEnabled = true;
             this.PersonPicker_Kalender.Items.AddRange(new object[] {
             "Allgemein"});
-            this.PersonPicker_Kalender.Location = new System.Drawing.Point(31, 16);
+            this.PersonPicker_Kalender.Location = new System.Drawing.Point(42, 16);
             this.PersonPicker_Kalender.Name = "PersonPicker_Kalender";
             this.PersonPicker_Kalender.Size = new System.Drawing.Size(353, 32);
             this.PersonPicker_Kalender.TabIndex = 1;
@@ -418,7 +418,7 @@
             this.tabControl1.Location = new System.Drawing.Point(44, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(843, 641);
+            this.tabControl1.Size = new System.Drawing.Size(859, 641);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -435,7 +435,7 @@
             this.Kalender.Location = new System.Drawing.Point(4, 29);
             this.Kalender.Name = "Kalender";
             this.Kalender.Padding = new System.Windows.Forms.Padding(3);
-            this.Kalender.Size = new System.Drawing.Size(835, 608);
+            this.Kalender.Size = new System.Drawing.Size(851, 608);
             this.Kalender.TabIndex = 2;
             this.Kalender.Text = "Kalender";
             this.Kalender.UseVisualStyleBackColor = true;
@@ -443,7 +443,7 @@
             // button_Kalender_Monatvor
             // 
             this.button_Kalender_Monatvor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(330, 73);
+            this.button_Kalender_Monatvor.Location = new System.Drawing.Point(341, 73);
             this.button_Kalender_Monatvor.Name = "button_Kalender_Monatvor";
             this.button_Kalender_Monatvor.Size = new System.Drawing.Size(30, 29);
             this.button_Kalender_Monatvor.TabIndex = 6;
@@ -454,7 +454,7 @@
             // button_Kalender_Monatzurueck
             // 
             this.button_Kalender_Monatzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(52, 73);
+            this.button_Kalender_Monatzurueck.Location = new System.Drawing.Point(63, 73);
             this.button_Kalender_Monatzurueck.Name = "button_Kalender_Monatzurueck";
             this.button_Kalender_Monatzurueck.Size = new System.Drawing.Size(30, 29);
             this.button_Kalender_Monatzurueck.TabIndex = 6;
@@ -477,7 +477,7 @@
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label4);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label5);
             this.groupBox_Kalender_erstelleEintrag.Controls.Add(this.label3);
-            this.groupBox_Kalender_erstelleEintrag.Location = new System.Drawing.Point(11, 288);
+            this.groupBox_Kalender_erstelleEintrag.Location = new System.Drawing.Point(22, 288);
             this.groupBox_Kalender_erstelleEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_Kalender_erstelleEintrag.Name = "groupBox_Kalender_erstelleEintrag";
             this.groupBox_Kalender_erstelleEintrag.Padding = new System.Windows.Forms.Padding(2);
@@ -637,7 +637,7 @@
             // 
             this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.button_Kalender_storniereEintrag);
             this.groupBox_Kalender_AlleEreignisse.Controls.Add(this.Ereignisgrid_Kalender);
-            this.groupBox_Kalender_AlleEreignisse.Location = new System.Drawing.Point(444, 16);
+            this.groupBox_Kalender_AlleEreignisse.Location = new System.Drawing.Point(455, 16);
             this.groupBox_Kalender_AlleEreignisse.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_Kalender_AlleEreignisse.Name = "groupBox_Kalender_AlleEreignisse";
             this.groupBox_Kalender_AlleEreignisse.Padding = new System.Windows.Forms.Padding(2);
@@ -741,7 +741,7 @@
             this.Verrechnung.Controls.Add(this.label36);
             this.Verrechnung.Location = new System.Drawing.Point(4, 29);
             this.Verrechnung.Name = "Verrechnung";
-            this.Verrechnung.Size = new System.Drawing.Size(835, 608);
+            this.Verrechnung.Size = new System.Drawing.Size(851, 608);
             this.Verrechnung.TabIndex = 4;
             this.Verrechnung.Text = "Verrechnung";
             this.Verrechnung.UseVisualStyleBackColor = true;
@@ -757,7 +757,7 @@
             this.groupBox_Verrechnungen_Update.Controls.Add(this.textBox_Verrechnungen_Stunden_edit);
             this.groupBox_Verrechnungen_Update.Controls.Add(this.label41);
             this.groupBox_Verrechnungen_Update.Controls.Add(this.label42);
-            this.groupBox_Verrechnungen_Update.Location = new System.Drawing.Point(409, 36);
+            this.groupBox_Verrechnungen_Update.Location = new System.Drawing.Point(424, 41);
             this.groupBox_Verrechnungen_Update.Name = "groupBox_Verrechnungen_Update";
             this.groupBox_Verrechnungen_Update.Size = new System.Drawing.Size(383, 546);
             this.groupBox_Verrechnungen_Update.TabIndex = 0;
@@ -926,7 +926,7 @@
             this.groupBox_Verrechnungen_Insert.Controls.Add(this.label39);
             this.groupBox_Verrechnungen_Insert.Controls.Add(this.label40);
             this.groupBox_Verrechnungen_Insert.Controls.Add(this.label38);
-            this.groupBox_Verrechnungen_Insert.Location = new System.Drawing.Point(24, 81);
+            this.groupBox_Verrechnungen_Insert.Location = new System.Drawing.Point(29, 87);
             this.groupBox_Verrechnungen_Insert.Name = "groupBox_Verrechnungen_Insert";
             this.groupBox_Verrechnungen_Insert.Size = new System.Drawing.Size(340, 501);
             this.groupBox_Verrechnungen_Insert.TabIndex = 0;
@@ -1061,7 +1061,7 @@
             this.Auftragspicker_Verrechnung_Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Auftragspicker_Verrechnung_Insert.FormattingEnabled = true;
             this.Auftragspicker_Verrechnung_Insert.IntegralHeight = false;
-            this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(264, 31);
+            this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(269, 37);
             this.Auftragspicker_Verrechnung_Insert.Name = "Auftragspicker_Verrechnung_Insert";
             this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(100, 28);
             this.Auftragspicker_Verrechnung_Insert.TabIndex = 1;
@@ -1071,7 +1071,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(241, 37);
+            this.label43.Location = new System.Drawing.Point(246, 43);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(19, 13);
             this.label43.TabIndex = 3;
@@ -1080,7 +1080,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(261, 12);
+            this.label21.Location = new System.Drawing.Point(266, 18);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(103, 13);
             this.label21.TabIndex = 3;
@@ -1089,7 +1089,7 @@
             // textBox_Verrechnung_Auftragsnummer
             // 
             this.textBox_Verrechnung_Auftragsnummer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Verrechnung_Auftragsnummer.Location = new System.Drawing.Point(24, 30);
+            this.textBox_Verrechnung_Auftragsnummer.Location = new System.Drawing.Point(29, 36);
             this.textBox_Verrechnung_Auftragsnummer.MaxLength = 6;
             this.textBox_Verrechnung_Auftragsnummer.Name = "textBox_Verrechnung_Auftragsnummer";
             this.textBox_Verrechnung_Auftragsnummer.Size = new System.Drawing.Size(180, 29);
@@ -1099,7 +1099,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(21, 12);
+            this.label36.Location = new System.Drawing.Point(26, 18);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(86, 13);
             this.label36.TabIndex = 3;
@@ -1114,7 +1114,7 @@
             this.Bonusberechnung.Location = new System.Drawing.Point(4, 29);
             this.Bonusberechnung.Name = "Bonusberechnung";
             this.Bonusberechnung.Padding = new System.Windows.Forms.Padding(3);
-            this.Bonusberechnung.Size = new System.Drawing.Size(835, 608);
+            this.Bonusberechnung.Size = new System.Drawing.Size(851, 608);
             this.Bonusberechnung.TabIndex = 5;
             this.Bonusberechnung.Text = "Bonusberechnung";
             this.Bonusberechnung.UseVisualStyleBackColor = true;
@@ -1124,7 +1124,7 @@
             this.button_Bonus_ShowGroupbox_Neu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Bonus_ShowGroupbox_Neu.ImageIndex = 3;
             this.button_Bonus_ShowGroupbox_Neu.ImageList = this.myiconlist;
-            this.button_Bonus_ShowGroupbox_Neu.Location = new System.Drawing.Point(199, 329);
+            this.button_Bonus_ShowGroupbox_Neu.Location = new System.Drawing.Point(208, 329);
             this.button_Bonus_ShowGroupbox_Neu.Name = "button_Bonus_ShowGroupbox_Neu";
             this.button_Bonus_ShowGroupbox_Neu.Size = new System.Drawing.Size(423, 32);
             this.button_Bonus_ShowGroupbox_Neu.TabIndex = 17;
@@ -1142,7 +1142,7 @@
             this.groupBox_Bonus_neu.Controls.Add(this.label53);
             this.groupBox_Bonus_neu.Controls.Add(this.label58);
             this.groupBox_Bonus_neu.Controls.Add(this.label57);
-            this.groupBox_Bonus_neu.Location = new System.Drawing.Point(199, 343);
+            this.groupBox_Bonus_neu.Location = new System.Drawing.Point(208, 343);
             this.groupBox_Bonus_neu.Name = "groupBox_Bonus_neu";
             this.groupBox_Bonus_neu.Size = new System.Drawing.Size(425, 224);
             this.groupBox_Bonus_neu.TabIndex = 16;
@@ -1239,7 +1239,7 @@
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label50);
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label51);
             this.groupBoxLetzteBonusberechnung.Controls.Add(this.label52);
-            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(199, 82);
+            this.groupBoxLetzteBonusberechnung.Location = new System.Drawing.Point(208, 82);
             this.groupBoxLetzteBonusberechnung.Name = "groupBoxLetzteBonusberechnung";
             this.groupBoxLetzteBonusberechnung.Size = new System.Drawing.Size(425, 207);
             this.groupBoxLetzteBonusberechnung.TabIndex = 15;
@@ -1327,7 +1327,7 @@
             this.Stempelungen.Location = new System.Drawing.Point(4, 29);
             this.Stempelungen.Name = "Stempelungen";
             this.Stempelungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Stempelungen.Size = new System.Drawing.Size(835, 608);
+            this.Stempelungen.Size = new System.Drawing.Size(851, 608);
             this.Stempelungen.TabIndex = 1;
             this.Stempelungen.Text = "Stempelungen";
             this.Stempelungen.UseVisualStyleBackColor = true;
@@ -1335,7 +1335,7 @@
             // button_Stempelungen_DatePickerTagzurueck
             // 
             this.button_Stempelungen_DatePickerTagzurueck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Stempelungen_DatePickerTagzurueck.Location = new System.Drawing.Point(26, 60);
+            this.button_Stempelungen_DatePickerTagzurueck.Location = new System.Drawing.Point(30, 60);
             this.button_Stempelungen_DatePickerTagzurueck.Name = "button_Stempelungen_DatePickerTagzurueck";
             this.button_Stempelungen_DatePickerTagzurueck.Size = new System.Drawing.Size(26, 26);
             this.button_Stempelungen_DatePickerTagzurueck.TabIndex = 12;
@@ -1346,7 +1346,7 @@
             // button_Stempelungen_DatePickerTagvorwaerts
             // 
             this.button_Stempelungen_DatePickerTagvorwaerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Stempelungen_DatePickerTagvorwaerts.Location = new System.Drawing.Point(325, 60);
+            this.button_Stempelungen_DatePickerTagvorwaerts.Location = new System.Drawing.Point(329, 60);
             this.button_Stempelungen_DatePickerTagvorwaerts.Name = "button_Stempelungen_DatePickerTagvorwaerts";
             this.button_Stempelungen_DatePickerTagvorwaerts.Size = new System.Drawing.Size(25, 26);
             this.button_Stempelungen_DatePickerTagvorwaerts.TabIndex = 12;
@@ -1360,7 +1360,7 @@
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label_Stempelungen_Hinweis);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.label32);
             this.groupBox_Stempelungen_Zeitkonto.Controls.Add(this.button_Stempelungen_ZeitkontoRueckrechnen);
-            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(379, 446);
+            this.groupBox_Stempelungen_Zeitkonto.Location = new System.Drawing.Point(391, 446);
             this.groupBox_Stempelungen_Zeitkonto.Name = "groupBox_Stempelungen_Zeitkonto";
             this.groupBox_Stempelungen_Zeitkonto.Size = new System.Drawing.Size(424, 138);
             this.groupBox_Stempelungen_Zeitkonto.TabIndex = 11;
@@ -1424,7 +1424,7 @@
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_stornieren);
             this.groupBox_Stempelungen_EditierenErstellen.Controls.Add(this.button_Stempelungen_ueberschreiben);
             this.groupBox_Stempelungen_EditierenErstellen.Enabled = false;
-            this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(379, 114);
+            this.groupBox_Stempelungen_EditierenErstellen.Location = new System.Drawing.Point(391, 114);
             this.groupBox_Stempelungen_EditierenErstellen.Name = "groupBox_Stempelungen_EditierenErstellen";
             this.groupBox_Stempelungen_EditierenErstellen.Size = new System.Drawing.Size(424, 310);
             this.groupBox_Stempelungen_EditierenErstellen.TabIndex = 10;
@@ -1545,7 +1545,7 @@
             this.StampTask,
             this.StampZeitstempel,
             this.StampSource});
-            this.Stempelungsgrid_Stempelungen.Location = new System.Drawing.Point(26, 95);
+            this.Stempelungsgrid_Stempelungen.Location = new System.Drawing.Point(30, 95);
             this.Stempelungsgrid_Stempelungen.MultiSelect = false;
             this.Stempelungsgrid_Stempelungen.Name = "Stempelungsgrid_Stempelungen";
             this.Stempelungsgrid_Stempelungen.ReadOnly = true;
@@ -1598,7 +1598,7 @@
             // DatePicker_Stempelungen
             // 
             this.DatePicker_Stempelungen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatePicker_Stempelungen.Location = new System.Drawing.Point(52, 60);
+            this.DatePicker_Stempelungen.Location = new System.Drawing.Point(56, 60);
             this.DatePicker_Stempelungen.Name = "DatePicker_Stempelungen";
             this.DatePicker_Stempelungen.Size = new System.Drawing.Size(273, 26);
             this.DatePicker_Stempelungen.TabIndex = 6;
@@ -1611,7 +1611,7 @@
             this.PersonPicker_Stempelungen.FormattingEnabled = true;
             this.PersonPicker_Stempelungen.Items.AddRange(new object[] {
             "Allgemein"});
-            this.PersonPicker_Stempelungen.Location = new System.Drawing.Point(26, 24);
+            this.PersonPicker_Stempelungen.Location = new System.Drawing.Point(30, 24);
             this.PersonPicker_Stempelungen.Name = "PersonPicker_Stempelungen";
             this.PersonPicker_Stempelungen.Size = new System.Drawing.Size(324, 32);
             this.PersonPicker_Stempelungen.TabIndex = 5;
@@ -1629,7 +1629,7 @@
             this.Personen.Location = new System.Drawing.Point(4, 29);
             this.Personen.Name = "Personen";
             this.Personen.Padding = new System.Windows.Forms.Padding(3);
-            this.Personen.Size = new System.Drawing.Size(835, 608);
+            this.Personen.Size = new System.Drawing.Size(851, 608);
             this.Personen.TabIndex = 0;
             this.Personen.Text = "Personen";
             this.Personen.UseVisualStyleBackColor = true;
@@ -1642,7 +1642,7 @@
             this.groupBox2.Controls.Add(this.label_Personen_Hinweis_Urlaubsjahr);
             this.groupBox2.Controls.Add(this.button_Personen_ZeitkontoAktualisieren);
             this.groupBox2.Controls.Add(this.button_Personen_UrlaubsjahrAktualisieren);
-            this.groupBox2.Location = new System.Drawing.Point(424, 41);
+            this.groupBox2.Location = new System.Drawing.Point(429, 41);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(381, 211);
             this.groupBox2.TabIndex = 11;
@@ -2121,7 +2121,7 @@
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Location = new System.Drawing.Point(560, 339);
+            this.groupBox1.Location = new System.Drawing.Point(577, 339);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(256, 255);
             this.groupBox1.TabIndex = 5;
@@ -2497,14 +2497,14 @@
             this.Status.Controls.Add(this.Statusgrid_Status);
             this.Status.Location = new System.Drawing.Point(4, 29);
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(835, 608);
+            this.Status.Size = new System.Drawing.Size(851, 608);
             this.Status.TabIndex = 6;
             this.Status.Text = "Status";
             this.Status.UseVisualStyleBackColor = true;
             // 
             // button_Status_Aktualisieren
             // 
-            this.button_Status_Aktualisieren.Location = new System.Drawing.Point(304, 24);
+            this.button_Status_Aktualisieren.Location = new System.Drawing.Point(312, 23);
             this.button_Status_Aktualisieren.Name = "button_Status_Aktualisieren";
             this.button_Status_Aktualisieren.Size = new System.Drawing.Size(205, 33);
             this.button_Status_Aktualisieren.TabIndex = 1;
@@ -2529,17 +2529,17 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.Statusgrid_Status.Location = new System.Drawing.Point(31, 79);
+            this.Statusgrid_Status.Location = new System.Drawing.Point(39, 78);
             this.Statusgrid_Status.MultiSelect = false;
             this.Statusgrid_Status.Name = "Statusgrid_Status";
             this.Statusgrid_Status.ReadOnly = true;
@@ -2601,7 +2601,7 @@
             this.Auswertungen.Location = new System.Drawing.Point(4, 29);
             this.Auswertungen.Name = "Auswertungen";
             this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
-            this.Auswertungen.Size = new System.Drawing.Size(835, 608);
+            this.Auswertungen.Size = new System.Drawing.Size(851, 608);
             this.Auswertungen.TabIndex = 3;
             this.Auswertungen.Text = "Auswertungen";
             this.Auswertungen.UseVisualStyleBackColor = true;
@@ -2707,7 +2707,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 719);
+            this.ClientSize = new System.Drawing.Size(964, 722);
             this.Controls.Add(this.panel_Login);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
