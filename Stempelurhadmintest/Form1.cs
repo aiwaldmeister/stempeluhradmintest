@@ -36,10 +36,11 @@ namespace Stempelurhadmintest
         bool bonustab_initialisiert_global = false;
         bool statustab_initialisiert_global = false;
 
-        //TODO: überall wo mit Sollzeit gerechnet wird, diese vom Mitarbeiter ermitteln
         //TODO: bei Änderung der Wochenarbeitszeit auf richtige Vorgehensweise hinweisen und warnen was sonst passiert
             //darf erst geändert werden, wenn die neue Wochenarbeitszeit bereits gilt,
             //bonus und zeitkonto müssen dabei genau auf dem Stand vom letzten tag mit der alten Sollzeit stehen, damit nichts falsch berechnet wird.
+            //Halbe urlaubstage die bereits geplant sind müssen storniert und neu angelegt werden (weil die halbe tägliche sollzeit sich ändert)
+            //für ganze urlaubstage ist das egal, (sollzeit 0 für ganzen urlaubstag bleibt sollzeit 0)
             //TODO: diese Besonderheit gut dokumentieren
 
         //TODO: Feld für Wochenarbeitszeit bei Neuanlage von Mitarbeitern hinzufügen
@@ -292,39 +293,7 @@ namespace Stempelurhadmintest
         
         private void button1_Click(object sender, EventArgs e)
         {
-            // testevent in liste eintragen für merkierten tag
-            int selectedCellCount = KalenderGrid_Kalender.SelectedCells.Count;
-            for (int i = 0;
-                i < selectedCellCount; i++)
-            {
-                string cellvaluestring = KalenderGrid_Kalender.SelectedCells[i].Value.ToString();
-                
-                if (cellvaluestring != "")
-                {
-                    cellvaluestring = Int32.Parse(cellvaluestring).ToString("D2");
-                    //MessageBox.Show( cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2")+ "." + MonatsPicker_Kalender.Value.Year.ToString("D4"));
-
-                    DataGridViewRow myrow = new DataGridViewRow();
-                    DataGridViewCell cell0 = new DataGridViewTextBoxCell();
-                    DataGridViewCell cell1 = new DataGridViewTextBoxCell();
-                    DataGridViewCell cell2 = new DataGridViewTextBoxCell();
-                    DataGridViewCell cell3 = new DataGridViewTextBoxCell();
-                    DataGridViewCell cell4 = new DataGridViewTextBoxCell();
-
-                    cell0.Value = "0001";
-                    cell1.Value = cellvaluestring + "." + MonatsPicker_Kalender.Value.Month.ToString("D2");
-                    cell2.Value = "7.2";
-                    cell3.Value = "0";
-                    cell4.Value = "Testeintrag Blablabla";
-
-                    myrow.Cells.Add(cell0);
-                    myrow.Cells.Add(cell1);
-                    myrow.Cells.Add(cell2);
-                    myrow.Cells.Add(cell3);
-                    myrow.Cells.Add(cell4);
-                    Ereignisgrid_Kalender.Rows.Add(myrow);
-                }
-            }
+           
         }
 
         private void ZeitkontoRueckrechnen(string userid, int zieljahr, int zielmonat, int zieltag)
@@ -649,7 +618,7 @@ namespace Stempelurhadmintest
         }
 
         private double ermittleSollZeit(string usercode, string berechnungsjahr, string berechnungsmonat, string berechnungstag)
-        {   //sollzeit ermitteln (persoenlicher kalendereintrag > allgemeiner kalendereintrag > fallback(wochenende 0, sonst 7,2)
+        {   //sollzeit ermitteln (persoenlicher kalendereintrag > allgemeiner kalendereintrag > fallback(wochenende 0, sonst fuenftel der wochenarbeitszeit)
             double sollzeit = 0;
             object tmp = null;
             string sollzeitquelle = "";
@@ -705,13 +674,31 @@ namespace Stempelurhadmintest
                     int Wochentagscode = (int)berechnungsdatum.DayOfWeek;
                     if (Wochentagscode == 0 || Wochentagscode == 6)
                     {
+
                         sollzeit = 0;
                         sollzeitquelle = "normaler Wochenendstag";
                     }
                     else
                     {
-                        sollzeit = 7.2;
-                        sollzeitquelle = "normaler Werktag";
+                        double this_wochenarbeitszeit = 0;
+                        
+                        open_db();
+                        comm.Parameters.Clear();
+                        comm.CommandText = "SELECT wochenarbeitszeit FROM user WHERE userid=@userid";
+
+                        comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = usercode;
+
+                        try
+                        {
+                            this_wochenarbeitszeit = double.Parse(comm.ExecuteScalar() + "");
+                        }
+                        catch (Exception ex) { log(ex.Message); }
+
+                        close_db();
+
+                        //normaler Werktag -> sollzeit ist ein fuenftel der wochenarbeitszeit des Mitarbeites
+                        sollzeit = this_wochenarbeitszeit / 5;
+                        sollzeitquelle = "Normaler Werktag -> Wochenarbeitszeit (" + this_wochenarbeitszeit + ") durch 5";
                     }
                 }
             }
@@ -813,7 +800,13 @@ namespace Stempelurhadmintest
                     thisevent_name = Reader["name"] + "";
 
                     thisevent_tooltipprefix =  "";
-                    if (thisevent_name != "") thisevent_tooltipprefix = thisevent_name + ": ";
+                    if (thisevent_name != "")
+                    {//persoenliches event
+                        thisevent_tooltipprefix = thisevent_name + ": ";
+                    }else
+                    {//allgemeines event
+                        thisevent_tooltipprefix = "Allgemein: ";
+                    }
                    
                     //loop durch alle cellen des Kalendergrids
                     for (int actrow = 0; actrow < 6; actrow++)
@@ -969,9 +962,42 @@ namespace Stempelurhadmintest
                 button_Kalender_halberTagUrlaub.Enabled = false;
                 button_Kalender_Krankheitstag.Enabled = false;
                 button_Kalender_Feiertag.Enabled = true;
+
+                //Allgemein werden normalerweise nur Feiertage eingetragen... also presets entsprechend setzen
+                textBox_Kalender_Bemerkung.Text = "Feiertag";
+                textBox_Kalender_Sollzeit.Text = "0";
+                textBox_Kalender_Urlaub.Text = "0";
+
+
             }
             else
             {
+                //wochenarbeitszeit des Mitarbeiters ermitteln
+                string this_userid = "";
+                double this_wochenarbeitszeit = 0;
+
+                this_userid = PersonPicker_Kalender.Text;
+                if (this_userid.Length >= 6)
+                {
+                    this_userid = this_userid.Substring(0, 6);
+                }
+                open_db();
+                comm.Parameters.Clear();
+                comm.CommandText = "SELECT wochenarbeitszeit FROM user WHERE userid=@userid";
+
+                comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = this_userid;
+
+                try
+                {
+                    this_wochenarbeitszeit = double.Parse(comm.ExecuteScalar() + "");
+                }
+                catch (Exception ex) { log(ex.Message); }
+
+                close_db();
+
+                //aus der Wochenarbeitszeit die normale sollzeit des Mitarbeiters berechnen und im Sollzeit-Feld anzeigen
+                textBox_Kalender_Sollzeit.Text = (this_wochenarbeitszeit / 5).ToString();               
+
                 //Die preset-Buttons für Urlaube und Krankheitstag disablen, für Feiertag enablen
                 button_Kalender_ganzerTagUrlaub.Enabled = true;
                 button_Kalender_halberTagUrlaub.Enabled = true;
@@ -1369,11 +1395,33 @@ namespace Stempelurhadmintest
 
         private void button_Kalender_halberTagUrlaub_Click(object sender, EventArgs e)
         {
-            //TODO: tägliche sollarbeitszeit des Mitarbeiters aus der wochenarbeitszeit ermitteln
-            //TODO: voreinstellung für die sollzeit entsprechend setzen
+            //tägliche sollarbeitszeit des Mitarbeiters aus der wochenarbeitszeit ermitteln
+            
+            string this_userid = "";
+            double this_wochenarbeitszeit = 0;
+
+            this_userid = PersonPicker_Kalender.Text;
+            if(this_userid.Length >= 6)
+            {
+                this_userid = this_userid.Substring(0, 6);
+            }
+            
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT wochenarbeitszeit FROM user WHERE userid=@userid";
+
+            comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = this_userid;
+
+            try
+            {
+                this_wochenarbeitszeit = double.Parse(comm.ExecuteScalar() + "");
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+            close_db();
 
             //Voreinstellungen für halben Urlaubstag setzen...
-            textBox_Kalender_Sollzeit.Text = "3,6";
+            textBox_Kalender_Sollzeit.Text = (this_wochenarbeitszeit /10).ToString();
             textBox_Kalender_Urlaub.Text = "0,5";
             textBox_Kalender_Bemerkung.Text = "Halber Tag Urlaub";
 
