@@ -44,7 +44,6 @@ namespace Stempelurhadmintest
             //TODO: diese Besonderheit gut dokumentieren
 
         //TODO: Feld für Wochenarbeitszeit bei Neuanlage von Mitarbeitern hinzufügen
-        //TODO: Neue buttons und Felder für Wochenarbeitszeit im Personentab richtig benennen
         //TODO: Funktion des Eingabefelds für Wochenarbeitszeit erstellen wie bei den restlichen Feldern
 
         public Form1()
@@ -2944,6 +2943,7 @@ namespace Stempelurhadmintest
             string thisperson_jahresurlaub = "";
             string thisperson_akt_urlaubsjahr = "";
             string thisperson_resturlaub_vorjahr = "";
+            string thisperson_wochenarbeitszeit = "";
             bool thisperson_stempelfehler = false;
             bool thisperson_aktiv = false;
             bool thisperson_details = false;
@@ -2977,6 +2977,7 @@ namespace Stempelurhadmintest
                 thisperson_jahresurlaub = Reader["jahresurlaub"] + "";
                 thisperson_akt_urlaubsjahr = Reader["akt_urlaubsjahr"] + "";
                 thisperson_resturlaub_vorjahr = Reader["resturlaub_vorjahr"] + "";
+                thisperson_wochenarbeitszeit = Reader["wochenarbeitszeit"] + "";
                 thisperson_stempelfehler = (bool)Reader["stempelfehler"];
                 thisperson_aktiv = (bool)Reader["aktiv"];
                 thisperson_details = (bool)Reader["detailanzeige_erlaubt"];
@@ -2997,6 +2998,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Urlaubstage_old.Text = thisperson_jahresurlaub;
             textBox_Personen_AktUrlaubsjahr_old.Text = thisperson_akt_urlaubsjahr;
             textBox_Personen_ResturlaubVorjahr_old.Text = thisperson_resturlaub_vorjahr;
+            textBox_Personen_Wochenarbeitszeit_old.Text = thisperson_wochenarbeitszeit;
 
             comboBox_Personen_Aktiv_old.SelectedIndex = 0;
             comboBox_Personen_Details_old.SelectedIndex = 0;
@@ -3016,6 +3018,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Urlaubstage.Text = thisperson_jahresurlaub;
             textBox_Personen_AktUrlaubsjahr.Text = thisperson_akt_urlaubsjahr;
             textBox_Personen_ResturlaubVorjahr.Text = thisperson_resturlaub_vorjahr;
+            textBox_Personen_Wochenarbeitszeit.Text = thisperson_wochenarbeitszeit;
 
             comboBox_Personen_Aktiv.SelectedIndex = 0;
             comboBox_Personen_Details.SelectedIndex = 0;
@@ -3038,6 +3041,7 @@ namespace Stempelurhadmintest
             comboBox_Personen_Stempelfehler.BackColor = Color.White;
             textBox_Personen_AktUrlaubsjahr.BackColor = Color.White;
             textBox_Personen_ResturlaubVorjahr.BackColor = Color.White;
+            textBox_Personen_Wochenarbeitszeit.BackColor = Color.White;
 
             if(int.Parse(thisperson_akt_urlaubsjahr) < DateTime.Now.Year)
             {//akturlaubsjahr ist kleiner als das derzeitige jahr
@@ -3080,6 +3084,7 @@ namespace Stempelurhadmintest
             textBox_Personen_Neu_Vorname.Text = "";
             textBox_Personen_Neu_Nachname.Text = "";
             textBox_Personen_Neu_Urlaubstage.Text = "";
+            textBox_Personen_neu_Wochenarbeitszeit.Text = "";
             textBox_Personen_Neu_WunschID.Text = "";
 
         }
@@ -3095,7 +3100,9 @@ namespace Stempelurhadmintest
             string input_vorname = textBox_Personen_Neu_Vorname.Text;
             string input_nachname = textBox_Personen_Neu_Nachname.Text;
             string input_Jahresurlaub = textBox_Personen_Neu_Urlaubstage.Text;
+            string input_Wochenarbeitszeit = textBox_Personen_neu_Wochenarbeitszeit.Text;
             double jahresurlaub = 0; //wird weiter unten erst versucht aus dem Formularfeld zu parsen
+            double wochenarbeitszeit = 0; //wird weiter unten erst versucht aus dem Formularfeld zu parsen
             double resturlaub_vorjahr = 0;
 
             DateTime ersterarbeitstag = DatePicker_Personen_neu.Value.Date;
@@ -3127,6 +3134,13 @@ namespace Stempelurhadmintest
             {//Wert der Textbox keine gültige double
                 fehler = true;
                 MessageBox.Show("Der angegebene wert für den Jahresurlaub ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            TryParse_Result = double.TryParse(input_Wochenarbeitszeit, out wochenarbeitszeit);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Der angegebene wert für die Wochenarbeitszeit ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //prüfen ob Person noch nicht existiert
@@ -3162,6 +3176,7 @@ namespace Stempelurhadmintest
                 string dialogtext = "Folgende Person erstellen?\r\n\r\n" +
                                         input_userid + ": " + input_vorname + " " + input_nachname + "\r\n\r\n" +
                                         "Jahresurlaub: " + jahresurlaub + " Tage\r\n" +
+                                        "Wochenarbeitszeit: " + wochenarbeitszeit + " Stunden\r\n" +
                                         "Erster Arbeitstag: " + ersterarbeitstag.ToLongDateString();
                 DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo);
 
@@ -3171,8 +3186,8 @@ namespace Stempelurhadmintest
                     open_db();
                     comm.Parameters.Clear();
                     comm.CommandText = "INSERT INTO user (userid, currenttask, name, vorname, zeitkonto, zeitkonto_berechnungsstand, bonuskonto_ausgezahlt_bis, " +
-                                                "bonuszeit_bei_letzter_auszahlung, jahresurlaub,akt_urlaubsjahr, resturlaub_vorjahr, stempelfehler, aktiv, detailanzeige_erlaubt) " +
-                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,@akt_urlaubsjahr,@resturlaub_vorjahr,0,1,0)";
+                                                "bonuszeit_bei_letzter_auszahlung, jahresurlaub,akt_urlaubsjahr, resturlaub_vorjahr, wochenarbeitszeit, stempelfehler, aktiv, detailanzeige_erlaubt) " +
+                                        "VALUES(@userid,'',@nachname,@vorname,0,@tagvorantritt,@tagvorantritt,0,@jahresurlaub,@akt_urlaubsjahr,@resturlaub_vorjahr, @wochenarbeitszeit, 0, 1, 0)";
 
                     comm.Parameters.Add("@userid", MySql.Data.MySqlClient.MySqlDbType.VarChar, 6).Value = input_userid;
                     comm.Parameters.Add("@nachname", MySql.Data.MySqlClient.MySqlDbType.VarChar, 30).Value = input_nachname;
@@ -3187,6 +3202,10 @@ namespace Stempelurhadmintest
                     comm.Parameters["@resturlaub_vorjahr"].Precision = 10;
                     comm.Parameters["@resturlaub_vorjahr"].Scale = 2;
                     comm.Parameters["@resturlaub_vorjahr"].Value = resturlaub_vorjahr;
+                    comm.Parameters.Add("@wochenarbeitszeit", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@wochenarbeitszeit"].Precision = 10;
+                    comm.Parameters["@wochenarbeitszeit"].Scale = 2;
+                    comm.Parameters["@wochenarbeitszeit"].Value = wochenarbeitszeit;
 
                     log("Lege Person an: " + input_userid + "(" + input_vorname + " " + input_nachname + ")");
                     try
@@ -3241,6 +3260,7 @@ namespace Stempelurhadmintest
             double new_jahresurlaub = 0;
             int new_akt_urlaubsjahr = 0;
             double new_resturlaub_vorjahr = 0;
+            double new_wochenarbeitszeit = 0;
             bool new_stempelfehler = false;
             bool new_aktiv = false;
             bool new_details = false;
@@ -3302,6 +3322,13 @@ namespace Stempelurhadmintest
                 MessageBox.Show("Fehler! Der angegebene Wert für den Resturlaub aus dem Vorjahr ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            TryParse_Result = double.TryParse(textBox_Personen_Wochenarbeitszeit.Text, out new_wochenarbeitszeit);
+            if (TryParse_Result == false)
+            {//Wert der Textbox keine gültige double
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für die Wochenarbeitszeit ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             TryParse_Result = int.TryParse(textBox_Personen_AktUrlaubsjahr.Text, out new_akt_urlaubsjahr);
             if (TryParse_Result == false)
             {//Wert der Textbox keine gültige zahl
@@ -3332,6 +3359,31 @@ namespace Stempelurhadmintest
             new_stempelfehler = false;
             if (comboBox_Personen_Stempelfehler.Text == "1") { new_stempelfehler = true; }
 
+            if(textBox_Personen_Wochenarbeitszeit.BackColor == Color.Gold)
+            {
+                //es wird versucht die Wochenarbeitszeit des Mitarbeiters zu veraendern...
+                //...das kann zu BerechnungsFehlern führen wenn nicht an alle Vorbedingungen gedacht wurde!
+                //deshalb darauf hinweisen und chance zum Abbruch geben
+
+                //Bestaetigungsdialog vorbereiten
+                string dialogtext = "Sie versuchen die Wochenarbeitszeit des Mitarbeiters zu verändern\r\n\r\n\r\n" +
+                                        "Damit keine Berechnungsfehler entstehen müssen Folgende Voraussetzungen erfüllt sein:\r\n\r\n" +
+                                        "  - Die Boni müssen bis genau zum letzten Tag mit der alten Wochenarbeitszeit berechnet berechnet worden sein.\r\n\r\n" + 
+                                        "  - Das Zeitkonto muss bis genau zum letzten Tag mit der alten Wochenarbeitszeit berechnet worden sein.\r\n\r\n" + 
+                                        "  - Kalendereinträge ab dem ersten Tag mit der neuen Wochenarbeitszeit, deren Sollzeit von der Wochenarbeitszeit abhängt,\r\n" + 
+                                        "    müssen storniert und entprechend richtig wieder angelegt werden (z.B. halbe Urlaubstage)\r\n\r\n\r\n" + 
+                                        " Sind alle diese Voraussetzungen erfüllt?";
+                DialogResult dialogResult = MessageBox.Show(dialogtext, "Sicher?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if(dialogResult != DialogResult.Yes)
+                {//Abbruch durch den User. Fehler wird gesetzt, dadurch wird abgebrochen.
+                    fehler = true;
+                }
+
+
+            }
+
+
 
 
             if (fehler == false)
@@ -3357,6 +3409,7 @@ namespace Stempelurhadmintest
                                             "jahresurlaub=@jahresurlaub, " +
                                             "akt_urlaubsjahr=@akt_urlaubsjahr, " +
                                             "resturlaub_vorjahr=@resturlaub_vorjahr, " +
+                                            "wochenarbeitszeit=@wochenarbeitszeit, " +
                                             "stempelfehler=@stempelfehler, " +
                                             "aktiv=@aktiv, " +
                                             "detailanzeige_erlaubt=@details " +
@@ -3384,6 +3437,10 @@ namespace Stempelurhadmintest
                     comm.Parameters["@resturlaub_vorjahr"].Precision = 10;
                     comm.Parameters["@resturlaub_vorjahr"].Scale = 2;
                     comm.Parameters["@resturlaub_vorjahr"].Value = new_resturlaub_vorjahr;
+                    comm.Parameters.Add("@wochenarbeitszeit", MySql.Data.MySqlClient.MySqlDbType.Decimal, 10);
+                    comm.Parameters["@wochenarbeitszeit"].Precision = 10;
+                    comm.Parameters["@wochenarbeitszeit"].Scale = 2;
+                    comm.Parameters["@wochenarbeitszeit"].Value = new_wochenarbeitszeit;
                     comm.Parameters.Add("@stempelfehler", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_stempelfehler;
                     comm.Parameters.Add("@aktiv", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_aktiv;
                     comm.Parameters.Add("@details", MySql.Data.MySqlClient.MySqlDbType.Byte, 1).Value = new_details;
@@ -3396,6 +3453,7 @@ namespace Stempelurhadmintest
                         "\r\n Jahresurlaub:'" + textBox_Personen_Urlaubstage_old.Text + "'->'" + textBox_Personen_Urlaubstage.Text + "' " +
                         "\r\n Urlaubsjahr:'" + textBox_Personen_AktUrlaubsjahr_old.Text + "'->'" + textBox_Personen_AktUrlaubsjahr.Text + "' " +
                         "\r\n Resturlaub_Vorjahr:'" + textBox_Personen_ResturlaubVorjahr_old.Text + "'->'" + textBox_Personen_ResturlaubVorjahr.Text + "' " +
+                        "\r\n Wochenarbeitszeit:'" + textBox_Personen_Wochenarbeitszeit_old.Text + "'->'" + textBox_Personen_Wochenarbeitszeit.Text + "' " +
                         "\r\n Aktiv:'" + comboBox_Personen_Aktiv_old.Text + "'->'" + comboBox_Personen_Aktiv.Text + "' " +
                         "\r\n Detailanzeige:'" + comboBox_Personen_Details_old.Text + "'->'" + comboBox_Personen_Details.Text + "' " +
                         "\r\n Currenttask:'" + textBox_Personen_AktAuftrag_old.Text + "'->'" + textBox_Personen_AktAuftrag.Text + "' " +
@@ -3618,6 +3676,21 @@ namespace Stempelurhadmintest
             pruefeFelderAufVeränderungen();
         }
 
+        private void textBox_Personen_Wochenarbeitszeit_TextChanged(object sender, EventArgs e)
+        {
+            //auf unterschied pruefen und ggf einfaerben
+            if (textBox_Personen_Wochenarbeitszeit.Text == textBox_Personen_Wochenarbeitszeit_old.Text)
+            {
+                textBox_Personen_Wochenarbeitszeit.BackColor = Color.White;
+            }
+            else
+            {
+                textBox_Personen_Wochenarbeitszeit.BackColor = Color.Gold;
+            }
+
+            pruefeFelderAufVeränderungen();
+        }
+        
         private void button_Personen_UrlaubsjahrAktualisieren_Click(object sender, EventArgs e)
         {
             string userid = "";
@@ -4396,9 +4469,7 @@ namespace Stempelurhadmintest
             groupBox_Bonus_neu.Visible = true;
         }
 
-
-
-
+        
         ///////////////////////////////////////////////////////////////////////
 
     }
