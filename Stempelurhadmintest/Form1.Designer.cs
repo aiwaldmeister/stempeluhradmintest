@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -194,10 +194,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DatePicker_Personen_neu = new System.Windows.Forms.DateTimePicker();
             this.textBox_Personen_Neu_WunschID = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_neu_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Neu_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_Personen_Neu_Nachname = new System.Windows.Forms.TextBox();
             this.button_Personen_newPerson = new System.Windows.Forms.Button();
+            this.label60 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.textBox_Personen_Neu_Vorname = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -206,6 +208,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -213,11 +216,14 @@
             this.comboBox_Personen_Aktiv_old = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Details = new System.Windows.Forms.ComboBox();
             this.comboBox_Personen_Aktiv = new System.Windows.Forms.ComboBox();
+            this.textBox_Personen_Wochenarbeitszeit_old = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Urlaubstage_old = new System.Windows.Forms.TextBox();
+            this.textBox_Personen_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
             this.textBox_Personen_Urlaubstage = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Personen_Nachname_old = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
             this.textBox_Personen_Nachname = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_Personen_Vorname_old = new System.Windows.Forms.TextBox();
@@ -238,12 +244,6 @@
             this.label46 = new System.Windows.Forms.Label();
             this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.button_Login_Enter = new System.Windows.Forms.Button();
-            this.label56 = new System.Windows.Forms.Label();
-            this.textBox_Personen_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
-            this.textBox_Personen_Wochenarbeitszeit_old = new System.Windows.Forms.TextBox();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.textBox_Personen_neu_Wochenarbeitszeit = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -289,14 +289,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle3;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(93, 108);
@@ -415,7 +415,7 @@
             this.tabControl1.Controls.Add(this.Auswertungen);
             this.tabControl1.Enabled = false;
             this.tabControl1.ItemSize = new System.Drawing.Size(54, 25);
-            this.tabControl1.Location = new System.Drawing.Point(44, 41);
+            this.tabControl1.Location = new System.Drawing.Point(51, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(859, 641);
@@ -2147,6 +2147,14 @@
             this.textBox_Personen_Neu_WunschID.TabIndex = 1;
             this.textBox_Personen_Neu_WunschID.TextChanged += new System.EventHandler(this.textBox_Personen_Neu_WunschID_TextChanged);
             // 
+            // textBox_Personen_neu_Wochenarbeitszeit
+            // 
+            this.textBox_Personen_neu_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_neu_Wochenarbeitszeit.Location = new System.Drawing.Point(136, 137);
+            this.textBox_Personen_neu_Wochenarbeitszeit.Name = "textBox_Personen_neu_Wochenarbeitszeit";
+            this.textBox_Personen_neu_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_neu_Wochenarbeitszeit.TabIndex = 4;
+            // 
             // textBox_Personen_Neu_Urlaubstage
             // 
             this.textBox_Personen_Neu_Urlaubstage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2185,6 +2193,15 @@
             this.button_Personen_newPerson.Text = "Neuen Mitarbeiter anlegen";
             this.button_Personen_newPerson.UseVisualStyleBackColor = true;
             this.button_Personen_newPerson.Click += new System.EventHandler(this.button_Personen_newPerson_Click);
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(16, 145);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(95, 13);
+            this.label60.TabIndex = 0;
+            this.label60.Text = "Wochenarbeitszeit";
             // 
             // label18
             // 
@@ -2281,6 +2298,15 @@
             this.label28.TabIndex = 8;
             this.label28.Text = "-->";
             // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(242, 110);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(19, 13);
+            this.label59.TabIndex = 8;
+            this.label59.Text = "-->";
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -2370,6 +2396,17 @@
             this.comboBox_Personen_Aktiv.TabIndex = 4;
             this.comboBox_Personen_Aktiv.SelectedIndexChanged += new System.EventHandler(this.comboBox_Personen_Aktiv_SelectedIndexChanged);
             // 
+            // textBox_Personen_Wochenarbeitszeit_old
+            // 
+            this.textBox_Personen_Wochenarbeitszeit_old.Enabled = false;
+            this.textBox_Personen_Wochenarbeitszeit_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_Wochenarbeitszeit_old.Location = new System.Drawing.Point(132, 102);
+            this.textBox_Personen_Wochenarbeitszeit_old.MaxLength = 10;
+            this.textBox_Personen_Wochenarbeitszeit_old.Name = "textBox_Personen_Wochenarbeitszeit_old";
+            this.textBox_Personen_Wochenarbeitszeit_old.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_Wochenarbeitszeit_old.TabIndex = 1;
+            this.textBox_Personen_Wochenarbeitszeit_old.TabStop = false;
+            // 
             // textBox_Personen_Urlaubstage_old
             // 
             this.textBox_Personen_Urlaubstage_old.Enabled = false;
@@ -2380,6 +2417,16 @@
             this.textBox_Personen_Urlaubstage_old.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Urlaubstage_old.TabIndex = 1;
             this.textBox_Personen_Urlaubstage_old.TabStop = false;
+            // 
+            // textBox_Personen_Wochenarbeitszeit
+            // 
+            this.textBox_Personen_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Personen_Wochenarbeitszeit.Location = new System.Drawing.Point(272, 102);
+            this.textBox_Personen_Wochenarbeitszeit.MaxLength = 10;
+            this.textBox_Personen_Wochenarbeitszeit.Name = "textBox_Personen_Wochenarbeitszeit";
+            this.textBox_Personen_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
+            this.textBox_Personen_Wochenarbeitszeit.TabIndex = 3;
+            this.textBox_Personen_Wochenarbeitszeit.TextChanged += new System.EventHandler(this.textBox_Personen_Wochenarbeitszeit_TextChanged);
             // 
             // textBox_Personen_Urlaubstage
             // 
@@ -2419,6 +2466,15 @@
             this.textBox_Personen_Nachname_old.Size = new System.Drawing.Size(100, 26);
             this.textBox_Personen_Nachname_old.TabIndex = 1;
             this.textBox_Personen_Nachname_old.TabStop = false;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(12, 110);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(95, 13);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "Wochenarbeitszeit";
             // 
             // textBox_Personen_Nachname
             // 
@@ -2529,15 +2585,15 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle4;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Statusgrid_Status.Location = new System.Drawing.Point(39, 78);
             this.Statusgrid_Status.MultiSelect = false;
@@ -2646,62 +2702,6 @@
             this.button_Login_Enter.Text = "Anmelden";
             this.button_Login_Enter.UseVisualStyleBackColor = true;
             this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(12, 110);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(95, 13);
-            this.label56.TabIndex = 0;
-            this.label56.Text = "Wochenarbeitszeit";
-            // 
-            // textBox_Personen_Wochenarbeitszeit
-            // 
-            this.textBox_Personen_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Wochenarbeitszeit.Location = new System.Drawing.Point(272, 102);
-            this.textBox_Personen_Wochenarbeitszeit.MaxLength = 10;
-            this.textBox_Personen_Wochenarbeitszeit.Name = "textBox_Personen_Wochenarbeitszeit";
-            this.textBox_Personen_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_Wochenarbeitszeit.TabIndex = 3;
-            this.textBox_Personen_Wochenarbeitszeit.TextChanged += new System.EventHandler(this.textBox_Personen_Wochenarbeitszeit_TextChanged);
-            // 
-            // textBox_Personen_Wochenarbeitszeit_old
-            // 
-            this.textBox_Personen_Wochenarbeitszeit_old.Enabled = false;
-            this.textBox_Personen_Wochenarbeitszeit_old.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_Wochenarbeitszeit_old.Location = new System.Drawing.Point(132, 102);
-            this.textBox_Personen_Wochenarbeitszeit_old.MaxLength = 10;
-            this.textBox_Personen_Wochenarbeitszeit_old.Name = "textBox_Personen_Wochenarbeitszeit_old";
-            this.textBox_Personen_Wochenarbeitszeit_old.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_Wochenarbeitszeit_old.TabIndex = 1;
-            this.textBox_Personen_Wochenarbeitszeit_old.TabStop = false;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(242, 110);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(19, 13);
-            this.label59.TabIndex = 8;
-            this.label59.Text = "-->";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(16, 145);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(95, 13);
-            this.label60.TabIndex = 0;
-            this.label60.Text = "Wochenarbeitszeit";
-            // 
-            // textBox_Personen_neu_Wochenarbeitszeit
-            // 
-            this.textBox_Personen_neu_Wochenarbeitszeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Personen_neu_Wochenarbeitszeit.Location = new System.Drawing.Point(136, 137);
-            this.textBox_Personen_neu_Wochenarbeitszeit.Name = "textBox_Personen_neu_Wochenarbeitszeit";
-            this.textBox_Personen_neu_Wochenarbeitszeit.Size = new System.Drawing.Size(100, 26);
-            this.textBox_Personen_neu_Wochenarbeitszeit.TabIndex = 4;
             // 
             // Form1
             // 

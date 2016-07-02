@@ -161,7 +161,7 @@ namespace Stempelurhadmintest
             //Passworthash aus der Datenbank lesen...
             open_db();
             comm.Parameters.Clear();
-            comm.CommandText = "SELECT pwhash FROM login";
+            comm.CommandText = "SELECT pwhash FROM config";
             try{ expectedhash = comm.ExecuteScalar() + "";
             }
             catch (Exception ex) { log(ex.Message); }
