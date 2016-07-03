@@ -733,11 +733,23 @@ namespace Stempelurhadmintest
         private double berechneBonuszeitAnTag(string userid, string jahr, string monat, string tag)
         {
             double ergebnis = 0;
-            double Bonus_Schwelle = 0.55; //Prozentsatz der Sollzeit, die mit den verrechneten Zeiten ueberschritten werden muss um die
+            double Bonus_Schwelle = 0; //Prozentsatz der Sollzeit, die mit den verrechneten Zeiten ueberschritten werden muss um die
                                           //ueberschuessige verrechnete zeit als bonuszeit gewertet zu bekommen (1 wäre 100%, 0.55 entspricht 55%)
 
             double thistag_sollzeit = 0;
             double thistag_verrechnet = 0;
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT bonusschwelle FROM config";
+            MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+            try
+            {
+                Bonus_Schwelle = double.Parse(comm.ExecuteScalar() + "");
+            }
+            catch (Exception ex) { log(ex.Message); }
+            Reader.Close();
+            close_db();
 
             thistag_sollzeit = ermittleSollZeit(userid, jahr, monat, tag);
 
