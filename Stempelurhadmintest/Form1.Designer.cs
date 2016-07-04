@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
             this.MonatsPicker_Kalender = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Kalender = new System.Windows.Forms.ComboBox();
@@ -290,14 +290,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle5;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(93, 108);
@@ -890,9 +890,9 @@
             this.Auftragspicker_Verrechnung_Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Auftragspicker_Verrechnung_Insert.FormattingEnabled = true;
             this.Auftragspicker_Verrechnung_Insert.IntegralHeight = false;
-            this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(269, 37);
+            this.Auftragspicker_Verrechnung_Insert.Location = new System.Drawing.Point(286, 36);
             this.Auftragspicker_Verrechnung_Insert.Name = "Auftragspicker_Verrechnung_Insert";
-            this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(117, 28);
+            this.Auftragspicker_Verrechnung_Insert.Size = new System.Drawing.Size(100, 28);
             this.Auftragspicker_Verrechnung_Insert.TabIndex = 1;
             this.Auftragspicker_Verrechnung_Insert.SelectedIndexChanged += new System.EventHandler(this.Auftragspicker_Verrechnung_Insert_SelectedIndexChanged);
             this.Auftragspicker_Verrechnung_Insert.Click += new System.EventHandler(this.Auftragspicker_Verrechnung_Insert_Click);
@@ -909,11 +909,11 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(266, 18);
+            this.label21.Location = new System.Drawing.Point(273, 18);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(103, 13);
+            this.label21.Size = new System.Drawing.Size(127, 13);
             this.label21.TabIndex = 3;
-            this.label21.Text = "aus offenen wählen:";
+            this.label21.Text = "oder aus offenen wählen:";
             // 
             // textBox_Verrechnung_Auftragsnummer
             // 
@@ -930,9 +930,9 @@
             this.label36.AutoSize = true;
             this.label36.Location = new System.Drawing.Point(26, 18);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(86, 13);
+            this.label36.Size = new System.Drawing.Size(133, 13);
             this.label36.TabIndex = 3;
-            this.label36.Text = "Auftragsnummer:";
+            this.label36.Text = "Auftragsnummer eingeben:";
             // 
             // Bonusberechnung
             // 
@@ -2376,15 +2376,15 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle6;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Statusgrid_Status.Location = new System.Drawing.Point(39, 78);
             this.Statusgrid_Status.MultiSelect = false;

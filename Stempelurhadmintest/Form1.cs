@@ -1288,7 +1288,13 @@ namespace Stempelurhadmintest
                 input_zuordnung = input_zuordnung.Substring(0, 6);
             }
 
-            if(input_zuordnung == "Allgemein" && input_urlaub > 0)
+            if (fehler == false && input_zuordnung == "Allgemein" && input_sollzeit > 0)
+            {
+                fehler = true;
+                MessageBox.Show("Ereignisse mit einer Sollzeit über 0 dürfen nicht als Allgemeine Ereignisse erstellt werden.\r\nBitte stattdessen bei den Mitarbeitern einzeln eintragen, weil diese unterschiedliche Wochenarbeitszeiten haben können.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (fehler == false && input_zuordnung == "Allgemein" && input_urlaub > 0)
             {
                 fehler = true;
                 MessageBox.Show("Urlaube sollen nicht als Allgemeine Ereignisse erstellt werden.\r\nDen Urlaub bitte stattdessen bei den einzelnen Mitarbeitern eintragen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1323,7 +1329,7 @@ namespace Stempelurhadmintest
                 if (count != 0)
                 {
                     fehler = true;
-                    MessageBox.Show("Für dieses Datum existiert bereits ein Ereignis mit der selben Personenzuordnung.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Für dieses Datum existiert bereits ein Ereignis mit der selben Zuordnung.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 close_db();
