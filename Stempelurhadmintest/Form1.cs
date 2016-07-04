@@ -70,7 +70,7 @@ namespace Stempelurhadmintest
         private void Form1_Shown(object sender, EventArgs e)
         {
             //passworteingabe-panel ins sichtfeld ruecken
-            panel_Login.Location = new Point(340, 240);
+            panel_Login.Location = new Point(360, 260);
             //und cursor ins textfeld legen
             textBox_Login_Password.Focus();
         }
