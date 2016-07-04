@@ -29,10 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.KalenderGrid_Kalender = new System.Windows.Forms.DataGridView();
+            this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Donnerstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MonatsPicker_Kalender = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Kalender = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -57,12 +64,22 @@
             this.groupBox_Kalender_AlleEreignisse = new System.Windows.Forms.GroupBox();
             this.button_Kalender_storniereEintrag = new System.Windows.Forms.Button();
             this.Ereignisgrid_Kalender = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Verrechnung = new System.Windows.Forms.TabPage();
             this.groupBox_Verrechnungen_Update = new System.Windows.Forms.GroupBox();
             this.DatePicker_Verrechnung_Update = new System.Windows.Forms.DateTimePicker();
             this.button_Verrechnungen_SatzStornieren = new System.Windows.Forms.Button();
             this.button_Verrechnungen_SatzUeberschreiben = new System.Windows.Forms.Button();
             this.Verrechnungsgrid_Verrechnungen_Update = new System.Windows.Forms.DataGridView();
+            this.satzid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_Verrechnung_StundenGesamt = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.textBox_Verrechnungen_Stunden_edit = new System.Windows.Forms.TextBox();
@@ -72,6 +89,10 @@
             this.DatePicker_Verrechnung_Insert = new System.Windows.Forms.DateTimePicker();
             this.button_Verrechnungen_SatzErstellen = new System.Windows.Forms.Button();
             this.Verrechnungsgrid_Verrechnungen_Insert = new System.Windows.Forms.DataGridView();
+            this.Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dat_letzte_Stempelung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gesamtzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_Verrechnungen_Stunden_Insert = new System.Windows.Forms.TextBox();
             this.textBox_Verrechnungen_Mitarbeiter_Insert = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -120,6 +141,11 @@
             this.button_Stempelungen_stornieren = new System.Windows.Forms.Button();
             this.button_Stempelungen_ueberschreiben = new System.Windows.Forms.Button();
             this.Stempelungsgrid_Stempelungen = new System.Windows.Forms.DataGridView();
+            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatePicker_Stempelungen = new System.Windows.Forms.DateTimePicker();
             this.PersonPicker_Stempelungen = new System.Windows.Forms.ComboBox();
             this.Personen = new System.Windows.Forms.TabPage();
@@ -218,32 +244,13 @@
             this.label46 = new System.Windows.Forms.Label();
             this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.button_Login_Enter = new System.Windows.Forms.Button();
-            this.Montag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dienstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mittwoch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Donnerstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Freitag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Samstag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sonntag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sollzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Urlaub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vermerk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stampid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampZeitstempel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StampSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mitarbeiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dat_letzte_Stempelung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gesamtzeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.satzid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnungsdatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Verrechnet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveFileDialog_Auswertung_TatsaechlicheZeiten = new System.Windows.Forms.SaveFileDialog();
+            this.button_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.Button();
+            this.Personpicker_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.ComboBox();
+            this.groupBox_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.GroupBox();
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr = new System.Windows.Forms.TextBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -269,7 +276,9 @@
             this.groupBox5.SuspendLayout();
             this.Status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).BeginInit();
+            this.Auswertungen.SuspendLayout();
             this.panel_Login.SuspendLayout();
+            this.groupBox_Auswertungen_TatsaechlicheZeit.SuspendLayout();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -290,14 +299,14 @@
             this.Freitag,
             this.Samstag,
             this.Sonntag});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.KalenderGrid_Kalender.DefaultCellStyle = dataGridViewCellStyle1;
             this.KalenderGrid_Kalender.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.KalenderGrid_Kalender.GridColor = System.Drawing.SystemColors.WindowText;
             this.KalenderGrid_Kalender.Location = new System.Drawing.Point(93, 108);
@@ -313,6 +322,55 @@
             this.KalenderGrid_Kalender.TabIndex = 3;
             this.KalenderGrid_Kalender.TabStop = false;
             this.KalenderGrid_Kalender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KalenderGrid_CellContentClick);
+            // 
+            // Montag
+            // 
+            this.Montag.HeaderText = "Mo";
+            this.Montag.Name = "Montag";
+            this.Montag.ReadOnly = true;
+            this.Montag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Dienstag
+            // 
+            this.Dienstag.HeaderText = "Di";
+            this.Dienstag.Name = "Dienstag";
+            this.Dienstag.ReadOnly = true;
+            this.Dienstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Mittwoch
+            // 
+            this.Mittwoch.HeaderText = "Mi";
+            this.Mittwoch.Name = "Mittwoch";
+            this.Mittwoch.ReadOnly = true;
+            this.Mittwoch.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Donnerstag
+            // 
+            this.Donnerstag.HeaderText = "Do";
+            this.Donnerstag.Name = "Donnerstag";
+            this.Donnerstag.ReadOnly = true;
+            this.Donnerstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Freitag
+            // 
+            this.Freitag.HeaderText = "Fr";
+            this.Freitag.Name = "Freitag";
+            this.Freitag.ReadOnly = true;
+            this.Freitag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Samstag
+            // 
+            this.Samstag.HeaderText = "Sa";
+            this.Samstag.Name = "Samstag";
+            this.Samstag.ReadOnly = true;
+            this.Samstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Sonntag
+            // 
+            this.Sonntag.HeaderText = "So";
+            this.Sonntag.Name = "Sonntag";
+            this.Sonntag.ReadOnly = true;
+            this.Sonntag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MonatsPicker_Kalender
             // 
@@ -631,6 +689,43 @@
             this.Ereignisgrid_Kalender.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Ereignisgrid_Kalender_CellClick);
             this.Ereignisgrid_Kalender.SelectionChanged += new System.EventHandler(this.Ereignisgrid_Kalender_SelectionChanged);
             // 
+            // ID
+            // 
+            this.ID.FillWeight = 70F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Datum
+            // 
+            this.Datum.HeaderText = "Dat.";
+            this.Datum.Name = "Datum";
+            this.Datum.ReadOnly = true;
+            this.Datum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Sollzeit
+            // 
+            this.Sollzeit.HeaderText = "Soll";
+            this.Sollzeit.Name = "Sollzeit";
+            this.Sollzeit.ReadOnly = true;
+            this.Sollzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Urlaub
+            // 
+            this.Urlaub.HeaderText = "Urlb";
+            this.Urlaub.Name = "Urlaub";
+            this.Urlaub.ReadOnly = true;
+            this.Urlaub.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Vermerk
+            // 
+            this.Vermerk.FillWeight = 300F;
+            this.Vermerk.HeaderText = "Vermerk";
+            this.Vermerk.Name = "Vermerk";
+            this.Vermerk.ReadOnly = true;
+            this.Vermerk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Verrechnung
             // 
             this.Verrechnung.Controls.Add(this.groupBox_Verrechnungen_Update);
@@ -727,6 +822,51 @@
             this.Verrechnungsgrid_Verrechnungen_Update.Size = new System.Drawing.Size(353, 196);
             this.Verrechnungsgrid_Verrechnungen_Update.TabIndex = 4;
             this.Verrechnungsgrid_Verrechnungen_Update.SelectionChanged += new System.EventHandler(this.Verrechnungsgrid_Verrechnungen_Update_SelectionChanged);
+            // 
+            // satzid
+            // 
+            this.satzid.FillWeight = 40F;
+            this.satzid.HeaderText = "ID";
+            this.satzid.Name = "satzid";
+            this.satzid.ReadOnly = true;
+            this.satzid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.satzid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 70F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 115F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Verrechnungsdatum
+            // 
+            this.Verrechnungsdatum.FillWeight = 90F;
+            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
+            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
+            this.Verrechnungsdatum.ReadOnly = true;
+            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Verrechnet
+            // 
+            this.Verrechnet.FillWeight = 75F;
+            this.Verrechnet.HeaderText = "Verrechnet";
+            this.Verrechnet.Name = "Verrechnet";
+            this.Verrechnet.ReadOnly = true;
+            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Verrechnet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // textBox_Verrechnung_StundenGesamt
             // 
@@ -837,6 +977,36 @@
             this.Verrechnungsgrid_Verrechnungen_Insert.Size = new System.Drawing.Size(298, 193);
             this.Verrechnungsgrid_Verrechnungen_Insert.TabIndex = 4;
             this.Verrechnungsgrid_Verrechnungen_Insert.SelectionChanged += new System.EventHandler(this.Verrechnungsgrid_Verrechnungen_Insert_SelectionChanged);
+            // 
+            // Mitarbeiter
+            // 
+            this.Mitarbeiter.FillWeight = 70F;
+            this.Mitarbeiter.HeaderText = "Mitarb.";
+            this.Mitarbeiter.Name = "Mitarbeiter";
+            this.Mitarbeiter.ReadOnly = true;
+            this.Mitarbeiter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PersName
+            // 
+            this.PersName.FillWeight = 120F;
+            this.PersName.HeaderText = "Name";
+            this.PersName.Name = "PersName";
+            this.PersName.ReadOnly = true;
+            // 
+            // Dat_letzte_Stempelung
+            // 
+            this.Dat_letzte_Stempelung.HeaderText = "letzt. Dat.";
+            this.Dat_letzte_Stempelung.Name = "Dat_letzte_Stempelung";
+            this.Dat_letzte_Stempelung.ReadOnly = true;
+            this.Dat_letzte_Stempelung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // gesamtzeit
+            // 
+            this.gesamtzeit.FillWeight = 65F;
+            this.gesamtzeit.HeaderText = "Stunden";
+            this.gesamtzeit.Name = "gesamtzeit";
+            this.gesamtzeit.ReadOnly = true;
+            this.gesamtzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // textBox_Verrechnungen_Stunden_Insert
             // 
@@ -1385,6 +1555,46 @@
             this.Stempelungsgrid_Stempelungen.Size = new System.Drawing.Size(324, 489);
             this.Stempelungsgrid_Stempelungen.TabIndex = 7;
             this.Stempelungsgrid_Stempelungen.SelectionChanged += new System.EventHandler(this.Stempelungsgrid_Stempelungen_SelectionChanged);
+            // 
+            // stampid
+            // 
+            this.stampid.FillWeight = 40F;
+            this.stampid.HeaderText = "ID";
+            this.stampid.Name = "stampid";
+            this.stampid.ReadOnly = true;
+            this.stampid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StampArt
+            // 
+            this.StampArt.FillWeight = 35F;
+            this.StampArt.HeaderText = "Art";
+            this.StampArt.Name = "StampArt";
+            this.StampArt.ReadOnly = true;
+            this.StampArt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StampTask
+            // 
+            this.StampTask.FillWeight = 80F;
+            this.StampTask.HeaderText = "AuftragsNr.";
+            this.StampTask.Name = "StampTask";
+            this.StampTask.ReadOnly = true;
+            this.StampTask.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StampZeitstempel
+            // 
+            this.StampZeitstempel.FillWeight = 90F;
+            this.StampZeitstempel.HeaderText = "Zeitstempel";
+            this.StampZeitstempel.Name = "StampZeitstempel";
+            this.StampZeitstempel.ReadOnly = true;
+            this.StampZeitstempel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StampSource
+            // 
+            this.StampSource.FillWeight = 110F;
+            this.StampSource.HeaderText = "Quelle";
+            this.StampSource.Name = "StampSource";
+            this.StampSource.ReadOnly = true;
+            this.StampSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DatePicker_Stempelungen
             // 
@@ -2376,15 +2586,15 @@
             this.stat_Status,
             this.stat_Auftrag,
             this.stat_Zeit});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Statusgrid_Status.DefaultCellStyle = dataGridViewCellStyle2;
             this.Statusgrid_Status.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Statusgrid_Status.Location = new System.Drawing.Point(39, 78);
             this.Statusgrid_Status.MultiSelect = false;
@@ -2446,6 +2656,7 @@
             // 
             // Auswertungen
             // 
+            this.Auswertungen.Controls.Add(this.groupBox_Auswertungen_TatsaechlicheZeit);
             this.Auswertungen.Location = new System.Drawing.Point(4, 29);
             this.Auswertungen.Name = "Auswertungen";
             this.Auswertungen.Padding = new System.Windows.Forms.Padding(3);
@@ -2495,206 +2706,72 @@
             this.button_Login_Enter.UseVisualStyleBackColor = true;
             this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
             // 
-            // Montag
+            // button_Auswertungen_TatsaechlicheZeit
             // 
-            this.Montag.HeaderText = "Mo";
-            this.Montag.Name = "Montag";
-            this.Montag.ReadOnly = true;
-            this.Montag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.button_Auswertungen_TatsaechlicheZeit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Auswertungen_TatsaechlicheZeit.ImageIndex = 3;
+            this.button_Auswertungen_TatsaechlicheZeit.ImageList = this.myiconlist;
+            this.button_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(542, 58);
+            this.button_Auswertungen_TatsaechlicheZeit.Name = "button_Auswertungen_TatsaechlicheZeit";
+            this.button_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(227, 29);
+            this.button_Auswertungen_TatsaechlicheZeit.TabIndex = 0;
+            this.button_Auswertungen_TatsaechlicheZeit.Text = "Auswertung erstellen";
+            this.button_Auswertungen_TatsaechlicheZeit.UseVisualStyleBackColor = true;
             // 
-            // Dienstag
+            // Personpicker_Auswertungen_TatsaechlicheZeit
             // 
-            this.Dienstag.HeaderText = "Di";
-            this.Dienstag.Name = "Dienstag";
-            this.Dienstag.ReadOnly = true;
-            this.Dienstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.BackColor = System.Drawing.Color.White;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.ForeColor = System.Drawing.Color.Black;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.FormattingEnabled = true;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(15, 59);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Name = "Personpicker_Auswertungen_TatsaechlicheZeit";
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(322, 28);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.TabIndex = 2;
             // 
-            // Mittwoch
+            // groupBox_Auswertungen_TatsaechlicheZeit
             // 
-            this.Mittwoch.HeaderText = "Mi";
-            this.Mittwoch.Name = "Mittwoch";
-            this.Mittwoch.ReadOnly = true;
-            this.Mittwoch.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label62);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label61);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.textBox_Auswertungen_TatsaechlicheZeit_Jahr);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.Personpicker_Auswertungen_TatsaechlicheZeit);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.button_Auswertungen_TatsaechlicheZeit);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(32, 29);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Name = "groupBox_Auswertungen_TatsaechlicheZeit";
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(787, 110);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.TabIndex = 3;
+            this.groupBox_Auswertungen_TatsaechlicheZeit.TabStop = false;
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Text = "Tatsächlich gearbeitete Zeit";
             // 
-            // Donnerstag
+            // textBox_Auswertungen_TatsaechlicheZeit_Jahr
             // 
-            this.Donnerstag.HeaderText = "Do";
-            this.Donnerstag.Name = "Donnerstag";
-            this.Donnerstag.ReadOnly = true;
-            this.Donnerstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Location = new System.Drawing.Point(373, 59);
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.MaxLength = 6;
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Name = "textBox_Auswertungen_TatsaechlicheZeit_Jahr";
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Size = new System.Drawing.Size(124, 29);
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.TabIndex = 3;
             // 
-            // Freitag
+            // label61
             // 
-            this.Freitag.HeaderText = "Fr";
-            this.Freitag.Name = "Freitag";
-            this.Freitag.ReadOnly = true;
-            this.Freitag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(16, 35);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(59, 13);
+            this.label61.TabIndex = 4;
+            this.label61.Text = "Mitarbeiter:";
             // 
-            // Samstag
+            // label62
             // 
-            this.Samstag.HeaderText = "Sa";
-            this.Samstag.Name = "Samstag";
-            this.Samstag.ReadOnly = true;
-            this.Samstag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Sonntag
-            // 
-            this.Sonntag.HeaderText = "So";
-            this.Sonntag.Name = "Sonntag";
-            this.Sonntag.ReadOnly = true;
-            this.Sonntag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ID
-            // 
-            this.ID.FillWeight = 70F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Datum
-            // 
-            this.Datum.HeaderText = "Dat.";
-            this.Datum.Name = "Datum";
-            this.Datum.ReadOnly = true;
-            this.Datum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Sollzeit
-            // 
-            this.Sollzeit.HeaderText = "Soll";
-            this.Sollzeit.Name = "Sollzeit";
-            this.Sollzeit.ReadOnly = true;
-            this.Sollzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Urlaub
-            // 
-            this.Urlaub.HeaderText = "Urlb";
-            this.Urlaub.Name = "Urlaub";
-            this.Urlaub.ReadOnly = true;
-            this.Urlaub.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Vermerk
-            // 
-            this.Vermerk.FillWeight = 300F;
-            this.Vermerk.HeaderText = "Vermerk";
-            this.Vermerk.Name = "Vermerk";
-            this.Vermerk.ReadOnly = true;
-            this.Vermerk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // stampid
-            // 
-            this.stampid.FillWeight = 40F;
-            this.stampid.HeaderText = "ID";
-            this.stampid.Name = "stampid";
-            this.stampid.ReadOnly = true;
-            this.stampid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StampArt
-            // 
-            this.StampArt.FillWeight = 35F;
-            this.StampArt.HeaderText = "Art";
-            this.StampArt.Name = "StampArt";
-            this.StampArt.ReadOnly = true;
-            this.StampArt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StampTask
-            // 
-            this.StampTask.FillWeight = 80F;
-            this.StampTask.HeaderText = "AuftragsNr.";
-            this.StampTask.Name = "StampTask";
-            this.StampTask.ReadOnly = true;
-            this.StampTask.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StampZeitstempel
-            // 
-            this.StampZeitstempel.FillWeight = 90F;
-            this.StampZeitstempel.HeaderText = "Zeitstempel";
-            this.StampZeitstempel.Name = "StampZeitstempel";
-            this.StampZeitstempel.ReadOnly = true;
-            this.StampZeitstempel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StampSource
-            // 
-            this.StampSource.FillWeight = 110F;
-            this.StampSource.HeaderText = "Quelle";
-            this.StampSource.Name = "StampSource";
-            this.StampSource.ReadOnly = true;
-            this.StampSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Mitarbeiter
-            // 
-            this.Mitarbeiter.FillWeight = 70F;
-            this.Mitarbeiter.HeaderText = "Mitarb.";
-            this.Mitarbeiter.Name = "Mitarbeiter";
-            this.Mitarbeiter.ReadOnly = true;
-            this.Mitarbeiter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PersName
-            // 
-            this.PersName.FillWeight = 120F;
-            this.PersName.HeaderText = "Name";
-            this.PersName.Name = "PersName";
-            this.PersName.ReadOnly = true;
-            // 
-            // Dat_letzte_Stempelung
-            // 
-            this.Dat_letzte_Stempelung.HeaderText = "letzt. Dat.";
-            this.Dat_letzte_Stempelung.Name = "Dat_letzte_Stempelung";
-            this.Dat_letzte_Stempelung.ReadOnly = true;
-            this.Dat_letzte_Stempelung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // gesamtzeit
-            // 
-            this.gesamtzeit.FillWeight = 65F;
-            this.gesamtzeit.HeaderText = "Stunden";
-            this.gesamtzeit.Name = "gesamtzeit";
-            this.gesamtzeit.ReadOnly = true;
-            this.gesamtzeit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // satzid
-            // 
-            this.satzid.FillWeight = 40F;
-            this.satzid.HeaderText = "ID";
-            this.satzid.Name = "satzid";
-            this.satzid.ReadOnly = true;
-            this.satzid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.satzid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 70F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mitarb.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.FillWeight = 115F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Verrechnungsdatum
-            // 
-            this.Verrechnungsdatum.FillWeight = 90F;
-            this.Verrechnungsdatum.HeaderText = "Verr.-Datum";
-            this.Verrechnungsdatum.Name = "Verrechnungsdatum";
-            this.Verrechnungsdatum.ReadOnly = true;
-            this.Verrechnungsdatum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnungsdatum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Verrechnet
-            // 
-            this.Verrechnet.FillWeight = 75F;
-            this.Verrechnet.HeaderText = "Verrechnet";
-            this.Verrechnet.Name = "Verrechnet";
-            this.Verrechnet.ReadOnly = true;
-            this.Verrechnet.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Verrechnet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(370, 35);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(30, 13);
+            this.label62.TabIndex = 4;
+            this.label62.Text = "Jahr:";
             // 
             // Form1
             // 
@@ -2749,8 +2826,11 @@
             this.groupBox5.PerformLayout();
             this.Status.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).EndInit();
+            this.Auswertungen.ResumeLayout(false);
             this.panel_Login.ResumeLayout(false);
             this.panel_Login.PerformLayout();
+            this.groupBox_Auswertungen_TatsaechlicheZeit.ResumeLayout(false);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2968,6 +3048,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnungsdatum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Verrechnet;
+        private System.Windows.Forms.GroupBox groupBox_Auswertungen_TatsaechlicheZeit;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TextBox textBox_Auswertungen_TatsaechlicheZeit_Jahr;
+        private System.Windows.Forms.ComboBox Personpicker_Auswertungen_TatsaechlicheZeit;
+        private System.Windows.Forms.Button button_Auswertungen_TatsaechlicheZeit;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_Auswertung_TatsaechlicheZeiten;
     }
 }
 
