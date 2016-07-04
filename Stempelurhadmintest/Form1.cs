@@ -2249,6 +2249,13 @@ namespace Stempelurhadmintest
 
                 //rechte seite refreshen
                 refreshUpdateFormular_Verrechnung();
+            }else
+            {
+                //linke seite refreshen
+                refreshInsertFormular_Verrechnung();
+
+                //rechte seite refreshen
+                refreshUpdateFormular_Verrechnung();
             }
         }
 
@@ -2448,6 +2455,13 @@ namespace Stempelurhadmintest
             close_db();
 
             textBox_Verrechnung_StundenGesamt.Text = this_gesamtzeit;
+            if(this_gesamtzeit != "")
+            {
+                textBox_Verrechnung_StundenGesamt.BackColor = Color.LightSkyBlue;
+            }else
+            {
+                textBox_Verrechnung_StundenGesamt.BackColor = Color.White;
+            }
 
 
             //Fuellen des Grids mit den einzelnen Verrechnungssaetzen
