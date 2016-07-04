@@ -4153,6 +4153,11 @@ namespace Stempelurhadmintest
             return ergebnis;
         }
 
+        private void Statusgrid_Status_Sorted(object sender, EventArgs e)
+        {
+            Statusgrid_Status.ClearSelection();
+        }
+
         ///////////Bonusberechnung/////////////////////////////////////////////
 
         private void refreshPersonPicker_Bonus()
@@ -4507,7 +4512,9 @@ namespace Stempelurhadmintest
             groupBox_Bonus_neu.Visible = true;
         }
 
-        
+
+
+
         ///////////////////////////////////////////////////////////////////////
 
     }
