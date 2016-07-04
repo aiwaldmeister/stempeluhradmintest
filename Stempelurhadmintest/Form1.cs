@@ -12,6 +12,7 @@ using System.Configuration;     //Zum lesen der Config-File
 using MySql.Data;               //der MySql-Connector
 using System.IO;                //zum schreiben der Logfiles
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace Stempelurhadmintest
 {
@@ -54,16 +55,11 @@ namespace Stempelurhadmintest
             //Datenbank initialisieren
             init_db(dbserverconf_global, dbnameconf_global, dbuserconf_global, dbpwconf_global);
 
-            //Kalendertab initialisieren
-            //Monatspicker auf ersten des Monats setzen, weil sonst eine Exception auftritt wenn z.B. vom 31. eines monats aus nur der monat auf einen kürzeren verändert wird
-            MonatsPicker_Kalender.Value = new DateTime(MonatsPicker_Kalender.Value.Year, MonatsPicker_Kalender.Value.Month, 1);
-            refreshKalendergrid();
-            refreshPersonPicker_Kalender();
-            refreshEreignisgrid_Kalender();
-            kalendertab_initialisiert_global = true;
+
 
             textBox_Login_Password.Focus();
-            
+
+                      
 
         }
 
@@ -73,6 +69,9 @@ namespace Stempelurhadmintest
             panel_Login.Location = new Point(360, 260);
             //und cursor ins textfeld legen
             textBox_Login_Password.Focus();
+
+            this.Text = "Zeitsystem-Verwaltung     -    Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "    -    Datenbank: " + dbnameconf_global;
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -176,6 +175,9 @@ namespace Stempelurhadmintest
                 panel_Login.Visible = false;
                 tabControl1.Visible = true;
                 tabControl1.Enabled = true;
+
+                initKalendertab();
+
 
             }
             else
@@ -777,8 +779,19 @@ namespace Stempelurhadmintest
             return ergebnis;
         }
 
-        
+
         ///////////Kalender-Tab////////////////////////////////////////////////
+
+        private void initKalendertab()
+        {
+            //Kalendertab initialisieren
+            //Monatspicker auf ersten des Monats setzen, weil sonst eine Exception auftritt wenn z.B. vom 31. eines monats aus nur der monat auf einen kürzeren verändert wird
+            MonatsPicker_Kalender.Value = new DateTime(MonatsPicker_Kalender.Value.Year, MonatsPicker_Kalender.Value.Month, 1);
+            refreshKalendergrid();
+            refreshPersonPicker_Kalender();
+            refreshEreignisgrid_Kalender();
+            kalendertab_initialisiert_global = true;
+        }
 
         private void markiereTagemitEreignissen(String PersonFilter)
         {
