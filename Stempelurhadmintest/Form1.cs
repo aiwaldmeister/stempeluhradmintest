@@ -279,8 +279,7 @@ namespace Stempelurhadmintest
             {
                 if (auswertungstab_initialisiert_global == false)
                 {
-                    //auswertungstab initialisieren
-                    //Auswertung über Tatsächliche Arbeitszeit (Mitarbeiter/Jahr)
+                    initAuswertungstab();
                     auswertungstab_initialisiert_global = true;
                 }
             }
@@ -4545,10 +4544,131 @@ namespace Stempelurhadmintest
             groupBox_Bonus_neu.Visible = true;
         }
 
-        
+
         ///////////Auswertungen////////////////////////////////////////////////
 
+        private void initAuswertungstab()
+        {
+            //initialisiere Formular - Tatsaechliche Zeit
+            refreshPersonpicker_Auswertungen_TatsaechlicheZeit();
+            textBox_Auswertungen_TatsaechlicheZeit_Jahr.Text = DateTime.Now.Year.ToString();
 
+        }
+
+        private void refreshPersonpicker_Auswertungen_TatsaechlicheZeit()
+        {
+            
+            Personpicker_Auswertungen_TatsaechlicheZeit.Items.Clear();
+
+            //Personen der Personentabelle dem PersonPicker hinzufügen
+            string thisperson_userid = "";
+            string thisperson_name = "";
+            string thisperson_vorname = "";
+
+            open_db();
+            comm.Parameters.Clear();
+            comm.CommandText = "SELECT userid, name, vorname FROM user where aktiv = 1";
+
+            try
+            {
+                MySql.Data.MySqlClient.MySqlDataReader Reader = comm.ExecuteReader();
+
+                //jeder Schleifendurchlauf entspricht einer gefundenen Person
+                while (Reader.Read())
+                {
+                    thisperson_userid = Reader["userid"] + "";
+                    thisperson_name = Reader["name"] + "";
+                    thisperson_vorname = Reader["vorname"] + "";
+                                        
+                    Personpicker_Auswertungen_TatsaechlicheZeit.Items.Add(thisperson_userid + " (" + thisperson_name + " " + thisperson_vorname + ")");
+
+                }
+                Reader.Close();
+            }
+            catch (Exception ex) { log(ex.Message); }
+
+
+            close_db();
+
+            Personpicker_Auswertungen_TatsaechlicheZeit.SelectedIndex = 0;
+        }
+
+        private void button_Auswertungen_TatsaechlicheZeit_Click(object sender, EventArgs e)
+        {
+            bool fehler = false;
+            string selecteduserid = Personpicker_Auswertungen_TatsaechlicheZeit.Text;
+            int selectedyear = 0;
+
+            //Personencode und Jahresangabe auf plausibilität prüfen
+
+            if (selecteduserid.Length >= 6)
+            {
+                selecteduserid = selecteduserid.Substring(0, 6);
+            }else
+            {
+                fehler = true;
+                MessageBox.Show("Keine gültige Person ausgewählt.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            bool TryParse_Result = int.TryParse(textBox_Auswertungen_TatsaechlicheZeit_Jahr.Text, out selectedyear);
+            if (TryParse_Result == false || selectedyear == 0)
+            {//Wert fuer das gewählte Jahr ist keine Zahl
+                fehler = true;
+                MessageBox.Show("Fehler! Der angegebene Wert für das auszuwertende Jahr ist ungültig.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            //Falls kein Fehler, savefiledialog anzeigen
+            if (fehler == false)
+            {
+                string chosenfilename = "";
+
+                saveFileDialog_Auswertung_TatsaechlicheZeiten.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
+                saveFileDialog_Auswertung_TatsaechlicheZeiten.Filter = "CSV-Datei (*.CSV)|*.csv|Alle Dateien (*.*)|*.*";
+                saveFileDialog_Auswertung_TatsaechlicheZeiten.FilterIndex = 1;
+
+                saveFileDialog_Auswertung_TatsaechlicheZeiten.FileName = "TatsaechlicheZeiten_" + selectedyear + "_" + selecteduserid + ".csv";
+                
+
+                if (saveFileDialog_Auswertung_TatsaechlicheZeiten.ShowDialog() == DialogResult.OK)
+                {
+                    chosenfilename = saveFileDialog_Auswertung_TatsaechlicheZeiten.FileName;
+                    //MessageBox.Show(chosenfilename); //nur zu debugzwecken...
+
+
+                    //Zeiten ermitteln und in csv schreiben
+
+                    DateTime actdate = new DateTime(selectedyear,1,1,0,0,0);
+
+                    //Am Anfang eine Zeile schreiben mit append=false, um die Datei falls vorhanden zu leeren.
+                    using (StreamWriter file = new StreamWriter(chosenfilename, false))
+                    {
+                        file.WriteLine("Tag#;Datum;Istzeit");
+                    }
+
+                    while (actdate.Year == selectedyear)
+                    {
+                        string ausgabezeile_betrachtungstag = "";
+                        double istzeit_betrachtungstag = 0;
+
+                        istzeit_betrachtungstag = ermittleIstZeit(selecteduserid, actdate.Year.ToString("D4"), actdate.Month.ToString("D2"), actdate.Day.ToString("D2"));
+
+
+                        ausgabezeile_betrachtungstag += actdate.DayOfYear.ToString() + ";" + actdate.ToLongDateString() + ";" + istzeit_betrachtungstag.ToString();
+
+
+                        using (StreamWriter file = new StreamWriter(chosenfilename, true))
+                        {
+                            file.WriteLine(ausgabezeile_betrachtungstag);
+                        }
+
+                        actdate=actdate.AddDays(1);
+                    }
+                                        
+                }
+
+            }
+            
+        }
 
         ///////////////////////////////////////////////////////////////////////
 

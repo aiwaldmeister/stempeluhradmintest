@@ -240,17 +240,17 @@
             this.stat_Auftrag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stat_Zeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Auswertungen = new System.Windows.Forms.TabPage();
+            this.groupBox_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.GroupBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr = new System.Windows.Forms.TextBox();
+            this.Personpicker_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.ComboBox();
+            this.button_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.Button();
             this.panel_Login = new System.Windows.Forms.Panel();
             this.label46 = new System.Windows.Forms.Label();
             this.textBox_Login_Password = new System.Windows.Forms.TextBox();
             this.button_Login_Enter = new System.Windows.Forms.Button();
             this.saveFileDialog_Auswertung_TatsaechlicheZeiten = new System.Windows.Forms.SaveFileDialog();
-            this.button_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.Button();
-            this.Personpicker_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.ComboBox();
-            this.groupBox_Auswertungen_TatsaechlicheZeit = new System.Windows.Forms.GroupBox();
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr = new System.Windows.Forms.TextBox();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.KalenderGrid_Kalender)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Kalender.SuspendLayout();
@@ -277,8 +277,8 @@
             this.Status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).BeginInit();
             this.Auswertungen.SuspendLayout();
-            this.panel_Login.SuspendLayout();
             this.groupBox_Auswertungen_TatsaechlicheZeit.SuspendLayout();
+            this.panel_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // KalenderGrid_Kalender
@@ -2665,6 +2665,74 @@
             this.Auswertungen.Text = "Auswertungen";
             this.Auswertungen.UseVisualStyleBackColor = true;
             // 
+            // groupBox_Auswertungen_TatsaechlicheZeit
+            // 
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label62);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label61);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.textBox_Auswertungen_TatsaechlicheZeit_Jahr);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.Personpicker_Auswertungen_TatsaechlicheZeit);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.button_Auswertungen_TatsaechlicheZeit);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(32, 29);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Name = "groupBox_Auswertungen_TatsaechlicheZeit";
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(787, 110);
+            this.groupBox_Auswertungen_TatsaechlicheZeit.TabIndex = 3;
+            this.groupBox_Auswertungen_TatsaechlicheZeit.TabStop = false;
+            this.groupBox_Auswertungen_TatsaechlicheZeit.Text = "Tatsächlich gearbeitete Zeit";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(370, 35);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(30, 13);
+            this.label62.TabIndex = 4;
+            this.label62.Text = "Jahr:";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(16, 35);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(59, 13);
+            this.label61.TabIndex = 4;
+            this.label61.Text = "Mitarbeiter:";
+            // 
+            // textBox_Auswertungen_TatsaechlicheZeit_Jahr
+            // 
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Location = new System.Drawing.Point(373, 59);
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.MaxLength = 6;
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Name = "textBox_Auswertungen_TatsaechlicheZeit_Jahr";
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Size = new System.Drawing.Size(124, 29);
+            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.TabIndex = 3;
+            // 
+            // Personpicker_Auswertungen_TatsaechlicheZeit
+            // 
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.BackColor = System.Drawing.Color.White;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.ForeColor = System.Drawing.Color.Black;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.FormattingEnabled = true;
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Items.AddRange(new object[] {
+            "Allgemein"});
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(15, 59);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Name = "Personpicker_Auswertungen_TatsaechlicheZeit";
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(322, 28);
+            this.Personpicker_Auswertungen_TatsaechlicheZeit.TabIndex = 2;
+            // 
+            // button_Auswertungen_TatsaechlicheZeit
+            // 
+            this.button_Auswertungen_TatsaechlicheZeit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Auswertungen_TatsaechlicheZeit.ImageIndex = 3;
+            this.button_Auswertungen_TatsaechlicheZeit.ImageList = this.myiconlist;
+            this.button_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(542, 58);
+            this.button_Auswertungen_TatsaechlicheZeit.Name = "button_Auswertungen_TatsaechlicheZeit";
+            this.button_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(227, 29);
+            this.button_Auswertungen_TatsaechlicheZeit.TabIndex = 0;
+            this.button_Auswertungen_TatsaechlicheZeit.Text = "Auswertung erstellen";
+            this.button_Auswertungen_TatsaechlicheZeit.UseVisualStyleBackColor = true;
+            this.button_Auswertungen_TatsaechlicheZeit.Click += new System.EventHandler(this.button_Auswertungen_TatsaechlicheZeit_Click);
+            // 
             // panel_Login
             // 
             this.panel_Login.Controls.Add(this.label46);
@@ -2705,73 +2773,6 @@
             this.button_Login_Enter.Text = "Anmelden";
             this.button_Login_Enter.UseVisualStyleBackColor = true;
             this.button_Login_Enter.Click += new System.EventHandler(this.button_Login_Enter_Click);
-            // 
-            // button_Auswertungen_TatsaechlicheZeit
-            // 
-            this.button_Auswertungen_TatsaechlicheZeit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Auswertungen_TatsaechlicheZeit.ImageIndex = 3;
-            this.button_Auswertungen_TatsaechlicheZeit.ImageList = this.myiconlist;
-            this.button_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(542, 58);
-            this.button_Auswertungen_TatsaechlicheZeit.Name = "button_Auswertungen_TatsaechlicheZeit";
-            this.button_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(227, 29);
-            this.button_Auswertungen_TatsaechlicheZeit.TabIndex = 0;
-            this.button_Auswertungen_TatsaechlicheZeit.Text = "Auswertung erstellen";
-            this.button_Auswertungen_TatsaechlicheZeit.UseVisualStyleBackColor = true;
-            // 
-            // Personpicker_Auswertungen_TatsaechlicheZeit
-            // 
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.BackColor = System.Drawing.Color.White;
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.ForeColor = System.Drawing.Color.Black;
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.FormattingEnabled = true;
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.Items.AddRange(new object[] {
-            "Allgemein"});
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(15, 59);
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.Name = "Personpicker_Auswertungen_TatsaechlicheZeit";
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(322, 28);
-            this.Personpicker_Auswertungen_TatsaechlicheZeit.TabIndex = 2;
-            // 
-            // groupBox_Auswertungen_TatsaechlicheZeit
-            // 
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label62);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.label61);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.textBox_Auswertungen_TatsaechlicheZeit_Jahr);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.Personpicker_Auswertungen_TatsaechlicheZeit);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Controls.Add(this.button_Auswertungen_TatsaechlicheZeit);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Location = new System.Drawing.Point(32, 29);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Name = "groupBox_Auswertungen_TatsaechlicheZeit";
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Size = new System.Drawing.Size(787, 110);
-            this.groupBox_Auswertungen_TatsaechlicheZeit.TabIndex = 3;
-            this.groupBox_Auswertungen_TatsaechlicheZeit.TabStop = false;
-            this.groupBox_Auswertungen_TatsaechlicheZeit.Text = "Tatsächlich gearbeitete Zeit";
-            // 
-            // textBox_Auswertungen_TatsaechlicheZeit_Jahr
-            // 
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Location = new System.Drawing.Point(373, 59);
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.MaxLength = 6;
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Name = "textBox_Auswertungen_TatsaechlicheZeit_Jahr";
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.Size = new System.Drawing.Size(124, 29);
-            this.textBox_Auswertungen_TatsaechlicheZeit_Jahr.TabIndex = 3;
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(16, 35);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(59, 13);
-            this.label61.TabIndex = 4;
-            this.label61.Text = "Mitarbeiter:";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(370, 35);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(30, 13);
-            this.label62.TabIndex = 4;
-            this.label62.Text = "Jahr:";
             // 
             // Form1
             // 
@@ -2827,10 +2828,10 @@
             this.Status.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Statusgrid_Status)).EndInit();
             this.Auswertungen.ResumeLayout(false);
-            this.panel_Login.ResumeLayout(false);
-            this.panel_Login.PerformLayout();
             this.groupBox_Auswertungen_TatsaechlicheZeit.ResumeLayout(false);
             this.groupBox_Auswertungen_TatsaechlicheZeit.PerformLayout();
+            this.panel_Login.ResumeLayout(false);
+            this.panel_Login.PerformLayout();
             this.ResumeLayout(false);
 
         }
